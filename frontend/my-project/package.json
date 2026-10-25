@@ -1,0 +1,52 @@
+{
+  "name": "my-project",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "i18n:check": "node scripts/check-messages.mjs",
+    "test": "vitest run",
+    "db:start": "supabase start",
+    "db:stop": "supabase stop",
+    "db:reset": "supabase db reset"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.9.2",
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.118.0",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@tanstack/react-query": "^5.104.5",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.61.0",
+    "next": "16.4.2",
+    "next-intl": "^4.14.9",
+    "postcss": "^8.5.31",
+    "radix-ui": "^1.8.1",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-hook-form": "^7.90.0",
+    "server-only": "^0.0.1",
+    "sonner": "^2.0.8",
+    "tailwind-merge": "^3.7.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.3.16",
+    "@tailwindcss/turbopack": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.2",
+    "intl-messageformat": "^11.2.15",
+    "supabase": "^2.121.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5",
+    "vitest": "^3.2.7"
+  }
+}

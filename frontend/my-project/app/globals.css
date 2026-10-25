@@ -1,0 +1,570 @@
+@import "tailwindcss";
+
+/* Dark theme is a class on <html>, set before first paint by the theme script. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Tokens from docs/FRONTEND.md §2.7. Components use these names, never raw hex. */
+:root {
+  /* brand, sampled from the reference image */
+  --brand-lime: #deff00;
+  --brand-ink: #1d1e20;
+  --brand-coral: #ff4b32;
+  --brand-coral-soft: #ff7d4b;
+  --brand-coral-strong: #c23b22;
+  /* Dashboard accents: sky marks where you are and what is selected, mint marks done
+     and new. Both are backgrounds behind ink text, never text on white. */
+  --brand-sky: #addaff;
+  --brand-mint: #90d788;
+
+  /* App shell: the sidebar and the frame around the white content panel. */
+  --shell: #f7f6f3;
+  --shell-hover: #eae8e5;
+
+  --background: #ffffff;
+  --foreground: #111214;
+  --card: #ffffff;
+  --card-foreground: #111214;
+  --popover: #ffffff;
+  --popover-foreground: #111214;
+  --primary: #1d1e20;
+  --primary-foreground: #ffffff;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #111214;
+  --muted: #f4f4f5;
+  --muted-foreground: #44464b;
+  --accent: #addaff;
+  --accent-foreground: #111214;
+  --destructive: #b3261e;
+  --destructive-foreground: #ffffff;
+  --border: #e4e4e7;
+  --input: #858688;
+  --ring: #1d1e20;
+
+  --success-fg: #17692f;
+  --success-bg: #e6f4ea;
+  --warning-fg: #8a5300;
+  --warning-bg: #fff4d6;
+  --info-fg: #2349b8;
+  --info-bg: #dbe7ff;
+  --review-fg: #4b35b8;
+  --review-bg: #eeebff;
+  --danger-fg: #b3261e;
+  --danger-bg: #fdecea;
+
+  /* Chart series, validated with the dataviz six checks (light vs #ffffff):
+     worst adjacent CVD ΔE 8.2, normal-vision ΔE 28. Assign in this order, never cycled.
+     "Context" is the de-emphasis mark for past or secondary data (3.6:1). */
+  --chart-1: #2f6fe4;
+  --chart-2: #ff4b32;
+  --chart-3: #088f6f;
+  --chart-4: #6e4fe0;
+  --chart-5: #b87400;
+  --chart-context: #858688;
+  --chart-grid: #e4e4e7;
+
+  /* Progress meters: a sky-to-mint fill over grey ticks. The percentage is always
+     written out too, so the fill is never the only signal. */
+  --progress-from: #4ea6f2;
+  --progress-to: #4fb85a;
+  --progress-track: #d4d4d8;
+
+  /* Tinted surfaces for colourful cards. Text on them uses --foreground; the tint's own
+     -fg colour is for icons and short labels (all >= 5.7:1 on their background). */
+  --tint-blue-bg: #dbe7ff;
+  --tint-blue-fg: #2349b8;
+  --tint-blue-line: #b9cef8;
+  --tint-violet-bg: #eeebff;
+  --tint-violet-fg: #4b35b8;
+  --tint-violet-line: #d5cefb;
+  --tint-green-bg: #e6f4ea;
+  --tint-green-fg: #17692f;
+  --tint-green-line: #c3e5cd;
+  --tint-amber-bg: #fff4d6;
+  --tint-amber-fg: #8a5300;
+  --tint-amber-line: #f5dfa0;
+  --tint-rose-bg: #fbe4ea;
+  --tint-rose-fg: #a3214b;
+  --tint-rose-line: #f3c3d0;
+  --tint-peach-bg: #ffe9d4;
+  --tint-peach-fg: #9a3c12;
+  --tint-peach-line: #f9cfaa;
+
+  /* Pastels: avatars, tags, soft backgrounds behind ink text. Never text. */
+  --pastel-1: #dbe7ff;
+  --pastel-2: #d1d6ff;
+  --pastel-3: #aad3c8;
+  --pastel-4: #e0b5c1;
+  --pastel-5: #ffe9d4;
+  --pastel-6: #f38364;
+
+  --font-stack: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono-stack: var(--font-mono-face), ui-monospace, monospace;
+
+  color-scheme: light;
+}
+
+.dark {
+  --shell: #0b0c0d;
+  --shell-hover: #232427;
+
+  --background: #111315;
+  --foreground: #fafafa;
+  --card: #1d1e20;
+  --card-foreground: #fafafa;
+  --popover: #232427;
+  --popover-foreground: #fafafa;
+  --primary: #addaff;
+  --primary-foreground: #111214;
+  --secondary: #262729;
+  --secondary-foreground: #fafafa;
+  --muted: #2a2b2e;
+  --muted-foreground: #c3c4c7;
+  --accent: #262729;
+  --accent-foreground: #fafafa;
+  --destructive: #ff8a80;
+  --destructive-foreground: #111315;
+  --border: #2f3033;
+  --input: #6b6c6f;
+  --ring: #addaff;
+
+  --progress-from: #addaff;
+  --progress-to: #90d788;
+  --progress-track: #3a3b3f;
+  --brand-coral-strong: #ff6a52;
+
+  --success-fg: #5bd68b;
+  --warning-fg: #ffc15a;
+  --info-fg: #8fb4ff;
+  --review-fg: #b7a6ff;
+  --danger-fg: #ff8a80;
+  --success-bg: #262729;
+  --warning-bg: #262729;
+  --info-bg: #262729;
+  --review-bg: #262729;
+  --danger-bg: #262729;
+
+  /* Validated separately for the dark card (#1d1e20): worst adjacent CVD ΔE 11.5. */
+  --chart-1: #4f8cf0;
+  --chart-2: #f25c40;
+  --chart-3: #17a383;
+  --chart-4: #8f7bf2;
+  --chart-5: #bc800c;
+  --chart-context: #6b6c6f;
+  --chart-grid: #2f3033;
+
+  --tint-blue-bg: #172442;
+  --tint-blue-fg: #8fb4ff;
+  --tint-blue-line: #2a3d66;
+  --tint-violet-bg: #221c47;
+  --tint-violet-fg: #b7a6ff;
+  --tint-violet-line: #3a3170;
+  --tint-green-bg: #12301f;
+  --tint-green-fg: #5bd68b;
+  --tint-green-line: #1f4d33;
+  --tint-amber-bg: #33270c;
+  --tint-amber-fg: #ffc15a;
+  --tint-amber-line: #574316;
+  --tint-rose-bg: #3a1a25;
+  --tint-rose-fg: #ff9db5;
+  --tint-rose-line: #5e2a3b;
+  --tint-peach-bg: #3a2416;
+  --tint-peach-fg: #ffb37a;
+  --tint-peach-line: #5e3b22;
+
+  color-scheme: dark;
+}
+
+/* Arabic uses its own face. Inter comes first by its family name: its faces only cover
+   Latin, so names, handles and times stay in Inter while Arabic script falls through to
+   the script font. The --font-inter variable cannot lead because its generated fallback
+   (local Arial) has Arabic glyphs. */
+:root:lang(ar) {
+  --font-stack: "Inter", var(--font-arabic), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-lime: var(--brand-lime);
+  --color-shell: var(--shell);
+  --color-shell-hover: var(--shell-hover);
+  --color-sky: var(--brand-sky);
+  --color-mint: var(--brand-mint);
+  --color-progress-from: var(--progress-from);
+  --color-progress-to: var(--progress-to);
+  --color-progress-track: var(--progress-track);
+  --color-ink: var(--brand-ink);
+  --color-coral: var(--brand-coral);
+  --color-coral-soft: var(--brand-coral-soft);
+  --color-coral-strong: var(--brand-coral-strong);
+
+  --color-success: var(--success-fg);
+  --color-success-bg: var(--success-bg);
+  --color-warning: var(--warning-fg);
+  --color-warning-bg: var(--warning-bg);
+  --color-info: var(--info-fg);
+  --color-info-bg: var(--info-bg);
+  --color-review: var(--review-fg);
+  --color-review-bg: var(--review-bg);
+  --color-danger: var(--danger-fg);
+  --color-danger-bg: var(--danger-bg);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-chart-context: var(--chart-context);
+  --color-chart-grid: var(--chart-grid);
+
+  --color-tint-blue: var(--tint-blue-bg);
+  --color-tint-blue-fg: var(--tint-blue-fg);
+  --color-tint-blue-line: var(--tint-blue-line);
+  --color-tint-violet: var(--tint-violet-bg);
+  --color-tint-violet-fg: var(--tint-violet-fg);
+  --color-tint-violet-line: var(--tint-violet-line);
+  --color-tint-green: var(--tint-green-bg);
+  --color-tint-green-fg: var(--tint-green-fg);
+  --color-tint-green-line: var(--tint-green-line);
+  --color-tint-amber: var(--tint-amber-bg);
+  --color-tint-amber-fg: var(--tint-amber-fg);
+  --color-tint-amber-line: var(--tint-amber-line);
+  --color-tint-rose: var(--tint-rose-bg);
+  --color-tint-rose-fg: var(--tint-rose-fg);
+  --color-tint-rose-line: var(--tint-rose-line);
+  --color-tint-peach: var(--tint-peach-bg);
+  --color-tint-peach-fg: var(--tint-peach-fg);
+  --color-tint-peach-line: var(--tint-peach-line);
+
+  --color-pastel-1: var(--pastel-1);
+  --color-pastel-2: var(--pastel-2);
+  --color-pastel-3: var(--pastel-3);
+  --color-pastel-4: var(--pastel-4);
+  --color-pastel-5: var(--pastel-5);
+  --color-pastel-6: var(--pastel-6);
+
+  --font-sans: var(--font-stack);
+  --font-mono: var(--font-mono-stack);
+
+  /* Menus, popovers and selects float on a small shadow instead of a border. */
+  --shadow-menu: 0 12px 32px -12px rgb(17 18 20 / 0.22), 0 2px 6px -1px rgb(17 18 20 / 0.08);
+  --shadow-dialog: 0 24px 64px -16px rgb(17 18 20 / 0.28), 0 4px 12px -2px rgb(17 18 20 / 0.08);
+
+  --animate-fade-in: fade-in 180ms ease-out;
+  --animate-fade-out: fade-out 140ms ease-in forwards;
+  --animate-slide-in-end: slide-in-end 260ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-sheet-out: sheet-out 180ms ease-in forwards;
+  --animate-drawer-in: drawer-in 260ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-drawer-out: drawer-out 180ms ease-in forwards;
+  --animate-pop-in: pop-in 160ms ease-out;
+  --animate-menu-in: menu-in 160ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-menu-out: menu-out 110ms ease-in forwards;
+  --animate-dialog-in: dialog-in 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-dialog-out: dialog-out 140ms ease-in forwards;
+  /* "backwards": hidden during any delay, and no transform left behind afterwards. */
+  --animate-fade-up: fade-up 360ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  --animate-shimmer: shimmer 1.6s ease-in-out infinite;
+  --animate-pop: pop 420ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  --animate-grow-x: grow-x 1000ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-reveal-x: reveal-x 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-float: float 900ms cubic-bezier(0.34, 1.56, 0.64, 1) infinite alternate;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+@keyframes menu-out {
+  to {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+}
+@keyframes dialog-out {
+  to {
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+  }
+}
+@keyframes sheet-out {
+  to {
+    opacity: 0;
+    transform: translateX(calc(24px * var(--slide-sign, 1)));
+  }
+}
+@keyframes drawer-in {
+  from {
+    opacity: 0;
+    transform: translateX(calc(-24px * var(--slide-sign, 1)));
+  }
+}
+@keyframes drawer-out {
+  to {
+    opacity: 0;
+    transform: translateX(calc(-24px * var(--slide-sign, 1)));
+  }
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+/* Meters grow from empty and their tick track reveals from the start edge. */
+@keyframes grow-x {
+  from {
+    width: 0;
+  }
+}
+@keyframes reveal-x {
+  from {
+    clip-path: var(--reveal-from, inset(0 100% 0 0));
+  }
+}
+[dir="rtl"] {
+  --reveal-from: inset(0 0 0 100%);
+}
+@keyframes float {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-4px);
+  }
+}
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+@keyframes slide-in-end {
+  from {
+    opacity: 0;
+    transform: translateX(calc(16px * var(--slide-sign, 1)));
+  }
+}
+[dir="rtl"] {
+  --slide-sign: -1;
+}
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--border);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-stack);
+  }
+
+  /* 2 px ring with a 2 px offset; lime on the dark theme (FRONTEND.md §4).
+     Text fields override this with a solid border instead (see .field-control). */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  /* Inputs at least 16 px on phones so iOS does not zoom (MOB-09). */
+  input,
+  select,
+  textarea {
+    font-size: max(16px, 1em);
+  }
+  @media (min-width: 768px) {
+    input,
+    select,
+    textarea {
+      font-size: inherit;
+    }
+  }
+
+  ::selection {
+    background: var(--brand-sky);
+    color: #111214;
+  }
+
+  /* Everything you can act on shows a pointer; disabled controls say so. */
+  button:not(:disabled),
+  [role="button"],
+  [role="tab"],
+  [role="menuitem"],
+  [role="menuitemradio"],
+  [role="menuitemcheckbox"],
+  [role="option"],
+  [role="checkbox"],
+  [role="radio"],
+  [role="switch"],
+  a[href],
+  label[for],
+  select,
+  summary,
+  input[type="file"],
+  input[type="date"]::-webkit-calendar-picker-indicator,
+  input[type="time"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+  }
+  :disabled,
+  [aria-disabled="true"],
+  [data-disabled] {
+    cursor: not-allowed;
+  }
+}
+
+/* Horizontal tab rows scroll without showing a scrollbar. */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Meter fill position. Registered so it can animate: the fill grows from empty on mount
+   and glides to each new value. */
+@property --p {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+@keyframes meter-fill {
+  from {
+    --p: 0%;
+  }
+}
+
+@layer components {
+  /* 2 px ticks with 4 px gaps. */
+  .meter-ticks {
+    mask-image: repeating-linear-gradient(to right, #000 0 2px, transparent 2px 6px);
+  }
+  .meter-fill {
+    clip-path: inset(0 calc(100% - var(--p)) 0 0 round var(--r, 0px));
+    transition: --p 500ms cubic-bezier(0.16, 1, 0.3, 1);
+    animation: meter-fill 1100ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  }
+  [dir="rtl"] .meter-fill {
+    clip-path: inset(0 0 0 calc(100% - var(--p)) round var(--r, 0px));
+  }
+  .meter-pos {
+    inset-inline-start: var(--p);
+    transition: --p 500ms cubic-bezier(0.16, 1, 0.3, 1);
+    animation: meter-fill 1100ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  }
+
+  /* Small monospace uppercase label above headlines. */
+  .eyebrow {
+    font-family: var(--font-mono-stack);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: color-mix(in oklab, var(--foreground) 80%, var(--background));
+  }
+  /* Arabic has no uppercase: use the UI font in regular case. */
+  :lang(ar) .eyebrow {
+    font-family: var(--font-stack);
+    letter-spacing: 0;
+    text-transform: none;
+    font-size: 0.875rem;
+  }
+
+  .display {
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Text fields: on focus the border itself turns ink (lime on dark) and doubles to 2 px
+   with an inset outline. No offset gap, no shadow, nothing clipped by scroll containers.
+   Unlayered so it wins over the global focus ring above. */
+.field-control:focus-visible {
+  border-color: var(--ring);
+  outline: 1px solid var(--ring);
+  outline-offset: -2px;
+}
+.field-control[aria-invalid="true"],
+.field-control[aria-invalid="true"]:focus-visible {
+  border-color: var(--destructive);
+  outline-color: var(--destructive);
+}
+
+/* Arabic script needs more leading than Latin at display sizes (FRONTEND.md §3).
+   Unlayered on purpose: this must win over the text-size utilities' line heights. */
+:lang(ar) .display {
+  letter-spacing: 0;
+  line-height: 1.45;
+}
+
+/* Keep fades, remove movement (FRONTEND.md §4). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}

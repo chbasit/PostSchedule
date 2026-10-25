@@ -1,0 +1,1292 @@
+{
+  "meta": {
+    "title": "{product}: schedule posts that look right everywhere",
+    "description": "Schedule to every platform, preview each one, and fix video problems before you publish."
+  },
+  "common": {
+    "close": "Close",
+    "dismiss": "Dismiss",
+    "offline": "You're offline. Your draft is saved on this device.",
+    "skipToContent": "Skip to content",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving…",
+    "saved": "Saved",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "continue": "Continue",
+    "skip": "Skip for now",
+    "loading": "Loading…",
+    "notAvailable": "Not available",
+    "undo": "Undo",
+    "timezone": {
+      "label": "Time zones",
+      "search": "Search time zones",
+      "empty": "No time zones match."
+    }
+  },
+  "notFound": {
+    "title": "This page does not exist.",
+    "body": "The link may be old, or the page has moved. Check the address or go back to the start.",
+    "home": "Go to the home page"
+  },
+  "theme": {
+    "label": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "Match system"
+  },
+  "language": {
+    "label": "Language"
+  },
+  "status": {
+    "draft": "Draft",
+    "pending_approval": "In review",
+    "scheduled": "Scheduled",
+    "publishing": "Publishing",
+    "published": "Published",
+    "partial": "Partial",
+    "failed": "Failed",
+    "lapsed": "Lapsed",
+    "paused": "Paused",
+    "connected": "Connected",
+    "needs_reconnect": "Needs reconnect"
+  },
+  "errors": {
+    "retry": "Try again",
+    "network": {
+      "title": "We could not reach the server.",
+      "body": "Check your connection, then try again. Nothing you entered was lost."
+    },
+    "timeout": {
+      "title": "This is taking too long.",
+      "body": "The server did not answer in time. Try again; it is safe to retry."
+    },
+    "unauthenticated": {
+      "title": "Your session has ended.",
+      "body": "Sign in again to continue where you left off."
+    },
+    "not_found": {
+      "title": "We could not find this.",
+      "body": "It may have been deleted, or you may not have access to it."
+    },
+    "rate_limited": {
+      "title": "Too many requests.",
+      "body": "Wait a moment, then try again."
+    },
+    "not_configured": {
+      "title": "This part is not switched on yet.",
+      "body": "It needs a service we have not connected yet. Everything else keeps working."
+    },
+    "generic": {
+      "title": "Something went wrong.",
+      "body": "We have been told about it. Try again in a moment."
+    }
+  },
+  "validation": {
+    "required": "Fill in this field.",
+    "tooLong": "This is too long.",
+    "email": "Enter an email address like name@example.com.",
+    "passwordLength": "Use at least 10 characters.",
+    "passwordMix": "Use at least one letter and one number."
+  },
+  "marketing": {
+    "announcement": "Founding price for the first {count} customers, locked for 24 months. See the offer",
+    "nav": {
+      "home": "Home",
+      "main": "Main",
+      "product": "Product",
+      "pricing": "Pricing",
+      "freeTools": "Free tools",
+      "login": "Log in",
+      "startFree": "Start free",
+      "openMenu": "Open menu"
+    },
+    "footer": {
+      "product": "Product",
+      "features": "Features",
+      "pricing": "Pricing",
+      "tools": "Free tools",
+      "videoChecker": "Video checker",
+      "account": "Account",
+      "login": "Log in",
+      "signup": "Start free",
+      "tagline": "Social media management for startups, agencies and teams in many countries.",
+      "copyright": "© {product}. All rights reserved."
+    },
+    "mock": {
+      "title": "New video post",
+      "accounts": "Accounts",
+      "media": "Media",
+      "warning": "16:9 will be cropped on Reels",
+      "fix": "Make 9:16",
+      "duration": "Duration",
+      "size": "File size"
+    },
+    "home": {
+      "eyebrow": "Social media management for teams",
+      "line1": "Post once.",
+      "line2": "Look right everywhere.",
+      "line3": "Keep every <mark>pixel</mark>.",
+      "sub": "Schedule to every platform, preview each one, and fix video problems before you publish.",
+      "ctaPrimary": "Start free",
+      "ctaGoogle": "Start with Google",
+      "ctaNote": "{days}-day trial. No card needed.",
+      "band": "Every post is checked before it goes out: aspect ratio, resolution, bitrate, length and file size, for each platform.",
+      "bandCta": "Check a video now",
+      "featuresEyebrow": "What you get",
+      "featuresTitle": "See it before your audience does.",
+      "featuresSub": "Other schedulers send your file and hope. We show you exactly how each platform will display it, and warn you before quality drops.",
+      "features": {
+        "preflight": {
+          "title": "Video pre-flight checks",
+          "body": "Aspect ratio, resolution, bitrate, duration and size are checked against each platform, with a plain-language reason for every warning."
+        },
+        "previews": {
+          "title": "Per-platform previews",
+          "body": "See each post in a phone frame with the crop and the parts covered by the app's buttons and captions."
+        },
+        "original": {
+          "title": "Your original, untouched",
+          "body": "We send your original file unless you choose a fix. Fixes create a new copy you can compare and undo."
+        },
+        "calendar": {
+          "title": "Calendar and queue",
+          "body": "Plan by month or week, drag to reschedule, or fill your next free queue slot in one click."
+        },
+        "approvals": {
+          "title": "Approvals for clients",
+          "body": "Send a post for review by link. Clients approve or comment on a phone, with no account needed."
+        },
+        "languages": {
+          "title": "Built for every language",
+          "body": "Use the app in your language, including right-to-left scripts, and schedule in each market's timezone."
+        }
+      },
+      "stepsEyebrow": "How it works",
+      "stepsTitle": "From upload to scheduled in minutes.",
+      "steps": {
+        "connect": {
+          "title": "Connect your accounts",
+          "body": "Sign in to each platform once. We only ask for the permissions we need to post."
+        },
+        "check": {
+          "title": "Upload and check",
+          "body": "Drop a video. Pre-flight checks and previews appear for every platform you picked."
+        },
+        "schedule": {
+          "title": "Schedule with confidence",
+          "body": "Pick a timezone and a time. We publish once, retry safely, and tell you if anything fails."
+        }
+      },
+      "pricingEyebrow": "Pricing",
+      "pricingTitle": "Pay for what you use. Nothing hidden.",
+      "pricingCta": "Compare plans",
+      "faqEyebrow": "Questions",
+      "faqTitle": "Straight answers.",
+      "faq": {
+        "what": {
+          "q": "What is {product}?",
+          "a": "{product} is a social media management platform for startups, agencies and multi-country teams. You compose a post once, preview it for every platform, check video quality, and schedule it."
+        },
+        "quality": {
+          "q": "Why do my videos look blurry after I schedule them?",
+          "a": "Usually the video does not match what the platform expects, so it gets cropped or re-encoded. Our pre-flight checks warn you before that happens and offer a fix."
+        },
+        "platforms": {
+          "q": "Which platforms can I post to?",
+          "a": "We are building for Instagram, TikTok, YouTube, Facebook, LinkedIn and Bluesky. Each one goes live as soon as that platform approves our app."
+        },
+        "trial": {
+          "q": "Do I need a card for the trial?",
+          "a": "No. You get {days} days with Pro features. When it ends, you move to the Free plan and keep all your data."
+        },
+        "switch": {
+          "q": "Can I switch from another scheduler?",
+          "a": "Yes. Import your scheduled posts and media where the other tool allows an export. The first 100 customers get free help moving."
+        }
+      },
+      "finalTitle": "Your next post can look exactly how you made it."
+    }
+  },
+  "plans": {
+    "names": {
+      "free": "Free",
+      "solo": "Solo",
+      "pro": "Pro",
+      "agency": "Agency",
+      "scale": "Scale"
+    },
+    "blurbs": {
+      "free": "Try it with a few accounts.",
+      "solo": "For one person running several brands.",
+      "pro": "For small teams that post every day.",
+      "agency": "For agencies managing many clients.",
+      "scale": "For large teams across many markets."
+    },
+    "current": "Current plan",
+    "popular": "Most popular",
+    "perMonth": "/ month",
+    "perYear": "/ year",
+    "accounts": "{count, plural, one {# social account} other {# social accounts}}",
+    "seats": "{count, plural, one {# seat} other {# seats}}",
+    "features": {
+      "preflight": "Video pre-flight checks",
+      "previews": "Per-platform previews",
+      "calendar": "Calendar and queue",
+      "reports": "Reports",
+      "approvals": "Team approvals",
+      "clientLinks": "Client approval links",
+      "api": "API and AI agents"
+    },
+    "interval": "Billing period",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "twoMonthsFree": "2 months free"
+  },
+  "pricing": {
+    "metaTitle": "Pricing",
+    "metaDescription": "Simple plans by number of social accounts and seats. Yearly billing gives two months free.",
+    "eyebrow": "Pricing",
+    "title": "The lowest flat price at every size.",
+    "sub": "Every plan includes pre-flight checks and previews. Start with a {days}-day trial of Pro, no card needed.",
+    "founding": "First {count} customers: price locked for {months} months",
+    "ctaFree": "Start free",
+    "ctaTrial": "Start trial",
+    "compareTitle": "Compare plans",
+    "feature": "Feature",
+    "rowAccounts": "Social accounts",
+    "rowSeats": "Seats",
+    "included": "Included",
+    "notIncluded": "Not included",
+    "note": "Prices in US dollars. Taxes may apply at checkout. When you downgrade, nothing is deleted."
+  },
+  "preflight": {
+    "summary": {
+      "pass": "Ready",
+      "warn": "Check warnings",
+      "block": "Will be rejected"
+    },
+    "rules": {
+      "aspect": {
+        "title": "Aspect ratio",
+        "pass": "{actual} fits {platform} {format}.",
+        "warn": "{actual} will be cropped to {target} on {platform} {format}.",
+        "block": "{actual} is outside what {platform} {format} accepts. Use {target}."
+      },
+      "resolution": {
+        "title": "Resolution",
+        "pass": "{actual} is sharp enough.",
+        "warn": "{actual} is below the recommended {recommended}, so it may look soft.",
+        "block": "{actual} is too small. The short side must be at least {min} px."
+      },
+      "duration": {
+        "title": "Duration",
+        "pass": "{actual} is within the {max} limit.",
+        "warn": "{actual} is close to the limit.",
+        "block": "{actual} is outside the allowed length."
+      },
+      "size": {
+        "title": "File size",
+        "pass": "{actual} is under the {max} limit.",
+        "warn": "{actual} is close to the {max} limit.",
+        "block": "{actual} is over the {max} limit."
+      },
+      "bitrate": {
+        "title": "Bitrate",
+        "pass": "{actual} is in a good range.",
+        "warn": "{actual} may be re-encoded by the platform or look soft.",
+        "block": "{actual} cannot be accepted."
+      },
+      "caption": {
+        "title": "Caption length",
+        "pass": "{actual} of {max} characters.",
+        "warn": "{actual} of {max} characters.",
+        "block": "{actual} of {max} characters. Shorten it for this platform."
+      },
+      "count": {
+        "title": "Number of photos",
+        "pass": "{actual} photos fit {platform}'s limit of {max}.",
+        "warn": "{actual} photos fit {platform}'s limit of {max}.",
+        "block": "{platform} takes up to {max} photos in one post; this one has {actual}."
+      },
+      "title": {
+        "title": "Title",
+        "pass": "{actual} of {max} characters.",
+        "warn": "{actual} of {max} characters.",
+        "block": "{actual, plural, =0 {{platform} needs a title. Add one, or write a caption.} other {# of {max} characters. Shorten the title.}}"
+      }
+    },
+    "fixes": {
+      "reframe": "Make {target}",
+      "trim": "Trim to fit",
+      "compress": "Make smaller"
+    },
+    "sendOriginal": "We will send your original file unchanged.",
+    "preview": {
+      "mediaLabel": "Preview of your media on {platform}",
+      "noMedia": "Add media to see the preview",
+      "captionPlaceholder": "Your caption appears here.",
+      "cropped": "Cropped",
+      "frameLabel": "{platform} {format} preview"
+    },
+    "fixed": {
+      "reframe": "A {target} copy will be made for this platform. Your original stays unchanged.",
+      "trim": "A trimmed copy will be made for this platform. Your original stays unchanged.",
+      "compress": "A smaller copy will be made for this platform. Your original stays unchanged."
+    },
+    "undoFix": "Undo",
+    "othersPassed": "{count, plural, one {# other check passed} other {# other checks passed}}"
+  },
+  "upload": {
+    "drop": "Drop a video or image here",
+    "orBrowse": "or <browse>browse your files</browse>",
+    "release": "Release to upload"
+  },
+  "tools": {
+    "videoChecker": {
+      "metaTitle": "Free video checker for Reels, TikTok and Shorts",
+      "metaDescription": "Check your video's aspect ratio, resolution, bitrate, length and size against each platform before you post. Free, no sign-up, your file stays on your device.",
+      "eyebrow": "Free tool",
+      "title": "Will your video look right?",
+      "intro": "Drop a video to check its aspect ratio, resolution, bitrate, length and file size against Instagram, TikTok, YouTube, Facebook, LinkedIn and Bluesky, with a preview of how each one will show it.",
+      "hint": "MP4, MOV or WebM video, or a JPG, PNG or WebP image.",
+      "checking": "Checking {name}…",
+      "privacy": "Your file stays on this device. We read its details in your browser.",
+      "errors": {
+        "unsupported_type": "We cannot check this file type. Use an MP4, MOV or WebM video, or a JPG, PNG or WebP image.",
+        "unreadable": "We could not read this file. It may be damaged, or use a codec your browser cannot open.",
+        "empty_file": "This file is empty. Choose another one."
+      },
+      "facts": {
+        "resolution": "Resolution",
+        "size": "Size",
+        "duration": "Length",
+        "bitrate": "Bitrate",
+        "unavailable": "Not available"
+      },
+      "another": "Check another file",
+      "platformsLabel": "Results by platform",
+      "sourceChecked": "Limits checked on {date}.",
+      "sourcePending": "Limits are being verified against the platform's documentation.",
+      "sourceLink": "{platform} documentation",
+      "ctaTitle": "Fix it and schedule it in one place.",
+      "ctaBody": "Sign up to apply fixes, preview every platform and schedule this post.",
+      "cta": "Fix and schedule this"
+    }
+  },
+  "auth": {
+    "signInTitle": "Welcome back",
+    "signInSub": "Sign in to your workspace.",
+    "signUpTitle": "Create your account",
+    "signUpSub": "Free for {days} days. No card needed.",
+    "forgotTitle": "Reset your password",
+    "forgotSub": "Enter your email and we will send you a link to choose a new password.",
+    "google": "Continue with Google",
+    "googleUnavailable": "Google sign-in becomes available once the backend is connected.",
+    "or": "or",
+    "email": "Email",
+    "workEmail": "Work email",
+    "name": "Your name",
+    "password": "Password",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "forgot": "Forgot password?",
+    "signIn": "Sign in",
+    "createAccount": "Create account",
+    "signInFailed": "That email and password do not match. Check them and try again.",
+    "signUpFailed": "We could not create your account. Try again in a moment.",
+    "genericFailed": "Something went wrong. Try again in a moment.",
+    "emailMaybeUsed": "If this address can be used, we have sent it a link. Check your inbox, or sign in instead.",
+    "emailNotAllowed": "We can't send email to this address yet. Try another address, or try again later.",
+    "demoHint": "Preview mode: sign in with {email} and any password.",
+    "noAccount": "New here? <link>Create an account</link>",
+    "haveAccount": "Already have an account? <link>Sign in</link>",
+    "terms": "By creating an account you agree to the terms of service and privacy policy.",
+    "ruleLength": "At least {min} characters",
+    "ruleMix": "A letter and a number",
+    "ruleMet": "(done)",
+    "ruleNotMet": "(not yet)",
+    "resetSent": "If an account uses this email, we have sent a reset link. It works once and expires soon.",
+    "backToSignIn": "Back to sign in",
+    "sendResetLink": "Send reset link",
+    "checkInbox": "Check your inbox",
+    "sentTo": "We sent a confirmation link to {email}. Open it to finish setting up.",
+    "sentGeneric": "We sent you a confirmation link. Open it to finish setting up.",
+    "resend": "Resend email",
+    "resendIn": "Resend in {seconds} s",
+    "resent": "We sent another link. It can take a minute to arrive.",
+    "mockOpenLink": "Open the confirmation link (preview)",
+    "wrongEmail": "Wrong address? <link>Sign up again</link> with the right one.",
+    "confirmTitle": "Confirm your email",
+    "confirmBody": "Press the button to confirm this address and continue.",
+    "confirmButton": "Confirm email",
+    "confirmFailed": "This link has expired or was already used. Request a new one from the sign-in page.",
+    "googleOff": "Google sign-in is not available yet. Use your email and password.",
+    "googleFailed": "Google sign-in did not finish. Try again, or use your email and password.",
+    "emailNotConfirmed": "Confirm your email before signing in. Open the link we sent you, or <link>get a new link</link>.",
+    "tooManyTries": "Too many tries. Wait a minute, then try again.",
+    "serviceOff": "Accounts are not switched on yet. Try again later.",
+    "networkFailed": "We could not reach the server. Check your connection and try again.",
+    "weakPassword": "This password is too easy to guess. Choose another one.",
+    "samePassword": "That is your current password. Choose a new one.",
+    "resetTitle": "Choose a new password",
+    "resetSub": "You will be signed out on every device, then you can sign in with it.",
+    "newPassword": "New password",
+    "savePassword": "Save password",
+    "resetDone": "Your password is changed. Sign in with your new password.",
+    "resetExpired": "This link has expired or was already used. Ask for a new one."
+  },
+  "nav": {
+    "label": "App",
+    "open": "Open navigation",
+    "items": {
+      "home": "Home",
+      "newPost": "New post",
+      "calendar": "Calendar",
+      "allPosts": "All posts",
+      "scheduled": "Scheduled",
+      "posted": "Posted",
+      "drafts": "Drafts"
+    },
+    "accounts": {
+      "title": "Accounts",
+      "manage": "Manage accounts",
+      "connect": "Connect an account",
+      "connectMore": "Connect more",
+      "connectFirst": "Connect your first account",
+      "connectPlatform": "Connect {platform}",
+      "insights": "Insights",
+      "posts": "Posts",
+      "queued": "{count, plural, =0 {Nothing scheduled} one {# post scheduled} other {# posts scheduled}}"
+    },
+    "settings": {
+      "label": "Settings",
+      "title": "Settings",
+      "back": "Back to the dashboard",
+      "profile": "Profile",
+      "preferences": "Preferences",
+      "workspace": "Workspace",
+      "team": "Team",
+      "accounts": "Social accounts",
+      "billing": "Billing",
+      "tags": "Tags",
+      "accountCount": "{count, plural, one {# account connected} other {# accounts connected}}"
+    }
+  },
+  "shell": {
+    "switchWorkspace": "Workspace: {name}. Switch workspace",
+    "workspaces": "Workspaces",
+    "current": "Current",
+    "userMenu": "Account menu for {name}",
+    "signOut": "Sign out",
+    "search": "Search posts",
+    "reconnect": "Reconnect",
+    "needsReconnect": "{count, plural, one {{name} needs reconnecting. Its scheduled posts are paused.} other {# accounts need reconnecting. Their scheduled posts are paused.}}",
+    "choosePlan": "Choose a plan",
+    "trialEnds": "{count, plural, =0 {Your trial ends today.} one {Your trial ends in # day.} other {Your trial ends in # days.}}",
+    "notifications": {
+      "label": "Notifications",
+      "labelUnread": "{count, plural, one {Notifications, # unread} other {Notifications, # unread}}",
+      "title": "Notifications",
+      "markAll": "Mark all read",
+      "loading": "Loading…",
+      "error": "Could not load notifications.",
+      "empty": "You're all caught up.",
+      "unread": "Unread",
+      "kinds": {
+        "published": "A post was published",
+        "failed": "A post failed on one platform",
+        "needs_reconnect": "An account needs reconnecting",
+        "approval_requested": "A post is waiting for your approval",
+        "invite": "Someone joined your workspace"
+      }
+    }
+  },
+  "connections": {
+    "usage": "{count} of {limit} social accounts connected.",
+    "connect": "Connect an account",
+    "connected": "{name} is connected.",
+    "chooseTitle": "Connect an account",
+    "chooseBody": "Choose a platform. You will sign in on the platform's own page.",
+    "scopesTitle": "Connect {platform}",
+    "scopesBody": "Next, {platform} asks you to sign in and allow access. Here is what that access is for.",
+    "weCan": "We will be able to",
+    "weCannot": "We will never",
+    "can": {
+      "publish": "Publish the posts you schedule",
+      "profile": "Read your account name and picture",
+      "metrics": "Read results for posts we published"
+    },
+    "cannot": {
+      "password": "See your password",
+      "messages": "Read your private messages",
+      "postAlone": "Post anything you did not schedule"
+    },
+    "continueTo": "Continue to {platform}",
+    "otherPlatform": "Other platform",
+    "limitReached": "You have reached your plan's account limit.",
+    "upgrade": "See plans",
+    "connectFailed": "We could not connect this account. Try again; nothing was changed.",
+    "noPermission": "Only owners and admins can connect or remove accounts.",
+    "emptyTitle": "No accounts connected yet",
+    "emptyBody": "Connect your first account to start scheduling posts.",
+    "since": "connected {date}",
+    "reconnect": "Reconnect",
+    "removeLabel": "Remove {name}",
+    "removeTitle": "Remove {name}?",
+    "removeCounting": "Checking which scheduled posts use this account…",
+    "removeBody": "{count, plural, =0 {No scheduled posts use this account. You can connect it again at any time.} one {# scheduled post will no longer publish to {platform}. Other platforms are not affected.} other {# scheduled posts will no longer publish to {platform}. Other platforms are not affected.}}",
+    "removeFailed": "We could not remove this account. Try again.",
+    "removed": "{name} was removed.",
+    "keep": "Keep account",
+    "remove": "Remove account",
+    "insights": "Insights"
+  },
+  "onboarding": {
+    "steps": {
+      "about": "About you",
+      "connect": "Connect",
+      "done": "Done"
+    },
+    "progress": "Step {step} of {total}",
+    "personaTitle": "Welcome, {name}. What best describes you?",
+    "personaSub": "We use this to suggest the right setup. You can change it later.",
+    "personas": {
+      "creator": {
+        "title": "Solo creator",
+        "body": "I post for myself or one brand."
+      },
+      "startup": {
+        "title": "Startup",
+        "body": "A small team posting for our product."
+      },
+      "agency": {
+        "title": "Agency",
+        "body": "We manage accounts for several clients."
+      },
+      "other": {
+        "title": "Something else",
+        "body": "None of these fit exactly."
+      }
+    },
+    "saveFailed": "We could not save that. Try again.",
+    "skip": "Skip for now",
+    "continue": "Continue",
+    "connectTitle": "Connect your accounts",
+    "connectSub": "Each platform opens its own sign-in page, then brings you back here.",
+    "connect": "Connect",
+    "connectPlatform": "Connect {platform}",
+    "connected": "Connected",
+    "doneTitle": "You're all set.",
+    "doneSub": "Your workspace is ready. Next: upload a video and schedule your first post.",
+    "goToDashboard": "Go to my dashboard"
+  },
+  "composer": {
+    "title": "New {type} post",
+    "editTitle": "Edit post",
+    "typeLabel": "Post type",
+    "types": {
+      "text": "text",
+      "image": "image",
+      "video": "video",
+      "story": "story"
+    },
+    "saveDraft": "Save draft",
+    "restored": "We restored the draft you were working on.",
+    "discardRestored": "Start over",
+    "preview": "Preview",
+    "previewEmpty": "Choose an account to see how the post will look there.",
+    "preflight": "Pre-flight",
+    "submit": {
+      "now": "Publish now",
+      "schedule": "Schedule post",
+      "queue": "Add to queue"
+    },
+    "submitting": "Working…",
+    "problems": {
+      "label": "Before you can continue",
+      "accounts": "Choose at least one account.",
+      "media": "Add a video or image.",
+      "caption": "Write a caption.",
+      "blocking": "Fix the issues marked as will be rejected.",
+      "time": "Pick a time in the future.",
+      "unsupported": "{platforms} can't take {type} posts. Remove them or change the post type.",
+      "mediaKind": "This media doesn't fit a {type} post."
+    },
+    "errors": {
+      "conflict": "Someone else changed this post while you were editing. Reload to see their version.",
+      "past": "That time has passed. Pick a later time.",
+      "validation": "Something in the post needs attention. Check the accounts and time.",
+      "generic": "We could not save the post. Your draft is safe; try again."
+    },
+    "cannotEditTitle": "This post has already gone out",
+    "cannotEditBody": "Published posts cannot be edited here. You can create a new post instead.",
+    "backToPosts": "Back to posts",
+    "done": {
+      "scheduled": "Your post is scheduled.",
+      "publishing": "Your post is publishing.",
+      "when": "It goes out {when} ({zone}).",
+      "live": "You will get a notification when each platform confirms.",
+      "calendar": "View in calendar",
+      "another": "Create another post",
+      "toast": "Scheduled for {when}."
+    },
+    "autosave": {
+      "saving": "Saving…",
+      "pending": "Unsaved changes",
+      "savedAt": "Saved at {time}",
+      "error": "Could not save.",
+      "retry": "Retry",
+      "conflict": "Someone else changed this post."
+    },
+    "accounts": {
+      "title": "Accounts",
+      "selected": "{count} selected",
+      "search": "Search accounts",
+      "needsReconnect": "Needs reconnecting before it can post.",
+      "unsupported": "{platform} does not take {type} posts.",
+      "types": {
+        "text": "text-only",
+        "image": "image",
+        "video": "video",
+        "story": "story"
+      },
+      "none": "No accounts connected yet.",
+      "connect": "Connect one",
+      "choose": "Choose accounts",
+      "add": "Add account",
+      "removeAccount": "Remove {name}"
+    },
+    "media": {
+      "title": "Media",
+      "paused": "Paused",
+      "unsupported": "{name} cannot be used for this post type, or its format is not supported.",
+      "failed": "Uploading {name} failed. Check your connection and try again.",
+      "tryAgain": "Try again",
+      "add": "Add photos or a video",
+      "addShort": "Add",
+      "dropHint": "or drag files here, or paste an image",
+      "dropHere": "Drop to add",
+      "photoN": "Photo {n}",
+      "videoN": "Video {n}",
+      "checkingShort": "Checking",
+      "removeName": "Remove {name}",
+      "pauseName": "Pause uploading {name}",
+      "resumeName": "Resume uploading {name}",
+      "issueWarn": "{name} has warnings. Show the checks.",
+      "issueBlock": "{name} will be rejected. Show the checks.",
+      "photosOnly": "This post has photos. Put videos in a post of their own.",
+      "oneKind": "A post can't mix photos and videos.",
+      "tooMany": "A post can hold up to {max} photos.",
+      "oneVideo": "A post holds one video.",
+      "oneStory": "A story holds one photo or video."
+    },
+    "caption": {
+      "title": "Caption",
+      "tabsLabel": "Caption per platform",
+      "main": "Main caption",
+      "customised": "Customised",
+      "placeholder": "Write your caption. You can adjust it for each platform in the tabs above.",
+      "overridePlaceholder": "Leave empty to use the main caption.",
+      "overrideLabel": "Caption for {platform} ({handle})",
+      "usingOverride": "Using a custom caption for this account.",
+      "usingMain": "Using the main caption."
+    },
+    "when": {
+      "title": "When",
+      "modes": {
+        "now": {
+          "title": "Post now",
+          "body": "Publish as soon as you confirm."
+        },
+        "schedule": {
+          "title": "Schedule",
+          "body": "Pick a timezone, then a date and time."
+        },
+        "queue": {
+          "title": "Add to queue",
+          "body": "Use the next free time slot."
+        }
+      },
+      "timezone": "Timezone",
+      "queueHint": "Queue slots are at 09:00, 13:00 and 17:00 in this timezone.",
+      "date": "Date",
+      "time": "Time",
+      "errors": {
+        "missing": "Choose a date and time.",
+        "past": "This time has already passed.",
+        "invalid": "This date or time is not valid."
+      },
+      "summary": "Publishes {when} ({zone}).",
+      "yourTime": "That is {when} in your timezone.",
+      "dstGap": "This time does not exist because the clocks change that day, so it moves to the next valid time.",
+      "summaryNow": "Post now",
+      "summaryQueue": "Next queue slot",
+      "summaryPick": "Pick a time",
+      "change": "Change timing (currently {when})",
+      "done": "Done"
+    },
+    "panelLabel": "Side panel",
+    "panel": {
+      "preview": "Preview",
+      "ai": "AI assistant"
+    },
+    "previewEmptyTitle": "Nothing to preview yet",
+    "preflightOpen": "Show pre-flight checks",
+    "aiHelp": "Write with AI",
+    "aiLabel": "Made with AI",
+    "aiLabelHint": "Lets your team see that AI helped write this post.",
+    "createAnother": "Create another",
+    "moreProblems": "{count, plural, other {(+# more)}}",
+    "previewPane": {
+      "label": "{platform} preview",
+      "approx": "A likeness of {platform} {format}. The app itself may look slightly different.",
+      "noMedia": "Add a video or photos to see them here.",
+      "loading": "Loading…",
+      "unavailable": "This file can't be shown here.",
+      "captionPlaceholder": "Your caption appears here.",
+      "more": "more",
+      "less": "less",
+      "play": "Play",
+      "pause": "Pause",
+      "mute": "Mute",
+      "unmute": "Unmute",
+      "previous": "Previous",
+      "next": "Next",
+      "itemOf": "{n} / {total}",
+      "justNow": "Just now",
+      "follow": "Follow",
+      "subscribe": "Subscribe",
+      "sendMessage": "Send message",
+      "storyNoCaption": "Stories don't show a caption.",
+      "unsupportedTitle": "{platform} doesn't take {type} posts",
+      "unsupportedBody": "Remove this account, or change the post type.",
+      "actions": {
+        "like": "Like",
+        "dislike": "Dislike",
+        "comment": "Comment",
+        "share": "Share",
+        "repost": "Repost",
+        "send": "Send",
+        "save": "Save"
+      }
+    },
+    "privacy": {
+      "public": "Public",
+      "unlisted": "Unlisted",
+      "private": "Private",
+      "publicHint": "Anyone can find and watch it.",
+      "unlistedHint": "Only people with the link can watch it.",
+      "privateHint": "Only you and people you choose can watch it."
+    },
+    "options": {
+      "title": "{platform} settings",
+      "videoTitle": "Title",
+      "titlePlaceholder": "Add a title",
+      "titleHint": "Leave empty to use the first line of your caption.",
+      "titleTooLong": "Keep the title to {max} characters.",
+      "visibility": "Visibility",
+      "madeForKids": "Made for kids",
+      "madeForKidsHint": "YouTube asks this for every video.",
+      "notifySubscribers": "Notify subscribers",
+      "embeddable": "Allow embedding"
+    }
+  },
+  "tags": {
+    "label": "Tags",
+    "search": "Search or create a tag",
+    "searchFilter": "Search tags",
+    "loading": "Loading tags…",
+    "empty": "No tags yet.",
+    "noMatch": "No tags match.",
+    "create": "Create “{name}”",
+    "exists": "A tag with this name already exists.",
+    "createFailed": "Could not create the tag. Try again.",
+    "manage": "Manage tags",
+    "clear": "Clear",
+    "remove": "Remove tag {name}"
+  },
+  "ai": {
+    "credits": "{count, plural, one {# credit left} other {# credits left}}",
+    "introTitle": "Write faster with AI",
+    "introBody": "Describe your post and get a first draft shaped for the platforms you chose. Nothing changes until you insert it.",
+    "introPoints": {
+      "draft": "Turn a quick idea into a full caption",
+      "polish": "Rephrase, shorten or change the tone",
+      "fit": "Aims to fit your platforms’ caption limits"
+    },
+    "start": "Get started",
+    "promptLabel": "What is the post about?",
+    "tip": "Mention the audience and the tone you want. Ctrl or ⌘ + Enter generates.",
+    "clearPrompt": "Clear",
+    "placeholder": "e.g. Our spring sale starts Monday: 20% off every plan for one week. Friendly tone.",
+    "generate": "Generate",
+    "generateAgain": "Generate again",
+    "improveTitle": "Or improve your current caption",
+    "writing": "Writing…",
+    "errors": {
+      "credits": "You have used all of this month’s AI credits.",
+      "creditsAction": "See plans",
+      "generic": "The assistant could not write this. Try again."
+    },
+    "retry": "Try again",
+    "result": "Suggestion",
+    "fitsLimit": "{count} / {max} characters",
+    "insert": "Use this",
+    "append": "Add to end",
+    "copy": "Copy",
+    "copied": "Copied",
+    "copyFailed": "Could not copy. Select the text and copy it instead.",
+    "refineTitle": "Refine",
+    "disclaimer": "AI can get facts wrong. Read the text before you post it.",
+    "previewNote": "Preview mode: a sample writer stands in until the AI service is connected.",
+    "actions": {
+      "rephrase": "Rephrase",
+      "shorten": "Shorten",
+      "expand": "Expand",
+      "casual": "More casual",
+      "formal": "More formal"
+    },
+    "inserted": "Caption updated."
+  },
+  "posts": {
+    "title": "Posts",
+    "tabsLabel": "Post lists",
+    "search": "Search captions",
+    "filterPlatform": "Filter by platform",
+    "allPlatforms": "All platforms",
+    "noMatchTitle": "No posts match",
+    "noMatchBody": "Try a different search or platform.",
+    "empty": {
+      "all": {
+        "title": "No posts yet",
+        "body": "Create your first post to see it here."
+      },
+      "scheduled": {
+        "title": "Nothing scheduled",
+        "body": "Scheduled posts and posts waiting for review appear here."
+      },
+      "posted": {
+        "title": "Nothing published yet",
+        "body": "Posts appear here once a platform confirms them."
+      },
+      "draft": {
+        "title": "No drafts",
+        "body": "Drafts are saved automatically while you write."
+      }
+    },
+    "columns": {
+      "post": "Post",
+      "accounts": "Accounts",
+      "when": "When",
+      "status": "Status"
+    },
+    "onPlatforms": "{count, plural, one {On # platform} other {On # platforms}}",
+    "types": {
+      "text": "Text post",
+      "image": "Image post",
+      "video": "Video post",
+      "story": "Story"
+    },
+    "detailTitle": "Post details",
+    "noTime": "No time set",
+    "caption": "Caption",
+    "noCaption": "No caption",
+    "platforms": "Platforms",
+    "partialSummary": "Published on {published} of {total} platforms. The failed one is shown below with the reason.",
+    "lapsedSummary": "The scheduled time passed while publishing was paused. Choose to publish now, reschedule, or discard.",
+    "viewOnPlatform": "View",
+    "reconnectAccount": "Reconnect this account",
+    "target": {
+      "pending": "Waiting for its time",
+      "queued": "Publishing…",
+      "publishing": "Publishing…",
+      "published": "Published",
+      "failed": "Failed",
+      "skipped": "Skipped",
+      "needs_check": "Needs checking"
+    },
+    "actions": {
+      "publishNow": "Publish now",
+      "retry": "Retry failed",
+      "reschedule": "Reschedule",
+      "edit": "Edit",
+      "delete": "Delete",
+      "discard": "Discard",
+      "retrying": "Trying again. We will let you know how it goes.",
+      "deleted": "Post deleted.",
+      "rescheduled": "Post moved."
+    },
+    "reschedule": {
+      "title": "Reschedule post",
+      "body": "Pick a timezone first, then the new date and time.",
+      "timezone": "Timezone",
+      "date": "Date",
+      "time": "Time",
+      "errors": {
+        "missing": "Choose a date and time.",
+        "past": "This time has already passed.",
+        "invalid": "This date or time is not valid."
+      },
+      "conflict": "Someone else changed this post. Close this and open it again.",
+      "failed": "We could not move the post. Try again.",
+      "cancel": "Cancel",
+      "confirm": "Move post"
+    },
+    "delete": {
+      "title": "Delete this post?",
+      "body": "This cannot be undone.",
+      "bodyScheduled": "It will not be published. This cannot be undone.",
+      "failed": "We could not delete the post. Try again.",
+      "cancel": "Keep post",
+      "confirm": "Delete post"
+    },
+    "aiGenerated": "Made with AI"
+  },
+  "calendar": {
+    "title": "Calendar",
+    "newPost": "New post",
+    "prevMonth": "Previous month",
+    "nextMonth": "Next month",
+    "prevWeek": "Previous week",
+    "nextWeek": "Next week",
+    "today": "Today",
+    "viewLabel": "Calendar view",
+    "views": {
+      "month": "Month",
+      "week": "Week",
+      "list": "List"
+    },
+    "filterPlatform": "Filter by platform",
+    "allPlatforms": "All platforms",
+    "emptyTitle": "Nothing planned in this period",
+    "emptyBody": "Create a post or move to another month.",
+    "createOn": "Create a post on {date}",
+    "more": "+{count} more",
+    "legend": "Legend:",
+    "dragHint": "Drag a post to another day to move it, or open it and choose Reschedule.",
+    "pastDrop": "You cannot move a post into the past."
+  },
+  "home": {
+    "greeting": {
+      "morning": "Good morning, {name}",
+      "afternoon": "Good afternoon, {name}",
+      "evening": "Good evening, {name}"
+    },
+    "workspaceLine": "Workspace: {workspace}",
+    "newPost": "New post",
+    "verifyBanner": "Confirm your email address to keep your account secure.",
+    "verifyAction": "Confirm email",
+    "stats": {
+      "thisWeek": "Scheduled this week",
+      "review": "Needs review",
+      "published": "Published this week",
+      "attention": "Needs attention",
+      "thisWeekHint": "Next 7 days",
+      "reviewHint": "Waiting for approval",
+      "publishedHint": "Last 7 days",
+      "attentionHint": "Failed, partial or lapsed"
+    },
+    "checklist": {
+      "title": "Your first post",
+      "progress": "{done} of {total} done",
+      "connect": "Connect an account",
+      "upload": "Upload a video",
+      "schedule": "Schedule a post",
+      "done": "(done)",
+      "todo": "(to do)",
+      "meter": "First-post progress"
+    },
+    "attentionTitle": "Needs attention",
+    "lapsedReason": "The scheduled time passed while publishing was paused.",
+    "failedReason": "One or more platforms did not accept this post.",
+    "publishNow": "Publish now",
+    "retry": "Retry",
+    "details": "Details",
+    "upcomingTitle": "Coming up",
+    "openCalendar": "Open calendar",
+    "upcomingEmptyTitle": "Nothing scheduled yet",
+    "upcomingEmptyBody": "Schedule a post and it will show up here.",
+    "hero": {
+      "summary": "{count, plural, =0 {Nothing is scheduled for the next 7 days in {workspace} yet.} one {# post goes out in the next 7 days in {workspace}.} other {# posts go out in the next 7 days in {workspace}.}}"
+    },
+    "activity": {
+      "title": "Posting plan",
+      "subtitle": "Posts per day, the last 7 days and the next 7",
+      "legendPast": "Earlier",
+      "legendUpcoming": "Today and ahead",
+      "count": "{count, plural, =0 {No posts} one {# post} other {# posts}}",
+      "tableDate": "Date",
+      "tablePosts": "Posts"
+    },
+    "platforms": {
+      "title": "Upcoming by platform",
+      "subtitle": "Scheduled posts per platform",
+      "empty": "No upcoming posts yet.",
+      "tablePlatform": "Platform",
+      "tablePosts": "Posts"
+    },
+    "pipeline": {
+      "title": "Pipeline"
+    },
+    "week": {
+      "title": "This week",
+      "same": "Same as last week",
+      "delta": "{change} vs last week",
+      "meter": "Share of this week’s posts already published",
+      "percent": "{pct}% published",
+      "summary": "{done} published, {left} still to go",
+      "empty": "Nothing planned this week yet. Plan a post"
+    }
+  },
+  "billing": {
+    "title": "Billing",
+    "subtitle": "Your plan, usage and invoices.",
+    "currentPlan": "Current plan",
+    "trialUntil": "Trial of Pro features until {date}. No card on file.",
+    "renewsOn": "Renews on {date}.",
+    "endsOn": "Cancelled. Access continues until {date}, then moves to Free. Nothing is deleted.",
+    "freeForever": "Free plan. Upgrade at any time.",
+    "pastDue": "Your last payment failed. Update your card to keep your plan.",
+    "manage": "Invoices and payment method",
+    "portalUnavailable": "Available once billing is connected.",
+    "portalFailed": "We could not open the billing portal. Try again in a moment.",
+    "usageTitle": "Usage",
+    "accounts": "Social accounts",
+    "seats": "Seats",
+    "usage": "{used} of {limit}",
+    "downgradeNote": "If you move to a smaller plan, nothing is deleted. Items over the limit stay read-only.",
+    "ownerOnly": "Only the workspace owner can change the plan.",
+    "plansTitle": "Plans",
+    "upgrade": "Upgrade",
+    "switch": "Switch",
+    "checkoutFailed": "We could not open checkout. You were not charged. Try again.",
+    "checkoutNote": "Payment is handled by our payment provider. Your plan changes as soon as the payment is confirmed.",
+    "confirming": {
+      "title": "Confirming your payment…",
+      "body": "This usually takes a few seconds. You can leave this page; your plan updates either way.",
+      "doneTitle": "You're on {plan} now.",
+      "doneBody": "Your new limits are active.",
+      "continue": "Continue",
+      "slowTitle": "This is taking longer than usual.",
+      "slowBody": "Your payment may still be processing. Do not pay again: refresh this page in a few minutes, or contact us and we will check.",
+      "contact": "Contact support"
+    }
+  },
+  "teams": {
+    "title": "Team",
+    "subtitle": "Invite teammates and clients, and choose what each person can do.",
+    "inviteTitle": "Invite someone",
+    "seatsLeft": "{count, plural, =0 {No seats left on your plan.} one {# seat left on your plan.} other {# seats left on your plan.}}",
+    "email": "Email",
+    "role": "Role",
+    "send": "Send invite",
+    "invited": "Invite sent to {email}.",
+    "alreadyInvited": "This person is already a member or has a pending invite.",
+    "seatLimit": "Your plan has no seats left. Upgrade to invite more people.",
+    "inviteFailed": "We could not send the invite. Try again.",
+    "members": "Members",
+    "emptyTitle": "No members yet",
+    "you": "you",
+    "joined": "Joined {date}",
+    "removeLabel": "Remove {name}",
+    "removeTitle": "Remove {name}?",
+    "removeBody": "They lose access on their next click. Their drafts stay in the workspace.",
+    "removeFailed": "We could not remove this member. Try again.",
+    "removed": "{name} was removed.",
+    "cancel": "Cancel",
+    "remove": "Remove",
+    "pending": "Pending invites",
+    "expires": "expires {date}",
+    "revoke": "Revoke",
+    "rolesTitle": "What each role can do",
+    "roles": {
+      "owner": {
+        "name": "Owner",
+        "body": "Everything, including billing and deleting the workspace."
+      },
+      "admin": {
+        "name": "Admin",
+        "body": "Everything except billing and deleting the workspace."
+      },
+      "editor": {
+        "name": "Editor",
+        "body": "Create, edit and schedule posts."
+      },
+      "viewer": {
+        "name": "Viewer",
+        "body": "See posts and results, and comment."
+      },
+      "reviewer": {
+        "name": "Reviewer",
+        "body": "Comment on and approve posts sent to them."
+      }
+    }
+  },
+  "settings": {
+    "name": "Name",
+    "nameRequired": "Enter your name.",
+    "email": "Email",
+    "emailHint": "To change your email, contact support. We will ask you to confirm it's you.",
+    "timezone": "Your timezone",
+    "timezoneHint": "Times in the app are shown in this timezone. Each post can still use its own.",
+    "save": "Save changes",
+    "saved": "Settings saved.",
+    "saveFailed": "We could not save your settings. Try again.",
+    "language": "Language",
+    "languageHint": "Each language is shown in its own name.",
+    "tags": {
+      "title": "Tags",
+      "body": "Group posts by campaign or theme. Tags appear on posts and in filters, and only your team sees them.",
+      "newName": "New tag",
+      "newPlaceholder": "e.g. Summer launch",
+      "colour": "Colour",
+      "colors": {
+        "blue": "Blue",
+        "violet": "Violet",
+        "green": "Green",
+        "amber": "Amber",
+        "rose": "Rose",
+        "peach": "Peach"
+      },
+      "add": "Add tag",
+      "added": "Tag added.",
+      "renameLabel": "Tag name",
+      "edit": "Edit {name}",
+      "delete": "Delete {name}",
+      "usage": "{count, plural, =0 {Not used yet} one {Used on # post} other {Used on # posts}}",
+      "empty": "No tags yet.",
+      "deleteTitle": "Delete “{name}”?",
+      "deleteBody": "{count, plural, =0 {No posts use this tag.} one {It will be removed from # post. The post itself stays.} other {It will be removed from # posts. The posts themselves stay.}}",
+      "deleteConfirm": "Delete tag",
+      "deleted": "Tag deleted.",
+      "saved": "Tag saved.",
+      "failed": "Could not save the tag. Try again.",
+      "readOnly": "Only owners, admins and editors can change tags.",
+      "nameRequired": "Give the tag a name."
+    },
+    "profileBody": "How you appear to your team.",
+    "preferencesBody": "Theme, language and how times are shown. Changes save straight away.",
+    "appearanceTitle": "Appearance",
+    "themeHint": "Applies to this device only.",
+    "languageTimeTitle": "Language and time",
+    "clockTitle": "Time format",
+    "clockHint": "Used in the calendar, post lists and the composer.",
+    "clock12": "12-hour ({time})",
+    "clock24": "24-hour ({time})",
+    "workspace": {
+      "body": "The workspace you're in, your role and what it uses.",
+      "detailsTitle": "Details",
+      "name": "Name",
+      "nameHint": "Shown in the workspace switcher.",
+      "kind": "Type",
+      "kinds": {
+        "personal": "Personal",
+        "agency": "Agency",
+        "client": "Client"
+      },
+      "role": "Your role",
+      "usageTitle": "Plan and usage",
+      "plan": "Plan",
+      "members": "Members",
+      "accounts": "Social accounts",
+      "ofLimit": "{used} of {limit}",
+      "previewTitle": "Preview data",
+      "previewRow": "Start over with sample data",
+      "previewBody": "This preview keeps its sample data in your browser only.",
+      "previewReset": "Reset preview data",
+      "previewConfirmTitle": "Reset the preview data?",
+      "previewConfirmBody": "Every post, tag and change you made in this preview is replaced with fresh sample data. This can't be undone."
+    }
+  },
+  "charts": {
+    "showTable": "Show as table",
+    "showChart": "Show as chart"
+  },
+  "insights": {
+    "tabsLabel": "Account pages",
+    "settings": "Account settings",
+    "notFoundTitle": "This account isn't connected",
+    "notFoundBody": "It may have been removed from the workspace. Your connected accounts are listed in settings.",
+    "toAccounts": "Go to social accounts",
+    "reconnectBody": "Scheduled posts for {name} are paused, and these numbers stopped updating.",
+    "reconnect": "Reconnect",
+    "newPost": "New post",
+    "range": {
+      "7": "7 days",
+      "30": "30 days",
+      "90": "90 days",
+      "label": "Period"
+    },
+    "updated": "Updated {time}",
+    "summary": "Summary",
+    "period": "{from} – {to} · compared with {previousFrom} – {previousTo}",
+    "points": "{value} pts",
+    "change": {
+      "new": "New",
+      "none": "No change"
+    },
+    "vsPrevious": "vs previous {days} days",
+    "rateNote": "Engagement rate is engagements (likes, comments, shares and saves) divided by {base}.",
+    "rateBase": {
+      "reach": "reach",
+      "impressions": "impressions",
+      "views": "views",
+      "followers": "followers"
+    },
+    "chart": {
+      "label": "Show",
+      "newFollowers": "New followers",
+      "newSubscribers": "New subscribers",
+      "engagements": "Engagements",
+      "perDay": "Per day, last {days} days",
+      "perWeek": "Per week, last {days} days",
+      "week": "Week of {date}",
+      "tableDate": "Date"
+    },
+    "postsTitle": "Performance per post",
+    "postsCount": "{count, plural, one {# post} other {# posts}}",
+    "noPosts": "No posts in the last {days} days",
+    "noPostsBody": "Posts published on this account show up here with their results.",
+    "post": "Post",
+    "sortByDate": "Sort by date",
+    "sortBy": "Sort by {metric}",
+    "outside": "Posted outside {product}",
+    "openExternal": "Opens on the platform",
+    "metrics": {
+      "followers": "Followers",
+      "subscribers": "Subscribers",
+      "posts": "Posts",
+      "impressions": "Impressions",
+      "reach": "Reach",
+      "views": "Views",
+      "likes": "Likes",
+      "reactions": "Reactions",
+      "comments": "Comments",
+      "replies": "Replies",
+      "shares": "Shares",
+      "reposts": "Reposts",
+      "saves": "Saves",
+      "clicks": "Clicks",
+      "engagementRate": "Engagement rate"
+    },
+    "export": {
+      "label": "Export",
+      "csv": "Export as CSV",
+      "markdown": "Export as Markdown",
+      "pdf": "Export as PDF",
+      "pdfHint": "Opens the print dialog. Choose Save as PDF.",
+      "done": "Downloaded {file}",
+      "title": "{account} on {platform}",
+      "periodLine": "{from} – {to}, compared with {previousFrom} – {previousTo}",
+      "exported": "Exported from {product} on {date}",
+      "metric": "Metric",
+      "thisPeriod": "This period",
+      "previousPeriod": "Previous period",
+      "published": "Published",
+      "link": "Link"
+    }
+  }
+}

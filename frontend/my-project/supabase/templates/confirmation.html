@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <body style="margin:0;background:#f7f6f3;font-family:Inter,Arial,sans-serif;color:#111214">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="padding:32px 16px">
+      <tr>
+        <td align="center">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:480px;background:#ffffff;border:1px solid #e4e4e7;border-radius:16px;padding:32px">
+            <tr>
+              <td>
+                <p style="margin:0 0 16px;font-size:20px;font-weight:600">Confirm your email</p>
+                <p style="margin:0 0 24px;font-size:15px;line-height:1.5;color:#44464b">
+                  Press the button to confirm this address and finish setting up your PostSchedule account.
+                </p>
+                <!-- Our page asks for one more click, so mail scanners that open links cannot confirm by accident. -->
+                <a href="{{ .SiteURL }}/auth/confirm?token={{ .TokenHash }}" style="display:inline-block;background:#1d1e20;color:#ffffff;text-decoration:none;font-weight:600;font-size:15px;padding:12px 20px;border-radius:8px">Confirm email</a>
+                <p style="margin:24px 0 0;font-size:13px;line-height:1.5;color:#44464b">
+                  If you did not create an account, you can ignore this email.
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

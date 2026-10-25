@@ -1,0 +1,1292 @@
+{
+  "meta": {
+    "title": "{product}: agende posts que ficam certos em todo lugar",
+    "description": "Agende em todas as plataformas, veja a prévia de cada uma e corrija problemas de vídeo antes de publicar."
+  },
+  "common": {
+    "close": "Fechar",
+    "dismiss": "Dispensar",
+    "offline": "Você está sem conexão. Seu rascunho está salvo neste dispositivo.",
+    "skipToContent": "Pular para o conteúdo",
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "saving": "Salvando…",
+    "saved": "Salvo",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "back": "Voltar",
+    "continue": "Continuar",
+    "skip": "Pular por enquanto",
+    "loading": "Carregando…",
+    "notAvailable": "Indisponível",
+    "undo": "Desfazer",
+    "timezone": {
+      "label": "Fusos horários",
+      "search": "Buscar fuso horário",
+      "empty": "Nenhum fuso horário encontrado."
+    }
+  },
+  "notFound": {
+    "title": "Esta página não existe.",
+    "body": "O link pode ser antigo ou a página mudou de lugar. Confira o endereço ou volte ao início.",
+    "home": "Ir para a página inicial"
+  },
+  "theme": {
+    "label": "Tema",
+    "light": "Claro",
+    "dark": "Escuro",
+    "system": "Igual ao sistema"
+  },
+  "language": {
+    "label": "Idioma"
+  },
+  "status": {
+    "draft": "Rascunho",
+    "pending_approval": "Em revisão",
+    "scheduled": "Agendado",
+    "publishing": "Publicando",
+    "published": "Publicado",
+    "partial": "Parcial",
+    "failed": "Falhou",
+    "lapsed": "Vencido",
+    "paused": "Pausado",
+    "connected": "Conectada",
+    "needs_reconnect": "Reconexão necessária"
+  },
+  "errors": {
+    "retry": "Tentar de novo",
+    "network": {
+      "title": "Não conseguimos falar com o servidor.",
+      "body": "Verifique sua conexão e tente de novo. Nada do que você digitou foi perdido."
+    },
+    "timeout": {
+      "title": "Isso está demorando demais.",
+      "body": "O servidor não respondeu a tempo. Tente de novo; é seguro repetir."
+    },
+    "unauthenticated": {
+      "title": "Sua sessão terminou.",
+      "body": "Entre de novo para continuar de onde parou."
+    },
+    "not_found": {
+      "title": "Não encontramos isso.",
+      "body": "Pode ter sido excluído ou você pode não ter acesso."
+    },
+    "rate_limited": {
+      "title": "Muitas solicitações.",
+      "body": "Aguarde um momento e tente de novo."
+    },
+    "not_configured": {
+      "title": "Esta parte ainda não está ativada.",
+      "body": "Ela precisa de um serviço que ainda não conectamos. Todo o resto continua funcionando."
+    },
+    "generic": {
+      "title": "Algo deu errado.",
+      "body": "Já fomos avisados. Tente de novo em instantes."
+    }
+  },
+  "validation": {
+    "required": "Preencha este campo.",
+    "tooLong": "Está longo demais.",
+    "email": "Digite um e-mail como nome@exemplo.com.",
+    "passwordLength": "Use pelo menos 10 caracteres.",
+    "passwordMix": "Use pelo menos uma letra e um número."
+  },
+  "marketing": {
+    "announcement": "Preço de fundador para os primeiros {count} clientes, travado por 24 meses. Ver a oferta",
+    "nav": {
+      "home": "Início",
+      "main": "Principal",
+      "product": "Produto",
+      "pricing": "Preços",
+      "freeTools": "Ferramentas grátis",
+      "login": "Entrar",
+      "startFree": "Comece grátis",
+      "openMenu": "Abrir menu"
+    },
+    "footer": {
+      "product": "Produto",
+      "features": "Recursos",
+      "pricing": "Preços",
+      "tools": "Ferramentas grátis",
+      "videoChecker": "Verificador de vídeo",
+      "account": "Conta",
+      "login": "Entrar",
+      "signup": "Comece grátis",
+      "tagline": "Gestão de redes sociais para startups, agências e equipes em vários países.",
+      "copyright": "© {product}. Todos os direitos reservados."
+    },
+    "mock": {
+      "title": "Novo post de vídeo",
+      "accounts": "Contas",
+      "media": "Mídia",
+      "warning": "O 16:9 será cortado nos Reels",
+      "fix": "Fazer 9:16",
+      "duration": "Duração",
+      "size": "Tamanho"
+    },
+    "home": {
+      "eyebrow": "Gestão de redes sociais para equipes",
+      "line1": "Publique uma vez.",
+      "line2": "Fique certo em todo lugar.",
+      "line3": "Mantenha cada <mark>pixel</mark>.",
+      "sub": "Agende em todas as plataformas, veja a prévia de cada uma e corrija problemas de vídeo antes de publicar.",
+      "ctaPrimary": "Comece grátis",
+      "ctaGoogle": "Comece com o Google",
+      "ctaNote": "Teste de {days} dias. Sem cartão.",
+      "band": "Cada post é verificado antes de sair: proporção, resolução, taxa de bits, duração e tamanho, em cada plataforma.",
+      "bandCta": "Verifique um vídeo agora",
+      "featuresEyebrow": "O que você recebe",
+      "featuresTitle": "Veja antes do seu público.",
+      "featuresSub": "Outros agendadores enviam seu arquivo e torcem. Nós mostramos exatamente como cada plataforma vai exibir e avisamos antes que a qualidade caia.",
+      "features": {
+        "preflight": {
+          "title": "Verificação prévia do vídeo",
+          "body": "Proporção, resolução, taxa de bits, duração e tamanho são verificados em cada plataforma, com um motivo claro para cada aviso."
+        },
+        "previews": {
+          "title": "Prévia por plataforma",
+          "body": "Veja cada post numa moldura de celular com o corte e as áreas cobertas pelos botões e legendas do app."
+        },
+        "original": {
+          "title": "Seu original, intacto",
+          "body": "Enviamos o arquivo original, a menos que você escolha uma correção. As correções criam uma cópia nova que você pode comparar e desfazer."
+        },
+        "calendar": {
+          "title": "Calendário e fila",
+          "body": "Planeje por mês ou semana, arraste para reagendar ou preencha o próximo horário livre com um clique."
+        },
+        "approvals": {
+          "title": "Aprovações para clientes",
+          "body": "Envie um post para revisão por link. Os clientes aprovam ou comentam pelo celular, sem precisar de conta."
+        },
+        "languages": {
+          "title": "Feito para todos os idiomas",
+          "body": "Use o app no seu idioma, inclusive escritas da direita para a esquerda, e agende no fuso horário de cada mercado."
+        }
+      },
+      "stepsEyebrow": "Como funciona",
+      "stepsTitle": "Do upload ao agendamento em minutos.",
+      "steps": {
+        "connect": {
+          "title": "Conecte suas contas",
+          "body": "Entre em cada plataforma uma vez. Só pedimos as permissões necessárias para publicar."
+        },
+        "check": {
+          "title": "Envie e verifique",
+          "body": "Solte um vídeo. As verificações e prévias aparecem para cada plataforma escolhida."
+        },
+        "schedule": {
+          "title": "Agende com confiança",
+          "body": "Escolha um fuso horário e um horário. Publicamos uma única vez, repetimos com segurança e avisamos se algo falhar."
+        }
+      },
+      "pricingEyebrow": "Preços",
+      "pricingTitle": "Pague pelo que usa. Nada escondido.",
+      "pricingCta": "Comparar planos",
+      "faqEyebrow": "Perguntas",
+      "faqTitle": "Respostas diretas.",
+      "faq": {
+        "what": {
+          "q": "O que é {product}?",
+          "a": "{product} é uma plataforma de gestão de redes sociais para startups, agências e equipes em vários países. Você cria um post uma vez, vê a prévia em cada plataforma, verifica a qualidade do vídeo e agenda."
+        },
+        "quality": {
+          "q": "Por que meus vídeos ficam borrados depois de agendar?",
+          "a": "Geralmente o vídeo não bate com o que a plataforma espera, então é cortado ou recodificado. Nossa verificação prévia avisa antes disso e oferece uma correção."
+        },
+        "platforms": {
+          "q": "Em quais plataformas posso publicar?",
+          "a": "Estamos preparando Instagram, TikTok, YouTube, Facebook, LinkedIn e Bluesky. Cada uma é liberada assim que a plataforma aprova nosso app."
+        },
+        "trial": {
+          "q": "Preciso de cartão para o teste?",
+          "a": "Não. Você tem {days} dias com os recursos do Pro. Ao terminar, você passa para o plano Grátis e mantém todos os seus dados."
+        },
+        "switch": {
+          "q": "Posso migrar de outro agendador?",
+          "a": "Sim. Importe seus posts agendados e mídias quando a outra ferramenta permitir exportar. Os primeiros 100 clientes ganham ajuda gratuita na migração."
+        }
+      },
+      "finalTitle": "Seu próximo post pode ficar exatamente como você criou."
+    }
+  },
+  "plans": {
+    "names": {
+      "free": "Grátis",
+      "solo": "Solo",
+      "pro": "Pro",
+      "agency": "Agência",
+      "scale": "Escala"
+    },
+    "blurbs": {
+      "free": "Experimente com algumas contas.",
+      "solo": "Para uma pessoa que cuida de várias marcas.",
+      "pro": "Para equipes pequenas que postam todo dia.",
+      "agency": "Para agências com muitos clientes.",
+      "scale": "Para equipes grandes em muitos mercados."
+    },
+    "current": "Plano atual",
+    "popular": "Mais escolhido",
+    "perMonth": "/ mês",
+    "perYear": "/ ano",
+    "accounts": "{count, plural, one {# conta social} other {# contas sociais}}",
+    "seats": "{count, plural, one {# usuário} other {# usuários}}",
+    "features": {
+      "preflight": "Verificação prévia do vídeo",
+      "previews": "Prévia por plataforma",
+      "calendar": "Calendário e fila",
+      "reports": "Relatórios",
+      "approvals": "Aprovações da equipe",
+      "clientLinks": "Links de aprovação para clientes",
+      "api": "API e agentes de IA"
+    },
+    "interval": "Período de cobrança",
+    "monthly": "Mensal",
+    "yearly": "Anual",
+    "twoMonthsFree": "2 meses grátis"
+  },
+  "pricing": {
+    "metaTitle": "Preços",
+    "metaDescription": "Planos simples pelo número de contas sociais e usuários. A cobrança anual dá dois meses grátis.",
+    "eyebrow": "Preços",
+    "title": "O menor preço fixo em cada tamanho.",
+    "sub": "Todos os planos incluem verificação prévia e prévias. Comece com um teste do Pro de {days} dias, sem cartão.",
+    "founding": "Primeiros {count} clientes: preço travado por {months} meses",
+    "ctaFree": "Comece grátis",
+    "ctaTrial": "Começar teste",
+    "compareTitle": "Comparar planos",
+    "feature": "Recurso",
+    "rowAccounts": "Contas sociais",
+    "rowSeats": "Usuários",
+    "included": "Incluído",
+    "notIncluded": "Não incluído",
+    "note": "Preços em dólares americanos. Impostos podem ser cobrados no pagamento. Ao mudar para um plano menor, nada é excluído."
+  },
+  "preflight": {
+    "summary": {
+      "pass": "Pronto",
+      "warn": "Confira os avisos",
+      "block": "Será rejeitado"
+    },
+    "rules": {
+      "aspect": {
+        "title": "Proporção",
+        "pass": "{actual} se encaixa em {platform} {format}.",
+        "warn": "{actual} será cortado para {target} em {platform} {format}.",
+        "block": "{actual} está fora do que {platform} {format} aceita. Use {target}."
+      },
+      "resolution": {
+        "title": "Resolução",
+        "pass": "{actual} tem nitidez suficiente.",
+        "warn": "{actual} está abaixo do recomendado ({recommended}) e pode parecer sem nitidez.",
+        "block": "{actual} é pequeno demais. O lado menor precisa ter pelo menos {min} px."
+      },
+      "duration": {
+        "title": "Duração",
+        "pass": "{actual} está dentro do limite de {max}.",
+        "warn": "{actual} está perto do limite.",
+        "block": "{actual} está fora da duração permitida."
+      },
+      "size": {
+        "title": "Tamanho do arquivo",
+        "pass": "{actual} está abaixo do limite de {max}.",
+        "warn": "{actual} está perto do limite de {max}.",
+        "block": "{actual} passa do limite de {max}."
+      },
+      "bitrate": {
+        "title": "Taxa de bits",
+        "pass": "{actual} está numa boa faixa.",
+        "warn": "{actual} pode ser recodificado pela plataforma ou parecer sem nitidez.",
+        "block": "{actual} não pode ser aceito."
+      },
+      "caption": {
+        "title": "Tamanho da legenda",
+        "pass": "{actual} de {max} caracteres.",
+        "warn": "{actual} de {max} caracteres.",
+        "block": "{actual} de {max} caracteres. Encurte para esta plataforma."
+      },
+      "count": {
+        "title": "Número de fotos",
+        "pass": "{actual} fotos cabem no limite de {max} do {platform}.",
+        "warn": "{actual} fotos cabem no limite de {max} do {platform}.",
+        "block": "O {platform} aceita até {max} fotos por post; este tem {actual}."
+      },
+      "title": {
+        "title": "Título",
+        "pass": "{actual} de {max} caracteres.",
+        "warn": "{actual} de {max} caracteres.",
+        "block": "{actual, plural, =0 {O {platform} precisa de um título. Adicione um ou escreva uma legenda.} other {# de {max} caracteres. Encurte o título.}}"
+      }
+    },
+    "fixes": {
+      "reframe": "Fazer {target}",
+      "trim": "Cortar para caber",
+      "compress": "Reduzir tamanho"
+    },
+    "sendOriginal": "Vamos enviar seu arquivo original sem alterações.",
+    "preview": {
+      "mediaLabel": "Prévia da sua mídia no {platform}",
+      "noMedia": "Adicione uma mídia para ver a prévia",
+      "captionPlaceholder": "Sua legenda aparece aqui.",
+      "cropped": "Cortado",
+      "frameLabel": "Prévia de {platform} {format}"
+    },
+    "fixed": {
+      "reframe": "Uma cópia em {target} será criada para esta plataforma. Seu original não muda.",
+      "trim": "Uma cópia cortada será criada para esta plataforma. Seu original não muda.",
+      "compress": "Uma cópia menor será criada para esta plataforma. Seu original não muda."
+    },
+    "undoFix": "Desfazer",
+    "othersPassed": "{count, plural, one {# outra verificação aprovada} other {# outras verificações aprovadas}}"
+  },
+  "upload": {
+    "drop": "Solte um vídeo ou imagem aqui",
+    "orBrowse": "ou <browse>procure nos seus arquivos</browse>",
+    "release": "Solte para enviar"
+  },
+  "tools": {
+    "videoChecker": {
+      "metaTitle": "Verificador de vídeo grátis para Reels, TikTok e Shorts",
+      "metaDescription": "Verifique proporção, resolução, taxa de bits, duração e tamanho do seu vídeo em cada plataforma antes de postar. Grátis, sem cadastro, e o arquivo fica no seu dispositivo.",
+      "eyebrow": "Ferramenta grátis",
+      "title": "Seu vídeo vai ficar certo?",
+      "intro": "Solte um vídeo para verificar proporção, resolução, taxa de bits, duração e tamanho no Instagram, TikTok, YouTube, Facebook, LinkedIn e Bluesky, com uma prévia de como cada um vai exibir.",
+      "hint": "Vídeo MP4, MOV ou WebM, ou imagem JPG, PNG ou WebP.",
+      "checking": "Verificando {name}…",
+      "privacy": "Seu arquivo fica neste dispositivo. Lemos os dados dele no seu navegador.",
+      "errors": {
+        "unsupported_type": "Não conseguimos verificar este tipo de arquivo. Use um vídeo MP4, MOV ou WebM, ou uma imagem JPG, PNG ou WebP.",
+        "unreadable": "Não conseguimos ler este arquivo. Ele pode estar danificado ou usar um codec que seu navegador não abre.",
+        "empty_file": "Este arquivo está vazio. Escolha outro."
+      },
+      "facts": {
+        "resolution": "Resolução",
+        "size": "Tamanho",
+        "duration": "Duração",
+        "bitrate": "Taxa de bits",
+        "unavailable": "Indisponível"
+      },
+      "another": "Verificar outro arquivo",
+      "platformsLabel": "Resultados por plataforma",
+      "sourceChecked": "Limites conferidos em {date}.",
+      "sourcePending": "Estamos conferindo os limites na documentação da plataforma.",
+      "sourceLink": "Documentação do {platform}",
+      "ctaTitle": "Corrija e agende num só lugar.",
+      "ctaBody": "Cadastre-se para aplicar correções, ver a prévia de cada plataforma e agendar este post.",
+      "cta": "Corrigir e agendar"
+    }
+  },
+  "auth": {
+    "signInTitle": "Que bom ver você de novo",
+    "signInSub": "Entre no seu espaço de trabalho.",
+    "signUpTitle": "Crie sua conta",
+    "signUpSub": "Grátis por {days} dias. Sem cartão.",
+    "forgotTitle": "Redefinir senha",
+    "forgotSub": "Digite seu e-mail e enviaremos um link para escolher uma nova senha.",
+    "google": "Continuar com o Google",
+    "googleUnavailable": "O login com Google fica disponível quando o backend estiver conectado.",
+    "or": "ou",
+    "email": "E-mail",
+    "workEmail": "E-mail de trabalho",
+    "name": "Seu nome",
+    "password": "Senha",
+    "showPassword": "Mostrar senha",
+    "hidePassword": "Ocultar senha",
+    "forgot": "Esqueceu a senha?",
+    "signIn": "Entrar",
+    "createAccount": "Criar conta",
+    "signInFailed": "O e-mail e a senha não conferem. Verifique e tente de novo.",
+    "signUpFailed": "Não conseguimos criar sua conta. Tente de novo em instantes.",
+    "genericFailed": "Algo deu errado. Tente de novo em instantes.",
+    "emailMaybeUsed": "Se este endereço puder ser usado, enviamos um link para ele. Confira sua caixa de entrada ou entre.",
+    "emailNotAllowed": "Ainda não conseguimos enviar e-mails para este endereço. Use outro ou tente mais tarde.",
+    "demoHint": "Modo de prévia: entre com {email} e qualquer senha.",
+    "noAccount": "Primeira vez aqui? <link>Crie uma conta</link>",
+    "haveAccount": "Já tem uma conta? <link>Entrar</link>",
+    "terms": "Ao criar uma conta, você concorda com os termos de serviço e a política de privacidade.",
+    "ruleLength": "Pelo menos {min} caracteres",
+    "ruleMix": "Uma letra e um número",
+    "ruleMet": "(ok)",
+    "ruleNotMet": "(pendente)",
+    "resetSent": "Se houver uma conta com este e-mail, enviamos um link. Ele funciona uma vez e expira em breve.",
+    "backToSignIn": "Voltar para o login",
+    "sendResetLink": "Enviar link",
+    "checkInbox": "Confira seu e-mail",
+    "sentTo": "Enviamos um link de confirmação para {email}. Abra-o para concluir.",
+    "sentGeneric": "Enviamos um link de confirmação. Abra-o para concluir.",
+    "resend": "Reenviar e-mail",
+    "resendIn": "Reenviar em {seconds} s",
+    "resent": "Enviamos outro link. Pode levar um minuto para chegar.",
+    "mockOpenLink": "Abrir o link de confirmação (prévia)",
+    "wrongEmail": "Endereço errado? <link>Cadastre-se de novo</link> com o certo.",
+    "confirmTitle": "Confirme seu e-mail",
+    "confirmBody": "Clique no botão para confirmar este endereço e continuar.",
+    "confirmButton": "Confirmar e-mail",
+    "confirmFailed": "Este link expirou ou já foi usado. Peça um novo na página de login.",
+    "googleOff": "O login com Google ainda não está disponível. Use seu e-mail e senha.",
+    "googleFailed": "O login com Google não foi concluído. Tente de novo ou use seu e-mail e senha.",
+    "emailNotConfirmed": "Confirme seu e-mail antes de entrar. Abra o link que enviamos ou <link>peça um novo link</link>.",
+    "tooManyTries": "Muitas tentativas. Aguarde um minuto e tente de novo.",
+    "serviceOff": "As contas ainda não estão ativadas. Tente mais tarde.",
+    "networkFailed": "Não conseguimos falar com o servidor. Verifique sua conexão e tente de novo.",
+    "weakPassword": "Esta senha é fácil demais de adivinhar. Escolha outra.",
+    "samePassword": "Essa é a sua senha atual. Escolha uma nova.",
+    "resetTitle": "Escolha uma nova senha",
+    "resetSub": "Você vai sair de todos os dispositivos e depois poderá entrar com ela.",
+    "newPassword": "Nova senha",
+    "savePassword": "Salvar senha",
+    "resetDone": "Sua senha foi alterada. Entre com a nova senha.",
+    "resetExpired": "Este link expirou ou já foi usado. Peça um novo."
+  },
+  "nav": {
+    "label": "App",
+    "open": "Abrir navegação",
+    "items": {
+      "home": "Início",
+      "newPost": "Novo post",
+      "calendar": "Calendário",
+      "allPosts": "Todos os posts",
+      "scheduled": "Agendados",
+      "posted": "Publicados",
+      "drafts": "Rascunhos"
+    },
+    "accounts": {
+      "title": "Contas",
+      "manage": "Gerenciar contas",
+      "connect": "Conectar uma conta",
+      "connectMore": "Conectar mais",
+      "connectFirst": "Conecte sua primeira conta",
+      "connectPlatform": "Conectar {platform}",
+      "insights": "Insights",
+      "posts": "Posts",
+      "queued": "{count, plural, =0 {Nada agendado} one {# post agendado} other {# posts agendados}}"
+    },
+    "settings": {
+      "label": "Configurações",
+      "title": "Configurações",
+      "back": "Voltar ao painel",
+      "profile": "Perfil",
+      "preferences": "Preferências",
+      "workspace": "Espaço de trabalho",
+      "team": "Equipe",
+      "accounts": "Contas sociais",
+      "billing": "Cobrança",
+      "tags": "Tags",
+      "accountCount": "{count, plural, one {# conta conectada} other {# contas conectadas}}"
+    }
+  },
+  "shell": {
+    "switchWorkspace": "Espaço de trabalho: {name}. Trocar de espaço",
+    "workspaces": "Espaços de trabalho",
+    "current": "Atual",
+    "userMenu": "Menu da conta de {name}",
+    "signOut": "Sair",
+    "search": "Buscar posts",
+    "reconnect": "Reconectar",
+    "needsReconnect": "{count, plural, one {{name} precisa ser reconectada. Os posts agendados dela estão pausados.} other {# contas precisam ser reconectadas. Os posts agendados delas estão pausados.}}",
+    "choosePlan": "Escolher um plano",
+    "trialEnds": "{count, plural, =0 {Seu teste termina hoje.} one {Seu teste termina em # dia.} other {Seu teste termina em # dias.}}",
+    "notifications": {
+      "label": "Notificações",
+      "labelUnread": "{count, plural, one {Notificações, # não lida} other {Notificações, # não lidas}}",
+      "title": "Notificações",
+      "markAll": "Marcar tudo como lido",
+      "loading": "Carregando…",
+      "error": "Não foi possível carregar as notificações.",
+      "empty": "Você está em dia.",
+      "unread": "Não lida",
+      "kinds": {
+        "published": "Um post foi publicado",
+        "failed": "Um post falhou em uma plataforma",
+        "needs_reconnect": "Uma conta precisa ser reconectada",
+        "approval_requested": "Um post aguarda sua aprovação",
+        "invite": "Alguém entrou no seu espaço de trabalho"
+      }
+    }
+  },
+  "connections": {
+    "usage": "{count} de {limit} contas sociais conectadas.",
+    "connect": "Conectar uma conta",
+    "connected": "{name} está conectada.",
+    "chooseTitle": "Conectar uma conta",
+    "chooseBody": "Escolha uma plataforma. Você vai entrar na própria página da plataforma.",
+    "scopesTitle": "Conectar {platform}",
+    "scopesBody": "Em seguida, {platform} vai pedir que você entre e libere o acesso. Veja para que serve esse acesso.",
+    "weCan": "Poderemos",
+    "weCannot": "Nunca vamos",
+    "can": {
+      "publish": "Publicar os posts que você agendar",
+      "profile": "Ler o nome e a foto da sua conta",
+      "metrics": "Ler os resultados dos posts que publicamos"
+    },
+    "cannot": {
+      "password": "Ver sua senha",
+      "messages": "Ler suas mensagens privadas",
+      "postAlone": "Publicar algo que você não agendou"
+    },
+    "continueTo": "Continuar para {platform}",
+    "otherPlatform": "Outra plataforma",
+    "limitReached": "Você atingiu o limite de contas do seu plano.",
+    "upgrade": "Ver planos",
+    "connectFailed": "Não conseguimos conectar esta conta. Tente de novo; nada foi alterado.",
+    "noPermission": "Só proprietários e administradores podem conectar ou remover contas.",
+    "emptyTitle": "Nenhuma conta conectada ainda",
+    "emptyBody": "Conecte sua primeira conta para começar a agendar.",
+    "since": "conectada em {date}",
+    "reconnect": "Reconectar",
+    "removeLabel": "Remover {name}",
+    "removeTitle": "Remover {name}?",
+    "removeCounting": "Verificando quais posts agendados usam esta conta…",
+    "removeBody": "{count, plural, =0 {Nenhum post agendado usa esta conta. Você pode conectá-la de novo quando quiser.} one {# post agendado deixará de ser publicado no {platform}. As outras plataformas não são afetadas.} other {# posts agendados deixarão de ser publicados no {platform}. As outras plataformas não são afetadas.}}",
+    "removeFailed": "Não conseguimos remover esta conta. Tente de novo.",
+    "removed": "{name} foi removida.",
+    "keep": "Manter conta",
+    "remove": "Remover conta",
+    "insights": "Insights"
+  },
+  "onboarding": {
+    "steps": {
+      "about": "Sobre você",
+      "connect": "Conectar",
+      "done": "Pronto"
+    },
+    "progress": "Etapa {step} de {total}",
+    "personaTitle": "Boas-vindas, {name}. O que melhor descreve você?",
+    "personaSub": "Usamos isso para sugerir a configuração certa. Você pode mudar depois.",
+    "personas": {
+      "creator": {
+        "title": "Criador individual",
+        "body": "Posto para mim ou para uma marca."
+      },
+      "startup": {
+        "title": "Startup",
+        "body": "Uma equipe pequena postando sobre nosso produto."
+      },
+      "agency": {
+        "title": "Agência",
+        "body": "Cuidamos de contas de vários clientes."
+      },
+      "other": {
+        "title": "Outra coisa",
+        "body": "Nenhuma dessas opções serve bem."
+      }
+    },
+    "saveFailed": "Não conseguimos salvar. Tente de novo.",
+    "skip": "Pular por enquanto",
+    "continue": "Continuar",
+    "connectTitle": "Conecte suas contas",
+    "connectSub": "Cada plataforma abre a própria página de login e depois traz você de volta.",
+    "connect": "Conectar",
+    "connectPlatform": "Conectar {platform}",
+    "connected": "Conectada",
+    "doneTitle": "Tudo pronto.",
+    "doneSub": "Seu espaço de trabalho está pronto. Próximo passo: envie um vídeo e agende seu primeiro post.",
+    "goToDashboard": "Ir para o meu painel"
+  },
+  "composer": {
+    "title": "Novo post de {type}",
+    "editTitle": "Editar post",
+    "typeLabel": "Tipo de post",
+    "types": {
+      "text": "texto",
+      "image": "imagem",
+      "video": "vídeo",
+      "story": "story"
+    },
+    "saveDraft": "Salvar rascunho",
+    "restored": "Recuperamos o rascunho em que você estava trabalhando.",
+    "discardRestored": "Recomeçar",
+    "preview": "Prévia",
+    "previewEmpty": "Escolha uma conta para ver como o post vai ficar lá.",
+    "preflight": "Verificação prévia",
+    "submit": {
+      "now": "Publicar agora",
+      "schedule": "Agendar post",
+      "queue": "Adicionar à fila"
+    },
+    "submitting": "Processando…",
+    "problems": {
+      "label": "Antes de continuar",
+      "accounts": "Escolha pelo menos uma conta.",
+      "media": "Adicione um vídeo ou imagem.",
+      "caption": "Escreva uma legenda.",
+      "blocking": "Corrija os problemas marcados como “Será rejeitado”.",
+      "time": "Escolha um horário no futuro.",
+      "unsupported": "{platforms} não aceita posts do tipo {type}. Remova ou mude o tipo de post.",
+      "mediaKind": "Esta mídia não serve para um post do tipo {type}."
+    },
+    "errors": {
+      "conflict": "Outra pessoa alterou este post enquanto você editava. Recarregue para ver a versão dela.",
+      "past": "Esse horário já passou. Escolha um mais tarde.",
+      "validation": "Algo no post precisa de atenção. Confira as contas e o horário.",
+      "generic": "Não conseguimos salvar o post. Seu rascunho está seguro; tente de novo."
+    },
+    "cannotEditTitle": "Este post já saiu",
+    "cannotEditBody": "Posts publicados não podem ser editados aqui. Você pode criar um novo.",
+    "backToPosts": "Voltar para os posts",
+    "done": {
+      "scheduled": "Seu post está agendado.",
+      "publishing": "Seu post está sendo publicado.",
+      "when": "Sai em {when} ({zone}).",
+      "live": "Você receberá uma notificação quando cada plataforma confirmar.",
+      "calendar": "Ver no calendário",
+      "another": "Criar outro post",
+      "toast": "Agendado para {when}."
+    },
+    "autosave": {
+      "saving": "Salvando…",
+      "pending": "Alterações não salvas",
+      "savedAt": "Salvo às {time}",
+      "error": "Não foi possível salvar.",
+      "retry": "Tentar de novo",
+      "conflict": "Outra pessoa alterou este post."
+    },
+    "accounts": {
+      "title": "Contas",
+      "selected": "{count} selecionadas",
+      "search": "Buscar contas",
+      "needsReconnect": "Precisa ser reconectada antes de postar.",
+      "unsupported": "{platform} não aceita posts de {type}.",
+      "types": {
+        "text": "só texto",
+        "image": "imagem",
+        "video": "vídeo",
+        "story": "story"
+      },
+      "none": "Nenhuma conta conectada ainda.",
+      "connect": "Conectar uma",
+      "choose": "Escolher contas",
+      "add": "Adicionar conta",
+      "removeAccount": "Remover {name}"
+    },
+    "media": {
+      "title": "Mídia",
+      "paused": "Pausado",
+      "unsupported": "{name} não pode ser usado neste tipo de post ou o formato não é compatível.",
+      "failed": "O envio de {name} falhou. Verifique sua conexão e tente de novo.",
+      "tryAgain": "Tentar de novo",
+      "add": "Adicionar fotos ou um vídeo",
+      "addShort": "Adicionar",
+      "dropHint": "ou arraste arquivos para cá, ou cole uma imagem",
+      "dropHere": "Solte para adicionar",
+      "photoN": "Foto {n}",
+      "videoN": "Vídeo {n}",
+      "checkingShort": "Verificando",
+      "removeName": "Remover {name}",
+      "pauseName": "Pausar o envio de {name}",
+      "resumeName": "Retomar o envio de {name}",
+      "issueWarn": "{name} tem avisos. Ver as verificações.",
+      "issueBlock": "{name} será rejeitado. Ver as verificações.",
+      "photosOnly": "Este post tem fotos. Coloque vídeos em um post separado.",
+      "oneKind": "Um post não pode misturar fotos e vídeos.",
+      "tooMany": "Um post aceita até {max} fotos.",
+      "oneVideo": "Um post aceita um vídeo.",
+      "oneStory": "Um story aceita uma foto ou um vídeo."
+    },
+    "caption": {
+      "title": "Legenda",
+      "tabsLabel": "Legenda por plataforma",
+      "main": "Legenda principal",
+      "customised": "Personalizada",
+      "placeholder": "Escreva sua legenda. Você pode ajustá-la para cada plataforma nas abas acima.",
+      "overridePlaceholder": "Deixe vazio para usar a legenda principal.",
+      "overrideLabel": "Legenda para {platform} ({handle})",
+      "usingOverride": "Usando uma legenda personalizada para esta conta.",
+      "usingMain": "Usando a legenda principal."
+    },
+    "when": {
+      "title": "Quando",
+      "modes": {
+        "now": {
+          "title": "Postar agora",
+          "body": "Publica assim que você confirmar."
+        },
+        "schedule": {
+          "title": "Agendar",
+          "body": "Escolha um fuso horário e depois a data e a hora."
+        },
+        "queue": {
+          "title": "Adicionar à fila",
+          "body": "Usa o próximo horário livre."
+        }
+      },
+      "timezone": "Fuso horário",
+      "queueHint": "Os horários da fila são 09:00, 13:00 e 17:00 neste fuso.",
+      "date": "Data",
+      "time": "Hora",
+      "errors": {
+        "missing": "Escolha uma data e uma hora.",
+        "past": "Esse horário já passou.",
+        "invalid": "Esta data ou hora não é válida."
+      },
+      "summary": "Publica em {when} ({zone}).",
+      "yourTime": "No seu fuso horário: {when}.",
+      "dstGap": "Este horário não existe porque o relógio muda nesse dia, então ele passa para o próximo horário válido.",
+      "summaryNow": "Postar agora",
+      "summaryQueue": "Próximo horário da fila",
+      "summaryPick": "Escolha um horário",
+      "change": "Alterar quando postar (atual: {when})",
+      "done": "Concluído"
+    },
+    "panelLabel": "Painel lateral",
+    "panel": {
+      "preview": "Prévia",
+      "ai": "Assistente de IA"
+    },
+    "previewEmptyTitle": "Nada para mostrar ainda",
+    "preflightOpen": "Ver a verificação prévia",
+    "aiHelp": "Escrever com IA",
+    "aiLabel": "Feito com IA",
+    "aiLabelHint": "Sua equipe vai ver que a IA ajudou a escrever este post.",
+    "createAnother": "Criar outro",
+    "moreProblems": "{count, plural, other {(e mais #)}}",
+    "previewPane": {
+      "label": "Prévia no {platform}",
+      "approx": "Uma aproximação do {platform} {format}. O app pode parecer um pouco diferente.",
+      "noMedia": "Adicione um vídeo ou fotos para vê-los aqui.",
+      "loading": "Carregando…",
+      "unavailable": "Este arquivo não pode ser mostrado aqui.",
+      "captionPlaceholder": "Sua legenda aparece aqui.",
+      "more": "mais",
+      "less": "menos",
+      "play": "Reproduzir",
+      "pause": "Pausar",
+      "mute": "Silenciar",
+      "unmute": "Ativar som",
+      "previous": "Anterior",
+      "next": "Próximo",
+      "itemOf": "{n} / {total}",
+      "justNow": "Agora mesmo",
+      "follow": "Seguir",
+      "subscribe": "Inscrever-se",
+      "sendMessage": "Enviar mensagem",
+      "storyNoCaption": "Stories não mostram legenda.",
+      "unsupportedTitle": "{platform} não aceita posts do tipo {type}",
+      "unsupportedBody": "Remova esta conta ou mude o tipo de post.",
+      "actions": {
+        "like": "Curtir",
+        "dislike": "Não curtir",
+        "comment": "Comentar",
+        "share": "Compartilhar",
+        "repost": "Republicar",
+        "send": "Enviar",
+        "save": "Salvar"
+      }
+    },
+    "privacy": {
+      "public": "Público",
+      "unlisted": "Não listado",
+      "private": "Privado",
+      "publicHint": "Qualquer pessoa pode encontrar e assistir.",
+      "unlistedHint": "Só quem tem o link pode assistir.",
+      "privateHint": "Só você e as pessoas que escolher podem assistir."
+    },
+    "options": {
+      "title": "Configurações do {platform}",
+      "videoTitle": "Título",
+      "titlePlaceholder": "Adicione um título",
+      "titleHint": "Deixe vazio para usar a primeira linha da legenda.",
+      "titleTooLong": "Use no máximo {max} caracteres no título.",
+      "visibility": "Visibilidade",
+      "madeForKids": "Conteúdo para crianças",
+      "madeForKidsHint": "O YouTube pergunta isso em todo vídeo.",
+      "notifySubscribers": "Notificar inscritos",
+      "embeddable": "Permitir incorporação"
+    }
+  },
+  "tags": {
+    "label": "Tags",
+    "search": "Busque ou crie uma tag",
+    "searchFilter": "Buscar tags",
+    "loading": "Carregando tags…",
+    "empty": "Ainda não há tags.",
+    "noMatch": "Nenhuma tag encontrada.",
+    "create": "Criar “{name}”",
+    "exists": "Já existe uma tag com esse nome.",
+    "createFailed": "Não foi possível criar a tag. Tente de novo.",
+    "manage": "Gerenciar tags",
+    "clear": "Limpar",
+    "remove": "Remover a tag {name}"
+  },
+  "ai": {
+    "credits": "{count, plural, one {# crédito restante} other {# créditos restantes}}",
+    "introTitle": "Escreva mais rápido com IA",
+    "introBody": "Descreva seu post e receba um primeiro rascunho adaptado às plataformas escolhidas. Nada muda até você inserir.",
+    "introPoints": {
+      "draft": "Transforme uma ideia rápida em uma legenda completa",
+      "polish": "Reescreva, encurte ou mude o tom",
+      "fit": "Tenta respeitar o limite de caracteres das suas plataformas"
+    },
+    "start": "Começar",
+    "promptLabel": "Sobre o que é o post?",
+    "tip": "Diga qual é o público e o tom que você quer. Ctrl ou ⌘ + Enter gera o texto.",
+    "clearPrompt": "Limpar",
+    "placeholder": "ex.: Nossa promoção de primavera começa segunda: 20% de desconto em todos os planos por uma semana. Tom simpático.",
+    "generate": "Gerar",
+    "generateAgain": "Gerar de novo",
+    "improveTitle": "Ou melhore a legenda atual",
+    "writing": "Escrevendo…",
+    "errors": {
+      "credits": "Você usou todos os créditos de IA deste mês.",
+      "creditsAction": "Ver planos",
+      "generic": "O assistente não conseguiu escrever isso. Tente de novo."
+    },
+    "retry": "Tentar de novo",
+    "result": "Sugestão",
+    "fitsLimit": "{count} / {max} caracteres",
+    "insert": "Usar este texto",
+    "append": "Adicionar ao final",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "copyFailed": "Não foi possível copiar. Selecione o texto e copie.",
+    "refineTitle": "Ajustar",
+    "disclaimer": "A IA pode errar fatos. Leia o texto antes de postar.",
+    "previewNote": "Modo de prévia: um redator de exemplo responde até o serviço de IA ser conectado.",
+    "actions": {
+      "rephrase": "Reescrever",
+      "shorten": "Encurtar",
+      "expand": "Expandir",
+      "casual": "Mais casual",
+      "formal": "Mais formal"
+    },
+    "inserted": "Legenda atualizada."
+  },
+  "posts": {
+    "title": "Posts",
+    "tabsLabel": "Listas de posts",
+    "search": "Buscar nas legendas",
+    "filterPlatform": "Filtrar por plataforma",
+    "allPlatforms": "Todas as plataformas",
+    "noMatchTitle": "Nenhum post encontrado",
+    "noMatchBody": "Tente outra busca ou plataforma.",
+    "empty": {
+      "all": {
+        "title": "Nenhum post ainda",
+        "body": "Crie seu primeiro post para vê-lo aqui."
+      },
+      "scheduled": {
+        "title": "Nada agendado",
+        "body": "Posts agendados e posts aguardando revisão aparecem aqui."
+      },
+      "posted": {
+        "title": "Nada publicado ainda",
+        "body": "Os posts aparecem aqui quando uma plataforma confirma."
+      },
+      "draft": {
+        "title": "Nenhum rascunho",
+        "body": "Os rascunhos são salvos automaticamente enquanto você escreve."
+      }
+    },
+    "columns": {
+      "post": "Post",
+      "accounts": "Contas",
+      "when": "Quando",
+      "status": "Status"
+    },
+    "onPlatforms": "{count, plural, one {Em # plataforma} other {Em # plataformas}}",
+    "types": {
+      "text": "Post de texto",
+      "image": "Post de imagem",
+      "video": "Post de vídeo",
+      "story": "Story"
+    },
+    "detailTitle": "Detalhes do post",
+    "noTime": "Sem horário",
+    "caption": "Legenda",
+    "noCaption": "Sem legenda",
+    "platforms": "Plataformas",
+    "partialSummary": "Publicado em {published} de {total} plataformas. A que falhou aparece abaixo com o motivo.",
+    "lapsedSummary": "O horário agendado passou enquanto a publicação estava pausada. Escolha publicar agora, reagendar ou descartar.",
+    "viewOnPlatform": "Ver",
+    "reconnectAccount": "Reconectar esta conta",
+    "target": {
+      "pending": "Aguardando o horário",
+      "queued": "Publicando…",
+      "publishing": "Publicando…",
+      "published": "Publicado",
+      "failed": "Falhou",
+      "skipped": "Ignorado",
+      "needs_check": "Precisa de verificação"
+    },
+    "actions": {
+      "publishNow": "Publicar agora",
+      "retry": "Repetir os que falharam",
+      "reschedule": "Reagendar",
+      "edit": "Editar",
+      "delete": "Excluir",
+      "discard": "Descartar",
+      "retrying": "Tentando de novo. Avisaremos você do resultado.",
+      "deleted": "Post excluído.",
+      "rescheduled": "Post movido."
+    },
+    "reschedule": {
+      "title": "Reagendar post",
+      "body": "Escolha primeiro o fuso horário e depois a nova data e hora.",
+      "timezone": "Fuso horário",
+      "date": "Data",
+      "time": "Hora",
+      "errors": {
+        "missing": "Escolha uma data e uma hora.",
+        "past": "Esse horário já passou.",
+        "invalid": "Esta data ou hora não é válida."
+      },
+      "conflict": "Outra pessoa alterou este post. Feche e abra de novo.",
+      "failed": "Não conseguimos mover o post. Tente de novo.",
+      "cancel": "Cancelar",
+      "confirm": "Mover post"
+    },
+    "delete": {
+      "title": "Excluir este post?",
+      "body": "Isso não pode ser desfeito.",
+      "bodyScheduled": "Ele não será publicado. Isso não pode ser desfeito.",
+      "failed": "Não conseguimos excluir o post. Tente de novo.",
+      "cancel": "Manter post",
+      "confirm": "Excluir post"
+    },
+    "aiGenerated": "Feito com IA"
+  },
+  "calendar": {
+    "title": "Calendário",
+    "newPost": "Novo post",
+    "prevMonth": "Mês anterior",
+    "nextMonth": "Próximo mês",
+    "prevWeek": "Semana anterior",
+    "nextWeek": "Próxima semana",
+    "today": "Hoje",
+    "viewLabel": "Visualização do calendário",
+    "views": {
+      "month": "Mês",
+      "week": "Semana",
+      "list": "Lista"
+    },
+    "filterPlatform": "Filtrar por plataforma",
+    "allPlatforms": "Todas as plataformas",
+    "emptyTitle": "Nada planejado neste período",
+    "emptyBody": "Crie um post ou vá para outro mês.",
+    "createOn": "Criar um post em {date}",
+    "more": "+{count} mais",
+    "legend": "Legenda:",
+    "dragHint": "Arraste um post para outro dia para movê-lo, ou abra e escolha Reagendar.",
+    "pastDrop": "Não é possível mover um post para o passado."
+  },
+  "home": {
+    "greeting": {
+      "morning": "Bom dia, {name}",
+      "afternoon": "Boa tarde, {name}",
+      "evening": "Boa noite, {name}"
+    },
+    "workspaceLine": "Espaço de trabalho: {workspace}",
+    "newPost": "Novo post",
+    "verifyBanner": "Confirme seu e-mail para manter sua conta segura.",
+    "verifyAction": "Confirmar e-mail",
+    "stats": {
+      "thisWeek": "Agendados nesta semana",
+      "review": "Aguardando revisão",
+      "published": "Publicados nesta semana",
+      "attention": "Precisam de atenção",
+      "thisWeekHint": "Próximos 7 dias",
+      "reviewHint": "Aguardando aprovação",
+      "publishedHint": "Últimos 7 dias",
+      "attentionHint": "Com falha, parciais ou vencidos"
+    },
+    "checklist": {
+      "title": "Seu primeiro post",
+      "progress": "{done} de {total} concluídos",
+      "connect": "Conecte uma conta",
+      "upload": "Envie um vídeo",
+      "schedule": "Agende um post",
+      "done": "(feito)",
+      "todo": "(a fazer)",
+      "meter": "Progresso do primeiro post"
+    },
+    "attentionTitle": "Precisam de atenção",
+    "lapsedReason": "O horário agendado passou enquanto a publicação estava pausada.",
+    "failedReason": "Uma ou mais plataformas não aceitaram este post.",
+    "publishNow": "Publicar agora",
+    "retry": "Tentar de novo",
+    "details": "Detalhes",
+    "upcomingTitle": "Em breve",
+    "openCalendar": "Abrir calendário",
+    "upcomingEmptyTitle": "Nada agendado ainda",
+    "upcomingEmptyBody": "Agende um post e ele aparecerá aqui.",
+    "hero": {
+      "summary": "{count, plural, =0 {Ainda não há nada agendado em {workspace} para os próximos 7 dias.} one {# post sai nos próximos 7 dias em {workspace}.} other {# posts saem nos próximos 7 dias em {workspace}.}}"
+    },
+    "activity": {
+      "title": "Plano de publicação",
+      "subtitle": "Posts por dia: os últimos 7 dias e os próximos 7",
+      "legendPast": "Anteriores",
+      "legendUpcoming": "Hoje em diante",
+      "count": "{count, plural, =0 {Nenhum post} one {# post} other {# posts}}",
+      "tableDate": "Data",
+      "tablePosts": "Posts"
+    },
+    "platforms": {
+      "title": "Próximos por plataforma",
+      "subtitle": "Posts agendados por plataforma",
+      "empty": "Nenhum post agendado ainda.",
+      "tablePlatform": "Plataforma",
+      "tablePosts": "Posts"
+    },
+    "pipeline": {
+      "title": "Fluxo de posts"
+    },
+    "week": {
+      "title": "Esta semana",
+      "same": "Igual à semana passada",
+      "delta": "{change} em relação à semana passada",
+      "meter": "Parte dos posts desta semana já publicados",
+      "percent": "{pct}% publicado",
+      "summary": "{done, plural, one {# publicado} other {# publicados}}, {left, plural, one {# pendente} other {# pendentes}}",
+      "empty": "Nada planejado para esta semana ainda. Planeje um post"
+    }
+  },
+  "billing": {
+    "title": "Cobrança",
+    "subtitle": "Seu plano, uso e faturas.",
+    "currentPlan": "Plano atual",
+    "trialUntil": "Teste com recursos do Pro até {date}. Nenhum cartão cadastrado.",
+    "renewsOn": "Renova em {date}.",
+    "endsOn": "Cancelado. O acesso continua até {date} e depois passa para o Grátis. Nada é excluído.",
+    "freeForever": "Plano Grátis. Faça upgrade quando quiser.",
+    "pastDue": "Seu último pagamento falhou. Atualize seu cartão para manter o plano.",
+    "manage": "Faturas e forma de pagamento",
+    "portalUnavailable": "Disponível quando a cobrança estiver conectada.",
+    "portalFailed": "Não conseguimos abrir o portal de cobrança. Tente de novo em instantes.",
+    "usageTitle": "Uso",
+    "accounts": "Contas sociais",
+    "seats": "Usuários",
+    "usage": "{used} de {limit}",
+    "downgradeNote": "Se você mudar para um plano menor, nada é excluído. O que passar do limite fica somente leitura.",
+    "ownerOnly": "Só o proprietário do espaço de trabalho pode mudar o plano.",
+    "plansTitle": "Planos",
+    "upgrade": "Fazer upgrade",
+    "switch": "Trocar",
+    "checkoutFailed": "Não conseguimos abrir o pagamento. Nada foi cobrado. Tente de novo.",
+    "checkoutNote": "O pagamento é feito pelo nosso provedor de pagamentos. Seu plano muda assim que o pagamento é confirmado.",
+    "confirming": {
+      "title": "Confirmando seu pagamento…",
+      "body": "Isso costuma levar alguns segundos. Você pode sair desta página; o plano será atualizado mesmo assim.",
+      "doneTitle": "Agora você está no plano {plan}.",
+      "doneBody": "Seus novos limites estão ativos.",
+      "continue": "Continuar",
+      "slowTitle": "Está demorando mais que o normal.",
+      "slowBody": "Seu pagamento ainda pode estar em processamento. Não pague de novo: atualize esta página em alguns minutos ou fale com a gente e verificamos.",
+      "contact": "Falar com o suporte"
+    }
+  },
+  "teams": {
+    "title": "Equipe",
+    "subtitle": "Convide colegas e clientes e escolha o que cada pessoa pode fazer.",
+    "inviteTitle": "Convidar alguém",
+    "seatsLeft": "{count, plural, =0 {Não há usuários disponíveis no seu plano.} one {Resta # usuário no seu plano.} other {Restam # usuários no seu plano.}}",
+    "email": "E-mail",
+    "role": "Função",
+    "send": "Enviar convite",
+    "invited": "Convite enviado para {email}.",
+    "alreadyInvited": "Esta pessoa já é membro ou tem um convite pendente.",
+    "seatLimit": "Seu plano não tem usuários disponíveis. Faça upgrade para convidar mais pessoas.",
+    "inviteFailed": "Não conseguimos enviar o convite. Tente de novo.",
+    "members": "Membros",
+    "emptyTitle": "Nenhum membro ainda",
+    "you": "você",
+    "joined": "Entrou em {date}",
+    "removeLabel": "Remover {name}",
+    "removeTitle": "Remover {name}?",
+    "removeBody": "A pessoa perde o acesso no próximo clique. Os rascunhos dela continuam no espaço de trabalho.",
+    "removeFailed": "Não conseguimos remover este membro. Tente de novo.",
+    "removed": "{name} foi removido.",
+    "cancel": "Cancelar",
+    "remove": "Remover",
+    "pending": "Convites pendentes",
+    "expires": "expira em {date}",
+    "revoke": "Revogar",
+    "rolesTitle": "O que cada função pode fazer",
+    "roles": {
+      "owner": {
+        "name": "Proprietário",
+        "body": "Tudo, inclusive cobrança e exclusão do espaço de trabalho."
+      },
+      "admin": {
+        "name": "Administrador",
+        "body": "Tudo, exceto cobrança e exclusão do espaço de trabalho."
+      },
+      "editor": {
+        "name": "Editor",
+        "body": "Criar, editar e agendar posts."
+      },
+      "viewer": {
+        "name": "Leitor",
+        "body": "Ver posts e resultados, e comentar."
+      },
+      "reviewer": {
+        "name": "Revisor",
+        "body": "Comentar e aprovar posts enviados a ele."
+      }
+    }
+  },
+  "settings": {
+    "name": "Nome",
+    "nameRequired": "Digite seu nome.",
+    "email": "E-mail",
+    "emailHint": "Para mudar seu e-mail, fale com o suporte. Vamos pedir que você confirme que é você.",
+    "timezone": "Seu fuso horário",
+    "timezoneHint": "Os horários do app aparecem neste fuso. Cada post pode usar o próprio.",
+    "save": "Salvar alterações",
+    "saved": "Configurações salvas.",
+    "saveFailed": "Não conseguimos salvar suas configurações. Tente de novo.",
+    "language": "Idioma",
+    "languageHint": "Cada idioma aparece com o próprio nome.",
+    "tags": {
+      "title": "Tags",
+      "body": "Agrupe posts por campanha ou tema. As tags aparecem nos posts e nos filtros, e só a sua equipe as vê.",
+      "newName": "Nova tag",
+      "newPlaceholder": "ex.: Lançamento de verão",
+      "colour": "Cor",
+      "colors": {
+        "blue": "Azul",
+        "violet": "Violeta",
+        "green": "Verde",
+        "amber": "Âmbar",
+        "rose": "Rosa",
+        "peach": "Pêssego"
+      },
+      "add": "Adicionar tag",
+      "added": "Tag adicionada.",
+      "renameLabel": "Nome da tag",
+      "edit": "Editar {name}",
+      "delete": "Excluir {name}",
+      "usage": "{count, plural, =0 {Ainda não usada} one {Em # post} other {Em # posts}}",
+      "empty": "Ainda não há tags.",
+      "deleteTitle": "Excluir “{name}”?",
+      "deleteBody": "{count, plural, =0 {Nenhum post usa esta tag.} one {Ela será removida de # post. O post continua.} other {Ela será removida de # posts. Os posts continuam.}}",
+      "deleteConfirm": "Excluir tag",
+      "deleted": "Tag excluída.",
+      "saved": "Tag salva.",
+      "failed": "Não foi possível salvar a tag. Tente de novo.",
+      "readOnly": "Só proprietários, administradores e editores podem alterar tags.",
+      "nameRequired": "Dê um nome à tag."
+    },
+    "profileBody": "Como sua equipe vê você.",
+    "preferencesBody": "Tema, idioma e como os horários aparecem. As mudanças são salvas na hora.",
+    "appearanceTitle": "Aparência",
+    "themeHint": "Vale só para este dispositivo.",
+    "languageTimeTitle": "Idioma e horário",
+    "clockTitle": "Formato de hora",
+    "clockHint": "Usado no calendário, nas listas de posts e no editor.",
+    "clock12": "12 horas ({time})",
+    "clock24": "24 horas ({time})",
+    "workspace": {
+      "body": "O espaço de trabalho em que você está, seu papel e o que ele usa.",
+      "detailsTitle": "Detalhes",
+      "name": "Nome",
+      "nameHint": "Aparece no seletor de espaços de trabalho.",
+      "kind": "Tipo",
+      "kinds": {
+        "personal": "Pessoal",
+        "agency": "Agência",
+        "client": "Cliente"
+      },
+      "role": "Seu papel",
+      "usageTitle": "Plano e uso",
+      "plan": "Plano",
+      "members": "Membros",
+      "accounts": "Contas sociais",
+      "ofLimit": "{used} de {limit}",
+      "previewTitle": "Dados de teste",
+      "previewRow": "Recomeçar com dados de exemplo",
+      "previewBody": "Esta prévia guarda os dados de exemplo só no seu navegador.",
+      "previewReset": "Redefinir dados de teste",
+      "previewConfirmTitle": "Redefinir os dados de teste?",
+      "previewConfirmBody": "Todos os posts, tags e mudanças que você fez nesta prévia serão substituídos por novos dados de exemplo. Isso não pode ser desfeito."
+    }
+  },
+  "charts": {
+    "showTable": "Ver como tabela",
+    "showChart": "Ver como gráfico"
+  },
+  "insights": {
+    "tabsLabel": "Páginas da conta",
+    "settings": "Configurações da conta",
+    "notFoundTitle": "Esta conta não está conectada",
+    "notFoundBody": "Ela pode ter sido removida do espaço de trabalho. Suas contas conectadas estão nas configurações.",
+    "toAccounts": "Ir para contas sociais",
+    "reconnectBody": "Os posts agendados de {name} estão pausados e estes números pararam de atualizar.",
+    "reconnect": "Reconectar",
+    "newPost": "Novo post",
+    "range": {
+      "7": "7 dias",
+      "30": "30 dias",
+      "90": "90 dias",
+      "label": "Período"
+    },
+    "updated": "Atualizado {time}",
+    "summary": "Resumo",
+    "period": "{from} – {to} · comparado com {previousFrom} – {previousTo}",
+    "points": "{value} p.p.",
+    "change": {
+      "new": "Novo",
+      "none": "Sem mudança"
+    },
+    "vsPrevious": "em relação aos {days} dias anteriores",
+    "rateNote": "A taxa de engajamento é o total de interações (curtidas, comentários, compartilhamentos e salvamentos) dividido por {base}.",
+    "rateBase": {
+      "reach": "alcance",
+      "impressions": "impressões",
+      "views": "visualizações",
+      "followers": "seguidores"
+    },
+    "chart": {
+      "label": "Mostrar",
+      "newFollowers": "Novos seguidores",
+      "newSubscribers": "Novos inscritos",
+      "engagements": "Interações",
+      "perDay": "Por dia, últimos {days} dias",
+      "perWeek": "Por semana, últimos {days} dias",
+      "week": "Semana de {date}",
+      "tableDate": "Data"
+    },
+    "postsTitle": "Desempenho por post",
+    "postsCount": "{count, plural, one {# post} other {# posts}}",
+    "noPosts": "Nenhum post nos últimos {days} dias",
+    "noPostsBody": "Os posts publicados nesta conta aparecem aqui com os resultados.",
+    "post": "Post",
+    "sortByDate": "Ordenar por data",
+    "sortBy": "Ordenar por {metric}",
+    "outside": "Publicado fora do {product}",
+    "openExternal": "Abre na plataforma",
+    "metrics": {
+      "followers": "Seguidores",
+      "subscribers": "Inscritos",
+      "posts": "Posts",
+      "impressions": "Impressões",
+      "reach": "Alcance",
+      "views": "Visualizações",
+      "likes": "Curtidas",
+      "reactions": "Reações",
+      "comments": "Comentários",
+      "replies": "Respostas",
+      "shares": "Compartilhamentos",
+      "reposts": "Republicações",
+      "saves": "Salvamentos",
+      "clicks": "Cliques",
+      "engagementRate": "Taxa de engajamento"
+    },
+    "export": {
+      "label": "Exportar",
+      "csv": "Exportar como CSV",
+      "markdown": "Exportar como Markdown",
+      "pdf": "Exportar como PDF",
+      "pdfHint": "Abre a janela de impressão. Escolha Salvar como PDF.",
+      "done": "{file} baixado",
+      "title": "{account} no {platform}",
+      "periodLine": "{from} – {to}, comparado com {previousFrom} – {previousTo}",
+      "exported": "Exportado do {product} em {date}",
+      "metric": "Métrica",
+      "thisPeriod": "Este período",
+      "previousPeriod": "Período anterior",
+      "published": "Publicado",
+      "link": "Link"
+    }
+  }
+}

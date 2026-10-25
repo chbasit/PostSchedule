@@ -1,0 +1,344 @@
+import type { Role } from "@/lib/auth/permissions";
+import type { BillingInterval, PlanKey } from "@/lib/billing/plans";
+import type { InsightMetric, PlatformId, PostType, Privacy } from "@/providers/catalog";
+
+// Wire types shared with the backend (E:\PostSchedule\backend). Field names are
+// camelCase on the wire; the database uses snake_case (BACKEND.md §4).
+
+export type PostStatus =
+  | "draft"
+  | "pending_approval"
+  | "scheduled"
+  | "publishing"
+  | "published"
+  | "partial"
+  | "failed"
+  | "lapsed"
+  | "paused";
+
+export type TargetStatus =
+  | "pending"
+  | "queued"
+  | "publishing"
+  | "published"
+  | "failed"
+  | "skipped"
+  | "needs_check";
+
+export type AccountStatus = "active" | "needs_reconnect" | "revoked";
+
+export type ProviderErrorCode =
+  | "rate_limited"
+  | "token_expired"
+  | "permission_revoked"
+  | "media_invalid"
+  | "content_rejected"
+  | "transient"
+  | "unknown";
+
+export type Persona = "creator" | "startup" | "agency" | "other";
+
+export type User = {
+  id: string;
+  email: string;
+  displayName: string;
+  emailVerified: boolean;
+  locale: string;
+  timezone: string;
+  use24h: boolean;
+  persona: Persona | null;
+  onboardedAt: string | null;
+};
+
+export type SubscriptionStatus = "trialing" | "active" | "past_due" | "paused" | "cancelled" | "expired";
+
+export type Workspace = {
+  id: string;
+  name: string;
+  kind: "personal" | "agency" | "client";
+  role: Role;
+  planKey: PlanKey;
+  subscription: {
+    status: SubscriptionStatus;
+    interval: BillingInterval | null;
+    trialEndsAt: string | null;
+    currentPeriodEnd: string | null;
+    cancelAt: string | null;
+  };
+  accountLimit: number;
+  memberLimit: number;
+};
+
+export type Session = {
+  user: User;
+  workspaces: Workspace[];
+};
+
+export type SocialAccount = {
+  id: string;
+  workspaceId: string;
+  provider: PlatformId;
+  displayName: string;
+  handle: string;
+  status: AccountStatus;
+  createdAt: string;
+};
+
+export type MediaSummary = {
+  id: string;
+  kind: "image" | "video";
+  name: string;
+  bytes: number;
+  width: number;
+  height: number;
+  durationSec: number | null;
+  previewUrl: string | null;
+};
+
+// Per-account settings the platform asks for (providers/<platform> publishOptions):
+// a YouTube title, who can see the video, and so on. Only fields the platform uses are set.
+export type TargetOptions = {
+  title?: string;
+  privacy?: Privacy;
+  madeForKids?: boolean;
+  notifySubscribers?: boolean;
+  embeddable?: boolean;
+};
+
+export type PostTarget = {
+  id: string;
+  socialAccountId: string;
+  provider: PlatformId;
+  captionOverride: string | null;
+  status: TargetStatus;
+  errorCode: ProviderErrorCode | null;
+  errorMessage: string | null;
+  providerUrl: string | null;
+  publishedAt: string | null;
+  options: TargetOptions | null;
+};
+
+export type Post = {
+  id: string;
+  workspaceId: string;
+  type: PostType;
+  status: PostStatus;
+  mainCaption: string;
+  scheduledAt: string | null;
+  timezone: string | null;
+  version: number;
+  createdBy: string;
+  createdAt: string;
+  updatedAt: string;
+  targets: PostTarget[];
+  media: MediaSummary[];
+  tagIds: string[];
+  // The author marked this post as made with AI, so platforms that support labels can show one.
+  aiGenerated: boolean;
+};
+
+export type PostInput = {
+  type: PostType;
+  mainCaption: string;
+  accountIds: string[];
+  captionOverrides: Record<string, string>; // accountId -> caption
+  targetOptions: Record<string, TargetOptions>; // accountId -> options
+  media: MediaSummary[];
+  intent: "draft" | "schedule" | "now" | "queue";
+  scheduledAt: string | null; // UTC ISO
+  timezone: string | null;
+  tagIds: string[];
+  aiGenerated: boolean;
+};
+
+export type PostFilter = {
+  status?: PostStatus | PostStatus[];
+  from?: string;
+  to?: string;
+  q?: string;
+  // Posts carrying any of these tags.
+  tagIds?: string[];
+};
+
+// Tag colours map to the tinted surfaces in globals.css.
+export type TagColor = "blue" | "violet" | "green" | "amber" | "rose" | "peach";
+
+export type Tag = {
+  id: string;
+  workspaceId: string;
+  name: string;
+  color: TagColor;
+  createdAt: string;
+};
+
+export type AiRewriteAction = "rephrase" | "shorten" | "expand" | "casual" | "formal";
+
+export type AiGenerateInput = {
+  prompt: string;
+  platforms: PlatformId[];
+  // The strictest caption limit among the chosen platforms.
+  maxLength: number;
+  locale: string;
+};
+
+export type AiRewriteInput = {
+  text: string;
+  action: AiRewriteAction;
+  maxLength: number;
+  locale: string;
+};
+
+export type AiResult = {
+  text: string;
+  // Monthly AI credits (BACKEND.md §16). null when the plan has no limit.
+  creditsRemaining: number | null;
+  creditsLimit: number | null;
+};
+
+export type InsightsRange = 7 | 30 | 90;
+
+export type InsightPost = {
+  // null when the post was published outside this app; insights cover the whole account.
+  postId: string | null;
+  caption: string;
+  type: PostType;
+  publishedAt: string;
+  url: string | null;
+  metrics: Partial<Record<InsightMetric, number>>;
+};
+
+export type AccountInsights = {
+  accountId: string;
+  // Calendar days ("YYYY-MM-DD") in the requested timezone, both ends included, and the
+  // equal-length period before them.
+  from: string;
+  to: string;
+  previousFrom: string;
+  previousTo: string;
+  // Only the metrics the platform reports (providers/<platform> insights.metrics).
+  totals: Partial<Record<InsightMetric, { value: number; previous: number }>>;
+  daily: Array<{ date: string; followers: number; newFollowers: number; posts: number; engagements: number }>;
+  posts: InsightPost[];
+  // When the numbers were last read from the platform.
+  syncedAt: string;
+};
+
+export type Member = {
+  userId: string;
+  displayName: string;
+  email: string;
+  role: Role;
+  joinedAt: string;
+};
+
+export type Invite = {
+  id: string;
+  email: string;
+  role: Role;
+  createdAt: string;
+  expiresAt: string;
+};
+
+export type Notification = {
+  id: string;
+  kind: "published" | "failed" | "needs_reconnect" | "approval_requested" | "invite";
+  postId: string | null;
+  accountId: string | null;
+  createdAt: string;
+  read: boolean;
+};
+
+export type ConnectResult =
+  | { kind: "redirect"; url: string } // real OAuth: go to the platform's consent screen
+  | { kind: "connected"; account: SocialAccount };
+
+export type UploadHandle = {
+  promise: Promise<MediaSummary>;
+  pause: () => void;
+  resume: () => void;
+  cancel: () => void;
+};
+
+export type MutationOptions = { idempotencyKey?: string };
+
+export type ApiErrorCode =
+  | "unauthenticated"
+  | "forbidden"
+  | "not_found"
+  | "validation_failed"
+  | "conflict"
+  | "idempotency_mismatch"
+  | "rate_limited"
+  | "plan_limit_reached"
+  | "feature_not_in_plan"
+  | "media_invalid"
+  | "provider_error"
+  | "network"
+  | "timeout"
+  // The feature needs a service that has not been set up yet (keys missing).
+  | "not_configured"
+  | "internal";
+
+export interface ApiClient {
+  auth: {
+    session(): Promise<Session | null>;
+    signIn(input: { email: string; password: string }): Promise<Session>;
+    signUp(input: { displayName: string; email: string; password: string }): Promise<Session>;
+    signOut(): Promise<void>;
+    requestPasswordReset(email: string): Promise<void>;
+    // The token comes from the emailed reset link.
+    resetPassword(input: { token: string; password: string }): Promise<void>;
+    resendVerification(email: string): Promise<{ retryAfterSec: number }>;
+    // The emailed link opens a page with a confirm button; it is never consumed by a GET.
+    verifyEmail(token: string): Promise<Session>;
+  };
+  me: {
+    update(patch: Partial<Pick<User, "displayName" | "locale" | "timezone" | "use24h" | "persona" | "onboardedAt">>): Promise<User>;
+  };
+  accounts: {
+    list(ws: string): Promise<SocialAccount[]>;
+    connect(ws: string, provider: PlatformId, opts?: MutationOptions): Promise<ConnectResult>;
+    reconnect(ws: string, accountId: string): Promise<ConnectResult>;
+    remove(ws: string, accountId: string): Promise<void>;
+    // The last `days` days up to today in `timezone`, compared with the period before.
+    insights(ws: string, accountId: string, input: { days: InsightsRange; timezone: string }): Promise<AccountInsights>;
+  };
+  posts: {
+    list(ws: string, filter?: PostFilter): Promise<Post[]>;
+    get(ws: string, id: string): Promise<Post>;
+    create(ws: string, input: PostInput, opts?: MutationOptions): Promise<Post>;
+    update(ws: string, id: string, input: PostInput, version: number): Promise<Post>;
+    reschedule(ws: string, id: string, scheduledAt: string, version: number): Promise<Post>;
+    retry(ws: string, id: string, opts?: MutationOptions): Promise<Post>;
+    remove(ws: string, id: string): Promise<void>;
+  };
+  media: {
+    upload(ws: string, file: File, onProgress: (fraction: number) => void): UploadHandle;
+  };
+  members: {
+    list(ws: string): Promise<Member[]>;
+    invites(ws: string): Promise<Invite[]>;
+    invite(ws: string, input: { email: string; role: Role }, opts?: MutationOptions): Promise<Invite>;
+    revokeInvite(ws: string, inviteId: string): Promise<void>;
+    remove(ws: string, userId: string): Promise<void>;
+  };
+  tags: {
+    list(ws: string): Promise<Tag[]>;
+    create(ws: string, input: { name: string; color: TagColor }, opts?: MutationOptions): Promise<Tag>;
+    update(ws: string, tagId: string, patch: Partial<Pick<Tag, "name" | "color">>): Promise<Tag>;
+    remove(ws: string, tagId: string): Promise<void>;
+  };
+  ai: {
+    generate(ws: string, input: AiGenerateInput): Promise<AiResult>;
+    rewrite(ws: string, input: AiRewriteInput): Promise<AiResult>;
+  };
+  billing: {
+    createCheckout(ws: string, plan: PlanKey, interval: BillingInterval, opts?: MutationOptions): Promise<{ url: string }>;
+    // Lemon Squeezy's customer portal: invoices, card and cancellation.
+    portal(ws: string): Promise<{ url: string }>;
+  };
+  notifications: {
+    list(ws: string): Promise<Notification[]>;
+    markAllRead(ws: string): Promise<void>;
+  };
+}

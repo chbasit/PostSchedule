@@ -1,0 +1,1292 @@
+{
+  "meta": {
+    "title": "{product} : programmez des publications parfaites partout",
+    "description": "Programmez sur toutes les plateformes, prévisualisez chacune et corrigez les problèmes vidéo avant de publier."
+  },
+  "common": {
+    "close": "Fermer",
+    "dismiss": "Masquer",
+    "offline": "Vous êtes hors ligne. Votre brouillon est enregistré sur cet appareil.",
+    "skipToContent": "Aller au contenu",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "saving": "Enregistrement…",
+    "saved": "Enregistré",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "back": "Retour",
+    "continue": "Continuer",
+    "skip": "Passer pour l’instant",
+    "loading": "Chargement…",
+    "notAvailable": "Non disponible",
+    "undo": "Annuler l’action",
+    "timezone": {
+      "label": "Fuseaux horaires",
+      "search": "Rechercher un fuseau horaire",
+      "empty": "Aucun fuseau horaire ne correspond."
+    }
+  },
+  "notFound": {
+    "title": "Cette page n’existe pas.",
+    "body": "Le lien est peut-être ancien ou la page a été déplacée. Vérifiez l’adresse ou revenez à l’accueil.",
+    "home": "Aller à l’accueil"
+  },
+  "theme": {
+    "label": "Thème",
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Comme le système"
+  },
+  "language": {
+    "label": "Langue"
+  },
+  "status": {
+    "draft": "Brouillon",
+    "pending_approval": "En relecture",
+    "scheduled": "Programmée",
+    "publishing": "Publication…",
+    "published": "Publiée",
+    "partial": "Partielle",
+    "failed": "Échec",
+    "lapsed": "Expirée",
+    "paused": "En pause",
+    "connected": "Connecté",
+    "needs_reconnect": "À reconnecter"
+  },
+  "errors": {
+    "retry": "Réessayer",
+    "network": {
+      "title": "Impossible de joindre le serveur.",
+      "body": "Vérifiez votre connexion, puis réessayez. Rien de ce que vous avez saisi n’a été perdu."
+    },
+    "timeout": {
+      "title": "Cela prend trop de temps.",
+      "body": "Le serveur n’a pas répondu à temps. Réessayez : c’est sans risque."
+    },
+    "unauthenticated": {
+      "title": "Votre session a expiré.",
+      "body": "Reconnectez-vous pour reprendre là où vous en étiez."
+    },
+    "not_found": {
+      "title": "Introuvable.",
+      "body": "L’élément a peut-être été supprimé, ou vous n’y avez pas accès."
+    },
+    "rate_limited": {
+      "title": "Trop de requêtes.",
+      "body": "Patientez un instant, puis réessayez."
+    },
+    "not_configured": {
+      "title": "Cette partie n’est pas encore activée.",
+      "body": "Elle a besoin d’un service que nous n’avons pas encore connecté. Tout le reste continue de fonctionner."
+    },
+    "generic": {
+      "title": "Un problème est survenu.",
+      "body": "Nous avons été prévenus. Réessayez dans un instant."
+    }
+  },
+  "validation": {
+    "required": "Remplissez ce champ.",
+    "tooLong": "C’est trop long.",
+    "email": "Saisissez une adresse comme nom@exemple.com.",
+    "passwordLength": "Utilisez au moins 10 caractères.",
+    "passwordMix": "Utilisez au moins une lettre et un chiffre."
+  },
+  "marketing": {
+    "announcement": "Prix fondateur pour les {count} premiers clients, garanti 24 mois. Voir l’offre",
+    "nav": {
+      "home": "Accueil",
+      "main": "Principale",
+      "product": "Produit",
+      "pricing": "Tarifs",
+      "freeTools": "Outils gratuits",
+      "login": "Se connecter",
+      "startFree": "Commencer gratuitement",
+      "openMenu": "Ouvrir le menu"
+    },
+    "footer": {
+      "product": "Produit",
+      "features": "Fonctionnalités",
+      "pricing": "Tarifs",
+      "tools": "Outils gratuits",
+      "videoChecker": "Vérificateur vidéo",
+      "account": "Compte",
+      "login": "Se connecter",
+      "signup": "Commencer gratuitement",
+      "tagline": "Gestion des réseaux sociaux pour les startups, les agences et les équipes dans plusieurs pays.",
+      "copyright": "© {product}. Tous droits réservés."
+    },
+    "mock": {
+      "title": "Nouvelle publication vidéo",
+      "accounts": "Comptes",
+      "media": "Média",
+      "warning": "Le 16:9 sera recadré dans les Reels",
+      "fix": "Passer en 9:16",
+      "duration": "Durée",
+      "size": "Taille"
+    },
+    "home": {
+      "eyebrow": "Gestion des réseaux sociaux pour les équipes",
+      "line1": "Publiez une fois.",
+      "line2": "Parfait partout.",
+      "line3": "Gardez chaque <mark>pixel</mark>.",
+      "sub": "Programmez sur toutes les plateformes, prévisualisez chacune et corrigez les problèmes vidéo avant de publier.",
+      "ctaPrimary": "Commencer gratuitement",
+      "ctaGoogle": "Commencer avec Google",
+      "ctaNote": "Essai de {days} jours. Sans carte bancaire.",
+      "band": "Chaque publication est vérifiée avant de partir : format, résolution, débit, durée et taille, pour chaque plateforme.",
+      "bandCta": "Vérifier une vidéo",
+      "featuresEyebrow": "Ce que vous obtenez",
+      "featuresTitle": "Voyez-le avant votre public.",
+      "featuresSub": "Les autres outils envoient votre fichier en espérant que tout aille bien. Nous vous montrons exactement comment chaque plateforme l’affichera, et vous prévenons avant une perte de qualité.",
+      "features": {
+        "preflight": {
+          "title": "Vérifications vidéo avant envoi",
+          "body": "Format, résolution, débit, durée et taille sont vérifiés pour chaque plateforme, avec une explication claire pour chaque alerte."
+        },
+        "previews": {
+          "title": "Aperçu par plateforme",
+          "body": "Voyez chaque publication dans un cadre de téléphone, avec le recadrage et les zones masquées par les boutons et légendes de l’appli."
+        },
+        "original": {
+          "title": "Votre original, intact",
+          "body": "Nous envoyons votre fichier original sauf si vous choisissez une correction. Les corrections créent une nouvelle copie, comparable et annulable."
+        },
+        "calendar": {
+          "title": "Calendrier et file d’attente",
+          "body": "Planifiez au mois ou à la semaine, glissez pour reprogrammer, ou remplissez le prochain créneau libre en un clic."
+        },
+        "approvals": {
+          "title": "Validation par les clients",
+          "body": "Envoyez une publication à valider par lien. Vos clients approuvent ou commentent depuis leur téléphone, sans compte."
+        },
+        "languages": {
+          "title": "Pensé pour toutes les langues",
+          "body": "Utilisez l’appli dans votre langue, y compris les écritures de droite à gauche, et programmez dans le fuseau de chaque marché."
+        }
+      },
+      "stepsEyebrow": "Comment ça marche",
+      "stepsTitle": "De l’envoi à la programmation en quelques minutes.",
+      "steps": {
+        "connect": {
+          "title": "Connectez vos comptes",
+          "body": "Connectez-vous une fois à chaque plateforme. Nous ne demandons que les autorisations nécessaires pour publier."
+        },
+        "check": {
+          "title": "Envoyez et vérifiez",
+          "body": "Déposez une vidéo. Les vérifications et les aperçus apparaissent pour chaque plateforme choisie."
+        },
+        "schedule": {
+          "title": "Programmez sereinement",
+          "body": "Choisissez un fuseau horaire et une heure. Nous publions une seule fois, réessayons en toute sécurité et vous prévenons en cas d’échec."
+        }
+      },
+      "pricingEyebrow": "Tarifs",
+      "pricingTitle": "Payez ce que vous utilisez. Rien de caché.",
+      "pricingCta": "Comparer les offres",
+      "faqEyebrow": "Questions",
+      "faqTitle": "Des réponses claires.",
+      "faq": {
+        "what": {
+          "q": "Qu’est-ce que {product} ?",
+          "a": "{product} est une plateforme de gestion des réseaux sociaux pour les startups, les agences et les équipes multi-pays. Vous créez une publication une fois, la prévisualisez pour chaque plateforme, vérifiez la qualité vidéo et la programmez."
+        },
+        "quality": {
+          "q": "Pourquoi mes vidéos sont-elles floues après programmation ?",
+          "a": "Le plus souvent, la vidéo ne correspond pas à ce qu’attend la plateforme : elle est recadrée ou réencodée. Nos vérifications vous préviennent avant et proposent une correction."
+        },
+        "platforms": {
+          "q": "Sur quelles plateformes puis-je publier ?",
+          "a": "Nous préparons Instagram, TikTok, YouTube, Facebook, LinkedIn et Bluesky. Chacune est activée dès que la plateforme valide notre application."
+        },
+        "trial": {
+          "q": "Faut-il une carte bancaire pour l’essai ?",
+          "a": "Non. Vous avez {days} jours avec les fonctionnalités Pro. Ensuite, vous passez à l’offre Gratuite et gardez toutes vos données."
+        },
+        "switch": {
+          "q": "Puis-je quitter un autre outil de programmation ?",
+          "a": "Oui. Importez vos publications programmées et vos médias si l’autre outil permet l’export. Les 100 premiers clients bénéficient d’une aide gratuite à la migration."
+        }
+      },
+      "finalTitle": "Votre prochaine publication peut ressembler exactement à ce que vous avez créé."
+    }
+  },
+  "plans": {
+    "names": {
+      "free": "Gratuit",
+      "solo": "Solo",
+      "pro": "Pro",
+      "agency": "Agence",
+      "scale": "Scale"
+    },
+    "blurbs": {
+      "free": "Essayez avec quelques comptes.",
+      "solo": "Pour une personne qui gère plusieurs marques.",
+      "pro": "Pour les petites équipes qui publient chaque jour.",
+      "agency": "Pour les agences avec de nombreux clients.",
+      "scale": "Pour les grandes équipes sur plusieurs marchés."
+    },
+    "current": "Offre actuelle",
+    "popular": "La plus choisie",
+    "perMonth": "/ mois",
+    "perYear": "/ an",
+    "accounts": "{count, plural, one {# compte social} other {# comptes sociaux}}",
+    "seats": "{count, plural, one {# utilisateur} other {# utilisateurs}}",
+    "features": {
+      "preflight": "Vérifications vidéo avant envoi",
+      "previews": "Aperçu par plateforme",
+      "calendar": "Calendrier et file d’attente",
+      "reports": "Rapports",
+      "approvals": "Validation en équipe",
+      "clientLinks": "Liens de validation client",
+      "api": "API et agents IA"
+    },
+    "interval": "Période de facturation",
+    "monthly": "Mensuel",
+    "yearly": "Annuel",
+    "twoMonthsFree": "2 mois offerts"
+  },
+  "pricing": {
+    "metaTitle": "Tarifs",
+    "metaDescription": "Des offres simples selon le nombre de comptes sociaux et d’utilisateurs. La facturation annuelle offre deux mois.",
+    "eyebrow": "Tarifs",
+    "title": "Le prix fixe le plus bas, quelle que soit la taille.",
+    "sub": "Toutes les offres incluent les vérifications et les aperçus. Commencez par un essai Pro de {days} jours, sans carte bancaire.",
+    "founding": "{count} premiers clients : prix garanti {months} mois",
+    "ctaFree": "Commencer gratuitement",
+    "ctaTrial": "Démarrer l’essai",
+    "compareTitle": "Comparer les offres",
+    "feature": "Fonctionnalité",
+    "rowAccounts": "Comptes sociaux",
+    "rowSeats": "Utilisateurs",
+    "included": "Inclus",
+    "notIncluded": "Non inclus",
+    "note": "Prix en dollars américains. Des taxes peuvent s’appliquer au paiement. Si vous changez pour une offre inférieure, rien n’est supprimé."
+  },
+  "preflight": {
+    "summary": {
+      "pass": "Prêt",
+      "warn": "Voir les alertes",
+      "block": "Sera refusé"
+    },
+    "rules": {
+      "aspect": {
+        "title": "Format",
+        "pass": "{actual} convient à {platform} {format}.",
+        "warn": "{actual} sera recadré en {target} sur {platform} {format}.",
+        "block": "{actual} n’est pas accepté par {platform} {format}. Utilisez {target}."
+      },
+      "resolution": {
+        "title": "Résolution",
+        "pass": "{actual} est assez net.",
+        "warn": "{actual} est inférieur aux {recommended} recommandés et risque de paraître flou.",
+        "block": "{actual} est trop petit. Le petit côté doit faire au moins {min} px."
+      },
+      "duration": {
+        "title": "Durée",
+        "pass": "{actual} respecte la limite de {max}.",
+        "warn": "{actual} est proche de la limite.",
+        "block": "{actual} dépasse la durée autorisée."
+      },
+      "size": {
+        "title": "Taille du fichier",
+        "pass": "{actual} est sous la limite de {max}.",
+        "warn": "{actual} est proche de la limite de {max}.",
+        "block": "{actual} dépasse la limite de {max}."
+      },
+      "bitrate": {
+        "title": "Débit",
+        "pass": "{actual} est dans une bonne plage.",
+        "warn": "{actual} risque d’être réencodé par la plateforme ou de paraître flou.",
+        "block": "{actual} ne peut pas être accepté."
+      },
+      "caption": {
+        "title": "Longueur du texte",
+        "pass": "{actual} sur {max} caractères.",
+        "warn": "{actual} sur {max} caractères.",
+        "block": "{actual} sur {max} caractères. Raccourcissez-le pour cette plateforme."
+      },
+      "count": {
+        "title": "Nombre de photos",
+        "pass": "{actual} photos respectent la limite de {max} de {platform}.",
+        "warn": "{actual} photos respectent la limite de {max} de {platform}.",
+        "block": "{platform} accepte jusqu'à {max} photos par publication ; celle-ci en a {actual}."
+      },
+      "title": {
+        "title": "Titre",
+        "pass": "{actual} caractères sur {max}.",
+        "warn": "{actual} caractères sur {max}.",
+        "block": "{actual, plural, =0 {{platform} demande un titre. Ajoutez-en un ou écrivez un texte.} other {# caractères sur {max}. Raccourcissez le titre.}}"
+      }
+    },
+    "fixes": {
+      "reframe": "Passer en {target}",
+      "trim": "Couper pour tenir",
+      "compress": "Réduire la taille"
+    },
+    "sendOriginal": "Nous enverrons votre fichier original sans modification.",
+    "preview": {
+      "mediaLabel": "Aperçu de votre média sur {platform}",
+      "noMedia": "Ajoutez un média pour voir l’aperçu",
+      "captionPlaceholder": "Votre texte s’affiche ici.",
+      "cropped": "Recadré",
+      "frameLabel": "Aperçu {platform} {format}"
+    },
+    "fixed": {
+      "reframe": "Une copie en {target} sera créée pour cette plateforme. Votre original reste inchangé.",
+      "trim": "Une copie raccourcie sera créée pour cette plateforme. Votre original reste inchangé.",
+      "compress": "Une copie plus légère sera créée pour cette plateforme. Votre original reste inchangé."
+    },
+    "undoFix": "Annuler",
+    "othersPassed": "{count, plural, one {# autre vérification réussie} other {# autres vérifications réussies}}"
+  },
+  "upload": {
+    "drop": "Déposez une vidéo ou une image ici",
+    "orBrowse": "ou <browse>parcourez vos fichiers</browse>",
+    "release": "Relâchez pour importer"
+  },
+  "tools": {
+    "videoChecker": {
+      "metaTitle": "Vérificateur vidéo gratuit pour Reels, TikTok et Shorts",
+      "metaDescription": "Vérifiez le format, la résolution, le débit, la durée et la taille de votre vidéo pour chaque plateforme avant de publier. Gratuit, sans inscription, et votre fichier reste sur votre appareil.",
+      "eyebrow": "Outil gratuit",
+      "title": "Votre vidéo s’affichera-t-elle correctement ?",
+      "intro": "Déposez une vidéo pour vérifier son format, sa résolution, son débit, sa durée et sa taille pour Instagram, TikTok, YouTube, Facebook, LinkedIn et Bluesky, avec un aperçu de l’affichage sur chacune.",
+      "hint": "Vidéo MP4, MOV ou WebM, ou image JPG, PNG ou WebP.",
+      "checking": "Vérification de {name}…",
+      "privacy": "Votre fichier reste sur cet appareil. Nous lisons ses informations dans votre navigateur.",
+      "errors": {
+        "unsupported_type": "Ce type de fichier ne peut pas être vérifié. Utilisez une vidéo MP4, MOV ou WebM, ou une image JPG, PNG ou WebP.",
+        "unreadable": "Impossible de lire ce fichier. Il est peut-être endommagé ou utilise un codec que votre navigateur ne sait pas ouvrir.",
+        "empty_file": "Ce fichier est vide. Choisissez-en un autre."
+      },
+      "facts": {
+        "resolution": "Résolution",
+        "size": "Taille",
+        "duration": "Durée",
+        "bitrate": "Débit",
+        "unavailable": "Non disponible"
+      },
+      "another": "Vérifier un autre fichier",
+      "platformsLabel": "Résultats par plateforme",
+      "sourceChecked": "Limites vérifiées le {date}.",
+      "sourcePending": "Les limites sont en cours de vérification dans la documentation de la plateforme.",
+      "sourceLink": "Documentation {platform}",
+      "ctaTitle": "Corrigez et programmez au même endroit.",
+      "ctaBody": "Inscrivez-vous pour appliquer les corrections, prévisualiser chaque plateforme et programmer cette publication.",
+      "cta": "Corriger et programmer"
+    }
+  },
+  "auth": {
+    "signInTitle": "Bon retour",
+    "signInSub": "Connectez-vous à votre espace de travail.",
+    "signUpTitle": "Créez votre compte",
+    "signUpSub": "Gratuit pendant {days} jours. Sans carte bancaire.",
+    "forgotTitle": "Réinitialisez votre mot de passe",
+    "forgotSub": "Saisissez votre adresse et nous vous enverrons un lien pour choisir un nouveau mot de passe.",
+    "google": "Continuer avec Google",
+    "googleUnavailable": "La connexion Google sera disponible une fois le backend connecté.",
+    "or": "ou",
+    "email": "Adresse e-mail",
+    "workEmail": "Adresse e-mail professionnelle",
+    "name": "Votre nom",
+    "password": "Mot de passe",
+    "showPassword": "Afficher le mot de passe",
+    "hidePassword": "Masquer le mot de passe",
+    "forgot": "Mot de passe oublié ?",
+    "signIn": "Se connecter",
+    "createAccount": "Créer le compte",
+    "signInFailed": "L’adresse et le mot de passe ne correspondent pas. Vérifiez-les et réessayez.",
+    "signUpFailed": "Impossible de créer votre compte. Réessayez dans un instant.",
+    "genericFailed": "Un problème est survenu. Réessayez dans un instant.",
+    "emailMaybeUsed": "Si cette adresse peut être utilisée, nous lui avons envoyé un lien. Consultez votre boîte de réception ou connectez-vous.",
+    "emailNotAllowed": "Nous ne pouvons pas encore envoyer d’e-mail à cette adresse. Essayez une autre adresse, ou réessayez plus tard.",
+    "demoHint": "Mode aperçu : connectez-vous avec {email} et n’importe quel mot de passe.",
+    "noAccount": "Nouveau ici ? <link>Créer un compte</link>",
+    "haveAccount": "Vous avez déjà un compte ? <link>Se connecter</link>",
+    "terms": "En créant un compte, vous acceptez les conditions d’utilisation et la politique de confidentialité.",
+    "ruleLength": "Au moins {min} caractères",
+    "ruleMix": "Une lettre et un chiffre",
+    "ruleMet": "(fait)",
+    "ruleNotMet": "(pas encore)",
+    "resetSent": "Si un compte utilise cette adresse, nous avons envoyé un lien. Il ne fonctionne qu’une fois et expire rapidement.",
+    "backToSignIn": "Retour à la connexion",
+    "sendResetLink": "Envoyer le lien",
+    "checkInbox": "Consultez votre boîte de réception",
+    "sentTo": "Nous avons envoyé un lien de confirmation à {email}. Ouvrez-le pour terminer.",
+    "sentGeneric": "Nous vous avons envoyé un lien de confirmation. Ouvrez-le pour terminer.",
+    "resend": "Renvoyer l’e-mail",
+    "resendIn": "Renvoyer dans {seconds} s",
+    "resent": "Nous avons envoyé un nouveau lien. Il peut mettre une minute à arriver.",
+    "mockOpenLink": "Ouvrir le lien de confirmation (aperçu)",
+    "wrongEmail": "Mauvaise adresse ? <link>Inscrivez-vous à nouveau</link> avec la bonne.",
+    "confirmTitle": "Confirmez votre adresse",
+    "confirmBody": "Appuyez sur le bouton pour confirmer cette adresse et continuer.",
+    "confirmButton": "Confirmer l’adresse",
+    "confirmFailed": "Ce lien a expiré ou a déjà été utilisé. Demandez-en un nouveau depuis la page de connexion.",
+    "googleOff": "La connexion avec Google n’est pas encore disponible. Utilisez votre adresse e-mail et votre mot de passe.",
+    "googleFailed": "La connexion avec Google n’a pas abouti. Réessayez, ou utilisez votre adresse e-mail et votre mot de passe.",
+    "emailNotConfirmed": "Confirmez votre adresse e-mail avant de vous connecter. Ouvrez le lien que nous vous avons envoyé, ou <link>demandez-en un nouveau</link>.",
+    "tooManyTries": "Trop de tentatives. Attendez une minute, puis réessayez.",
+    "serviceOff": "Les comptes ne sont pas encore activés. Réessayez plus tard.",
+    "networkFailed": "Impossible de joindre le serveur. Vérifiez votre connexion, puis réessayez.",
+    "weakPassword": "Ce mot de passe est trop facile à deviner. Choisissez-en un autre.",
+    "samePassword": "C’est votre mot de passe actuel. Choisissez-en un nouveau.",
+    "resetTitle": "Choisissez un nouveau mot de passe",
+    "resetSub": "Vous serez déconnecté de tous vos appareils, puis vous pourrez vous connecter avec.",
+    "newPassword": "Nouveau mot de passe",
+    "savePassword": "Enregistrer le mot de passe",
+    "resetDone": "Votre mot de passe a été modifié. Connectez-vous avec le nouveau.",
+    "resetExpired": "Ce lien a expiré ou a déjà été utilisé. Demandez-en un nouveau."
+  },
+  "nav": {
+    "label": "Application",
+    "open": "Ouvrir la navigation",
+    "items": {
+      "home": "Accueil",
+      "newPost": "Nouvelle publication",
+      "calendar": "Calendrier",
+      "allPosts": "Toutes les publications",
+      "scheduled": "Programmées",
+      "posted": "Publiées",
+      "drafts": "Brouillons"
+    },
+    "accounts": {
+      "title": "Comptes",
+      "manage": "Gérer les comptes",
+      "connect": "Connecter un compte",
+      "connectMore": "En connecter d'autres",
+      "connectFirst": "Connectez votre premier compte",
+      "connectPlatform": "Connecter {platform}",
+      "insights": "Statistiques",
+      "posts": "Publications",
+      "queued": "{count, plural, =0 {Rien de programmé} one {# publication programmée} other {# publications programmées}}"
+    },
+    "settings": {
+      "label": "Paramètres",
+      "title": "Paramètres",
+      "back": "Retour au tableau de bord",
+      "profile": "Profil",
+      "preferences": "Préférences",
+      "workspace": "Espace de travail",
+      "team": "Équipe",
+      "accounts": "Comptes sociaux",
+      "billing": "Facturation",
+      "tags": "Étiquettes",
+      "accountCount": "{count, plural, one {# compte connecté} other {# comptes connectés}}"
+    }
+  },
+  "shell": {
+    "switchWorkspace": "Espace de travail : {name}. Changer d’espace",
+    "workspaces": "Espaces de travail",
+    "current": "Actuel",
+    "userMenu": "Menu du compte de {name}",
+    "signOut": "Se déconnecter",
+    "search": "Rechercher des publications",
+    "reconnect": "Reconnecter",
+    "needsReconnect": "{count, plural, one {{name} doit être reconnecté. Ses publications programmées sont en pause.} other {# comptes doivent être reconnectés. Leurs publications programmées sont en pause.}}",
+    "choosePlan": "Choisir une offre",
+    "trialEnds": "{count, plural, =0 {Votre essai se termine aujourd’hui.} one {Votre essai se termine dans # jour.} other {Votre essai se termine dans # jours.}}",
+    "notifications": {
+      "label": "Notifications",
+      "labelUnread": "{count, plural, one {Notifications, # non lue} other {Notifications, # non lues}}",
+      "title": "Notifications",
+      "markAll": "Tout marquer comme lu",
+      "loading": "Chargement…",
+      "error": "Impossible de charger les notifications.",
+      "empty": "Vous êtes à jour.",
+      "unread": "Non lue",
+      "kinds": {
+        "published": "Une publication est en ligne",
+        "failed": "Une publication a échoué sur une plateforme",
+        "needs_reconnect": "Un compte doit être reconnecté",
+        "approval_requested": "Une publication attend votre validation",
+        "invite": "Quelqu’un a rejoint votre espace de travail"
+      }
+    }
+  },
+  "connections": {
+    "usage": "{count} comptes sociaux connectés sur {limit}.",
+    "connect": "Connecter un compte",
+    "connected": "{name} est connecté.",
+    "chooseTitle": "Connecter un compte",
+    "chooseBody": "Choisissez une plateforme. Vous vous connecterez sur sa propre page.",
+    "scopesTitle": "Connecter {platform}",
+    "scopesBody": "Ensuite, {platform} vous demandera de vous connecter et d’autoriser l’accès. Voici à quoi il sert.",
+    "weCan": "Nous pourrons",
+    "weCannot": "Nous ne pourrons jamais",
+    "can": {
+      "publish": "Publier ce que vous programmez",
+      "profile": "Lire le nom et la photo de votre compte",
+      "metrics": "Lire les résultats des publications envoyées par nous"
+    },
+    "cannot": {
+      "password": "Voir votre mot de passe",
+      "messages": "Lire vos messages privés",
+      "postAlone": "Publier quoi que ce soit sans votre programmation"
+    },
+    "continueTo": "Continuer vers {platform}",
+    "otherPlatform": "Autre plateforme",
+    "limitReached": "Vous avez atteint la limite de comptes de votre offre.",
+    "upgrade": "Voir les offres",
+    "connectFailed": "Impossible de connecter ce compte. Réessayez : rien n’a été modifié.",
+    "noPermission": "Seuls les propriétaires et les administrateurs peuvent connecter ou retirer des comptes.",
+    "emptyTitle": "Aucun compte connecté pour l’instant",
+    "emptyBody": "Connectez votre premier compte pour commencer à programmer.",
+    "since": "connecté le {date}",
+    "reconnect": "Reconnecter",
+    "removeLabel": "Retirer {name}",
+    "removeTitle": "Retirer {name} ?",
+    "removeCounting": "Recherche des publications programmées qui utilisent ce compte…",
+    "removeBody": "{count, plural, =0 {Aucune publication programmée n’utilise ce compte. Vous pourrez le reconnecter à tout moment.} one {# publication programmée ne sera plus publiée sur {platform}. Les autres plateformes ne sont pas concernées.} other {# publications programmées ne seront plus publiées sur {platform}. Les autres plateformes ne sont pas concernées.}}",
+    "removeFailed": "Impossible de retirer ce compte. Réessayez.",
+    "removed": "{name} a été retiré.",
+    "keep": "Garder le compte",
+    "remove": "Retirer le compte",
+    "insights": "Statistiques"
+  },
+  "onboarding": {
+    "steps": {
+      "about": "À propos de vous",
+      "connect": "Connexion",
+      "done": "Terminé"
+    },
+    "progress": "Étape {step} sur {total}",
+    "personaTitle": "Bienvenue, {name}. Qu’est-ce qui vous décrit le mieux ?",
+    "personaSub": "Cela nous aide à vous proposer la bonne configuration. Vous pourrez le changer plus tard.",
+    "personas": {
+      "creator": {
+        "title": "Créateur indépendant",
+        "body": "Je publie pour moi ou pour une marque."
+      },
+      "startup": {
+        "title": "Startup",
+        "body": "Une petite équipe qui publie pour notre produit."
+      },
+      "agency": {
+        "title": "Agence",
+        "body": "Nous gérons les comptes de plusieurs clients."
+      },
+      "other": {
+        "title": "Autre",
+        "body": "Aucune de ces options ne correspond vraiment."
+      }
+    },
+    "saveFailed": "Impossible d’enregistrer. Réessayez.",
+    "skip": "Passer pour l’instant",
+    "continue": "Continuer",
+    "connectTitle": "Connectez vos comptes",
+    "connectSub": "Chaque plateforme ouvre sa propre page de connexion, puis vous ramène ici.",
+    "connect": "Connecter",
+    "connectPlatform": "Connecter {platform}",
+    "connected": "Connecté",
+    "doneTitle": "Tout est prêt.",
+    "doneSub": "Votre espace de travail est prêt. Prochaine étape : envoyez une vidéo et programmez votre première publication.",
+    "goToDashboard": "Aller au tableau de bord"
+  },
+  "composer": {
+    "title": "Nouvelle publication : {type}",
+    "editTitle": "Modifier la publication",
+    "typeLabel": "Type de publication",
+    "types": {
+      "text": "texte",
+      "image": "image",
+      "video": "vidéo",
+      "story": "story"
+    },
+    "saveDraft": "Enregistrer le brouillon",
+    "restored": "Nous avons restauré le brouillon sur lequel vous travailliez.",
+    "discardRestored": "Recommencer",
+    "preview": "Aperçu",
+    "previewEmpty": "Choisissez un compte pour voir le rendu de la publication.",
+    "preflight": "Vérifications",
+    "submit": {
+      "now": "Publier maintenant",
+      "schedule": "Programmer la publication",
+      "queue": "Ajouter à la file"
+    },
+    "submitting": "En cours…",
+    "problems": {
+      "label": "Avant de continuer",
+      "accounts": "Choisissez au moins un compte.",
+      "media": "Ajoutez une vidéo ou une image.",
+      "caption": "Écrivez un texte.",
+      "blocking": "Corrigez les problèmes marqués « Sera refusé ».",
+      "time": "Choisissez une heure future.",
+      "unsupported": "{platforms} n'accepte pas les publications de type {type}. Retirez-les ou changez le type de publication.",
+      "mediaKind": "Ce média ne convient pas à une publication de type {type}."
+    },
+    "errors": {
+      "conflict": "Quelqu’un d’autre a modifié cette publication pendant votre édition. Rechargez pour voir sa version.",
+      "past": "Cette heure est passée. Choisissez une heure plus tardive.",
+      "validation": "Un élément de la publication demande votre attention. Vérifiez les comptes et l’heure.",
+      "generic": "Impossible d’enregistrer la publication. Votre brouillon est en sécurité ; réessayez."
+    },
+    "cannotEditTitle": "Cette publication est déjà partie",
+    "cannotEditBody": "Les publications en ligne ne peuvent pas être modifiées ici. Vous pouvez en créer une nouvelle.",
+    "backToPosts": "Retour aux publications",
+    "done": {
+      "scheduled": "Votre publication est programmée.",
+      "publishing": "Votre publication est en cours d’envoi.",
+      "when": "Elle partira le {when} ({zone}).",
+      "live": "Vous recevrez une notification quand chaque plateforme confirmera.",
+      "calendar": "Voir dans le calendrier",
+      "another": "Créer une autre publication",
+      "toast": "Programmée pour le {when}."
+    },
+    "autosave": {
+      "saving": "Enregistrement…",
+      "pending": "Modifications non enregistrées",
+      "savedAt": "Enregistré à {time}",
+      "error": "Échec de l’enregistrement.",
+      "retry": "Réessayer",
+      "conflict": "Quelqu’un d’autre a modifié cette publication."
+    },
+    "accounts": {
+      "title": "Comptes",
+      "selected": "{count} sélectionnés",
+      "search": "Rechercher des comptes",
+      "needsReconnect": "À reconnecter avant de pouvoir publier.",
+      "unsupported": "{platform} n’accepte pas les publications de type {type}.",
+      "types": {
+        "text": "texte seul",
+        "image": "image",
+        "video": "vidéo",
+        "story": "story"
+      },
+      "none": "Aucun compte connecté pour l’instant.",
+      "connect": "En connecter un",
+      "choose": "Choisir des comptes",
+      "add": "Ajouter un compte",
+      "removeAccount": "Retirer {name}"
+    },
+    "media": {
+      "title": "Média",
+      "paused": "En pause",
+      "unsupported": "{name} ne convient pas à ce type de publication, ou son format n’est pas pris en charge.",
+      "failed": "L’envoi de {name} a échoué. Vérifiez votre connexion et réessayez.",
+      "tryAgain": "Réessayer",
+      "add": "Ajouter des photos ou une vidéo",
+      "addShort": "Ajouter",
+      "dropHint": "ou glissez des fichiers ici, ou collez une image",
+      "dropHere": "Déposez pour ajouter",
+      "photoN": "Photo {n}",
+      "videoN": "Vidéo {n}",
+      "checkingShort": "Vérification",
+      "removeName": "Retirer {name}",
+      "pauseName": "Mettre en pause l'envoi de {name}",
+      "resumeName": "Reprendre l'envoi de {name}",
+      "issueWarn": "{name} présente des avertissements. Voir les vérifications.",
+      "issueBlock": "{name} sera refusé. Voir les vérifications.",
+      "photosOnly": "Cette publication contient des photos. Mettez les vidéos dans une autre publication.",
+      "oneKind": "Une publication ne peut pas mélanger photos et vidéos.",
+      "tooMany": "Une publication peut contenir jusqu'à {max} photos.",
+      "oneVideo": "Une publication contient une seule vidéo.",
+      "oneStory": "Une story contient une photo ou une vidéo."
+    },
+    "caption": {
+      "title": "Texte",
+      "tabsLabel": "Texte par plateforme",
+      "main": "Texte principal",
+      "customised": "Personnalisé",
+      "placeholder": "Écrivez votre texte. Vous pouvez l’adapter à chaque plateforme dans les onglets ci-dessus.",
+      "overridePlaceholder": "Laissez vide pour utiliser le texte principal.",
+      "overrideLabel": "Texte pour {platform} ({handle})",
+      "usingOverride": "Texte personnalisé pour ce compte.",
+      "usingMain": "Texte principal utilisé."
+    },
+    "when": {
+      "title": "Quand",
+      "modes": {
+        "now": {
+          "title": "Publier maintenant",
+          "body": "Publication dès votre confirmation."
+        },
+        "schedule": {
+          "title": "Programmer",
+          "body": "Choisissez un fuseau horaire, puis la date et l’heure."
+        },
+        "queue": {
+          "title": "Ajouter à la file",
+          "body": "Utilise le prochain créneau libre."
+        }
+      },
+      "timezone": "Fuseau horaire",
+      "queueHint": "Les créneaux de la file sont à 09:00, 13:00 et 17:00 dans ce fuseau.",
+      "date": "Date",
+      "time": "Heure",
+      "errors": {
+        "missing": "Choisissez une date et une heure.",
+        "past": "Cette heure est déjà passée.",
+        "invalid": "Cette date ou cette heure n’est pas valide."
+      },
+      "summary": "Publication le {when} ({zone}).",
+      "yourTime": "Soit {when} dans votre fuseau horaire.",
+      "dstGap": "Cette heure n’existe pas à cause du changement d’heure ce jour-là : elle est décalée à la prochaine heure valide.",
+      "summaryNow": "Publier maintenant",
+      "summaryQueue": "Prochain créneau de la file",
+      "summaryPick": "Choisir un horaire",
+      "change": "Modifier le moment de publication (actuellement : {when})",
+      "done": "Terminé"
+    },
+    "panelLabel": "Panneau latéral",
+    "panel": {
+      "preview": "Aperçu",
+      "ai": "Assistant IA"
+    },
+    "previewEmptyTitle": "Rien à afficher pour l’instant",
+    "preflightOpen": "Afficher les vérifications",
+    "aiHelp": "Écrire avec l’IA",
+    "aiLabel": "Créé avec l’IA",
+    "aiLabelHint": "Votre équipe verra que l’IA a aidé à rédiger cette publication.",
+    "createAnother": "En créer une autre",
+    "moreProblems": "{count, plural, one {(+# autre)} other {(+# autres)}}",
+    "previewPane": {
+      "label": "Aperçu {platform}",
+      "approx": "Une approximation de {platform} {format}. L'application peut être légèrement différente.",
+      "noMedia": "Ajoutez une vidéo ou des photos pour les voir ici.",
+      "loading": "Chargement…",
+      "unavailable": "Ce fichier ne peut pas être affiché ici.",
+      "captionPlaceholder": "Votre texte apparaît ici.",
+      "more": "plus",
+      "less": "moins",
+      "play": "Lire",
+      "pause": "Pause",
+      "mute": "Couper le son",
+      "unmute": "Activer le son",
+      "previous": "Précédent",
+      "next": "Suivant",
+      "itemOf": "{n} / {total}",
+      "justNow": "À l'instant",
+      "follow": "Suivre",
+      "subscribe": "S'abonner",
+      "sendMessage": "Envoyer un message",
+      "storyNoCaption": "Les stories n'affichent pas de texte.",
+      "unsupportedTitle": "{platform} n'accepte pas les publications de type {type}",
+      "unsupportedBody": "Retirez ce compte ou changez le type de publication.",
+      "actions": {
+        "like": "J'aime",
+        "dislike": "Je n'aime pas",
+        "comment": "Commenter",
+        "share": "Partager",
+        "repost": "Republier",
+        "send": "Envoyer",
+        "save": "Enregistrer"
+      }
+    },
+    "privacy": {
+      "public": "Public",
+      "unlisted": "Non répertorié",
+      "private": "Privé",
+      "publicHint": "Tout le monde peut la trouver et la regarder.",
+      "unlistedHint": "Seules les personnes ayant le lien peuvent la regarder.",
+      "privateHint": "Seuls vous et les personnes choisies peuvent la regarder."
+    },
+    "options": {
+      "title": "Paramètres {platform}",
+      "videoTitle": "Titre",
+      "titlePlaceholder": "Ajoutez un titre",
+      "titleHint": "Laissez vide pour utiliser la première ligne du texte.",
+      "titleTooLong": "Le titre doit faire au plus {max} caractères.",
+      "visibility": "Visibilité",
+      "madeForKids": "Conçue pour les enfants",
+      "madeForKidsHint": "YouTube le demande pour chaque vidéo.",
+      "notifySubscribers": "Prévenir les abonnés",
+      "embeddable": "Autoriser l'intégration"
+    }
+  },
+  "tags": {
+    "label": "Étiquettes",
+    "search": "Rechercher ou créer une étiquette",
+    "searchFilter": "Rechercher des étiquettes",
+    "loading": "Chargement des étiquettes…",
+    "empty": "Aucune étiquette pour l’instant.",
+    "noMatch": "Aucune étiquette ne correspond.",
+    "create": "Créer « {name} »",
+    "exists": "Une étiquette porte déjà ce nom.",
+    "createFailed": "Impossible de créer l’étiquette. Réessayez.",
+    "manage": "Gérer les étiquettes",
+    "clear": "Effacer",
+    "remove": "Retirer l’étiquette {name}"
+  },
+  "ai": {
+    "credits": "{count, plural, one {# crédit restant} other {# crédits restants}}",
+    "introTitle": "Écrivez plus vite avec l’IA",
+    "introBody": "Décrivez votre publication et obtenez un premier jet adapté aux plateformes choisies. Rien ne change tant que vous ne l’insérez pas.",
+    "introPoints": {
+      "draft": "Transformez une idée rapide en texte complet",
+      "polish": "Reformulez, raccourcissez ou changez le ton",
+      "fit": "Vise à respecter la limite de caractères de vos plateformes"
+    },
+    "start": "Commencer",
+    "promptLabel": "De quoi parle la publication ?",
+    "tip": "Précisez le public et le ton souhaités. Ctrl ou ⌘ + Entrée pour générer.",
+    "clearPrompt": "Effacer",
+    "placeholder": "ex. : Nos soldes de printemps commencent lundi : −20 % sur toutes les offres pendant une semaine. Ton chaleureux.",
+    "generate": "Générer",
+    "generateAgain": "Générer à nouveau",
+    "improveTitle": "Ou améliorez votre texte actuel",
+    "writing": "Rédaction…",
+    "errors": {
+      "credits": "Vous avez utilisé tous vos crédits IA ce mois-ci.",
+      "creditsAction": "Voir les offres",
+      "generic": "L’assistant n’a pas pu rédiger ce texte. Réessayez."
+    },
+    "retry": "Réessayer",
+    "result": "Suggestion",
+    "fitsLimit": "{count} / {max} caractères",
+    "insert": "Utiliser ce texte",
+    "append": "Ajouter à la fin",
+    "copy": "Copier",
+    "copied": "Copié",
+    "copyFailed": "Copie impossible. Sélectionnez le texte et copiez-le.",
+    "refineTitle": "Affiner",
+    "disclaimer": "L’IA peut se tromper sur les faits. Relisez le texte avant de publier.",
+    "previewNote": "Mode aperçu : un rédacteur d’exemple répond en attendant la connexion du service d’IA.",
+    "actions": {
+      "rephrase": "Reformuler",
+      "shorten": "Raccourcir",
+      "expand": "Développer",
+      "casual": "Plus décontracté",
+      "formal": "Plus formel"
+    },
+    "inserted": "Texte mis à jour."
+  },
+  "posts": {
+    "title": "Publications",
+    "tabsLabel": "Listes de publications",
+    "search": "Rechercher dans les textes",
+    "filterPlatform": "Filtrer par plateforme",
+    "allPlatforms": "Toutes les plateformes",
+    "noMatchTitle": "Aucune publication trouvée",
+    "noMatchBody": "Essayez une autre recherche ou une autre plateforme.",
+    "empty": {
+      "all": {
+        "title": "Aucune publication pour l’instant",
+        "body": "Créez votre première publication pour la voir ici."
+      },
+      "scheduled": {
+        "title": "Rien de programmé",
+        "body": "Les publications programmées et en attente de validation apparaissent ici."
+      },
+      "posted": {
+        "title": "Rien de publié pour l’instant",
+        "body": "Les publications apparaissent ici une fois confirmées par une plateforme."
+      },
+      "draft": {
+        "title": "Aucun brouillon",
+        "body": "Les brouillons sont enregistrés automatiquement pendant que vous écrivez."
+      }
+    },
+    "columns": {
+      "post": "Publication",
+      "accounts": "Comptes",
+      "when": "Quand",
+      "status": "Statut"
+    },
+    "onPlatforms": "{count, plural, one {Sur # plateforme} other {Sur # plateformes}}",
+    "types": {
+      "text": "Publication texte",
+      "image": "Publication image",
+      "video": "Publication vidéo",
+      "story": "Story"
+    },
+    "detailTitle": "Détails de la publication",
+    "noTime": "Pas d’heure définie",
+    "caption": "Texte",
+    "noCaption": "Pas de texte",
+    "platforms": "Plateformes",
+    "partialSummary": "Publiée sur {published} plateformes sur {total}. Celle qui a échoué est indiquée ci-dessous avec la raison.",
+    "lapsedSummary": "L’heure prévue est passée pendant que la publication était en pause. Choisissez de publier maintenant, de reprogrammer ou d’abandonner.",
+    "viewOnPlatform": "Voir",
+    "reconnectAccount": "Reconnecter ce compte",
+    "target": {
+      "pending": "En attente de l’heure prévue",
+      "queued": "Publication…",
+      "publishing": "Publication…",
+      "published": "Publiée",
+      "failed": "Échec",
+      "skipped": "Ignorée",
+      "needs_check": "À vérifier"
+    },
+    "actions": {
+      "publishNow": "Publier maintenant",
+      "retry": "Relancer les échecs",
+      "reschedule": "Reprogrammer",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "discard": "Abandonner",
+      "retrying": "Nouvelle tentative en cours. Nous vous tiendrons informé.",
+      "deleted": "Publication supprimée.",
+      "rescheduled": "Publication déplacée."
+    },
+    "reschedule": {
+      "title": "Reprogrammer la publication",
+      "body": "Choisissez d’abord le fuseau horaire, puis la nouvelle date et l’heure.",
+      "timezone": "Fuseau horaire",
+      "date": "Date",
+      "time": "Heure",
+      "errors": {
+        "missing": "Choisissez une date et une heure.",
+        "past": "Cette heure est déjà passée.",
+        "invalid": "Cette date ou cette heure n’est pas valide."
+      },
+      "conflict": "Quelqu’un d’autre a modifié cette publication. Fermez cette fenêtre et rouvrez-la.",
+      "failed": "Impossible de déplacer la publication. Réessayez.",
+      "cancel": "Annuler",
+      "confirm": "Déplacer la publication"
+    },
+    "delete": {
+      "title": "Supprimer cette publication ?",
+      "body": "Cette action est définitive.",
+      "bodyScheduled": "Elle ne sera pas publiée. Cette action est définitive.",
+      "failed": "Impossible de supprimer la publication. Réessayez.",
+      "cancel": "Garder la publication",
+      "confirm": "Supprimer la publication"
+    },
+    "aiGenerated": "Créé avec l’IA"
+  },
+  "calendar": {
+    "title": "Calendrier",
+    "newPost": "Nouvelle publication",
+    "prevMonth": "Mois précédent",
+    "nextMonth": "Mois suivant",
+    "prevWeek": "Semaine précédente",
+    "nextWeek": "Semaine suivante",
+    "today": "Aujourd’hui",
+    "viewLabel": "Affichage du calendrier",
+    "views": {
+      "month": "Mois",
+      "week": "Semaine",
+      "list": "Liste"
+    },
+    "filterPlatform": "Filtrer par plateforme",
+    "allPlatforms": "Toutes les plateformes",
+    "emptyTitle": "Rien de prévu sur cette période",
+    "emptyBody": "Créez une publication ou passez à un autre mois.",
+    "createOn": "Créer une publication le {date}",
+    "more": "+{count} de plus",
+    "legend": "Légende :",
+    "dragHint": "Glissez une publication vers un autre jour pour la déplacer, ou ouvrez-la et choisissez Reprogrammer.",
+    "pastDrop": "Impossible de déplacer une publication dans le passé."
+  },
+  "home": {
+    "greeting": {
+      "morning": "Bonjour, {name}",
+      "afternoon": "Bon après-midi, {name}",
+      "evening": "Bonsoir, {name}"
+    },
+    "workspaceLine": "Espace de travail : {workspace}",
+    "newPost": "Nouvelle publication",
+    "verifyBanner": "Confirmez votre adresse e-mail pour sécuriser votre compte.",
+    "verifyAction": "Confirmer l’adresse",
+    "stats": {
+      "thisWeek": "Programmées cette semaine",
+      "review": "À valider",
+      "published": "Publiées cette semaine",
+      "attention": "À traiter",
+      "thisWeekHint": "7 prochains jours",
+      "reviewHint": "En attente de validation",
+      "publishedHint": "7 derniers jours",
+      "attentionHint": "En échec, partielles ou expirées"
+    },
+    "checklist": {
+      "title": "Votre première publication",
+      "progress": "{done} sur {total} terminées",
+      "connect": "Connecter un compte",
+      "upload": "Envoyer une vidéo",
+      "schedule": "Programmer une publication",
+      "done": "(fait)",
+      "todo": "(à faire)",
+      "meter": "Progression de la première publication"
+    },
+    "attentionTitle": "À traiter",
+    "lapsedReason": "L’heure prévue est passée pendant que la publication était en pause.",
+    "failedReason": "Une ou plusieurs plateformes ont refusé cette publication.",
+    "publishNow": "Publier maintenant",
+    "retry": "Réessayer",
+    "details": "Détails",
+    "upcomingTitle": "À venir",
+    "openCalendar": "Ouvrir le calendrier",
+    "upcomingEmptyTitle": "Rien de programmé pour l’instant",
+    "upcomingEmptyBody": "Programmez une publication et elle apparaîtra ici.",
+    "hero": {
+      "summary": "{count, plural, =0 {Rien n’est encore programmé dans {workspace} pour les 7 prochains jours.} one {# publication part dans les 7 prochains jours dans {workspace}.} other {# publications partent dans les 7 prochains jours dans {workspace}.}}"
+    },
+    "activity": {
+      "title": "Plan de publication",
+      "subtitle": "Publications par jour : les 7 derniers jours et les 7 prochains",
+      "legendPast": "Avant",
+      "legendUpcoming": "Aujourd’hui et après",
+      "count": "{count, plural, =0 {Aucune publication} one {# publication} other {# publications}}",
+      "tableDate": "Date",
+      "tablePosts": "Publications"
+    },
+    "platforms": {
+      "title": "À venir par plateforme",
+      "subtitle": "Publications programmées par plateforme",
+      "empty": "Aucune publication à venir pour l’instant.",
+      "tablePlatform": "Plateforme",
+      "tablePosts": "Publications"
+    },
+    "pipeline": {
+      "title": "Flux de publication"
+    },
+    "week": {
+      "title": "Cette semaine",
+      "same": "Comme la semaine dernière",
+      "delta": "{change} par rapport à la semaine dernière",
+      "meter": "Part des publications de la semaine déjà publiées",
+      "percent": "{pct} % publié",
+      "summary": "{done, plural, one {# publiée} other {# publiées}}, {left} à venir",
+      "empty": "Rien de prévu cette semaine pour l’instant. Planifiez une publication"
+    }
+  },
+  "billing": {
+    "title": "Facturation",
+    "subtitle": "Votre offre, votre utilisation et vos factures.",
+    "currentPlan": "Offre actuelle",
+    "trialUntil": "Essai des fonctionnalités Pro jusqu’au {date}. Aucune carte enregistrée.",
+    "renewsOn": "Renouvellement le {date}.",
+    "endsOn": "Résiliée. L’accès continue jusqu’au {date}, puis passe à l’offre Gratuite. Rien n’est supprimé.",
+    "freeForever": "Offre Gratuite. Passez à une offre supérieure quand vous voulez.",
+    "pastDue": "Votre dernier paiement a échoué. Mettez à jour votre carte pour conserver votre offre.",
+    "manage": "Factures et moyen de paiement",
+    "portalUnavailable": "Disponible une fois la facturation connectée.",
+    "portalFailed": "Impossible d’ouvrir le portail de facturation. Réessayez dans un instant.",
+    "usageTitle": "Utilisation",
+    "accounts": "Comptes sociaux",
+    "seats": "Utilisateurs",
+    "usage": "{used} sur {limit}",
+    "downgradeNote": "Si vous passez à une offre inférieure, rien n’est supprimé. Ce qui dépasse la limite reste en lecture seule.",
+    "ownerOnly": "Seul le propriétaire de l’espace de travail peut changer d’offre.",
+    "plansTitle": "Offres",
+    "upgrade": "Passer à cette offre",
+    "switch": "Changer",
+    "checkoutFailed": "Impossible d’ouvrir le paiement. Vous n’avez pas été débité. Réessayez.",
+    "checkoutNote": "Le paiement est géré par notre prestataire. Votre offre change dès que le paiement est confirmé.",
+    "confirming": {
+      "title": "Confirmation de votre paiement…",
+      "body": "Cela prend généralement quelques secondes. Vous pouvez quitter cette page : votre offre sera mise à jour quoi qu’il arrive.",
+      "doneTitle": "Vous êtes maintenant sur l’offre {plan}.",
+      "doneBody": "Vos nouvelles limites sont actives.",
+      "continue": "Continuer",
+      "slowTitle": "C’est plus long que d’habitude.",
+      "slowBody": "Votre paiement est peut-être encore en cours. Ne payez pas une seconde fois : actualisez cette page dans quelques minutes ou contactez-nous pour vérification.",
+      "contact": "Contacter le support"
+    }
+  },
+  "teams": {
+    "title": "Équipe",
+    "subtitle": "Invitez vos collègues et vos clients, et choisissez ce que chacun peut faire.",
+    "inviteTitle": "Inviter quelqu’un",
+    "seatsLeft": "{count, plural, =0 {Plus aucun utilisateur disponible dans votre offre.} one {Il reste # utilisateur dans votre offre.} other {Il reste # utilisateurs dans votre offre.}}",
+    "email": "Adresse e-mail",
+    "role": "Rôle",
+    "send": "Envoyer l’invitation",
+    "invited": "Invitation envoyée à {email}.",
+    "alreadyInvited": "Cette personne est déjà membre ou a une invitation en attente.",
+    "seatLimit": "Votre offre n’a plus d’utilisateurs disponibles. Passez à une offre supérieure pour inviter plus de personnes.",
+    "inviteFailed": "Impossible d’envoyer l’invitation. Réessayez.",
+    "members": "Membres",
+    "emptyTitle": "Aucun membre pour l’instant",
+    "you": "vous",
+    "joined": "Membre depuis le {date}",
+    "removeLabel": "Retirer {name}",
+    "removeTitle": "Retirer {name} ?",
+    "removeBody": "Cette personne perd l’accès à son prochain clic. Ses brouillons restent dans l’espace de travail.",
+    "removeFailed": "Impossible de retirer ce membre. Réessayez.",
+    "removed": "{name} a été retiré.",
+    "cancel": "Annuler",
+    "remove": "Retirer",
+    "pending": "Invitations en attente",
+    "expires": "expire le {date}",
+    "revoke": "Révoquer",
+    "rolesTitle": "Ce que chaque rôle peut faire",
+    "roles": {
+      "owner": {
+        "name": "Propriétaire",
+        "body": "Tout, y compris la facturation et la suppression de l’espace de travail."
+      },
+      "admin": {
+        "name": "Administrateur",
+        "body": "Tout, sauf la facturation et la suppression de l’espace de travail."
+      },
+      "editor": {
+        "name": "Éditeur",
+        "body": "Créer, modifier et programmer des publications."
+      },
+      "viewer": {
+        "name": "Lecteur",
+        "body": "Voir les publications et les résultats, et commenter."
+      },
+      "reviewer": {
+        "name": "Relecteur",
+        "body": "Commenter et valider les publications qui lui sont envoyées."
+      }
+    }
+  },
+  "settings": {
+    "name": "Nom",
+    "nameRequired": "Saisissez votre nom.",
+    "email": "Adresse e-mail",
+    "emailHint": "Pour changer d’adresse, contactez le support. Nous vous demanderons de confirmer votre identité.",
+    "timezone": "Votre fuseau horaire",
+    "timezoneHint": "Les heures de l’appli s’affichent dans ce fuseau. Chaque publication peut garder le sien.",
+    "save": "Enregistrer les modifications",
+    "saved": "Paramètres enregistrés.",
+    "saveFailed": "Impossible d’enregistrer vos paramètres. Réessayez.",
+    "language": "Langue",
+    "languageHint": "Chaque langue est affichée dans sa propre langue.",
+    "tags": {
+      "title": "Étiquettes",
+      "body": "Regroupez vos publications par campagne ou par thème. Les étiquettes s’affichent sur les publications et dans les filtres, et seule votre équipe les voit.",
+      "newName": "Nouvelle étiquette",
+      "newPlaceholder": "ex. : Lancement d’été",
+      "colour": "Couleur",
+      "colors": {
+        "blue": "Bleu",
+        "violet": "Violet",
+        "green": "Vert",
+        "amber": "Ambre",
+        "rose": "Rose",
+        "peach": "Pêche"
+      },
+      "add": "Ajouter l’étiquette",
+      "added": "Étiquette ajoutée.",
+      "renameLabel": "Nom de l’étiquette",
+      "edit": "Modifier {name}",
+      "delete": "Supprimer {name}",
+      "usage": "{count, plural, =0 {Pas encore utilisée} one {Sur # publication} other {Sur # publications}}",
+      "empty": "Aucune étiquette pour l’instant.",
+      "deleteTitle": "Supprimer « {name} » ?",
+      "deleteBody": "{count, plural, =0 {Aucune publication n’utilise cette étiquette.} one {Elle sera retirée de # publication. La publication est conservée.} other {Elle sera retirée de # publications. Les publications sont conservées.}}",
+      "deleteConfirm": "Supprimer l’étiquette",
+      "deleted": "Étiquette supprimée.",
+      "saved": "Étiquette enregistrée.",
+      "failed": "Impossible d’enregistrer l’étiquette. Réessayez.",
+      "readOnly": "Seuls les propriétaires, administrateurs et éditeurs peuvent modifier les étiquettes.",
+      "nameRequired": "Donnez un nom à l’étiquette."
+    },
+    "profileBody": "Comment votre équipe vous voit.",
+    "preferencesBody": "Thème, langue et affichage des heures. Les changements sont enregistrés tout de suite.",
+    "appearanceTitle": "Apparence",
+    "themeHint": "S'applique à cet appareil uniquement.",
+    "languageTimeTitle": "Langue et heure",
+    "clockTitle": "Format de l'heure",
+    "clockHint": "Utilisé dans le calendrier, les listes de publications et l'éditeur.",
+    "clock12": "12 heures ({time})",
+    "clock24": "24 heures ({time})",
+    "workspace": {
+      "body": "L'espace de travail où vous êtes, votre rôle et ce qu'il utilise.",
+      "detailsTitle": "Détails",
+      "name": "Nom",
+      "nameHint": "Affiché dans le sélecteur d'espaces de travail.",
+      "kind": "Type",
+      "kinds": {
+        "personal": "Personnel",
+        "agency": "Agence",
+        "client": "Client"
+      },
+      "role": "Votre rôle",
+      "usageTitle": "Forfait et utilisation",
+      "plan": "Forfait",
+      "members": "Membres",
+      "accounts": "Comptes sociaux",
+      "ofLimit": "{used} sur {limit}",
+      "previewTitle": "Données d'aperçu",
+      "previewRow": "Repartir avec des données d'exemple",
+      "previewBody": "Cet aperçu garde ses données d'exemple uniquement dans votre navigateur.",
+      "previewReset": "Réinitialiser les données d'aperçu",
+      "previewConfirmTitle": "Réinitialiser les données d'aperçu ?",
+      "previewConfirmBody": "Toutes les publications, étiquettes et modifications faites dans cet aperçu sont remplacées par de nouvelles données d'exemple. Cette action est irréversible."
+    }
+  },
+  "charts": {
+    "showTable": "Afficher en tableau",
+    "showChart": "Afficher en graphique"
+  },
+  "insights": {
+    "tabsLabel": "Pages du compte",
+    "settings": "Paramètres du compte",
+    "notFoundTitle": "Ce compte n'est pas connecté",
+    "notFoundBody": "Il a peut-être été retiré de l'espace de travail. Vos comptes connectés sont listés dans les paramètres.",
+    "toAccounts": "Aller aux comptes sociaux",
+    "reconnectBody": "Les publications programmées de {name} sont en pause et ces chiffres ne sont plus mis à jour.",
+    "reconnect": "Reconnecter",
+    "newPost": "Nouvelle publication",
+    "range": {
+      "7": "7 jours",
+      "30": "30 jours",
+      "90": "90 jours",
+      "label": "Période"
+    },
+    "updated": "Mis à jour {time}",
+    "summary": "Résumé",
+    "period": "{from} – {to} · par rapport au {previousFrom} – {previousTo}",
+    "points": "{value} pts",
+    "change": {
+      "new": "Nouveau",
+      "none": "Aucun changement"
+    },
+    "vsPrevious": "par rapport aux {days} jours précédents",
+    "rateNote": "Le taux d'engagement correspond aux interactions (j'aime, commentaires, partages et enregistrements) divisées par {base}.",
+    "rateBase": {
+      "reach": "la portée",
+      "impressions": "les impressions",
+      "views": "les vues",
+      "followers": "les abonnés"
+    },
+    "chart": {
+      "label": "Afficher",
+      "newFollowers": "Nouveaux abonnés",
+      "newSubscribers": "Nouveaux abonnés",
+      "engagements": "Interactions",
+      "perDay": "Par jour, {days} derniers jours",
+      "perWeek": "Par semaine, {days} derniers jours",
+      "week": "Semaine du {date}",
+      "tableDate": "Date"
+    },
+    "postsTitle": "Performances par publication",
+    "postsCount": "{count, plural, one {# publication} other {# publications}}",
+    "noPosts": "Aucune publication ces {days} derniers jours",
+    "noPostsBody": "Les publications de ce compte apparaissent ici avec leurs résultats.",
+    "post": "Publication",
+    "sortByDate": "Trier par date",
+    "sortBy": "Trier par {metric}",
+    "outside": "Publié en dehors de {product}",
+    "openExternal": "S'ouvre sur la plateforme",
+    "metrics": {
+      "followers": "Abonnés",
+      "subscribers": "Abonnés",
+      "posts": "Publications",
+      "impressions": "Impressions",
+      "reach": "Portée",
+      "views": "Vues",
+      "likes": "J'aime",
+      "reactions": "Réactions",
+      "comments": "Commentaires",
+      "replies": "Réponses",
+      "shares": "Partages",
+      "reposts": "Republications",
+      "saves": "Enregistrements",
+      "clicks": "Clics",
+      "engagementRate": "Taux d'engagement"
+    },
+    "export": {
+      "label": "Exporter",
+      "csv": "Exporter en CSV",
+      "markdown": "Exporter en Markdown",
+      "pdf": "Exporter en PDF",
+      "pdfHint": "Ouvre la fenêtre d'impression. Choisissez Enregistrer au format PDF.",
+      "done": "{file} téléchargé",
+      "title": "{account} sur {platform}",
+      "periodLine": "{from} – {to}, par rapport au {previousFrom} – {previousTo}",
+      "exported": "Exporté depuis {product} le {date}",
+      "metric": "Indicateur",
+      "thisPeriod": "Cette période",
+      "previousPeriod": "Période précédente",
+      "published": "Publié",
+      "link": "Lien"
+    }
+  }
+}
