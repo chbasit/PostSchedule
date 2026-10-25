@@ -83,7 +83,7 @@ export function CaptionEditor({ main, overrides, accounts, onMainChange, onOverr
         <span className="ms-auto flex flex-wrap justify-end gap-x-3 gap-y-1">{counters}</span>
       </div>
       {over ? (
-        <div className="pointer-events-none absolute inset-0 z-20 flex animate-fade-in flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed border-progress-from bg-sky/30 text-sm font-semibold text-ink backdrop-blur-[1px]">
+        <div className="pointer-events-none absolute inset-0 z-20 flex animate-fade-in flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed border-progress-from bg-highlight/90 text-sm font-semibold text-highlight-foreground backdrop-blur-[1px]">
           <ImagePlus className="size-6 animate-float" aria-hidden />
           {tm("dropHere")}
         </div>

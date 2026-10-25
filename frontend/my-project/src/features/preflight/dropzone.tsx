@@ -49,7 +49,7 @@ export function Dropzone({ onFile, accept = "video/*,image/*", disabled, hint, c
         className={cn(
           "group flex w-full flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed px-6 text-center transition-[background-color,border-color,transform] duration-200",
           compact ? "py-7" : "py-12",
-          over ? "scale-[1.01] border-progress-from bg-sky/25" : "border-input/50 hover:border-foreground/40 hover:bg-muted/60",
+          over ? "scale-[1.01] border-progress-from bg-highlight/60" : "border-input/50 hover:border-foreground/40 hover:bg-muted/60",
           disabled && "bg-muted",
         )}
       >
@@ -57,7 +57,7 @@ export function Dropzone({ onFile, accept = "video/*,image/*", disabled, hint, c
           aria-hidden
           className={cn(
             "inline-flex size-11 items-center justify-center rounded-xl border bg-card transition-[translate,background-color,border-color] duration-300",
-            over ? "-translate-y-1 border-transparent bg-sky text-ink" : "group-hover:-translate-y-0.5",
+            over ? "-translate-y-1 border-transparent bg-highlight text-highlight-foreground" : "group-hover:-translate-y-0.5",
           )}
         >
           <Upload className={cn("size-5", over && "animate-float")} />
@@ -65,7 +65,7 @@ export function Dropzone({ onFile, accept = "video/*,image/*", disabled, hint, c
         <span className="space-y-1">
           <span className="block font-semibold">{over ? t("release") : t("drop")}</span>
           <span className="block text-sm text-muted-foreground">
-            {t.rich("orBrowse", { browse: (chunks) => <span className="rounded bg-sky/45 px-1 font-semibold text-foreground">{chunks}</span> })}
+            {t.rich("orBrowse", { browse: (chunks) => <span className="rounded bg-highlight px-1 font-semibold text-highlight-foreground">{chunks}</span> })}
           </span>
           {hint ? <span className="block pt-1 text-xs text-muted-foreground">{hint}</span> : null}
         </span>

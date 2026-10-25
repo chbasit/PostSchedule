@@ -33,7 +33,7 @@ export function PlanCard({ plan, interval, action, current, compact }: Props) {
         {current ? (
           <span className="rounded-full bg-muted px-2 py-0.5 text-xs font-medium">{t("current")}</span>
         ) : plan.highlighted ? (
-          <span className="rounded-full bg-sky px-2 py-0.5 text-xs font-semibold text-ink">{t("popular")}</span>
+          <span className="rounded-full bg-highlight px-2 py-0.5 text-xs font-semibold text-highlight-foreground">{t("popular")}</span>
         ) : null}
       </div>
       <div>

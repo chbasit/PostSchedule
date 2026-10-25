@@ -297,7 +297,7 @@ export function CalendarView() {
                       "group relative space-y-1 border-b border-e p-1.5 [&:nth-child(7n)]:border-e-0",
                       view === "week" ? "min-h-80" : "min-h-28",
                       !inMonth && "bg-muted/40",
-                      dropTarget === day && "bg-sky/35",
+                      dropTarget === day && "bg-highlight",
                     )}
                   >
                     <div className="flex items-center justify-between">

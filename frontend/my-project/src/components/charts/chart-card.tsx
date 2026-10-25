@@ -33,7 +33,7 @@ export function ChartCard({
   const [asTable, setAsTable] = useState(false);
 
   return (
-    <figure aria-labelledby={`${id}-title`} className={cn("flex min-w-0 flex-col rounded-xl border bg-card p-5", className)}>
+    <figure aria-labelledby={`${id}-title`} className={cn("card-surface flex min-w-0 flex-col p-5", className)}>
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0 space-y-0.5">
           <h2 id={`${id}-title`} className="font-semibold">

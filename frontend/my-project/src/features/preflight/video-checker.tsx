@@ -60,7 +60,7 @@ export function VideoChecker() {
       {state.phase !== "done" ? (
         <div className="space-y-3">
           {state.phase === "checking" ? (
-            <div role="status" className="flex animate-fade-in flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed border-progress-from bg-sky/20 py-14 text-center">
+            <div role="status" className="flex animate-fade-in flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed border-progress-from bg-highlight/50 py-14 text-center">
               <Spinner className="size-6" />
               <p className="font-medium">{t("checking", { name: state.name })}</p>
             </div>

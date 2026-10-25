@@ -6,14 +6,18 @@ import {
   CalendarDays,
   Check,
   CircleAlert,
+  CircleCheck,
+  Minus,
   Plus,
   RefreshCw,
   Send,
+  TrendingDown,
+  TrendingUp,
   UserCheck,
   type LucideIcon,
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { Banner } from "@/components/banner";
 import { CountUp } from "@/components/count-up";
 import { BarList } from "@/components/charts/bar-list";
@@ -22,7 +26,7 @@ import { ColumnChart, type Column } from "@/components/charts/column-chart";
 import { PlatformMark } from "@/components/platform-badge";
 import { PostStatusChip } from "@/components/status-chip";
 import { EmptyState, ErrorState } from "@/components/states";
-import { tints, type Tint } from "@/components/tint";
+import { chips, type Chip } from "@/components/tint";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/misc";
 import { Link } from "@/i18n/navigation";
@@ -46,50 +50,71 @@ function greetingKey(timeZone: string, now: number): "morning" | "afternoon" | "
   return hour < 12 ? "morning" : hour < 18 ? "afternoon" : "evening";
 }
 
-// Stat tile: label, value in proportional figures, and the period it covers (dataviz figure contract).
-function StatTile({
+// Stat card (dataviz figure contract): label, value in proportional figures, then either the
+// change against a named period or what the number counts.
+function StatCard({
   label,
-  hint,
   value,
   href,
   icon: Icon,
-  tint,
+  chip,
   index,
+  children,
 }: {
   label: string;
-  hint: string;
   value: number | undefined;
   href: string;
   icon: LucideIcon;
-  tint: Tint;
+  chip: Chip;
   // Position in the row, for the staggered entrance.
   index: number;
+  children: ReactNode;
 }) {
   return (
     <Link
       href={href}
       style={{ animationDelay: `${index * 70}ms` }}
-      className={cn(
-        "group flex animate-fade-up flex-col gap-2.5 rounded-xl border p-4 transition-[filter,translate] duration-200 hover:-translate-y-0.5 hover:brightness-[0.97] dark:hover:brightness-110",
-        tints[tint].surface,
-        tints[tint].line,
-      )}
+      className="card-surface group flex animate-fade-up flex-col gap-3 p-4 transition-[translate,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-card-hover sm:p-5"
     >
-      <div className="flex items-center justify-between gap-2">
-        <p className="text-sm font-semibold text-foreground">{label}</p>
-        <span aria-hidden className={cn("inline-flex size-9 items-center justify-center rounded-lg bg-card transition-transform duration-200 group-hover:scale-105", tints[tint].fg)}>
-          <Icon className="size-5" />
+      <div className="flex items-start justify-between gap-3">
+        <p className="pt-1 text-sm font-medium text-muted-foreground">{label}</p>
+        <span
+          aria-hidden
+          className={cn("inline-flex size-9 shrink-0 items-center justify-center rounded-full ring-4 transition-transform duration-200 group-hover:scale-105", chips[chip])}
+        >
+          <Icon className="size-4.5" />
         </span>
       </div>
       {value === undefined ? (
-        <Skeleton className="h-9 w-12 bg-card/70" />
+        <Skeleton className="h-8 w-14" />
       ) : (
-        <p className="text-4xl font-semibold leading-none text-foreground">
+        <p className="text-3xl font-semibold leading-none tracking-tight text-foreground">
           <CountUp value={value} />
         </p>
       )}
-      <p className="text-sm text-muted-foreground">{hint}</p>
+      <div className="flex min-h-5 flex-wrap items-center gap-1.5 text-xs text-muted-foreground">{children}</div>
     </Link>
+  );
+}
+
+// Change against a named period: icon, signed number and the period in words, never colour alone.
+function Delta({ diff, period }: { diff: number; period: string }) {
+  const t = useTranslations("home.stats");
+  const locale = useLocale();
+  const Icon = diff > 0 ? TrendingUp : diff < 0 ? TrendingDown : Minus;
+  return (
+    <>
+      <span
+        className={cn(
+          "inline-flex items-center gap-0.5 rounded-full px-1.5 py-0.5 font-semibold",
+          diff > 0 ? "bg-success-bg text-success dark:border dark:border-success/40" : "bg-muted text-muted-foreground",
+        )}
+      >
+        <Icon className="size-3.5 rtl:-scale-x-100" aria-hidden />
+        {diff === 0 ? t("noChange") : new Intl.NumberFormat(locale, { signDisplay: "always" }).format(diff)}
+      </span>
+      <span>{period}</span>
+    </>
   );
 }
 
@@ -103,7 +128,7 @@ function Checklist({ accounts, posts }: { accounts: number; posts: Post[] }) {
   const done = steps.filter((s) => s.done).length;
   if (done === steps.length) return null;
   return (
-    <section aria-labelledby="checklist-title" className="rounded-xl border bg-card p-5">
+    <section aria-labelledby="checklist-title" className="card-surface p-5">
       <div className="flex items-center justify-between gap-3">
         <h2 id="checklist-title" className="font-semibold">
           {t("title")}
@@ -124,13 +149,13 @@ function Checklist({ accounts, posts }: { accounts: number; posts: Post[] }) {
           style={{ width: `${(done / steps.length) * 100}%` }}
         />
       </div>
-      <ol className="mt-4 space-y-2">
+      <ol className="mt-4 space-y-1">
         {steps.map((s) => (
           <li key={s.key}>
             <Link href={s.href} className="flex items-center gap-3 rounded-lg p-2 text-sm transition-colors hover:bg-muted">
               {s.done ? (
-                <span className="inline-flex size-6 items-center justify-center rounded-full bg-tint-green text-tint-green-fg">
-                  <Check className="size-4" aria-hidden />
+                <span className="inline-flex size-6 items-center justify-center rounded-full bg-chip-green text-chip-glyph">
+                  <Check className="size-3.5" strokeWidth={3} aria-hidden />
                 </span>
               ) : (
                 <span className="inline-flex size-6 items-center justify-center rounded-full border-2 border-input" aria-hidden />
@@ -163,16 +188,16 @@ function Pipeline({ posts }: { posts: Post[] }) {
   // The first four always show; problem states only when there are some.
   const items = PIPELINE.filter((p, i) => i < 4 || (counts.get(p.status) ?? 0) > 0);
   return (
-    <section aria-labelledby="pipeline-title" className="rounded-xl border bg-card p-5">
+    <section aria-labelledby="pipeline-title" className="card-surface p-5">
       <h2 id="pipeline-title" className="font-semibold">
         {t("title")}
       </h2>
-      <ul className="mt-4 space-y-2">
+      <ul className="mt-3 space-y-0.5">
         {items.map(({ status, href }) => (
           <li key={status}>
-            <Link href={href} className="flex items-center justify-between gap-3 rounded-lg p-2 transition-colors hover:bg-muted">
+            <Link href={href} className="flex items-center justify-between gap-3 rounded-lg px-2 py-1.5 transition-colors hover:bg-muted">
               <PostStatusChip status={status} />
-              <span className="text-lg font-semibold">{counts.get(status) ?? 0}</span>
+              <span className="text-base font-semibold">{counts.get(status) ?? 0}</span>
             </Link>
           </li>
         ))}
@@ -204,11 +229,14 @@ export function HomeView() {
     [all, now],
   );
   const attention = all.filter((p) => p.status === "failed" || p.status === "partial" || p.status === "lapsed");
+  const within = (p: Post, from: number, to: number) => p.scheduledAt !== null && Date.parse(p.scheduledAt) >= from && Date.parse(p.scheduledAt) < to;
+  const went = (p: Post) => p.status === "published" || p.status === "partial";
   const thisWeek = upcoming.filter((p) => Date.parse(p.scheduledAt!) < now + 7 * DAY).length;
+  // Everything that was due in the last 7 days, to compare the coming week's plan against.
+  const lastWeek = all.filter((p) => p.status !== "draft" && within(p, now - 7 * DAY, now)).length;
   const review = all.filter((p) => p.status === "pending_approval").length;
-  const publishedWeek = all.filter(
-    (p) => (p.status === "published" || p.status === "partial") && p.scheduledAt && now - Date.parse(p.scheduledAt) < 7 * DAY,
-  ).length;
+  const publishedWeek = all.filter((p) => went(p) && within(p, now - 7 * DAY, now)).length;
+  const publishedBefore = all.filter((p) => went(p) && within(p, now - 14 * DAY, now - 7 * DAY)).length;
   const open = all.find((p) => p.id === openId);
 
   // Posting plan: one column per day, the last 7 days as context and today onwards as the accent.
@@ -262,29 +290,23 @@ export function HomeView() {
 
   return (
     <div className="mx-auto max-w-6xl space-y-5">
-      {/* Hero */}
-      <section className="relative isolate overflow-hidden rounded-2xl bg-ink p-5 text-white sm:p-6">
-        <svg aria-hidden viewBox="0 0 200 200" className="absolute -inset-e-12 -top-14 -z-10 size-32 animate-fade-in sm:-inset-e-14 sm:-top-20 sm:size-72">
-          <circle cx="100" cy="100" r="100" fill="var(--brand-sky)" />
-        </svg>
-        <svg aria-hidden viewBox="0 0 200 200" className="absolute -bottom-24 inset-e-36 -z-10 hidden size-52 animate-fade-in md:block">
-          <circle cx="100" cy="100" r="88" fill="none" stroke="var(--brand-mint)" strokeWidth="18" />
-        </svg>
-        <div className="max-w-xl space-y-2.5">
-          <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">{t(`greeting.${greetingKey(tz, now)}`, { name: firstName })}</h1>
-          <p className="text-base text-white/90">
+      {/* Title row: greeting and this week's plan on the start side, the two main actions on the end. */}
+      <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="min-w-0 space-y-1">
+          <h1 className="text-2xl font-semibold tracking-tight">{t(`greeting.${greetingKey(tz, now)}`, { name: firstName })}</h1>
+          <p className="text-sm text-muted-foreground">
             {loaded ? t("hero.summary", { count: thisWeek, workspace: workspace.name }) : t("workspaceLine", { workspace: workspace.name })}
           </p>
-          <div className="flex flex-wrap gap-2 pt-1.5">
-            <Link href="/dashboard/create" className={buttonVariants({ variant: "sky" })}>
-              <Plus aria-hidden /> {t("newPost")}
-            </Link>
-            <Link href="/dashboard/posts/calendar" className={cn(buttonVariants({ variant: "secondary" }), "border-white/70 text-white hover:bg-white/10")}>
-              <CalendarDays aria-hidden /> {t("openCalendar")}
-            </Link>
-          </div>
         </div>
-      </section>
+        <div className="flex shrink-0 flex-wrap gap-2">
+          <Link href="/dashboard/posts/calendar" className={buttonVariants({ variant: "secondary" })}>
+            <CalendarDays aria-hidden /> {t("openCalendar")}
+          </Link>
+          <Link href="/dashboard/create" className={buttonVariants()}>
+            <Plus aria-hidden /> {t("newPost")}
+          </Link>
+        </div>
+      </header>
 
       {!user.emailVerified ? (
         <Banner
@@ -300,59 +322,75 @@ export function HomeView() {
       ) : null}
 
       {/* KPI row */}
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <StatTile index={0} label={t("stats.thisWeek")} hint={t("stats.thisWeekHint")} value={loaded ? thisWeek : undefined} href="/dashboard/posts/calendar" icon={CalendarClock} tint="blue" />
-        <StatTile index={1} label={t("stats.review")} hint={t("stats.reviewHint")} value={loaded ? review : undefined} href="/dashboard/posts?tab=scheduled" icon={UserCheck} tint="violet" />
-        <StatTile index={2} label={t("stats.published")} hint={t("stats.publishedHint")} value={loaded ? publishedWeek : undefined} href="/dashboard/posts?tab=posted" icon={Send} tint="green" />
-        <StatTile
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
+        <StatCard index={0} label={t("stats.thisWeek")} value={loaded ? thisWeek : undefined} href="/dashboard/posts/calendar" icon={CalendarClock} chip="sky">
+          {loaded ? <Delta diff={thisWeek - lastWeek} period={t("stats.vsPast")} /> : t("stats.thisWeekHint")}
+        </StatCard>
+        <StatCard index={1} label={t("stats.review")} value={loaded ? review : undefined} href="/dashboard/posts?tab=scheduled" icon={UserCheck} chip="violet">
+          {t("stats.reviewHint")}
+        </StatCard>
+        <StatCard index={2} label={t("stats.published")} value={loaded ? publishedWeek : undefined} href="/dashboard/posts?tab=posted" icon={Send} chip="green">
+          {loaded ? <Delta diff={publishedWeek - publishedBefore} period={t("stats.vsBefore")} /> : t("stats.publishedHint")}
+        </StatCard>
+        <StatCard
           index={3}
           label={t("stats.attention")}
-          hint={t("stats.attentionHint")}
           value={loaded ? attention.length : undefined}
           href="/dashboard/posts"
-          icon={CircleAlert}
-          tint={attention.length > 0 ? "rose" : "peach"}
-        />
+          icon={attention.length > 0 ? CircleAlert : CircleCheck}
+          chip={attention.length > 0 ? "rose" : "blue"}
+        >
+          {t("stats.attentionHint")}
+        </StatCard>
       </div>
 
       {posts.isError ? <ErrorState error={posts.error} onRetry={() => posts.refetch()} /> : null}
 
-      {/* Needs attention */}
+      {/* Needs attention: one compact row per post, the fix on the end. */}
       {attention.length > 0 ? (
-        <section aria-labelledby="attention-title" className="rounded-xl border border-tint-amber-line bg-tint-amber p-4 sm:p-5">
-          <h2 id="attention-title" className="flex items-center gap-2 font-semibold">
-            <CircleAlert className="size-5 text-tint-amber-fg" aria-hidden />
+        <section aria-labelledby="attention-title" className="card-surface overflow-hidden">
+          <h2 id="attention-title" className="flex items-center gap-2.5 px-4 py-3 text-sm font-semibold sm:px-5">
+            <span aria-hidden className={cn("inline-flex size-6 items-center justify-center rounded-full ring-4", chips.rose)}>
+              <CircleAlert className="size-3.5" />
+            </span>
             {t("attentionTitle")}
+            <span className="tabular rounded-full bg-muted px-2 py-0.5 text-xs font-semibold text-muted-foreground">{attention.length}</span>
           </h2>
-          <ul className="mt-3 space-y-2">
-            {attention.map((post) => (
-              <li key={post.id} className="flex flex-col gap-3 rounded-lg bg-card p-3 sm:flex-row sm:items-center">
-                <div className="min-w-0 flex-1 space-y-1">
-                  <div className="flex flex-wrap items-center gap-2">
+          <ul className="divide-y border-t">
+            {attention.map((post) => {
+              const reason = post.status === "lapsed" ? t("lapsedReason") : (post.targets.find((tg) => tg.status === "failed")?.errorMessage ?? t("failedReason"));
+              return (
+                <li key={post.id} className="flex flex-col gap-2 px-4 py-2.5 sm:flex-row sm:items-center sm:gap-4 sm:px-5">
+                  <div className="flex min-w-0 flex-1 flex-wrap items-center gap-x-2.5 gap-y-1">
                     <PostStatusChip status={post.status} />
                     <PlatformStack post={post} />
                     {post.scheduledAt ? (
-                      <span className="text-sm text-muted-foreground">
+                      <span className="whitespace-nowrap text-xs text-muted-foreground">
                         {formatDayKey(dayKey(post.scheduledAt, tz), locale, { day: "numeric", month: "short" })} ·{" "}
                         {formatTime(post.scheduledAt, locale, tz, !user.use24h)}
                       </span>
                     ) : null}
+                    <p className="min-w-0 basis-full text-sm md:flex-1 md:basis-0 md:truncate" title={reason}>
+                      {reason}
+                    </p>
                   </div>
-                  <p className="text-sm">
-                    {post.status === "lapsed" ? t("lapsedReason") : (post.targets.find((tg) => tg.status === "failed")?.errorMessage ?? t("failedReason"))}
-                  </p>
-                </div>
-                <div className="flex shrink-0 gap-2">
-                  <Button size="sm" loading={retry.isPending && retry.variables?.id === post.id} onClick={() => !retry.isPending && retry.mutate(post)}>
-                    {post.status === "lapsed" ? <Send aria-hidden /> : <RefreshCw aria-hidden />}
-                    {post.status === "lapsed" ? t("publishNow") : t("retry")}
-                  </Button>
-                  <Button size="sm" variant="secondary" onClick={() => setOpenId(post.id)}>
-                    {t("details")}
-                  </Button>
-                </div>
-              </li>
-            ))}
+                  <div className="flex shrink-0 gap-1.5">
+                    <Button
+                      size="sm"
+                      variant="secondary"
+                      loading={retry.isPending && retry.variables?.id === post.id}
+                      onClick={() => !retry.isPending && retry.mutate(post)}
+                    >
+                      {post.status === "lapsed" ? <Send aria-hidden /> : <RefreshCw aria-hidden />}
+                      {post.status === "lapsed" ? t("publishNow") : t("retry")}
+                    </Button>
+                    <Button size="sm" variant="ghost" onClick={() => setOpenId(post.id)}>
+                      {t("details")}
+                    </Button>
+                  </div>
+                </li>
+              );
+            })}
           </ul>
         </section>
       ) : null}
@@ -376,7 +414,7 @@ export function HomeView() {
           </ChartCard>
 
           {/* Coming up */}
-          <section aria-labelledby="upcoming-title" className="rounded-xl border bg-card p-5">
+          <section aria-labelledby="upcoming-title" className="card-surface p-5">
             <div className="flex items-center justify-between gap-3">
               <h2 id="upcoming-title" className="font-semibold">
                 {t("upcomingTitle")}
@@ -408,7 +446,7 @@ export function HomeView() {
                 }
               />
             ) : (
-              <ul className="mt-4 space-y-2">
+              <ul className="-mx-2 mt-3 space-y-0.5">
                 {upcoming.slice(0, 6).map((post) => {
                   const key = dayKey(post.scheduledAt!, tz);
                   return (
@@ -416,11 +454,11 @@ export function HomeView() {
                       <button
                         type="button"
                         onClick={() => setOpenId(post.id)}
-                        className="flex w-full items-center gap-4 rounded-lg border p-3 text-start transition-colors hover:bg-muted"
+                        className="flex w-full items-center gap-3.5 rounded-xl p-2 text-start transition-colors hover:bg-muted/70"
                       >
-                        <span className="flex w-14 shrink-0 flex-col items-center rounded-lg bg-tint-blue py-1.5 text-tint-blue-fg">
+                        <span className="flex w-12 shrink-0 flex-col items-center rounded-xl bg-highlight py-1.5 text-highlight-foreground">
                           <span className="text-xs font-semibold uppercase">{formatDayKey(key, locale, { weekday: "short" })}</span>
-                          <span className="text-xl font-bold leading-tight">{formatDayKey(key, locale, { day: "numeric" })}</span>
+                          <span className="text-lg font-bold leading-tight">{formatDayKey(key, locale, { day: "numeric" })}</span>
                         </span>
                         <span className="min-w-0 flex-1 space-y-1">
                           <span className="block text-sm">
@@ -445,7 +483,7 @@ export function HomeView() {
         </div>
 
         <div className="min-w-0 space-y-5">
-          {loaded ? <WeekCard posts={all} today={today} timeZone={tz} /> : <Skeleton className="h-56 w-full rounded-xl" />}
+          {loaded ? <WeekCard posts={all} today={today} timeZone={tz} /> : <Skeleton className="h-56 w-full rounded-2xl" />}
           {loaded && accounts.isSuccess ? <Checklist accounts={accounts.data.length} posts={all} /> : null}
 
           <ChartCard
@@ -479,7 +517,7 @@ export function HomeView() {
             )}
           </ChartCard>
 
-          {loaded ? <Pipeline posts={all} /> : <Skeleton className="h-64 w-full rounded-xl" />}
+          {loaded ? <Pipeline posts={all} /> : <Skeleton className="h-64 w-full rounded-2xl" />}
         </div>
       </div>
 

@@ -23,15 +23,14 @@ export function PageSkeleton({ kind }: { kind: SkeletonKind }) {
       </div>
       {kind === "home" ? (
         <>
-          <Skeleton className="h-44 w-full rounded-2xl" />
-          <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
             {Array.from({ length: 4 }, (_, i) => (
-              <Skeleton key={i} className="h-28 rounded-xl" />
+              <Skeleton key={i} className="h-36 rounded-2xl" />
             ))}
           </div>
-          <div className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
-            <Skeleton className="h-72 rounded-xl" />
-            <Skeleton className="h-72 rounded-xl" />
+          <div className="grid gap-5 lg:grid-cols-[1.6fr_1fr]">
+            <Skeleton className="h-72 rounded-2xl" />
+            <Skeleton className="h-72 rounded-2xl" />
           </div>
         </>
       ) : null}

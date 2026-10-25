@@ -113,7 +113,8 @@
       "login": "Log in",
       "signup": "Start free",
       "tagline": "Social media management for startups, agencies and teams in many countries.",
-      "copyright": "© {product}. All rights reserved."
+      "copyright": "© {product}. All rights reserved.",
+      "allTools": "All free tools"
     },
     "mock": {
       "title": "New video post",
@@ -373,7 +374,407 @@
       "sourceLink": "{platform} documentation",
       "ctaTitle": "Fix it and schedule it in one place.",
       "ctaBody": "Sign up to apply fixes, preview every platform and schedule this post.",
-      "cta": "Fix and schedule this"
+      "cta": "Fix and schedule this",
+      "name": "Video checker",
+      "description": "Check a video against each platform's limits before you post.",
+      "steps": {
+        "1": {
+          "title": "Drop your video",
+          "body": "An MP4, MOV or WebM video, or an image. Your browser reads it; nothing is uploaded."
+        },
+        "2": {
+          "title": "See every platform",
+          "body": "Aspect ratio, resolution, bitrate, length and size are checked for Instagram, TikTok, YouTube, Facebook, LinkedIn and Bluesky."
+        },
+        "3": {
+          "title": "Fix it before you post",
+          "body": "Each warning says what will happen and how to fix it, next to a preview of how the platform shows it."
+        }
+      },
+      "faq": {
+        "1": {
+          "q": "Is my video uploaded?",
+          "a": "No. Your browser reads the file's details on your device, and nothing is sent to us."
+        },
+        "2": {
+          "q": "Why do videos look blurry after posting?",
+          "a": "Usually the video's shape, size or bitrate does not match what the platform expects, so it gets cropped or re-encoded. The checker shows where that will happen."
+        },
+        "3": {
+          "q": "How current are the limits?",
+          "a": "Platforms change their limits. Each result links to the platform's documentation, and we are verifying every limit against it."
+        }
+      }
+    },
+    "common": {
+      "eyebrow": "Free tool",
+      "breadcrumb": "Free tools",
+      "badgeFree": "Free",
+      "badgeNoSignup": "No sign-up",
+      "badgePrivate": "Runs in your browser",
+      "stepsTitle": "How it works",
+      "faqTitle": "Questions",
+      "moreTitle": "More free tools",
+      "open": "Open tool",
+      "allTools": "See all free tools",
+      "ctaTitle": "Make every post look right, everywhere.",
+      "ctaBody": "{product} previews each post on every platform, checks it, and schedules it.",
+      "cta": "Start free",
+      "copy": "Copy",
+      "copied": "Copied",
+      "copyFailed": "Copying did not work. Select the text and copy it yourself.",
+      "download": "Download",
+      "downloadAll": "Download all (ZIP)",
+      "share": "Save to phone",
+      "preparing": "Preparing…",
+      "another": "Use another image",
+      "imageHint": "JPG, PNG or WebP image.",
+      "opening": "Opening {name}…",
+      "imageErrors": {
+        "type": "This is not an image we can open. Use a JPG, PNG or WebP image.",
+        "unreadable": "We could not open this image. It may be damaged, or saved in a format your browser cannot read, such as HEIC."
+      },
+      "lowRes": "This image is small for this layout, so the result may look soft. A larger image will be sharper.",
+      "privacy": "Your image never leaves this device. Everything happens in your browser.",
+      "rulesPending": "Platforms change their rules. We are verifying these against {platform}'s help pages.",
+      "rulesLink": "{platform} help",
+      "fit": "Fit",
+      "fill": "Fill and crop",
+      "whole": "Whole image",
+      "background": "Background colour",
+      "horizontal": "Horizontal position",
+      "vertical": "Vertical position",
+      "sizeLine": "{count, plural, one {# image} other {# images}} · {width} × {height} px",
+      "previewTitle": "Preview",
+      "passes": "passes",
+      "fails": "does not pass",
+      "dragHint": "Drag the picture to choose the part to keep.",
+      "exportFailed": "We could not prepare the files. Try again, or use a smaller image."
+    },
+    "index": {
+      "metaTitle": "Free social media tools",
+      "metaDescription": "Free tools for Instagram, TikTok, YouTube and LinkedIn: split carousels, make profile grids, check usernames and titles, and format posts. No sign-up.",
+      "eyebrow": "Free tools",
+      "title": "Small tools for better posts.",
+      "intro": "Split a panorama into a carousel, plan a profile grid, check a username or a title, and format a LinkedIn post. Free, no sign-up, and your files never leave your device."
+    },
+    "carouselSplitter": {
+      "metaTitle": "Instagram carousel splitter: seamless panorama slides",
+      "metaDescription": "Split a wide image into seamless Instagram carousel slides, portrait 4:5 or square. Free, no sign-up, and it works in your browser.",
+      "name": "Instagram carousel splitter",
+      "description": "Turn one wide image into seamless carousel slides.",
+      "title": "Instagram carousel splitter",
+      "intro": "Split one wide image into 2 to 10 slides that line up when people swipe. Pick portrait or square slides, choose the part to keep, and download them in order.",
+      "slides": "Slides",
+      "shape": "Slide shape",
+      "portrait": "Portrait 4:5",
+      "square": "Square 1:1",
+      "seams": "Lines show where each slide starts.",
+      "swipe": "Swipe preview",
+      "previous": "Previous slide",
+      "next": "Next slide",
+      "slideOf": "Slide {n} of {count}",
+      "slide": "Slide {n}",
+      "steps": {
+        "1": {
+          "title": "Add a wide image",
+          "body": "A panorama, or a design made wider than it is tall, works best."
+        },
+        "2": {
+          "title": "Choose your slides",
+          "body": "Pick how many slides and their shape, then slide the image to keep the part you want."
+        },
+        "3": {
+          "title": "Download and post",
+          "body": "Download the slides and add them to one carousel post, in order from 1."
+        }
+      },
+      "faq": {
+        "1": {
+          "q": "What size are the slides?",
+          "a": "Portrait slides are 1080 × 1350 pixels (4:5) and square slides are 1080 × 1080 (1:1). Use one shape for every slide in a post."
+        },
+        "2": {
+          "q": "How many slides can I make?",
+          "a": "From 2 to 10, the number Instagram's publishing API takes in one carousel. The Instagram app may allow more."
+        },
+        "3": {
+          "q": "Will the slides line up?",
+          "a": "Yes. Every slide is cut from the same image with no gap, so the picture carries on as people swipe. Instagram may still compress the images a little."
+        }
+      }
+    },
+    "gridMaker": {
+      "metaTitle": "Instagram grid maker: split a photo into a profile grid",
+      "metaDescription": "Split one image into 3, 6, 9 or 12 tiles for your Instagram profile grid, numbered in the order to post them. Free, no sign-up.",
+      "name": "Instagram grid maker",
+      "description": "Split one image into a three-column profile grid.",
+      "title": "Instagram grid maker",
+      "intro": "Split one image into 3, 6, 9 or 12 tiles that make one big picture on your profile. Every tile is numbered in the order to post it.",
+      "rows": "Rows",
+      "shape": "Tile shape",
+      "tall": "Tall 3:4",
+      "portrait": "Portrait 4:5",
+      "square": "Square 1:1",
+      "shapeHint": "Instagram's profile grid shows posts as tall rectangles (3:4). Choose square if your grid still shows squares.",
+      "order": "Posting order",
+      "orderHint": "Your newest post shows first, so post tile 1 (bottom right) first and the top-left tile last.",
+      "post": "Post {n}",
+      "steps": {
+        "1": {
+          "title": "Add an image",
+          "body": "Use a large one: a 3 × 3 grid of tall tiles needs about 3240 × 4320 pixels to stay sharp."
+        },
+        "2": {
+          "title": "Pick rows and shape",
+          "body": "Choose 1 to 4 rows and the tile shape, then move the image to keep the part you want."
+        },
+        "3": {
+          "title": "Post in order",
+          "body": "Download the tiles and post them one by one, starting with tile 1."
+        }
+      },
+      "faq": {
+        "1": {
+          "q": "Why post the bottom-right tile first?",
+          "a": "Your profile shows the newest post first, in the top left. Posting the bottom-right tile first puts every tile in its place by the end."
+        },
+        "2": {
+          "q": "Which tile shape should I use?",
+          "a": "Instagram's profile grid shows posts as 3:4 rectangles, so tall tiles fill each spot. Instagram changes the grid from time to time, so check your profile after the first post."
+        },
+        "3": {
+          "q": "Will my grid stay lined up?",
+          "a": "Every later post moves each tile one place along. Post in threes to keep the rows together, and note that pinned posts show first."
+        }
+      }
+    },
+    "linkedinFormatter": {
+      "metaTitle": "LinkedIn text formatter: bold, italic and lists",
+      "metaDescription": "Write a LinkedIn post with bold, italic and underlined text and lists, see where it gets cut off, then copy it. Free, no sign-up.",
+      "name": "LinkedIn text formatter",
+      "description": "Add bold, italic and lists to a LinkedIn post.",
+      "title": "LinkedIn text formatter",
+      "intro": "LinkedIn posts are plain text, so this tool swaps letters for bold, italic or underlined look-alikes that you can paste in. Write, format, check where the post gets cut off, then copy it.",
+      "editor": "Your post",
+      "placeholder": "Write your post here. Select some words, then choose a style.",
+      "toolbar": "Formatting",
+      "bold": "Bold",
+      "italic": "Italic",
+      "boldItalic": "Bold italic",
+      "mono": "Monospace",
+      "underline": "Underline",
+      "strike": "Strikethrough",
+      "bullets": "Bulleted list",
+      "numbers": "Numbered list",
+      "clear": "Clear formatting",
+      "selectFirst": "Select some text first.",
+      "count": "{count} / {limit}",
+      "countLabel": "Characters",
+      "countNote": "Counted cautiously: each styled letter counts as two.",
+      "over": "{count, plural, one {# character over the limit} other {# characters over the limit}}",
+      "desktop": "Computer",
+      "mobile": "Phone",
+      "seeMore": "…see more",
+      "you": "Your name",
+      "headline": "Your headline",
+      "now": "Now",
+      "previewEmpty": "Your post will show here.",
+      "foldHint": "People see the first lines before “see more”. Put your hook there.",
+      "a11yNote": "Screen readers may read styled letters one by one, or skip them. Style a few words, not whole posts.",
+      "steps": {
+        "1": {
+          "title": "Write or paste your post",
+          "body": "Use the box like any text editor. Line breaks are kept."
+        },
+        "2": {
+          "title": "Select words and pick a style",
+          "body": "Bold, italic, underline and lists. Press a style again to remove it."
+        },
+        "3": {
+          "title": "Copy it into LinkedIn",
+          "body": "Press Copy, then paste into a new LinkedIn post. The styles come with it."
+        }
+      },
+      "faq": {
+        "1": {
+          "q": "How does bold text work on LinkedIn?",
+          "a": "LinkedIn posts have no formatting buttons. This tool replaces each letter with a Unicode look-alike in bold or italic, which LinkedIn shows like any other character."
+        },
+        "2": {
+          "q": "Which characters can be styled?",
+          "a": "The letters A to Z and the digits 0 to 9. Accented letters, other alphabets and emoji stay as they are."
+        },
+        "3": {
+          "q": "Is styled text accessible?",
+          "a": "Not fully. Screen readers may spell styled words letter by letter or skip them, and search may not find them. Keep styling to a few words."
+        }
+      }
+    },
+    "youtubeTitle": {
+      "metaTitle": "YouTube title checker: length and preview",
+      "metaDescription": "Check your YouTube title's length, see where it gets cut off on phones and computers, and catch mistakes before you publish. Free, no sign-up.",
+      "name": "YouTube title checker",
+      "description": "See where a title gets cut off, and catch mistakes.",
+      "title": "YouTube title checker",
+      "intro": "Type a title to see its length, how much of it shows on phones and computers, and anything YouTube would refuse.",
+      "label": "Video title",
+      "placeholder": "How I edit vertical video in 10 minutes",
+      "count": "{count} / {limit}",
+      "mobile": "Phone · home feed",
+      "desktop": "Computer · search results",
+      "visible": "{count, plural, one {About # character shows before it is cut off.} other {About # characters show before it is cut off.}}",
+      "fits": "The whole title shows.",
+      "channel": "Your channel",
+      "meta": "1.2K views · 2 hours ago",
+      "checksTitle": "Checks",
+      "checks": {
+        "length": {
+          "pass": "Within YouTube's {limit}-character limit.",
+          "block": "{over, plural, one {# character over YouTube's {limit}-character limit.} other {# characters over YouTube's {limit}-character limit.}}"
+        },
+        "angleBrackets": {
+          "pass": "No angle brackets.",
+          "block": "YouTube does not allow < or > in titles."
+        },
+        "caps": {
+          "pass": "Not all capitals.",
+          "warn": "Mostly capital letters can read as shouting."
+        },
+        "punctuation": {
+          "pass": "No runs of !!! or ???.",
+          "warn": "Runs of !!! or ??? can look like clickbait."
+        },
+        "spaces": {
+          "pass": "No extra spaces.",
+          "warn": "There are extra spaces at the ends or between words."
+        }
+      },
+      "fixSpaces": "Remove extra spaces",
+      "empty": "Type a title to check it.",
+      "approx": "Previews are approximate: YouTube's layout changes with the screen size.",
+      "steps": {
+        "1": {
+          "title": "Type your title",
+          "body": "Or paste it. The count and previews update as you type."
+        },
+        "2": {
+          "title": "Check the previews",
+          "body": "See how much shows on a phone and on a computer before YouTube cuts it off."
+        },
+        "3": {
+          "title": "Fix and copy",
+          "body": "Sort out anything flagged, then copy the title into YouTube Studio."
+        }
+      },
+      "faq": {
+        "1": {
+          "q": "How long can a YouTube title be?",
+          "a": "Up to {limit} characters. Shorter titles are easier to read in full, especially on phones."
+        },
+        "2": {
+          "q": "Where does YouTube cut titles off?",
+          "a": "It depends on the screen and the page. Phones usually show about two lines in the home feed, so put the most important words first."
+        },
+        "3": {
+          "q": "Can I use emoji?",
+          "a": "Yes. Each emoji counts as one character here. Use them sparingly: they can push important words out of view."
+        }
+      }
+    },
+    "username": {
+      "label": "Username or name",
+      "placeholder": "yourname",
+      "count": "{count} / {max}",
+      "rulesTitle": "{platform} rules",
+      "rules": {
+        "length": "{min} to {max} characters",
+        "characters": "Only letters, numbers, periods and underscores",
+        "startPeriod": "Does not start with a period",
+        "endPeriod": "Does not end with a period",
+        "doublePeriod": "No two periods in a row"
+      },
+      "valid": "@{handle} follows {platform}'s rules.",
+      "invalid": "@{handle} does not follow {platform}'s rules yet.",
+      "empty": "Type a username, or a name to get ideas.",
+      "open": "See if it's taken",
+      "openHint": "Opens {platform} in a new tab. If a profile appears, the name is taken.",
+      "ideas": "Ideas that follow the rules",
+      "ideasEmpty": "Type a name with Latin letters or numbers to get ideas.",
+      "openIdea": "Open @{handle} on {platform}",
+      "availability": "We cannot tell you whether a name is free: {platform} offers no way to check, and we do not scrape it."
+    },
+    "instagramUsername": {
+      "metaTitle": "Instagram username checker: rules and ideas",
+      "metaDescription": "Check an Instagram username against Instagram's rules, get ideas that follow them, and open the profile to see if it's taken. Free, no sign-up.",
+      "name": "Instagram username checker",
+      "description": "Check a username against Instagram's rules.",
+      "title": "Instagram username checker",
+      "intro": "Type a username or a name to see whether it follows Instagram's rules, get ideas that do, and open the profile address to see if it is taken.",
+      "steps": {
+        "1": {
+          "title": "Type a username or a name",
+          "body": "Capitals and the @ are ignored: Instagram usernames are lower case."
+        },
+        "2": {
+          "title": "Check the rules",
+          "body": "Up to 30 letters, numbers, periods and underscores, with no period at the start or end and no two in a row."
+        },
+        "3": {
+          "title": "See if it's free",
+          "body": "Open the profile address. If a profile appears, the name is taken; if not, it may be free."
+        }
+      },
+      "faq": {
+        "1": {
+          "q": "Can this tool tell me if a username is free?",
+          "a": "No. Instagram offers no public way to check, and we do not scrape it. Open the profile link: if a profile appears, the name is taken."
+        },
+        "2": {
+          "q": "What can an Instagram username contain?",
+          "a": "Letters, numbers, periods and underscores, up to 30 characters. Spaces, accents and other symbols are not allowed."
+        },
+        "3": {
+          "q": "Why is a name that looks free refused?",
+          "a": "Instagram can also hold back names, for example ones used by accounts that were closed. If a name is refused, try one of the ideas."
+        }
+      }
+    },
+    "tiktokUsername": {
+      "metaTitle": "TikTok username checker: rules and ideas",
+      "metaDescription": "Check a TikTok username against TikTok's rules, get ideas that follow them, and open the profile to see if it's taken. Free, no sign-up.",
+      "name": "TikTok username checker",
+      "description": "Check a username against TikTok's rules.",
+      "title": "TikTok username checker",
+      "intro": "Type a username or a name to see whether it follows TikTok's rules, get ideas that do, and open the profile address to see if it is taken.",
+      "steps": {
+        "1": {
+          "title": "Type a username or a name",
+          "body": "Capitals and the @ are ignored."
+        },
+        "2": {
+          "title": "Check the rules",
+          "body": "2 to 24 letters, numbers, periods and underscores, with no period at the end."
+        },
+        "3": {
+          "title": "See if it's free",
+          "body": "Open the profile address. If a profile appears, the name is taken; if not, it may be free."
+        }
+      },
+      "faq": {
+        "1": {
+          "q": "Can this tool tell me if a username is free?",
+          "a": "No. TikTok offers no public way to check, and we do not scrape it. Open the profile link: if a profile appears, the name is taken."
+        },
+        "2": {
+          "q": "What can a TikTok username contain?",
+          "a": "Letters, numbers, periods and underscores, from 2 to 24 characters, and it cannot end with a period."
+        },
+        "3": {
+          "q": "Should my TikTok and Instagram usernames match?",
+          "a": "It helps people find you. TikTok allows 24 characters and Instagram 30, so a name that works on both has 24 or fewer. Check it with both checkers."
+        }
+      }
     }
   },
   "auth": {
@@ -987,7 +1388,10 @@
       "thisWeekHint": "Next 7 days",
       "reviewHint": "Waiting for approval",
       "publishedHint": "Last 7 days",
-      "attentionHint": "Failed, partial or lapsed"
+      "attentionHint": "Failed, partial or lapsed",
+      "vsPast": "vs last 7 days",
+      "vsBefore": "vs the 7 days before",
+      "noChange": "No change"
     },
     "checklist": {
       "title": "Your first post",

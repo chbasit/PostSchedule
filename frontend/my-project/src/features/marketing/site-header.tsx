@@ -12,7 +12,7 @@ export function SiteHeader() {
   const links = [
     { href: "/#features", label: t("product") },
     { href: "/pricing", label: t("pricing") },
-    { href: "/tools/video-checker", label: t("freeTools") },
+    { href: "/tools", label: t("freeTools") },
   ] as const;
 
   return (

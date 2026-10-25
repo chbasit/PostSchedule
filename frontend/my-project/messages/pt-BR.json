@@ -987,7 +987,10 @@
       "thisWeekHint": "Próximos 7 dias",
       "reviewHint": "Aguardando aprovação",
       "publishedHint": "Últimos 7 dias",
-      "attentionHint": "Com falha, parciais ou vencidos"
+      "attentionHint": "Com falha, parciais ou vencidos",
+      "vsPast": "em relação aos últimos 7 dias",
+      "vsBefore": "em relação aos 7 dias anteriores",
+      "noChange": "Sem alteração"
     },
     "checklist": {
       "title": "Seu primeiro post",

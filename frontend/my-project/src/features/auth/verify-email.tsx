@@ -39,7 +39,7 @@ export function VerifyEmail() {
 
   return (
     <div className="space-y-5 text-center">
-      <span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-sky/45 text-ink dark:text-foreground">
+      <span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-highlight text-highlight-foreground">
         <MailCheck className="size-6" aria-hidden />
       </span>
       <div className="space-y-1.5">

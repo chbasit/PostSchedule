@@ -48,7 +48,7 @@ export function WhenPanel({ value, onChange, userTimeZone, result }: Props) {
       </h2>
       <RadioGroup value={value.mode} onValueChange={(mode) => onChange({ ...value, mode: mode as WhenMode })} aria-labelledby={`${groupId}-title`}>
         {(["now", "schedule", "queue"] as const).map((mode) => (
-          <label key={mode} className="flex cursor-pointer items-start gap-3 rounded-lg border px-3 py-2.5 has-data-[state=checked]:border-foreground has-data-[state=checked]:bg-sky/25">
+          <label key={mode} className="flex cursor-pointer items-start gap-3 rounded-lg border px-3 py-2.5 has-data-[state=checked]:border-foreground has-data-[state=checked]:bg-highlight/70">
             <RadioGroupItem value={mode} className="mt-0.5" />
             <span>
               <span className="block text-sm font-medium">{t(`modes.${mode}.title`)}</span>

@@ -18,8 +18,6 @@ export const buttonVariants = cva(
         secondary: "border border-foreground/80 bg-transparent text-foreground hover:bg-muted disabled:border-border disabled:text-muted-foreground",
         // Lime: marketing promos only.
         accent: cn("bg-lime text-ink hover:bg-lime/85", disabledSolid),
-        // Sky: the dashboard's highlight action, on ink surfaces.
-        sky: cn("bg-sky text-ink hover:bg-sky/85", disabledSolid),
         destructive: cn("bg-destructive text-destructive-foreground hover:bg-destructive/90", disabledSolid),
         ghost: "text-foreground hover:bg-muted disabled:text-muted-foreground",
         link: "h-auto px-0 font-semibold text-foreground hover:text-foreground/70 active:scale-100 disabled:text-muted-foreground",

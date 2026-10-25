@@ -20,8 +20,10 @@ import { accountHref, inSettings, isActive, NAV, SETTINGS_HOME, SETTINGS_NAV } f
 import { UserMenuItems } from "./user-menu";
 
 const itemBase = "flex h-8 items-center gap-2.5 rounded-lg px-2.5 text-sm transition-colors duration-200";
-// Ink on sky (12.8:1) in both themes marks where you are.
-const itemState = (active: boolean) => (active ? "bg-sky font-semibold text-ink" : "font-medium text-foreground hover:bg-shell-hover");
+// The light green highlight marks where you are: ink on it in light, light text in dark
+// (13:1 or better).
+const itemState = (active: boolean) =>
+  active ? "bg-highlight font-semibold text-highlight-foreground" : "font-medium text-foreground hover:bg-shell-hover";
 const iconButton =
   "inline-flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-shell-hover hover:text-foreground [&_svg]:size-4";
 

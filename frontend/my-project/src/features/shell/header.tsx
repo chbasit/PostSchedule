@@ -35,11 +35,11 @@ function WorkspaceSwitcher() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="max-w-[60vw] gap-2 px-2 sm:max-w-xs" aria-label={t("switchWorkspace", { name: workspace.name })}>
-          <span aria-hidden className="inline-flex size-7 shrink-0 items-center justify-center rounded-md bg-mint text-xs font-bold text-ink">
+          <span aria-hidden className="inline-flex size-7 shrink-0 items-center justify-center rounded-lg bg-sky text-xs font-bold text-ink">
             {workspace.name.slice(0, 1).toUpperCase()}
           </span>
           <span className="truncate font-semibold">{workspace.name}</span>
-          <span className="hidden rounded-full bg-sky px-2 py-0.5 text-xs font-semibold text-ink sm:inline">{tp(workspace.planKey)}</span>
+          <span className="hidden rounded-full bg-highlight px-2 py-0.5 text-xs font-semibold text-highlight-foreground sm:inline">{tp(workspace.planKey)}</span>
           <ChevronDown className="text-muted-foreground" aria-hidden />
         </Button>
       </DropdownMenuTrigger>
@@ -47,7 +47,7 @@ function WorkspaceSwitcher() {
         <DropdownMenuLabel>{t("workspaces")}</DropdownMenuLabel>
         {workspaces.map((ws) => (
           <DropdownMenuItem key={ws.id} onSelect={() => switchWorkspace(ws.id)}>
-            <span aria-hidden className="inline-flex size-6 items-center justify-center rounded-md bg-mint text-xs font-bold text-ink">
+            <span aria-hidden className="inline-flex size-6 items-center justify-center rounded-md bg-sky text-xs font-bold text-ink">
               {ws.name.slice(0, 1).toUpperCase()}
             </span>
             <span className="flex-1 truncate">{ws.name}</span>

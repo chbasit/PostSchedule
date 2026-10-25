@@ -68,7 +68,7 @@ export function TagPicker({ value, onChange, mode = "assign", className }: Props
           <TagIcon aria-hidden />
           {t("label")}
           {value.length > 0 ? (
-            <span className="inline-flex min-w-5 animate-pop items-center justify-center rounded-full bg-sky px-1.5 text-xs font-semibold text-ink">
+            <span className="inline-flex min-w-5 animate-pop items-center justify-center rounded-full bg-highlight px-1.5 text-xs font-semibold text-highlight-foreground">
               {value.length}
             </span>
           ) : null}

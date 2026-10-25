@@ -11,10 +11,28 @@
   --brand-coral: #ff4b32;
   --brand-coral-soft: #ff7d4b;
   --brand-coral-strong: #c23b22;
-  /* Dashboard accents: sky marks where you are and what is selected, mint marks done
-     and new. Both are backgrounds behind ink text, never text on white. */
+
+  /* Dashboard accents: sky for icons and badges, mint for done and new. Both sit behind
+     ink text, never text on white. */
   --brand-sky: #addaff;
   --brand-mint: #90d788;
+
+  /* Highlight, the light green surface used most in the app: where you are, what is
+     selected, date badges (ink text on it here, light text in dark: 14:1 or better). */
+  --highlight: #e6f4ea;
+  --highlight-foreground: #1d1e20;
+  --selection: #addaff;
+
+  /* Icon chips on stat cards: a solid circle behind the glyph. Decorative (the label
+     carries the meaning); glyphs are >= 4.3:1 on their chip in both themes. */
+  --chip-sky: #addaff;
+  --chip-violet: #6e4fe0;
+  --chip-green: #0f8a5f;
+  --chip-rose: #d93d6e;
+  --chip-blue: #2f6fe4;
+  --chip-amber: #f5a524;
+  /* Glyph on the saturated chips; sky and amber always take ink. */
+  --chip-glyph: #ffffff;
 
   /* App shell: the sidebar and the frame around the white content panel. */
   --shell: #f7f6f3;
@@ -32,7 +50,7 @@
   --secondary-foreground: #111214;
   --muted: #f4f4f5;
   --muted-foreground: #44464b;
-  --accent: #addaff;
+  --accent: #e6f4ea;
   --accent-foreground: #111214;
   --destructive: #b3261e;
   --destructive-foreground: #ffffff;
@@ -53,14 +71,15 @@
 
   /* Chart series, validated with the dataviz six checks (light vs #ffffff):
      worst adjacent CVD ΔE 8.2, normal-vision ΔE 28. Assign in this order, never cycled.
-     "Context" is the de-emphasis mark for past or secondary data (3.6:1). */
+     "Context" is the de-emphasis mark for past or secondary data; it sits below 3:1 on
+     purpose, so every chart that uses it keeps its table view and tooltips. */
   --chart-1: #2f6fe4;
   --chart-2: #ff4b32;
   --chart-3: #088f6f;
   --chart-4: #6e4fe0;
   --chart-5: #b87400;
-  --chart-context: #858688;
-  --chart-grid: #e4e4e7;
+  --chart-context: #c9cacd;
+  --chart-grid: #ececee;
 
   /* Progress meters: a sky-to-mint fill over grey ticks. The percentage is always
      written out too, so the fill is never the only signal. */
@@ -127,6 +146,17 @@
   --input: #6b6c6f;
   --ring: #addaff;
 
+  --highlight: #12301f;
+  --highlight-foreground: #fafafa;
+
+  --chip-sky: #addaff;
+  --chip-violet: #8f7bf2;
+  --chip-green: #17a383;
+  --chip-rose: #f0628f;
+  --chip-blue: #4f8cf0;
+  --chip-amber: #f5a524;
+  --chip-glyph: #1d1e20;
+
   --progress-from: #addaff;
   --progress-to: #90d788;
   --progress-track: #3a3b3f;
@@ -149,8 +179,8 @@
   --chart-3: #17a383;
   --chart-4: #8f7bf2;
   --chart-5: #bc800c;
-  --chart-context: #6b6c6f;
-  --chart-grid: #2f3033;
+  --chart-context: #4d4e52;
+  --chart-grid: #2a2b2e;
 
   --tint-blue-bg: #172442;
   --tint-blue-fg: #8fb4ff;
@@ -208,6 +238,15 @@
   --color-shell-hover: var(--shell-hover);
   --color-sky: var(--brand-sky);
   --color-mint: var(--brand-mint);
+  --color-highlight: var(--highlight);
+  --color-highlight-foreground: var(--highlight-foreground);
+  --color-chip-sky: var(--chip-sky);
+  --color-chip-violet: var(--chip-violet);
+  --color-chip-green: var(--chip-green);
+  --color-chip-rose: var(--chip-rose);
+  --color-chip-blue: var(--chip-blue);
+  --color-chip-amber: var(--chip-amber);
+  --color-chip-glyph: var(--chip-glyph);
   --color-progress-from: var(--progress-from);
   --color-progress-to: var(--progress-to);
   --color-progress-track: var(--progress-track);
@@ -267,6 +306,9 @@
   /* Menus, popovers and selects float on a small shadow instead of a border. */
   --shadow-menu: 0 12px 32px -12px rgb(17 18 20 / 0.22), 0 2px 6px -1px rgb(17 18 20 / 0.08);
   --shadow-dialog: 0 24px 64px -16px rgb(17 18 20 / 0.28), 0 4px 12px -2px rgb(17 18 20 / 0.08);
+  /* Dashboard cards: a hairline border plus a barely-there lift; more on hover. */
+  --shadow-card: 0 1px 2px rgb(17 18 20 / 0.04), 0 4px 12px -6px rgb(17 18 20 / 0.06);
+  --shadow-card-hover: 0 2px 4px rgb(17 18 20 / 0.05), 0 14px 28px -12px rgb(17 18 20 / 0.16);
 
   --animate-fade-in: fade-in 180ms ease-out;
   --animate-fade-out: fade-out 140ms ease-in forwards;
@@ -437,7 +479,7 @@
   }
 
   ::selection {
-    background: var(--brand-sky);
+    background: var(--selection);
     color: #111214;
   }
 
@@ -466,6 +508,14 @@
   [data-disabled] {
     cursor: not-allowed;
   }
+}
+
+/* The dashboard's card: 16 px radius, hairline border, soft lift (FRONTEND.md §4). */
+@utility card-surface {
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  box-shadow: var(--shadow-card);
 }
 
 /* Horizontal tab rows scroll without showing a scrollbar. */

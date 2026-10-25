@@ -23,7 +23,7 @@ export function EmptyState({
 }) {
   return (
     <div className={cn("flex animate-fade-up flex-col items-center justify-center gap-3 rounded-xl border border-dashed px-6 py-10 text-center", className)}>
-      <span className="inline-flex size-12 items-center justify-center rounded-full bg-sky/45 text-ink dark:text-foreground">
+      <span className="inline-flex size-12 items-center justify-center rounded-full bg-highlight text-highlight-foreground">
         <Icon className="size-6" aria-hidden />
       </span>
       <div className="max-w-sm space-y-1">

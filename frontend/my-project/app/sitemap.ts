@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/config/site";
+import { TOOLS, toolHref } from "@/features/tools/registry";
 import { routing } from "@/i18n/routing";
 
 // Only indexable public pages, one entry per language with hreflang alternates.
-const PUBLIC_PATHS = ["", "/pricing", "/tools/video-checker"];
+const PUBLIC_PATHS = ["", "/pricing", "/tools", ...TOOLS.map(toolHref)];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return PUBLIC_PATHS.flatMap((path) =>

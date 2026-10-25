@@ -987,7 +987,10 @@
       "thisWeekHint": "7 prochains jours",
       "reviewHint": "En attente de validation",
       "publishedHint": "7 derniers jours",
-      "attentionHint": "En échec, partielles ou expirées"
+      "attentionHint": "En échec, partielles ou expirées",
+      "vsPast": "par rapport aux 7 derniers jours",
+      "vsBefore": "par rapport aux 7 jours précédents",
+      "noChange": "Aucun changement"
     },
     "checklist": {
       "title": "Votre première publication",

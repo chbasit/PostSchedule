@@ -987,7 +987,10 @@
       "thisWeekHint": "Nächste 7 Tage",
       "reviewHint": "Warten auf Freigabe",
       "publishedHint": "Letzte 7 Tage",
-      "attentionHint": "Fehlgeschlagen, teilweise oder verpasst"
+      "attentionHint": "Fehlgeschlagen, teilweise oder verpasst",
+      "vsPast": "ggü. den letzten 7 Tagen",
+      "vsBefore": "ggü. den 7 Tagen davor",
+      "noChange": "Keine Änderung"
     },
     "checklist": {
       "title": "Dein erster Beitrag",

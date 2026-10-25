@@ -987,7 +987,10 @@
       "thisWeekHint": "Próximos 7 días",
       "reviewHint": "Esperan aprobación",
       "publishedHint": "Últimos 7 días",
-      "attentionHint": "Fallidas, parciales o vencidas"
+      "attentionHint": "Fallidas, parciales o vencidas",
+      "vsPast": "frente a los últimos 7 días",
+      "vsBefore": "frente a los 7 días anteriores",
+      "noChange": "Sin cambios"
     },
     "checklist": {
       "title": "Tu primera publicación",

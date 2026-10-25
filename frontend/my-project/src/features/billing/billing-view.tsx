@@ -136,7 +136,7 @@ export function BillingView() {
           <div className="space-y-1">
             <div className="flex flex-wrap items-center gap-2.5">
               <h2 className="text-2xl font-semibold">{tp(plan.key)}</h2>
-              <span className="rounded-full bg-sky px-2.5 py-0.5 text-xs font-semibold text-ink">{t("currentPlan")}</span>
+              <span className="rounded-full bg-highlight px-2.5 py-0.5 text-xs font-semibold text-highlight-foreground">{t("currentPlan")}</span>
             </div>
             <p className="text-sm text-muted-foreground">
             {sub.status === "trialing" && sub.trialEndsAt

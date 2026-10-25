@@ -75,7 +75,7 @@ function BottomBarView({ pathname }: { pathname: string }) {
               className={cn(
                 "inline-flex items-center justify-center rounded-full transition-colors duration-200",
                 item.primary ? "size-7 bg-primary text-primary-foreground" : "h-6 w-10",
-                active && !item.primary && "bg-sky text-ink",
+                active && !item.primary && "bg-highlight text-highlight-foreground",
               )}
             >
               <Icon className="size-4" aria-hidden />

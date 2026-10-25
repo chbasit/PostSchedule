@@ -19,7 +19,7 @@ export function IntervalToggle({ value, onChange }: { value: BillingInterval; on
           label: (
             <>
               {t("yearly")}
-              <span className={cn("rounded-full px-1.5 text-xs", value === "year" ? "bg-mint text-ink" : "bg-muted")}>{t("twoMonthsFree")}</span>
+              <span className={cn("rounded-full px-1.5 text-xs", value === "year" ? "bg-highlight text-highlight-foreground" : "bg-muted")}>{t("twoMonthsFree")}</span>
             </>
           ),
         },

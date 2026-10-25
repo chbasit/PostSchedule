@@ -39,7 +39,7 @@ export function WeekCard({ posts, today, timeZone }: { posts: Post[]; today: str
   );
 
   return (
-    <section aria-labelledby="week-title" className="rounded-xl border bg-card p-5">
+    <section aria-labelledby="week-title" className="card-surface p-5">
       <div className="flex items-baseline justify-between gap-2">
         <h2 id="week-title" className="font-semibold">
           {t("title")}
@@ -66,7 +66,7 @@ export function WeekCard({ posts, today, timeZone }: { posts: Post[]; today: str
 
       <Link
         href={total === 0 ? "/dashboard/create" : "/dashboard/posts/calendar"}
-        className="group mt-4 flex animate-fade-up items-center justify-between gap-2 rounded-lg bg-muted px-3 py-2.5 text-sm transition-colors [animation-delay:700ms] hover:bg-sky/45"
+        className="group mt-4 flex animate-fade-up items-center justify-between gap-2 rounded-lg bg-muted px-3 py-2.5 text-sm transition-colors [animation-delay:700ms] hover:bg-highlight hover:text-highlight-foreground"
       >
         <span className="min-w-0 truncate">{total === 0 ? t("empty") : t("summary", { done, left })}</span>
         <ChevronRight className="size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" aria-hidden />
