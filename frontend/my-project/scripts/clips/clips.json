@@ -1,0 +1,65 @@
+[
+  {
+    "name": "compose",
+    "rec": "rec/compose",
+    "crop": { "x": 0, "y": 0, "w": 1440, "h": 900 },
+    "parts": [
+      ["previews", "fix", 1.25],
+      ["fix", "fixed", 1.6],
+      ["fixed", "scheduled+2", 1],
+      ["start", "upload", 2.2],
+      ["upload", "previews", 1.25]
+    ],
+    "variants": [
+      { "suffix": "", "width": 1600, "height": 1000, "bitrate": 1800000 },
+      { "suffix": "-sm", "width": 960, "height": 600, "bitrate": 700000 }
+    ]
+  },
+  {
+    "name": "previews",
+    "rec": "rec/compose",
+    "crop": { "x": 999, "y": 200, "w": 400, "h": 628 },
+    "parts": [
+      ["previews", "fix", 1],
+      ["fix", "fixed", 1.4],
+      ["fixed", "schedule+0.3", 1]
+    ],
+    "variants": [
+      { "suffix": "", "width": 600, "height": 942, "bitrate": 800000 },
+      { "suffix": "-sm", "width": 400, "height": 628, "bitrate": 400000 }
+    ]
+  },
+  {
+    "name": "calendar",
+    "rec": "rec/calendar",
+    "crop": { "x": 266, "y": 66, "w": 1174, "h": 810 },
+    "parts": [["start+0.3", "end", 1]],
+    "variants": [
+      { "suffix": "", "width": 1160, "height": 800, "bitrate": 1100000 },
+      { "suffix": "-sm", "width": 720, "height": 496, "bitrate": 500000 }
+    ]
+  },
+  {
+    "name": "home",
+    "rec": "rec/dashboard",
+    "crop": { "x": 258, "y": 66, "w": 1156, "h": 797 },
+    "parts": [["start+0.3", "end", 1]],
+    "variants": [
+      { "suffix": "", "width": 1160, "height": 800, "bitrate": 1100000 },
+      { "suffix": "-sm", "width": 720, "height": 496, "bitrate": 500000 }
+    ]
+  },
+  {
+    "name": "tools",
+    "rec": "rec/carousel",
+    "crop": { "x": 168, "y": 66, "w": 1104, "h": 724 },
+    "parts": [
+      ["strip+0.25", "end", 1],
+      ["start+0.3", "strip+0.25", 1]
+    ],
+    "variants": [
+      { "suffix": "", "width": 1160, "height": 760, "bitrate": 1100000 },
+      { "suffix": "-sm", "width": 720, "height": 472, "bitrate": 500000 }
+    ]
+  }
+]

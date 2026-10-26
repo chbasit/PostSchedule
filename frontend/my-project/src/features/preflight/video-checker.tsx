@@ -7,6 +7,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link } from "@/i18n/navigation";
+import { cn } from "@/lib/utils";
 import { probeMedia, ProbeError, type MediaProbe } from "@/lib/preflight/probe";
 import { aspectLabel, checkMedia, formatBytes, formatDuration, worstStatus } from "@/lib/preflight/rules";
 import { PLATFORMS } from "@/providers/catalog";
@@ -152,12 +153,12 @@ export function VideoChecker() {
             ))}
           </Tabs>
 
-          <div className="flex flex-col items-start gap-3 rounded-lg bg-ink p-6 text-white sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col items-start gap-3 rounded-3xl bg-highlight p-6 text-highlight-foreground sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-lg font-medium">{t("ctaTitle")}</p>
-              <p className="text-sm text-white/75">{t("ctaBody")}</p>
+              <p className="font-heading text-lg font-bold">{t("ctaTitle")}</p>
+              <p className="text-sm text-highlight-foreground/80">{t("ctaBody")}</p>
             </div>
-            <Link href="/signup?from=video-checker" className={buttonVariants({ variant: "accent", size: "lg" })}>
+            <Link href="/signup?from=video-checker" className={cn(buttonVariants({ size: "lg" }), "shrink-0 rounded-full px-7")}>
               {t("cta")} <ArrowRight className="rtl:-scale-x-100" aria-hidden />
             </Link>
           </div>

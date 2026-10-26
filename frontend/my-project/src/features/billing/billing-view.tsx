@@ -184,15 +184,15 @@ export function BillingView() {
         {checkout.isError ? <FormAlert>{t("checkoutFailed")}</FormAlert> : null}
         {portal.isError ? <FormAlert>{t("portalFailed")}</FormAlert> : null}
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
-          {PLANS.map((p) => {
+          {PLANS.map((p, i) => {
             const current = p.key === workspace.planKey && sub.status !== "trialing";
             return (
               <PlanCard
                 key={p.key}
                 plan={p}
                 interval={interval}
+                previous={PLANS[i - 1]}
                 current={current}
-                compact
                 action={
                   current || p.key === "free" ? null : (
                     <Button

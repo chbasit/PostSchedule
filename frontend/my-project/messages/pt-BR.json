@@ -113,29 +113,15 @@
       "login": "Entrar",
       "signup": "Comece grátis",
       "tagline": "Gestão de redes sociais para startups, agências e equipes em vários países.",
-      "copyright": "© {product}. Todos os direitos reservados."
-    },
-    "mock": {
-      "title": "Novo post de vídeo",
-      "accounts": "Contas",
-      "media": "Mídia",
-      "warning": "O 16:9 será cortado nos Reels",
-      "fix": "Fazer 9:16",
-      "duration": "Duração",
-      "size": "Tamanho"
+      "copyright": "© {product}. Todos os direitos reservados.",
+      "allTools": "Todas as ferramentas grátis"
     },
     "home": {
       "eyebrow": "Gestão de redes sociais para equipes",
-      "line1": "Publique uma vez.",
-      "line2": "Fique certo em todo lugar.",
-      "line3": "Mantenha cada <mark>pixel</mark>.",
-      "sub": "Agende em todas as plataformas, veja a prévia de cada uma e corrija problemas de vídeo antes de publicar.",
+      "sub": "Feito para startups, agências e equipes em vários países. Veja a prévia de cada plataforma, corrija problemas de vídeo antes de publicar e deixe a IA escrever o primeiro rascunho.",
       "ctaPrimary": "Comece grátis",
       "ctaGoogle": "Comece com o Google",
       "ctaNote": "Teste de {days} dias. Sem cartão.",
-      "band": "Cada post é verificado antes de sair: proporção, resolução, taxa de bits, duração e tamanho, em cada plataforma.",
-      "bandCta": "Verifique um vídeo agora",
-      "featuresEyebrow": "O que você recebe",
       "featuresTitle": "Veja antes do seu público.",
       "featuresSub": "Outros agendadores enviam seu arquivo e torcem. Nós mostramos exatamente como cada plataforma vai exibir e avisamos antes que a qualidade caia.",
       "features": {
@@ -143,17 +129,9 @@
           "title": "Verificação prévia do vídeo",
           "body": "Proporção, resolução, taxa de bits, duração e tamanho são verificados em cada plataforma, com um motivo claro para cada aviso."
         },
-        "previews": {
-          "title": "Prévia por plataforma",
-          "body": "Veja cada post numa moldura de celular com o corte e as áreas cobertas pelos botões e legendas do app."
-        },
         "original": {
           "title": "Seu original, intacto",
           "body": "Enviamos o arquivo original, a menos que você escolha uma correção. As correções criam uma cópia nova que você pode comparar e desfazer."
-        },
-        "calendar": {
-          "title": "Calendário e fila",
-          "body": "Planeje por mês ou semana, arraste para reagendar ou preencha o próximo horário livre com um clique."
         },
         "approvals": {
           "title": "Aprovações para clientes",
@@ -164,7 +142,6 @@
           "body": "Use o app no seu idioma, inclusive escritas da direita para a esquerda, e agende no fuso horário de cada mercado."
         }
       },
-      "stepsEyebrow": "Como funciona",
       "stepsTitle": "Do upload ao agendamento em minutos.",
       "steps": {
         "connect": {
@@ -180,10 +157,8 @@
           "body": "Escolha um fuso horário e um horário. Publicamos uma única vez, repetimos com segurança e avisamos se algo falhar."
         }
       },
-      "pricingEyebrow": "Preços",
       "pricingTitle": "Pague pelo que usa. Nada escondido.",
       "pricingCta": "Comparar planos",
-      "faqEyebrow": "Perguntas",
       "faqTitle": "Respostas diretas.",
       "faq": {
         "what": {
@@ -205,9 +180,109 @@
         "switch": {
           "q": "Posso migrar de outro agendador?",
           "a": "Sim. Importe seus posts agendados e mídias quando a outra ferramenta permitir exportar. Os primeiros 100 clientes ganham ajuda gratuita na migração."
+        },
+        "ai": {
+          "q": "O {product} usa IA?",
+          "a": "Sim. O assistente de IA do editor escreve e reescreve legendas para cada plataforma e marca para sua equipe os posts feitos com IA. Uma API e um servidor MCP para agentes de IA estão a caminho, com chaves limitadas a um espaço de trabalho."
         }
       },
-      "finalTitle": "Seu próximo post pode ficar exatamente como você criou."
+      "finalTitle": "Seu próximo post pode ficar exatamente como você criou.",
+      "shotAlt": "O painel do {product}: o plano de posts da semana, um post que precisa de atenção e os números da semana.",
+      "platformsLabel": "Prévias e verificações para",
+      "facts": {
+        "title": "Os detalhes que outros agendadores ignoram.",
+        "pause": "Pausar animação",
+        "play": "Retomar animação",
+        "items": {
+          "platforms": {
+            "value": "{count}",
+            "label": "plataformas, cada uma com uma prévia fiel ao jeito que ela mostra seu post"
+          },
+          "checks": {
+            "value": "5",
+            "label": "verificações em cada vídeo: proporção, resolução, taxa de bits, duração e tamanho do arquivo"
+          },
+          "fix": {
+            "value": "1 clique",
+            "label": "cria uma cópia em 9:16 para uma plataforma. Seu original não muda."
+          },
+          "languages": {
+            "value": "{count}",
+            "label": "idiomas no app, incluindo o árabe, escrito da direita para a esquerda"
+          },
+          "tools": {
+            "value": "{count}",
+            "label": "ferramentas grátis que você usa sem criar conta"
+          }
+        }
+      },
+      "showcase": {
+        "previews": {
+          "title": "Veja cada plataforma antes de postar",
+          "body": "Escreva uma vez e confira como cada app vai mostrar. Se um vídeo for ser cortado ou recusado, você vê o motivo, e a correção está a um clique.",
+          "points": {
+            "captions": "Uma legenda para todas ou uma por plataforma",
+            "frames": "Prévias no celular com o corte e as áreas cobertas",
+            "fix": "Uma cópia em 9:16 com um clique, sem mexer no original"
+          }
+        },
+        "calendar": {
+          "title": "Planeje a semana num relance",
+          "body": "Alterne entre mês, semana e lista. Arraste um post para outro dia ou abra para ver todos os detalhes."
+        },
+        "home": {
+          "title": "Saiba o que precisa de você hoje",
+          "body": "Os posts da semana, o que sai em seguida e o que falhou, com um botão para tentar de novo ali mesmo."
+        },
+        "tools": {
+          "title": "Ferramentas grátis, sem conta",
+          "body": "Divida uma panorâmica em carrossel, planeje sua grade ou confira um vídeo antes de postar. Tudo roda no seu navegador.",
+          "cta": "Ver todas as ferramentas grátis"
+        }
+      },
+      "video": {
+        "play": "Reproduzir vídeo",
+        "pause": "Pausar vídeo"
+      },
+      "clips": {
+        "compose": "Gravação de tela: um post ganha prévia para Instagram, TikTok e YouTube, é ajustado para 9:16 com um clique e agendado.",
+        "previews": "Gravação de tela: as prévias avisam que um vídeo horizontal será cortado, e um clique cria uma cópia em 9:16 para cada plataforma.",
+        "calendar": "Gravação de tela: o calendário nas visualizações de mês e semana, com um post aberto para mostrar os detalhes.",
+        "home": "Gravação de tela: a tela inicial com os números da semana, um post com falha para tentar de novo e os próximos posts.",
+        "tools": "Gravação de tela: o divisor de carrossel grátis corta uma panorâmica em slides do Instagram."
+      },
+      "ai": {
+        "title": "A IA faz o trabalho pesado. Você continua no controle.",
+        "sub": "O assistente de IA escreve legendas sob medida para cada plataforma. Em breve, agentes de IA vão planejar e agendar por uma API segura, e cada post continua passando pelas mesmas verificações.",
+        "points": {
+          "write": {
+            "title": "Escreve para cada plataforma",
+            "body": "Descreva o post e receba uma legenda no tamanho certo para cada plataforma. Reescreva, encurte ou mude o tom com um clique."
+          },
+          "agents": {
+            "title": "Agentes com chave limitada",
+            "body": "Conecte um agente de IA pela nossa API e servidor MCP, limitado a um espaço de trabalho. Em breve."
+          },
+          "control": {
+            "title": "Suas regras vêm primeiro",
+            "body": "Publicar na hora e excluir ficam desligados, a menos que você ative. Cada ação de um agente fica registrada."
+          }
+        },
+        "console": {
+          "label": "Exemplo de um agente de IA planejando três posts pela API, um recurso que chega em breve.",
+          "title": "Agente de IA",
+          "soon": "Em breve",
+          "agent": "Agente",
+          "prompt": "Planeje três posts para a próxima semana com o vídeo da promoção de primavera.",
+          "steps": {
+            "preflight": "Cópia em 9:16 pronta",
+            "drafts": "3 rascunhos escritos",
+            "schedule": "ter 9:00 · qui 12:30 · sáb 18:00"
+          },
+          "reply": "Pronto: três posts verificados para Instagram, TikTok e LinkedIn, e agendados."
+        }
+      },
+      "headline": "Publique em todas as suas contas sociais a partir de um só painel"
     }
   },
   "plans": {
@@ -238,17 +313,22 @@
       "reports": "Relatórios",
       "approvals": "Aprovações da equipe",
       "clientLinks": "Links de aprovação para clientes",
-      "api": "API e agentes de IA"
+      "api": "API e agentes de IA",
+      "captions": "Uma legenda para cada plataforma",
+      "timing": "Agendamento em qualquer fuso horário",
+      "tags": "Tags e filtros",
+      "fixes": "Correções em um clique, original preservado",
+      "languages": "O app em {count} idiomas"
     },
     "interval": "Período de cobrança",
     "monthly": "Mensal",
     "yearly": "Anual",
-    "twoMonthsFree": "2 meses grátis"
+    "twoMonthsFree": "2 meses grátis",
+    "everythingIn": "Tudo do {plan}, mais:"
   },
   "pricing": {
     "metaTitle": "Preços",
     "metaDescription": "Planos simples pelo número de contas sociais e usuários. A cobrança anual dá dois meses grátis.",
-    "eyebrow": "Preços",
     "title": "O menor preço fixo em cada tamanho.",
     "sub": "Todos os planos incluem verificação prévia e prévias. Comece com um teste do Pro de {days} dias, sem cartão.",
     "founding": "Primeiros {count} clientes: preço travado por {months} meses",
@@ -348,7 +428,6 @@
     "videoChecker": {
       "metaTitle": "Verificador de vídeo grátis para Reels, TikTok e Shorts",
       "metaDescription": "Verifique proporção, resolução, taxa de bits, duração e tamanho do seu vídeo em cada plataforma antes de postar. Grátis, sem cadastro, e o arquivo fica no seu dispositivo.",
-      "eyebrow": "Ferramenta grátis",
       "title": "Seu vídeo vai ficar certo?",
       "intro": "Solte um vídeo para verificar proporção, resolução, taxa de bits, duração e tamanho no Instagram, TikTok, YouTube, Facebook, LinkedIn e Bluesky, com uma prévia de como cada um vai exibir.",
       "hint": "Vídeo MP4, MOV ou WebM, ou imagem JPG, PNG ou WebP.",
@@ -373,7 +452,406 @@
       "sourceLink": "Documentação do {platform}",
       "ctaTitle": "Corrija e agende num só lugar.",
       "ctaBody": "Cadastre-se para aplicar correções, ver a prévia de cada plataforma e agendar este post.",
-      "cta": "Corrigir e agendar"
+      "cta": "Corrigir e agendar",
+      "name": "Verificador de vídeo",
+      "description": "Confira um vídeo com os limites de cada plataforma antes de postar.",
+      "steps": {
+        "1": {
+          "title": "Solte seu vídeo",
+          "body": "Um vídeo MP4, MOV ou WebM, ou uma imagem. Seu navegador lê o arquivo; nada é enviado."
+        },
+        "2": {
+          "title": "Veja cada plataforma",
+          "body": "Proporção, resolução, taxa de bits, duração e tamanho são verificados para Instagram, TikTok, YouTube, Facebook, LinkedIn e Bluesky."
+        },
+        "3": {
+          "title": "Corrija antes de postar",
+          "body": "Cada aviso diz o que vai acontecer e como corrigir, ao lado de uma prévia de como a plataforma mostra o vídeo."
+        }
+      },
+      "faq": {
+        "1": {
+          "q": "Meu vídeo é enviado?",
+          "a": "Não. Seu navegador lê os dados do arquivo no seu dispositivo, e nada é enviado para nós."
+        },
+        "2": {
+          "q": "Por que os vídeos ficam borrados depois de postar?",
+          "a": "Em geral, o formato, o tamanho ou a taxa de bits do vídeo não batem com o que a plataforma espera, então ela corta ou recodifica o vídeo. O verificador mostra onde isso vai acontecer."
+        },
+        "3": {
+          "q": "Os limites estão atualizados?",
+          "a": "As plataformas mudam os limites. Cada resultado tem um link para a documentação da plataforma, e estamos verificando cada limite com ela."
+        }
+      }
+    },
+    "common": {
+      "breadcrumb": "Ferramentas grátis",
+      "badgeFree": "Grátis",
+      "badgeNoSignup": "Sem cadastro",
+      "badgePrivate": "Funciona no seu navegador",
+      "stepsTitle": "Como funciona",
+      "faqTitle": "Perguntas",
+      "moreTitle": "Mais ferramentas grátis",
+      "open": "Abrir ferramenta",
+      "allTools": "Ver todas as ferramentas grátis",
+      "ctaTitle": "Faça cada post ficar certo, em todo lugar.",
+      "ctaBody": "O {product} mostra cada post em cada plataforma, verifica e agenda.",
+      "cta": "Comece grátis",
+      "copy": "Copiar",
+      "copied": "Copiado",
+      "copyFailed": "Não foi possível copiar. Selecione o texto e copie você mesmo.",
+      "download": "Baixar",
+      "downloadAll": "Baixar tudo (ZIP)",
+      "share": "Salvar no celular",
+      "preparing": "Preparando…",
+      "another": "Usar outra imagem",
+      "imageHint": "Imagem JPG, PNG ou WebP.",
+      "opening": "Abrindo {name}…",
+      "imageErrors": {
+        "type": "Não conseguimos abrir este arquivo como imagem. Use uma imagem JPG, PNG ou WebP.",
+        "unreadable": "Não conseguimos abrir esta imagem. Ela pode estar danificada ou salva em um formato que seu navegador não lê, como HEIC."
+      },
+      "lowRes": "Esta imagem é pequena para este layout, então o resultado pode ficar sem nitidez. Uma imagem maior fica mais nítida.",
+      "dragHint": "Arraste a imagem para escolher a parte que quer manter.",
+      "exportFailed": "Não conseguimos preparar os arquivos. Tente de novo ou use uma imagem menor.",
+      "privacy": "Sua imagem nunca sai deste dispositivo. Tudo acontece no seu navegador.",
+      "rulesPending": "As plataformas mudam as regras. Estamos verificando estas com as páginas de ajuda do {platform}.",
+      "rulesLink": "Ajuda do {platform}",
+      "fit": "Encaixe",
+      "fill": "Preencher e cortar",
+      "whole": "Imagem inteira",
+      "background": "Cor de fundo",
+      "horizontal": "Posição horizontal",
+      "vertical": "Posição vertical",
+      "sizeLine": "{count, plural, one {# imagem} other {# imagens}} · {width} × {height} px",
+      "previewTitle": "Prévia",
+      "passes": "passa",
+      "fails": "não passa"
+    },
+    "index": {
+      "metaTitle": "Ferramentas grátis para redes sociais",
+      "metaDescription": "Ferramentas grátis para Instagram, TikTok, YouTube e LinkedIn: divida carrosséis, crie grades de perfil, verifique nomes de usuário e títulos e formate posts. Sem cadastro.",
+      "eyebrow": "Ferramentas grátis",
+      "title": "Pequenas ferramentas para posts melhores.",
+      "intro": "Divida um panorama em um carrossel, planeje uma grade de perfil, verifique um nome de usuário ou um título e formate um post do LinkedIn. Grátis, sem cadastro, e seus arquivos nunca saem do seu dispositivo."
+    },
+    "carouselSplitter": {
+      "metaTitle": "Divisor de carrossel do Instagram: slides panorâmicos contínuos",
+      "metaDescription": "Divida uma imagem larga em slides contínuos para carrossel do Instagram, verticais 4:5 ou quadrados. Grátis, sem cadastro, e funciona no seu navegador.",
+      "name": "Divisor de carrossel do Instagram",
+      "description": "Transforme uma imagem larga em slides contínuos de carrossel.",
+      "title": "Divisor de carrossel do Instagram",
+      "intro": "Divida uma imagem larga em 2 a 10 slides que se encaixam quando as pessoas deslizam. Escolha slides verticais ou quadrados, a parte que quer manter e baixe tudo em ordem.",
+      "slides": "Slides",
+      "shape": "Formato do slide",
+      "portrait": "Vertical 4:5",
+      "square": "Quadrado 1:1",
+      "seams": "As linhas mostram onde cada slide começa.",
+      "swipe": "Prévia ao deslizar",
+      "previous": "Slide anterior",
+      "next": "Próximo slide",
+      "slideOf": "Slide {n} de {count}",
+      "slide": "Slide {n}",
+      "steps": {
+        "1": {
+          "title": "Adicione uma imagem larga",
+          "body": "Um panorama, ou um design feito mais largo do que alto, funciona melhor."
+        },
+        "2": {
+          "title": "Escolha os slides",
+          "body": "Escolha quantos slides e o formato, depois mova a imagem para manter a parte que quiser."
+        },
+        "3": {
+          "title": "Baixe e poste",
+          "body": "Baixe os slides e adicione todos a um único post de carrossel, em ordem a partir do 1."
+        }
+      },
+      "faq": {
+        "1": {
+          "q": "Qual é o tamanho dos slides?",
+          "a": "Os slides verticais têm 1080 × 1350 pixels (4:5) e os quadrados, 1080 × 1080 (1:1). Use um só formato para todos os slides de um post."
+        },
+        "2": {
+          "q": "Quantos slides posso criar?",
+          "a": "De 2 a 10, o número que a API de publicação do Instagram aceita em um carrossel. O app do Instagram pode permitir mais."
+        },
+        "3": {
+          "q": "Os slides vão se encaixar?",
+          "a": "Sim. Cada slide é cortado da mesma imagem, sem espaço entre eles, então a imagem continua quando as pessoas deslizam. O Instagram ainda pode comprimir um pouco as imagens."
+        }
+      }
+    },
+    "gridMaker": {
+      "metaTitle": "Criador de grade do Instagram: divida uma foto para o perfil",
+      "metaDescription": "Divida uma imagem em 3, 6, 9 ou 12 partes para a grade do seu perfil do Instagram, numeradas na ordem de postagem. Grátis, sem cadastro.",
+      "name": "Criador de grade do Instagram",
+      "description": "Divida uma imagem em uma grade de perfil de três colunas.",
+      "title": "Criador de grade do Instagram",
+      "intro": "Divida uma imagem em 3, 6, 9 ou 12 partes que formam uma grande imagem no seu perfil. Cada parte é numerada na ordem em que deve ser postada.",
+      "rows": "Linhas",
+      "shape": "Formato das partes",
+      "tall": "Alta 3:4",
+      "portrait": "Vertical 4:5",
+      "square": "Quadrada 1:1",
+      "shapeHint": "A grade do perfil do Instagram mostra os posts como retângulos altos (3:4). Escolha quadrada se a sua grade ainda mostra quadrados.",
+      "order": "Ordem de postagem",
+      "orderHint": "Seu post mais recente aparece primeiro, então poste primeiro a parte 1 (embaixo à direita) e por último a de cima à esquerda.",
+      "post": "Post {n}",
+      "steps": {
+        "1": {
+          "title": "Adicione uma imagem",
+          "body": "Use uma grande: uma grade de 3 × 3 partes altas precisa de cerca de 3240 × 4320 pixels para ficar nítida."
+        },
+        "2": {
+          "title": "Escolha linhas e formato",
+          "body": "Escolha de 1 a 4 linhas e o formato das partes, depois mova a imagem para manter a parte que quiser."
+        },
+        "3": {
+          "title": "Poste em ordem",
+          "body": "Baixe as partes e poste uma por uma, começando pela parte 1."
+        }
+      },
+      "faq": {
+        "1": {
+          "q": "Por que postar primeiro a parte de baixo à direita?",
+          "a": "Seu perfil mostra primeiro o post mais recente, em cima à esquerda. Postando primeiro a parte de baixo à direita, cada parte fica no lugar certo no final."
+        },
+        "2": {
+          "q": "Qual formato de parte devo usar?",
+          "a": "A grade do perfil do Instagram mostra os posts como retângulos 3:4, então as partes altas preenchem cada espaço. O Instagram muda a grade de vez em quando, então confira seu perfil depois do primeiro post."
+        },
+        "3": {
+          "q": "Minha grade vai continuar alinhada?",
+          "a": "Cada post seguinte move todas as partes uma posição. Poste de três em três para manter as linhas juntas, e lembre que os posts fixados aparecem primeiro."
+        }
+      }
+    },
+    "linkedinFormatter": {
+      "metaTitle": "Formatador de texto do LinkedIn: negrito, itálico e listas",
+      "metaDescription": "Escreva um post do LinkedIn com texto em negrito, itálico e sublinhado e com listas, veja onde ele é cortado e copie. Grátis, sem cadastro.",
+      "name": "Formatador de texto do LinkedIn",
+      "description": "Adicione negrito, itálico e listas a um post do LinkedIn.",
+      "title": "Formatador de texto do LinkedIn",
+      "intro": "Os posts do LinkedIn são texto simples, então esta ferramenta troca letras por versões parecidas em negrito, itálico ou sublinhado que você pode colar. Escreva, formate, veja onde o post é cortado e copie.",
+      "editor": "Seu post",
+      "placeholder": "Escreva seu post aqui. Selecione algumas palavras e escolha um estilo.",
+      "toolbar": "Formatação",
+      "bold": "Negrito",
+      "italic": "Itálico",
+      "boldItalic": "Negrito itálico",
+      "mono": "Monoespaçado",
+      "underline": "Sublinhado",
+      "strike": "Tachado",
+      "bullets": "Lista com marcadores",
+      "numbers": "Lista numerada",
+      "clear": "Limpar formatação",
+      "selectFirst": "Selecione algum texto primeiro.",
+      "count": "{count} / {limit}",
+      "countLabel": "Caracteres",
+      "countNote": "Contagem cautelosa: cada letra com estilo conta como duas.",
+      "over": "{count, plural, one {# caractere acima do limite} other {# caracteres acima do limite}}",
+      "desktop": "Computador",
+      "mobile": "Celular",
+      "seeMore": "…ver mais",
+      "you": "Seu nome",
+      "headline": "Seu título profissional",
+      "now": "Agora",
+      "previewEmpty": "Seu post vai aparecer aqui.",
+      "foldHint": "As pessoas veem as primeiras linhas antes de “ver mais”. Coloque seu gancho ali.",
+      "a11yNote": "Leitores de tela podem ler letras com estilo uma a uma, ou pulá-las. Use estilo em poucas palavras, não em posts inteiros.",
+      "steps": {
+        "1": {
+          "title": "Escreva ou cole seu post",
+          "body": "Use a caixa como qualquer editor de texto. As quebras de linha são mantidas."
+        },
+        "2": {
+          "title": "Selecione palavras e escolha um estilo",
+          "body": "Negrito, itálico, sublinhado e listas. Toque no estilo de novo para removê-lo."
+        },
+        "3": {
+          "title": "Copie para o LinkedIn",
+          "body": "Toque em Copiar e cole em um novo post do LinkedIn. Os estilos vão junto."
+        }
+      },
+      "faq": {
+        "1": {
+          "q": "Como funciona o negrito no LinkedIn?",
+          "a": "Os posts do LinkedIn não têm botões de formatação. Esta ferramenta troca cada letra por uma versão Unicode parecida em negrito ou itálico, que o LinkedIn mostra como qualquer outro caractere."
+        },
+        "2": {
+          "q": "Quais caracteres podem ter estilo?",
+          "a": "As letras de A a Z e os dígitos de 0 a 9. Letras com acento, outros alfabetos e emojis ficam como estão."
+        },
+        "3": {
+          "q": "Texto com estilo é acessível?",
+          "a": "Não totalmente. Leitores de tela podem soletrar palavras com estilo ou pulá-las, e a busca pode não encontrá-las. Limite o estilo a poucas palavras."
+        }
+      }
+    },
+    "youtubeTitle": {
+      "metaTitle": "Verificador de título do YouTube: tamanho e prévia",
+      "metaDescription": "Confira o tamanho do título do seu vídeo do YouTube, veja onde ele é cortado no celular e no computador e encontre erros antes de publicar. Grátis, sem cadastro.",
+      "name": "Verificador de título do YouTube",
+      "description": "Veja onde um título é cortado e encontre erros.",
+      "title": "Verificador de título do YouTube",
+      "intro": "Digite um título para ver o tamanho, quanto dele aparece no celular e no computador, e qualquer coisa que o YouTube recusaria.",
+      "label": "Título do vídeo",
+      "placeholder": "Como edito vídeo vertical em 10 minutos",
+      "count": "{count} / {limit}",
+      "mobile": "Celular · início",
+      "desktop": "Computador · resultados da busca",
+      "visible": "{count, plural, one {Cerca de # caractere aparece antes do corte.} other {Cerca de # caracteres aparecem antes do corte.}}",
+      "fits": "O título inteiro aparece.",
+      "channel": "Seu canal",
+      "meta": "1,2 mil visualizações · há 2 horas",
+      "checksTitle": "Verificações",
+      "checks": {
+        "length": {
+          "pass": "Dentro do limite de {limit} caracteres do YouTube.",
+          "block": "{over, plural, one {# caractere acima do limite de {limit} caracteres do YouTube.} other {# caracteres acima do limite de {limit} caracteres do YouTube.}}"
+        },
+        "angleBrackets": {
+          "pass": "Sem sinais < ou >.",
+          "block": "O YouTube não permite < nem > em títulos."
+        },
+        "caps": {
+          "pass": "Não está tudo em maiúsculas.",
+          "warn": "Quase tudo em maiúsculas pode parecer grito."
+        },
+        "punctuation": {
+          "pass": "Sem sequências de !!! ou ???.",
+          "warn": "Sequências de !!! ou ??? podem parecer clickbait."
+        },
+        "spaces": {
+          "pass": "Sem espaços extras.",
+          "warn": "Há espaços extras nas pontas ou entre palavras."
+        }
+      },
+      "fixSpaces": "Remover espaços extras",
+      "empty": "Digite um título para verificar.",
+      "approx": "As prévias são aproximadas: o layout do YouTube muda com o tamanho da tela.",
+      "steps": {
+        "1": {
+          "title": "Digite seu título",
+          "body": "Ou cole. A contagem e as prévias se atualizam enquanto você digita."
+        },
+        "2": {
+          "title": "Confira as prévias",
+          "body": "Veja quanto aparece no celular e no computador antes de o YouTube cortar."
+        },
+        "3": {
+          "title": "Corrija e copie",
+          "body": "Resolva o que for sinalizado e copie o título para o YouTube Studio."
+        }
+      },
+      "faq": {
+        "1": {
+          "q": "Qual pode ser o tamanho de um título do YouTube?",
+          "a": "Até {limit} caracteres. Títulos mais curtos são mais fáceis de ler por inteiro, principalmente no celular."
+        },
+        "2": {
+          "q": "Onde o YouTube corta os títulos?",
+          "a": "Depende da tela e da página. No celular costumam aparecer cerca de duas linhas no início, então coloque as palavras mais importantes primeiro."
+        },
+        "3": {
+          "q": "Posso usar emojis?",
+          "a": "Sim. Aqui cada emoji conta como um caractere. Use com moderação: eles podem empurrar palavras importantes para fora da vista."
+        }
+      }
+    },
+    "username": {
+      "label": "Nome de usuário ou nome",
+      "placeholder": "seunome",
+      "count": "{count} / {max}",
+      "rulesTitle": "Regras do {platform}",
+      "rules": {
+        "length": "De {min} a {max} caracteres",
+        "characters": "Só letras, números, pontos e sublinhados",
+        "startPeriod": "Não começa com ponto",
+        "endPeriod": "Não termina com ponto",
+        "doublePeriod": "Sem dois pontos seguidos"
+      },
+      "valid": "@{handle} segue as regras do {platform}.",
+      "invalid": "@{handle} ainda não segue as regras do {platform}.",
+      "empty": "Digite um nome de usuário, ou um nome para ver ideias.",
+      "open": "Ver se está em uso",
+      "openHint": "Abre o {platform} em uma nova aba. Se aparecer um perfil, o nome está em uso.",
+      "ideas": "Ideias que seguem as regras",
+      "ideasEmpty": "Digite um nome com letras latinas ou números para ver ideias.",
+      "openIdea": "Abrir @{handle} no {platform}",
+      "availability": "Não conseguimos dizer se um nome está livre: o {platform} não oferece uma forma de verificar, e não fazemos scraping do site."
+    },
+    "instagramUsername": {
+      "metaTitle": "Verificador de nome de usuário do Instagram: regras e ideias",
+      "metaDescription": "Confira um nome de usuário com as regras do Instagram, receba ideias que as seguem e abra o perfil para ver se está em uso. Grátis, sem cadastro.",
+      "name": "Verificador de usuário do Instagram",
+      "description": "Confira um nome de usuário com as regras do Instagram.",
+      "title": "Verificador de nome de usuário do Instagram",
+      "intro": "Digite um nome de usuário ou um nome para ver se segue as regras do Instagram, receba ideias que seguem e abra o endereço do perfil para ver se está em uso.",
+      "steps": {
+        "1": {
+          "title": "Digite um usuário ou um nome",
+          "body": "Maiúsculas e o @ são ignorados: os nomes de usuário do Instagram são em minúsculas."
+        },
+        "2": {
+          "title": "Confira as regras",
+          "body": "Até 30 letras, números, pontos e sublinhados, sem ponto no início ou no fim e sem dois pontos seguidos."
+        },
+        "3": {
+          "title": "Veja se está livre",
+          "body": "Abra o endereço do perfil. Se aparecer um perfil, o nome está em uso; se não, pode estar livre."
+        }
+      },
+      "faq": {
+        "1": {
+          "q": "Esta ferramenta diz se um nome de usuário está livre?",
+          "a": "Não. O Instagram não oferece uma forma pública de verificar, e não fazemos scraping do site. Abra o link do perfil: se aparecer um perfil, o nome está em uso."
+        },
+        "2": {
+          "q": "O que um nome de usuário do Instagram pode ter?",
+          "a": "Letras, números, pontos e sublinhados, até 30 caracteres. Espaços, acentos e outros símbolos não são permitidos."
+        },
+        "3": {
+          "q": "Por que um nome que parece livre é recusado?",
+          "a": "O Instagram também pode reservar nomes, por exemplo os de contas que foram encerradas. Se um nome for recusado, tente uma das ideias."
+        }
+      }
+    },
+    "tiktokUsername": {
+      "metaTitle": "Verificador de nome de usuário do TikTok: regras e ideias",
+      "metaDescription": "Confira um nome de usuário com as regras do TikTok, receba ideias que as seguem e abra o perfil para ver se está em uso. Grátis, sem cadastro.",
+      "name": "Verificador de usuário do TikTok",
+      "description": "Confira um nome de usuário com as regras do TikTok.",
+      "title": "Verificador de nome de usuário do TikTok",
+      "intro": "Digite um nome de usuário ou um nome para ver se segue as regras do TikTok, receba ideias que seguem e abra o endereço do perfil para ver se está em uso.",
+      "steps": {
+        "1": {
+          "title": "Digite um usuário ou um nome",
+          "body": "Maiúsculas e o @ são ignorados."
+        },
+        "2": {
+          "title": "Confira as regras",
+          "body": "De 2 a 24 letras, números, pontos e sublinhados, sem ponto no fim."
+        },
+        "3": {
+          "title": "Veja se está livre",
+          "body": "Abra o endereço do perfil. Se aparecer um perfil, o nome está em uso; se não, pode estar livre."
+        }
+      },
+      "faq": {
+        "1": {
+          "q": "Esta ferramenta diz se um nome de usuário está livre?",
+          "a": "Não. O TikTok não oferece uma forma pública de verificar, e não fazemos scraping do site. Abra o link do perfil: se aparecer um perfil, o nome está em uso."
+        },
+        "2": {
+          "q": "O que um nome de usuário do TikTok pode ter?",
+          "a": "Letras, números, pontos e sublinhados, de 2 a 24 caracteres, e não pode terminar com ponto."
+        },
+        "3": {
+          "q": "Meus usuários do TikTok e do Instagram devem ser iguais?",
+          "a": "Ajuda as pessoas a encontrar você. O TikTok permite 24 caracteres e o Instagram 30, então um nome que funciona nos dois tem 24 ou menos. Confira com os dois verificadores."
+        }
+      }
     }
   },
   "auth": {

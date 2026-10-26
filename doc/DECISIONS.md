@@ -2,6 +2,55 @@
 
 Newest first. Format from `PROJECTFLOW.md` §9.
 
+## 2026-10-26 — New hero headline, plain hero, deep green footer
+
+Decision: The hero headline is "Post to all your social accounts from one dashboard", with "Built for startups, agencies and teams in many countries. Preview every platform, fix video problems before you publish, and let AI write the first draft." It replaces "Post once. Look right everywhere. Keep every pixel." The hero's gradient glow and dot grid are gone (plain page background) and the clip's frame is solid lavender in the white card frame. The footer panel is `#213130` (`--footer`, same in both themes).
+Why: Founder asked to drop the gradient and the three lines, offered three headline styles (Buffer's "Your social media workspace", Postiz's "Run your social media on autopilot with AI agents", and "Post to all your social accounts from one dashboard") and asked for the one best; and asked for this footer colour.
+Alternatives: The AI-agents headline (rejected for now: agents are not built and it claimed 30+ networks; revisit when MCP ships). The workspace headline (rejected: "plugs into your favorite tools" is not true yet).
+Revisit when: AI agents ship (the AI headline becomes honest), or tool integrations exist.
+
+## 2026-10-26 — Landing in the founder's five colours, an AI section, three plans on the landing
+
+Decision: The landing page uses the founder's palette (#A4F1E9 aqua, #FFD88A yellow, #FAC3FF pink, #FFB2A8 salmon, #D4C2FF lavender, tokens `--card-*` with deep versions in dark), in Buffer-style framed cards: the facts row, the four feature cards, the hero's video frame, the AI section's mesh and the icon chips. A new section presents AI: the composer's AI assistant (built) and AI agents through the API and MCP server (planned, Phase 10, marked "Coming soon"), with a mock-up console of an agent's tool calls that fills in when scrolled to, and an FAQ answer about AI. The landing shows three plans (Free, Pro, Agency) and every plan card is short: limits, then the five main features on the first card and "Everything in <previous>, plus" with the additions on the others; the comparison table on Pricing keeps the full list. The trial fact left the facts row (it is in the hero and pricing).
+Why: Founder's direction: use these colours, show only three packages ("it looks unprofessional, don't add too much"), and make the page feel AI-native and modern.
+Alternatives: Cutting the product to three plans (not done: `plans.ts`, billing and checkout use five; the founder can still decide). Showing the agent console as if agents worked today (rejected: MCP is not built, so it says "Coming soon").
+Revisit when: The MCP server ships (drop "Coming soon"), or the plan line-up changes.
+
+## 2026-10-26 — Lime retired; floating navbar, panel footer, no labels above headings, fuller plan cards
+
+Decision: Lime (#DEFF00) is gone from the product: the hero's marker on "pixel", the logo's check (now sky to mint on the ink tile, in the app too), the "New" pill, the announcement strip (now the light green highlight), the pricing badge, the tool pages' call to action and step numbers, the `accent` button and the token itself. The public navbar is a floating rounded bar; the footer is a rounded panel with bold column headings, the platform marks and the product name set large along its bottom edge. Small labels above headings are removed on public pages (hero pill, section labels, feature-card labels, the Pricing and tool eyebrows), and the facts row loses its visible "Pause animation" button: hover or tap holds it, and a pause button appears on keyboard focus (WCAG 2.2.2), with reduced motion still standing it still. Plan cards now list everything a plan includes, from `plans.ts`: the limits, then `EVERY_PLAN` (checks, previews, one-click fixes, a caption per platform, calendar and queue, any time zone, tags, every app language) and the plan's own features in bold; the comparison table gained the same rows.
+Why: Founder's direction: keep the new colour scheme but drop #DEFF00, redesign the navbar and footer, remove the small text above headings, and make each subscription's value obvious on the cards.
+Alternatives: Keep a visible pause button for the facts row (rejected by the founder; the focus-only button keeps it accessible). An "Everything in Pro, plus" list (rejected: the founder wants every card to show how much it includes).
+Revisit when: A brand designer sets the final palette and logo, or plan features become gated in code (then `plans.ts` must stay the single source).
+
+## 2026-10-26 — Light landing page with product clips; Plus Jakarta Sans and DM Sans on the public site
+
+Decision: The landing page is rebuilt light, after the postiz reference: a centred hero (pill, bold three-line headline, pill buttons, the six platform logos), a moving row of product facts, and feature cards that each play a short screen recording of the real app while in view. The hero clip shows a post being previewed, fixed to 9:16 and scheduled; the cards show the previews, calendar, home screen and carousel splitter. Clips are muted MP4s (H.264) with a smaller copy for phones and a first-frame poster; nothing downloads until a clip is a third on screen, and reduced motion or data saving leave them on the poster with a play button. Every clip and the moving row has a pause control (WCAG 2.2.2). The public pages (landing, pricing, tools) use Plus Jakarta Sans for headlines (700, tight) and DM Sans for text; the app keeps Inter and Arabic keeps Noto Sans Arabic. The coral band is gone. Clips are made by `scripts/clips` (recorded in the sample workspace, see its README). This replaces the hero screenshot from the 2026-10-25 entry except on Arabic pages, which keep the right-to-left screenshot because the clips are in English.
+Why: Founder's direction: videos of the app that play when scrolled to, a light landing page like the references, and their font. Facts replace postiz's customer cards because we have no customers to quote (no invented numbers or testimonials).
+Alternatives: Animated GIFs or a third-party video host (rejected: larger files or another service). Autoplay regardless of position (rejected: wastes data off screen). Chrome's MediaRecorder for encoding (rejected: its MP4s reported the wrong duration; a small MP4 writer over WebCodecs is used instead). Plus Jakarta Sans in the app too (not asked for; kept to the public pages).
+Revisit when: Screens shown in the clips change (re-record), Arabic clips are worth recording, or a real customer quote or logo can replace a fact.
+
+## 2026-10-25 — Free tools at /tools/<slug>, listed in the footer
+
+Decision: Seven public tools, each a page at `/tools/<slug>` that works without an account and never uploads anything: Instagram carousel splitter, Instagram grid maker, video checker, LinkedIn text formatter, YouTube title checker, and Instagram and TikTok username checkers, plus an index at `/tools`. One registry (`src/features/tools/registry.ts`) feeds the footer, the index, the sitemap and "More free tools". Every tool shares one page shell (answer-first header, steps, questions, related tools, WebApplication and BreadcrumbList JSON-LD). Image tools export 1080 px JPEGs and a ZIP from a small store-only writer (no new dependency). The footer now has a brand column and a Free tools column, like the post-bridge reference.
+Why: Founder's direction (post-bridge footer and `/tools/instagram-carousel-splitter`). SEO-AEO.md lists `/tools/[tool]` as a page family.
+Alternatives: Username *availability* checks (rejected: they need scraping, CLAUDE.md rule 11; the checkers apply each platform's rules and link to the profile instead). TikTok caption generator (waits for the AI backend). X timeline blocker (a browser extension, not a page).
+Revisit when: The platform facts marked VERIFY are checked (Instagram's 3:4 profile grid and 10-photo API carousel, both username rule sets, YouTube's 100-character title and the ban on `<` `>`), or the AI backend makes a caption tool possible.
+
+## 2026-10-25 — Landing hero shows the real product
+
+Decision: The marketing hero shows screenshots of the dashboard (sample workspace), light and dark, with a right-to-left Arabic version for `ar`, in a browser frame on a light green panel. They replace the illustrated `ProductMock`. Files live in `src/assets/screens/`. Re-capture them when the dashboard changes.
+Why: Founder: the page "looks AI" and needs a visual of the product. FRONTEND.md §1 always called for a product screenshot.
+Alternatives: A drawn illustration (rejected, it read as generic). Screenshots in all six languages (later; the other languages show English for now).
+Revisit when: The dashboard changes visibly, or a localized screenshot set is worth the extra weight.
+
+## 2026-10-25 — Dashboard: light green highlight, sky icons, black New post, compact home
+
+Decision: The light green `--highlight` (#E6F4EA; #12301F in dark) marks the current page, selections, date badges and plan badges. Sky (#ADDAFF) is for icon chips and the workspace mark. New post is the standard primary (ink with white text; sky on dark). Home: a slim title row replaces the dark hero card, stat cards gain icon chips and a change against the previous 7 days, and "Needs attention" is one compact row per post. Cards use `card-surface` (16 px radius, hairline border, soft shadow). Charts and meters keep their earlier colours. Coral stays out of the dashboard; the marketing band and the unread badge keep it.
+Why: Founder's direction (Sociafy reference). A coral accent was tried and rejected the same day ("remove #FF5237, use mostly #E6F4EA, New post black, icons sky").
+Alternatives: A coral and peach accent (rejected by the founder). #E6F4EA is also the success status background; status chips always carry an icon and words, so meaning never depends on that colour alone.
+Revisit when: A brand designer sets the final palette.
+
 ## 2026-10-23 — Backend inside the Next.js app, on Supabase; Lemon Squeezy billing
 
 Decision: The API is built as route handlers in the Next.js app (`app/api/v1/**`, server code in `src/server/`), on Supabase (Postgres with row-level security, Supabase Auth). It serves the same REST paths the frontend's `http.ts` already calls, so switching from the mock is one setting (`NEXT_PUBLIC_API_URL`). Sign-up needs email confirmation; the emailed links open our own pages (`/auth/confirm`, `/reset-password`), which call the API, so no link is used up by an email scanner's GET. A password reset signs the person out on every device. Google sign-in uses Supabase's OAuth (PKCE) and shows only when `NEXT_PUBLIC_GOOGLE_AUTH=true`. Billing uses Lemon Squeezy checkouts (workspace id in the checkout's custom data, set by the server), a signed webhook that is recorded once and applied in order, and Lemon Squeezy's customer portal for invoices and cards. Features whose services are not connected yet answer 503 `not_configured`. This replaces "Separate backend service in `backend/`" (2026-10-22).

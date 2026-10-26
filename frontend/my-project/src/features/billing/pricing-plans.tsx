@@ -19,15 +19,16 @@ export function PricingPlans() {
         <IntervalToggle value={interval} onChange={setInterval} />
       </div>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-        {PLANS.map((plan) => (
+        {PLANS.map((plan, i) => (
           <PlanCard
             key={plan.key}
             plan={plan}
             interval={interval}
+            previous={PLANS[i - 1]}
             action={
               <Link
                 href={plan.key === "free" ? "/signup" : `/signup?plan=${plan.key}&interval=${interval}`}
-                className={cn(buttonVariants({ variant: plan.highlighted ? "primary" : "secondary" }), "w-full")}
+                className={cn(buttonVariants({ variant: plan.highlighted ? "primary" : "secondary" }), "w-full rounded-full")}
               >
                 {plan.key === "free" ? t("ctaFree") : t("ctaTrial")}
               </Link>

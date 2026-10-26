@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 type Tone = "announcement" | "warning" | "danger" | "info";
 
 const tones: Record<Tone, string> = {
-  announcement: "bg-lime text-ink",
+  announcement: "bg-highlight text-highlight-foreground",
   warning: "bg-warning-bg text-warning border border-warning/30",
   danger: "bg-danger-bg text-danger border border-danger/30",
   info: "bg-info-bg text-info border border-info/30",
@@ -68,7 +68,7 @@ export function Banner({ tone, children, action, dismissKey, className }: Banner
       className={cn("flex items-center gap-3 text-sm", tone === "announcement" ? "px-4 py-2" : "rounded-lg px-4 py-3", tones[tone], className)}
     >
       {Icon ? <Icon className="size-4 shrink-0" aria-hidden /> : null}
-      <div className="min-w-0 flex-1">{children}</div>
+      <div className={cn("min-w-0 flex-1", tone === "announcement" && "text-center")}>{children}</div>
       {action}
       {dismissKey ? (
         <button

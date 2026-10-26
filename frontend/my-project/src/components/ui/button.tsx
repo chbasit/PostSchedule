@@ -16,8 +16,6 @@ export const buttonVariants = cva(
         // Ink on light, sky on dark (via --primary). One primary per view.
         primary: cn("bg-primary text-primary-foreground hover:bg-primary/85", disabledSolid),
         secondary: "border border-foreground/80 bg-transparent text-foreground hover:bg-muted disabled:border-border disabled:text-muted-foreground",
-        // Lime: marketing promos only.
-        accent: cn("bg-lime text-ink hover:bg-lime/85", disabledSolid),
         destructive: cn("bg-destructive text-destructive-foreground hover:bg-destructive/90", disabledSolid),
         ghost: "text-foreground hover:bg-muted disabled:text-muted-foreground",
         link: "h-auto px-0 font-semibold text-foreground hover:text-foreground/70 active:scale-100 disabled:text-muted-foreground",

@@ -259,6 +259,44 @@ Do these in order. Each is small enough for one sitting.
 
 Newest first. What is actually built, so the phase map can be checked against it. The reasons live in `DECISIONS.md`; screen details in `FRONTEND.md`.
 
+### 2026-10-26 — New hero headline, deep green footer
+
+- **Hero:** "Post to all your social accounts from one dashboard" with a new subheading in all six languages; no gradient glow; the clip in a lavender frame.
+- **Footer:** `#213130` with white text and white focus rings, in both themes.
+
+### 2026-10-26 — Five-colour landing, AI section, three plans
+
+- **Colours:** the founder's aqua, yellow, pink, salmon and lavender on the facts row, the feature cards (framed, Buffer-style), the hero's video frame and the icon chips; deep versions in dark mode.
+- **AI section:** the AI assistant (built) and AI agents through the API and MCP server (coming soon), with a mock-up agent console that fills in when scrolled to and a glowing edge; a new FAQ answer about AI.
+- **Pricing:** three plans on the landing (Free, Pro, Agency); every plan card (landing, Pricing, Billing) is short, with "Everything in …, plus" for the higher plans.
+- **Checks:** typecheck, lint, 77 unit tests, the message check and the production build pass; checked in light, dark, phone width and Arabic, and the billing screen.
+
+### 2026-10-26 — Navbar, footer and plan cards; lime retired
+
+- **Navbar:** a floating rounded bar over the hero glow (logo, centred links, language, theme, Log in, Start free); a menu sheet on phones.
+- **Footer:** a rounded panel with brand, Product, Free tools and Account columns, platform marks and a large faint wordmark.
+- **Colour:** lime removed everywhere, logo included (ink tile with a sky-to-mint check); the announcement strip is light green.
+- **Labels:** no small labels above headings on the landing, pricing and tool pages; the facts row's pause button now shows on keyboard focus only.
+- **Plan cards:** who each plan is for, limits in bold, and the full list of included features (10 lines on Free, 14 on Scale); the pricing table lists the same features.
+- **Checks:** typecheck, lint, 77 unit tests, the message check and the production build pass; checked in light, dark, phone width and Arabic.
+
+### 2026-10-26 — Light landing page with product clips
+
+- **Landing:** centred hero with a "free tools" pill, the platform logos and a clip of the composer (preview, fix to 9:16, schedule); a moving row of product facts with a pause button; feature cards with clips of the previews, calendar, home screen and carousel splitter, plus a short feature list and links to four free tools; restyled steps, pricing, FAQ and final call to action. Checked in light, dark, phone width and Arabic.
+- **Clips:** five recordings of the sample workspace in `public/clips` (about 9 MB in all on desktop, 4.3 MB on phones, each loaded only when shown). They play while a third is on screen, pause when scrolled away or by the visitor, and stay on the poster with reduced motion or data saving.
+- **Fonts:** Plus Jakarta Sans (headlines) and DM Sans (text) on the landing, pricing and tool pages, menus included; Inter stays in the app.
+- **Tooling:** `scripts/clips` records the flows in headless Chrome and encodes them (no dependencies; see its README).
+- **Tests:** 77 unit tests (new: headline full stops). Typecheck, lint, the message check (1,271 keys in each locale) and the production build pass.
+
+### 2026-10-25 — Dashboard redesign, free tools, real product shot
+
+- **Dashboard home:** slim title row (greeting, plan for the week, Open calendar, New post) instead of the dark hero card. Stat cards have icon chips and a change against the previous 7 days. "Needs attention" is a compact list with Retry or Publish now on each row. The light green highlight is used across the app, with sky for icons and a black primary button. Checked in light, dark and phone width.
+- **Free tools** (no account, nothing uploaded): `/tools` index, Instagram carousel splitter, Instagram grid maker (tiles numbered in posting order), LinkedIn text formatter (bold, italic, underline, lists, "see more" fold), YouTube title checker (phone and computer cut-off), and Instagram and TikTok username checkers (rules and ideas; availability is the person's own click, no scraping). The video checker moved onto the same page shell. All six languages, in the sitemap with hreflang.
+- **Footer:** brand column, then Product, Free tools (every tool) and Account.
+- **Landing:** the hero shows real dashboard screenshots (light and dark; Arabic in right-to-left) instead of the illustration.
+- **Tests:** 39 new unit tests (ZIP writer, tile geometry, styled text, username rules, title checks); 75 in total. Downloads were checked end to end in a browser: four 1080 × 1350 slides and nine 1080 × 1440 tiles, opened by Windows' own unzip.
+- **Still to verify:** platform facts behind the tools are marked VERIFY (see DECISIONS.md).
+
 ### 2026-10-23 — Backend slice: sign-in, workspaces, posts, billing (Supabase + Lemon Squeezy)
 
 - **Where:** inside the Next.js app (`app/api/v1`, `src/server/`, `supabase/`). The app keeps using the mock until `NEXT_PUBLIC_API_URL` and the Supabase keys are set.

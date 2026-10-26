@@ -19,10 +19,11 @@ type Props = {
   // Signed-in screens also save the choice to the profile.
   onChange?: (locale: AppLocale) => void;
   showLabel?: boolean;
+  className?: string;
 };
 
 // Keeps the current page; the middleware remembers the choice in a cookie (FRONTEND.md F15).
-export function LanguageSwitcher({ onChange, showLabel = false }: Props) {
+export function LanguageSwitcher({ onChange, showLabel = false, className }: Props) {
   const t = useTranslations("language");
   const locale = useLocale();
   const [pending, startTransition] = useTransition();
@@ -35,6 +36,7 @@ export function LanguageSwitcher({ onChange, showLabel = false }: Props) {
           size={showLabel ? "md" : "icon"}
           aria-label={showLabel ? undefined : t("label")}
           aria-busy={pending || undefined}
+          className={className}
         >
           <Globe aria-hidden />
           {showLabel ? <span lang={locale}>{localeNames[locale]}</span> : null}

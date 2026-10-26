@@ -116,27 +116,12 @@
       "copyright": "© {product}. All rights reserved.",
       "allTools": "All free tools"
     },
-    "mock": {
-      "title": "New video post",
-      "accounts": "Accounts",
-      "media": "Media",
-      "warning": "16:9 will be cropped on Reels",
-      "fix": "Make 9:16",
-      "duration": "Duration",
-      "size": "File size"
-    },
     "home": {
       "eyebrow": "Social media management for teams",
-      "line1": "Post once.",
-      "line2": "Look right everywhere.",
-      "line3": "Keep every <mark>pixel</mark>.",
-      "sub": "Schedule to every platform, preview each one, and fix video problems before you publish.",
+      "sub": "Built for startups, agencies and teams in many countries. Preview every platform, fix video problems before you publish, and let AI write the first draft.",
       "ctaPrimary": "Start free",
       "ctaGoogle": "Start with Google",
       "ctaNote": "{days}-day trial. No card needed.",
-      "band": "Every post is checked before it goes out: aspect ratio, resolution, bitrate, length and file size, for each platform.",
-      "bandCta": "Check a video now",
-      "featuresEyebrow": "What you get",
       "featuresTitle": "See it before your audience does.",
       "featuresSub": "Other schedulers send your file and hope. We show you exactly how each platform will display it, and warn you before quality drops.",
       "features": {
@@ -144,17 +129,9 @@
           "title": "Video pre-flight checks",
           "body": "Aspect ratio, resolution, bitrate, duration and size are checked against each platform, with a plain-language reason for every warning."
         },
-        "previews": {
-          "title": "Per-platform previews",
-          "body": "See each post in a phone frame with the crop and the parts covered by the app's buttons and captions."
-        },
         "original": {
           "title": "Your original, untouched",
           "body": "We send your original file unless you choose a fix. Fixes create a new copy you can compare and undo."
-        },
-        "calendar": {
-          "title": "Calendar and queue",
-          "body": "Plan by month or week, drag to reschedule, or fill your next free queue slot in one click."
         },
         "approvals": {
           "title": "Approvals for clients",
@@ -165,7 +142,6 @@
           "body": "Use the app in your language, including right-to-left scripts, and schedule in each market's timezone."
         }
       },
-      "stepsEyebrow": "How it works",
       "stepsTitle": "From upload to scheduled in minutes.",
       "steps": {
         "connect": {
@@ -181,10 +157,8 @@
           "body": "Pick a timezone and a time. We publish once, retry safely, and tell you if anything fails."
         }
       },
-      "pricingEyebrow": "Pricing",
       "pricingTitle": "Pay for what you use. Nothing hidden.",
       "pricingCta": "Compare plans",
-      "faqEyebrow": "Questions",
       "faqTitle": "Straight answers.",
       "faq": {
         "what": {
@@ -206,9 +180,109 @@
         "switch": {
           "q": "Can I switch from another scheduler?",
           "a": "Yes. Import your scheduled posts and media where the other tool allows an export. The first 100 customers get free help moving."
+        },
+        "ai": {
+          "q": "Does {product} use AI?",
+          "a": "Yes. The AI assistant in the composer drafts and rewrites captions for each platform, and marks posts made with AI for your team. An API and MCP server for AI agents are coming, with keys limited to one workspace."
         }
       },
-      "finalTitle": "Your next post can look exactly how you made it."
+      "finalTitle": "Your next post can look exactly how you made it.",
+      "shotAlt": "The {product} dashboard: this week's posting plan, a post that needs attention, and the week's numbers.",
+      "platformsLabel": "Previews and checks for",
+      "facts": {
+        "title": "The details other schedulers skip.",
+        "pause": "Pause animation",
+        "play": "Play animation",
+        "items": {
+          "platforms": {
+            "value": "{count}",
+            "label": "platforms, each previewed the way it really shows your post"
+          },
+          "checks": {
+            "value": "5",
+            "label": "checks on every video: aspect ratio, resolution, bitrate, length and file size"
+          },
+          "fix": {
+            "value": "1 click",
+            "label": "makes a 9:16 copy for a platform. Your original stays unchanged."
+          },
+          "languages": {
+            "value": "{count}",
+            "label": "languages in the app, including Arabic, written right to left"
+          },
+          "tools": {
+            "value": "{count}",
+            "label": "free tools you can use without an account"
+          }
+        }
+      },
+      "showcase": {
+        "previews": {
+          "title": "See every platform before you post",
+          "body": "Write once and check how each app will show it. If a video would be cropped or rejected, you see why, and the fix is one click away.",
+          "points": {
+            "captions": "One caption for all, or one per platform",
+            "frames": "Phone previews with the crop and the covered areas",
+            "fix": "A 9:16 copy in one click, original kept"
+          }
+        },
+        "calendar": {
+          "title": "Plan the week at a glance",
+          "body": "Switch between month, week and list. Drag a post to another day, or open it to see every detail."
+        },
+        "home": {
+          "title": "Know what needs you today",
+          "body": "This week's posts, what goes out next and anything that failed, with a retry button right there."
+        },
+        "tools": {
+          "title": "Free tools, no account needed",
+          "body": "Split a panorama into a carousel, plan your grid or check a video before you post it. Everything runs in your browser.",
+          "cta": "See all free tools"
+        }
+      },
+      "video": {
+        "play": "Play video",
+        "pause": "Pause video"
+      },
+      "clips": {
+        "compose": "Screen recording: a post is previewed for Instagram, TikTok and YouTube, fixed to 9:16 in one click and scheduled.",
+        "previews": "Screen recording: the previews warn that a wide video will be cropped, and one click makes a 9:16 copy for each platform.",
+        "calendar": "Screen recording: the calendar in month and week view, with a post opened to show its details.",
+        "home": "Screen recording: the home screen with this week's numbers, a failed post to retry and the posts coming up.",
+        "tools": "Screen recording: the free carousel splitter cuts a panorama into Instagram slides."
+      },
+      "ai": {
+        "title": "AI does the busywork. You stay in control.",
+        "sub": "The AI assistant writes captions shaped for each platform. Soon, AI agents can plan and schedule through a safe API, and every post still passes the same checks.",
+        "points": {
+          "write": {
+            "title": "Writes for every platform",
+            "body": "Describe the post and get a caption sized for each platform. Rephrase, shorten or change the tone in one click."
+          },
+          "agents": {
+            "title": "Agents with a scoped key",
+            "body": "Connect an AI agent through our API and MCP server, limited to one workspace. Coming soon."
+          },
+          "control": {
+            "title": "Your rules come first",
+            "body": "Publishing at once and deleting stay off unless you turn them on. Every action an agent takes is logged."
+          }
+        },
+        "console": {
+          "label": "Example of an AI agent planning three posts through the API, a feature that is coming soon.",
+          "title": "AI agent",
+          "soon": "Coming soon",
+          "agent": "Agent",
+          "prompt": "Plan three posts for next week from our spring sale video.",
+          "steps": {
+            "preflight": "9:16 copy ready",
+            "drafts": "3 drafts written",
+            "schedule": "Tue 9:00 · Thu 12:30 · Sat 18:00"
+          },
+          "reply": "Done: three posts checked for Instagram, TikTok and LinkedIn, and scheduled."
+        }
+      },
+      "headline": "Post to all your social accounts from one dashboard"
     }
   },
   "plans": {
@@ -239,17 +313,22 @@
       "reports": "Reports",
       "approvals": "Team approvals",
       "clientLinks": "Client approval links",
-      "api": "API and AI agents"
+      "api": "API and AI agents",
+      "captions": "A caption for each platform",
+      "timing": "Scheduling in any time zone",
+      "tags": "Tags and filters",
+      "fixes": "One-click fixes, original kept",
+      "languages": "The app in {count} languages"
     },
     "interval": "Billing period",
     "monthly": "Monthly",
     "yearly": "Yearly",
-    "twoMonthsFree": "2 months free"
+    "twoMonthsFree": "2 months free",
+    "everythingIn": "Everything in {plan}, plus:"
   },
   "pricing": {
     "metaTitle": "Pricing",
     "metaDescription": "Simple plans by number of social accounts and seats. Yearly billing gives two months free.",
-    "eyebrow": "Pricing",
     "title": "The lowest flat price at every size.",
     "sub": "Every plan includes pre-flight checks and previews. Start with a {days}-day trial of Pro, no card needed.",
     "founding": "First {count} customers: price locked for {months} months",
@@ -349,7 +428,6 @@
     "videoChecker": {
       "metaTitle": "Free video checker for Reels, TikTok and Shorts",
       "metaDescription": "Check your video's aspect ratio, resolution, bitrate, length and size against each platform before you post. Free, no sign-up, your file stays on your device.",
-      "eyebrow": "Free tool",
       "title": "Will your video look right?",
       "intro": "Drop a video to check its aspect ratio, resolution, bitrate, length and file size against Instagram, TikTok, YouTube, Facebook, LinkedIn and Bluesky, with a preview of how each one will show it.",
       "hint": "MP4, MOV or WebM video, or a JPG, PNG or WebP image.",
@@ -407,7 +485,6 @@
       }
     },
     "common": {
-      "eyebrow": "Free tool",
       "breadcrumb": "Free tools",
       "badgeFree": "Free",
       "badgeNoSignup": "No sign-up",

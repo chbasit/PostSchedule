@@ -5,42 +5,49 @@
 export type PlanKey = "free" | "solo" | "pro" | "agency" | "scale";
 export type BillingInterval = "month" | "year";
 
+// Feature flags are message keys under "plans.features", listed in the order plan cards and
+// the comparison table show them.
+export const FEATURES = [
+  "preflight",
+  "previews",
+  "fixes",
+  "captions",
+  "calendar",
+  "timing",
+  "tags",
+  "reports",
+  "approvals",
+  "clientLinks",
+  "api",
+  "languages",
+] as const;
+export type Feature = (typeof FEATURES)[number];
+
 export type Plan = {
   key: PlanKey;
   priceMonthly: number; // USD
   accounts: number;
   seats: number;
   highlighted?: boolean;
-  // Feature flags are message keys under "plans.features".
-  features: Array<"preflight" | "previews" | "calendar" | "approvals" | "clientLinks" | "api" | "reports">;
+  features: Feature[];
 };
 
+// What every plan has: the checks and previews, one-click fixes, a caption per platform, the
+// calendar, posting now, by queue or at any time zone, tags, and every app language.
+export const EVERY_PLAN: readonly Feature[] = ["preflight", "previews", "fixes", "captions", "calendar", "timing", "tags", "languages"];
+
 export const PLANS: readonly Plan[] = [
-  { key: "free", priceMonthly: 0, accounts: 3, seats: 1, features: ["preflight", "previews", "calendar"] },
-  { key: "solo", priceMonthly: 12, accounts: 10, seats: 1, features: ["preflight", "previews", "calendar", "reports"] },
-  {
-    key: "pro",
-    priceMonthly: 24,
-    accounts: 25,
-    seats: 3,
-    highlighted: true,
-    features: ["preflight", "previews", "calendar", "reports", "approvals"],
-  },
-  {
-    key: "agency",
-    priceMonthly: 59,
-    accounts: 75,
-    seats: 10,
-    features: ["preflight", "previews", "calendar", "reports", "approvals", "clientLinks"],
-  },
-  {
-    key: "scale",
-    priceMonthly: 119,
-    accounts: 200,
-    seats: 25,
-    features: ["preflight", "previews", "calendar", "reports", "approvals", "clientLinks", "api"],
-  },
+  { key: "free", priceMonthly: 0, accounts: 3, seats: 1, features: [...EVERY_PLAN] },
+  { key: "solo", priceMonthly: 12, accounts: 10, seats: 1, features: [...EVERY_PLAN, "reports"] },
+  { key: "pro", priceMonthly: 24, accounts: 25, seats: 3, highlighted: true, features: [...EVERY_PLAN, "reports", "approvals"] },
+  { key: "agency", priceMonthly: 59, accounts: 75, seats: 10, features: [...EVERY_PLAN, "reports", "approvals", "clientLinks"] },
+  { key: "scale", priceMonthly: 119, accounts: 200, seats: 25, features: [...EVERY_PLAN, "reports", "approvals", "clientLinks", "api"] },
 ];
+
+// A plan's features in display order.
+export function planFeatures(plan: Plan): Feature[] {
+  return FEATURES.filter((f) => plan.features.includes(f));
+}
 
 export const TRIAL_DAYS = 14;
 export const FOUNDING_CUSTOMERS = 100;

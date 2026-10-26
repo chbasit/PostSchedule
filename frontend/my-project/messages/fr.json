@@ -113,29 +113,15 @@
       "login": "Se connecter",
       "signup": "Commencer gratuitement",
       "tagline": "Gestion des réseaux sociaux pour les startups, les agences et les équipes dans plusieurs pays.",
-      "copyright": "© {product}. Tous droits réservés."
-    },
-    "mock": {
-      "title": "Nouvelle publication vidéo",
-      "accounts": "Comptes",
-      "media": "Média",
-      "warning": "Le 16:9 sera recadré dans les Reels",
-      "fix": "Passer en 9:16",
-      "duration": "Durée",
-      "size": "Taille"
+      "copyright": "© {product}. Tous droits réservés.",
+      "allTools": "Tous les outils gratuits"
     },
     "home": {
       "eyebrow": "Gestion des réseaux sociaux pour les équipes",
-      "line1": "Publiez une fois.",
-      "line2": "Parfait partout.",
-      "line3": "Gardez chaque <mark>pixel</mark>.",
-      "sub": "Programmez sur toutes les plateformes, prévisualisez chacune et corrigez les problèmes vidéo avant de publier.",
+      "sub": "Conçu pour les startups, les agences et les équipes dans plusieurs pays. Prévisualisez chaque plateforme, corrigez les problèmes vidéo avant de publier, et laissez l’IA écrire le premier jet.",
       "ctaPrimary": "Commencer gratuitement",
       "ctaGoogle": "Commencer avec Google",
       "ctaNote": "Essai de {days} jours. Sans carte bancaire.",
-      "band": "Chaque publication est vérifiée avant de partir : format, résolution, débit, durée et taille, pour chaque plateforme.",
-      "bandCta": "Vérifier une vidéo",
-      "featuresEyebrow": "Ce que vous obtenez",
       "featuresTitle": "Voyez-le avant votre public.",
       "featuresSub": "Les autres outils envoient votre fichier en espérant que tout aille bien. Nous vous montrons exactement comment chaque plateforme l’affichera, et vous prévenons avant une perte de qualité.",
       "features": {
@@ -143,17 +129,9 @@
           "title": "Vérifications vidéo avant envoi",
           "body": "Format, résolution, débit, durée et taille sont vérifiés pour chaque plateforme, avec une explication claire pour chaque alerte."
         },
-        "previews": {
-          "title": "Aperçu par plateforme",
-          "body": "Voyez chaque publication dans un cadre de téléphone, avec le recadrage et les zones masquées par les boutons et légendes de l’appli."
-        },
         "original": {
           "title": "Votre original, intact",
           "body": "Nous envoyons votre fichier original sauf si vous choisissez une correction. Les corrections créent une nouvelle copie, comparable et annulable."
-        },
-        "calendar": {
-          "title": "Calendrier et file d’attente",
-          "body": "Planifiez au mois ou à la semaine, glissez pour reprogrammer, ou remplissez le prochain créneau libre en un clic."
         },
         "approvals": {
           "title": "Validation par les clients",
@@ -164,7 +142,6 @@
           "body": "Utilisez l’appli dans votre langue, y compris les écritures de droite à gauche, et programmez dans le fuseau de chaque marché."
         }
       },
-      "stepsEyebrow": "Comment ça marche",
       "stepsTitle": "De l’envoi à la programmation en quelques minutes.",
       "steps": {
         "connect": {
@@ -180,10 +157,8 @@
           "body": "Choisissez un fuseau horaire et une heure. Nous publions une seule fois, réessayons en toute sécurité et vous prévenons en cas d’échec."
         }
       },
-      "pricingEyebrow": "Tarifs",
       "pricingTitle": "Payez ce que vous utilisez. Rien de caché.",
       "pricingCta": "Comparer les offres",
-      "faqEyebrow": "Questions",
       "faqTitle": "Des réponses claires.",
       "faq": {
         "what": {
@@ -205,9 +180,109 @@
         "switch": {
           "q": "Puis-je quitter un autre outil de programmation ?",
           "a": "Oui. Importez vos publications programmées et vos médias si l’autre outil permet l’export. Les 100 premiers clients bénéficient d’une aide gratuite à la migration."
+        },
+        "ai": {
+          "q": "{product} utilise-t-il l’IA ?",
+          "a": "Oui. L’assistant IA de l’éditeur rédige et reformule les textes pour chaque plateforme, et signale à votre équipe les publications faites avec l’IA. Une API et un serveur MCP pour les agents IA arrivent, avec des clés limitées à un espace de travail."
         }
       },
-      "finalTitle": "Votre prochaine publication peut ressembler exactement à ce que vous avez créé."
+      "finalTitle": "Votre prochaine publication peut ressembler exactement à ce que vous avez créé.",
+      "shotAlt": "Le tableau de bord de {product} : le planning de la semaine, une publication à traiter et les chiffres de la semaine.",
+      "platformsLabel": "Aperçus et vérifications pour",
+      "facts": {
+        "title": "Les détails que les autres outils négligent.",
+        "pause": "Mettre l’animation en pause",
+        "play": "Relancer l’animation",
+        "items": {
+          "platforms": {
+            "value": "{count}",
+            "label": "plateformes, chacune avec un aperçu fidèle à l’affichage réel de votre publication"
+          },
+          "checks": {
+            "value": "5",
+            "label": "vérifications sur chaque vidéo : format, résolution, débit, durée et taille du fichier"
+          },
+          "fix": {
+            "value": "1 clic",
+            "label": "crée une copie en 9:16 pour une plateforme. Votre original reste inchangé."
+          },
+          "languages": {
+            "value": "{count}",
+            "label": "langues dans l’appli, dont l’arabe, écrit de droite à gauche"
+          },
+          "tools": {
+            "value": "{count}",
+            "label": "outils gratuits, utilisables sans compte"
+          }
+        }
+      },
+      "showcase": {
+        "previews": {
+          "title": "Voyez chaque plateforme avant de publier",
+          "body": "Écrivez une fois et vérifiez comment chaque appli l’affichera. Si une vidéo risque d’être recadrée ou refusée, vous voyez pourquoi, et la correction est à un clic.",
+          "points": {
+            "captions": "Un texte pour toutes, ou un par plateforme",
+            "frames": "Des aperçus sur mobile avec le recadrage et les zones masquées",
+            "fix": "Une copie en 9:16 en un clic, l’original reste intact"
+          }
+        },
+        "calendar": {
+          "title": "Planifiez la semaine d’un coup d’œil",
+          "body": "Passez du mois à la semaine ou à la liste. Glissez une publication vers un autre jour, ou ouvrez-la pour voir tous les détails."
+        },
+        "home": {
+          "title": "Sachez ce qui vous attend aujourd’hui",
+          "body": "Les publications de la semaine, ce qui part ensuite et ce qui a échoué, avec un bouton pour réessayer juste à côté."
+        },
+        "tools": {
+          "title": "Des outils gratuits, sans compte",
+          "body": "Découpez un panorama en carrousel, planifiez votre grille ou vérifiez une vidéo avant de la publier. Tout fonctionne dans votre navigateur.",
+          "cta": "Voir tous les outils gratuits"
+        }
+      },
+      "video": {
+        "play": "Lire la vidéo",
+        "pause": "Mettre la vidéo en pause"
+      },
+      "clips": {
+        "compose": "Enregistrement d’écran : une publication est prévisualisée pour Instagram, TikTok et YouTube, passée en 9:16 en un clic, puis programmée.",
+        "previews": "Enregistrement d’écran : les aperçus signalent qu’une vidéo horizontale sera recadrée, et un clic crée une copie en 9:16 pour chaque plateforme.",
+        "calendar": "Enregistrement d’écran : le calendrier en vue mois et semaine, avec une publication ouverte pour voir ses détails.",
+        "home": "Enregistrement d’écran : l’écran d’accueil avec les chiffres de la semaine, une publication échouée à relancer et les prochaines publications.",
+        "tools": "Enregistrement d’écran : le découpeur de carrousel gratuit transforme un panorama en diapositives Instagram."
+      },
+      "ai": {
+        "title": "L’IA s’occupe du répétitif. Vous gardez la main.",
+        "sub": "L’assistant IA rédige des textes adaptés à chaque plateforme. Bientôt, des agents IA pourront planifier et programmer via une API sécurisée, et chaque publication passera toujours les mêmes vérifications.",
+        "points": {
+          "write": {
+            "title": "Écrit pour chaque plateforme",
+            "body": "Décrivez la publication et obtenez un texte à la bonne longueur pour chaque plateforme. Reformulez, raccourcissez ou changez le ton en un clic."
+          },
+          "agents": {
+            "title": "Des agents avec une clé limitée",
+            "body": "Connectez un agent IA via notre API et notre serveur MCP, limité à un espace de travail. Bientôt disponible."
+          },
+          "control": {
+            "title": "Vos règles d’abord",
+            "body": "Publier immédiatement et supprimer restent désactivés tant que vous ne les activez pas. Chaque action d’un agent est journalisée."
+          }
+        },
+        "console": {
+          "label": "Exemple d’un agent IA qui planifie trois publications via l’API, une fonction bientôt disponible.",
+          "title": "Agent IA",
+          "soon": "Bientôt",
+          "agent": "Agent",
+          "prompt": "Planifie trois publications pour la semaine prochaine à partir de la vidéo des soldes de printemps.",
+          "steps": {
+            "preflight": "Copie en 9:16 prête",
+            "drafts": "3 brouillons rédigés",
+            "schedule": "mar. 9:00 · jeu. 12:30 · sam. 18:00"
+          },
+          "reply": "C’est fait : trois publications vérifiées pour Instagram, TikTok et LinkedIn, et programmées."
+        }
+      },
+      "headline": "Publiez sur tous vos comptes sociaux depuis un seul tableau de bord"
     }
   },
   "plans": {
@@ -238,17 +313,22 @@
       "reports": "Rapports",
       "approvals": "Validation en équipe",
       "clientLinks": "Liens de validation client",
-      "api": "API et agents IA"
+      "api": "API et agents IA",
+      "captions": "Un texte pour chaque plateforme",
+      "timing": "Programmation dans tout fuseau horaire",
+      "tags": "Étiquettes et filtres",
+      "fixes": "Corrections en un clic, original conservé",
+      "languages": "L’appli en {count} langues"
     },
     "interval": "Période de facturation",
     "monthly": "Mensuel",
     "yearly": "Annuel",
-    "twoMonthsFree": "2 mois offerts"
+    "twoMonthsFree": "2 mois offerts",
+    "everythingIn": "Tout ce qu’offre {plan}, plus :"
   },
   "pricing": {
     "metaTitle": "Tarifs",
     "metaDescription": "Des offres simples selon le nombre de comptes sociaux et d’utilisateurs. La facturation annuelle offre deux mois.",
-    "eyebrow": "Tarifs",
     "title": "Le prix fixe le plus bas, quelle que soit la taille.",
     "sub": "Toutes les offres incluent les vérifications et les aperçus. Commencez par un essai Pro de {days} jours, sans carte bancaire.",
     "founding": "{count} premiers clients : prix garanti {months} mois",
@@ -348,7 +428,6 @@
     "videoChecker": {
       "metaTitle": "Vérificateur vidéo gratuit pour Reels, TikTok et Shorts",
       "metaDescription": "Vérifiez le format, la résolution, le débit, la durée et la taille de votre vidéo pour chaque plateforme avant de publier. Gratuit, sans inscription, et votre fichier reste sur votre appareil.",
-      "eyebrow": "Outil gratuit",
       "title": "Votre vidéo s’affichera-t-elle correctement ?",
       "intro": "Déposez une vidéo pour vérifier son format, sa résolution, son débit, sa durée et sa taille pour Instagram, TikTok, YouTube, Facebook, LinkedIn et Bluesky, avec un aperçu de l’affichage sur chacune.",
       "hint": "Vidéo MP4, MOV ou WebM, ou image JPG, PNG ou WebP.",
@@ -373,7 +452,406 @@
       "sourceLink": "Documentation {platform}",
       "ctaTitle": "Corrigez et programmez au même endroit.",
       "ctaBody": "Inscrivez-vous pour appliquer les corrections, prévisualiser chaque plateforme et programmer cette publication.",
-      "cta": "Corriger et programmer"
+      "cta": "Corriger et programmer",
+      "name": "Vérificateur vidéo",
+      "description": "Vérifiez une vidéo selon les limites de chaque plateforme avant de publier.",
+      "steps": {
+        "1": {
+          "title": "Déposez votre vidéo",
+          "body": "Une vidéo MP4, MOV ou WebM, ou une image. Votre navigateur la lit ; rien n’est envoyé."
+        },
+        "2": {
+          "title": "Voyez chaque plateforme",
+          "body": "Le format, la résolution, le débit, la durée et la taille sont vérifiés pour Instagram, TikTok, YouTube, Facebook, LinkedIn et Bluesky."
+        },
+        "3": {
+          "title": "Corrigez avant de publier",
+          "body": "Chaque alerte explique ce qui va se passer et comment corriger, à côté d’un aperçu de l’affichage sur la plateforme."
+        }
+      },
+      "faq": {
+        "1": {
+          "q": "Ma vidéo est-elle envoyée ?",
+          "a": "Non. Votre navigateur lit les informations du fichier sur votre appareil, et rien ne nous est envoyé."
+        },
+        "2": {
+          "q": "Pourquoi les vidéos deviennent-elles floues après publication ?",
+          "a": "En général, le format, la taille ou le débit de la vidéo ne correspondent pas à ce qu’attend la plateforme, qui la recadre ou la réencode. Le vérificateur montre où cela va arriver."
+        },
+        "3": {
+          "q": "Les limites sont-elles à jour ?",
+          "a": "Les plateformes changent leurs limites. Chaque résultat renvoie à la documentation de la plateforme, et nous vérifions chaque limite avec elle."
+        }
+      }
+    },
+    "common": {
+      "breadcrumb": "Outils gratuits",
+      "badgeFree": "Gratuit",
+      "badgeNoSignup": "Sans inscription",
+      "badgePrivate": "Fonctionne dans votre navigateur",
+      "stepsTitle": "Comment ça marche",
+      "faqTitle": "Questions",
+      "moreTitle": "Plus d’outils gratuits",
+      "open": "Ouvrir l’outil",
+      "allTools": "Voir tous les outils gratuits",
+      "ctaTitle": "Des publications réussies, partout.",
+      "ctaBody": "{product} prévisualise chaque publication sur chaque plateforme, la vérifie et la programme.",
+      "cta": "Commencer gratuitement",
+      "copy": "Copier",
+      "copied": "Copié",
+      "copyFailed": "La copie n’a pas fonctionné. Sélectionnez le texte et copiez-le vous-même.",
+      "download": "Télécharger",
+      "downloadAll": "Tout télécharger (ZIP)",
+      "share": "Enregistrer sur le téléphone",
+      "preparing": "Préparation…",
+      "another": "Utiliser une autre image",
+      "imageHint": "Image JPG, PNG ou WebP.",
+      "opening": "Ouverture de {name}…",
+      "imageErrors": {
+        "type": "Ce fichier n’est pas une image que nous pouvons ouvrir. Utilisez une image JPG, PNG ou WebP.",
+        "unreadable": "Impossible d’ouvrir cette image. Elle est peut-être endommagée ou enregistrée dans un format que votre navigateur ne lit pas, comme le HEIC."
+      },
+      "lowRes": "Cette image est petite pour cette mise en page, le résultat risque d’être flou. Une image plus grande sera plus nette.",
+      "dragHint": "Faites glisser l’image pour choisir la partie à garder.",
+      "exportFailed": "Impossible de préparer les fichiers. Réessayez ou utilisez une image plus petite.",
+      "privacy": "Votre image ne quitte jamais cet appareil. Tout se passe dans votre navigateur.",
+      "rulesPending": "Les plateformes changent leurs règles. Nous les vérifions dans l’aide de {platform}.",
+      "rulesLink": "Aide {platform}",
+      "fit": "Cadrage",
+      "fill": "Remplir et recadrer",
+      "whole": "Image entière",
+      "background": "Couleur de fond",
+      "horizontal": "Position horizontale",
+      "vertical": "Position verticale",
+      "sizeLine": "{count, plural, one {# image} other {# images}} · {width} × {height} px",
+      "previewTitle": "Aperçu",
+      "passes": "respectée",
+      "fails": "non respectée"
+    },
+    "index": {
+      "metaTitle": "Outils gratuits pour les réseaux sociaux",
+      "metaDescription": "Des outils gratuits pour Instagram, TikTok, YouTube et LinkedIn : découpez des carrousels, créez des grilles de profil, vérifiez des noms d’utilisateur et des titres, mettez en forme vos publications. Sans inscription.",
+      "eyebrow": "Outils gratuits",
+      "title": "De petits outils pour de meilleures publications.",
+      "intro": "Découpez un panorama en carrousel, préparez une grille de profil, vérifiez un nom d’utilisateur ou un titre, et mettez en forme une publication LinkedIn. Gratuit, sans inscription, et vos fichiers ne quittent jamais votre appareil."
+    },
+    "carouselSplitter": {
+      "metaTitle": "Découpeur de carrousel Instagram : panoramas sans coupure",
+      "metaDescription": "Découpez une image large en diapositives de carrousel Instagram sans coupure, en portrait 4:5 ou en carré. Gratuit, sans inscription, directement dans votre navigateur.",
+      "name": "Découpeur de carrousel Instagram",
+      "description": "Transformez une image large en diapositives de carrousel continues.",
+      "title": "Découpeur de carrousel Instagram",
+      "intro": "Découpez une image large en 2 à 10 diapositives qui s’enchaînent quand on fait défiler. Choisissez des diapositives en portrait ou carrées, la partie à garder, et téléchargez-les dans l’ordre.",
+      "slides": "Diapositives",
+      "shape": "Forme des diapositives",
+      "portrait": "Portrait 4:5",
+      "square": "Carré 1:1",
+      "seams": "Les lignes montrent où commence chaque diapositive.",
+      "swipe": "Aperçu du défilement",
+      "previous": "Diapositive précédente",
+      "next": "Diapositive suivante",
+      "slideOf": "Diapositive {n} sur {count}",
+      "slide": "Diapositive {n}",
+      "steps": {
+        "1": {
+          "title": "Ajoutez une image large",
+          "body": "Un panorama, ou un visuel plus large que haut, donne les meilleurs résultats."
+        },
+        "2": {
+          "title": "Choisissez vos diapositives",
+          "body": "Choisissez le nombre de diapositives et leur forme, puis déplacez l’image pour garder la partie voulue."
+        },
+        "3": {
+          "title": "Téléchargez et publiez",
+          "body": "Téléchargez les diapositives et ajoutez-les à une seule publication en carrousel, dans l’ordre à partir de 1."
+        }
+      },
+      "faq": {
+        "1": {
+          "q": "Quelle est la taille des diapositives ?",
+          "a": "Les diapositives en portrait font 1080 × 1350 pixels (4:5) et les carrées 1080 × 1080 (1:1). Utilisez une seule forme pour toutes les diapositives d’une publication."
+        },
+        "2": {
+          "q": "Combien de diapositives puis-je créer ?",
+          "a": "De 2 à 10, le nombre qu’accepte l’API de publication d’Instagram pour un carrousel. L’application Instagram en permet parfois davantage."
+        },
+        "3": {
+          "q": "Les diapositives vont-elles s’enchaîner ?",
+          "a": "Oui. Chaque diapositive est découpée dans la même image, sans espace, et l’image continue quand on fait défiler. Instagram peut tout de même compresser un peu les images."
+        }
+      }
+    },
+    "gridMaker": {
+      "metaTitle": "Créateur de grille Instagram : découpez une photo pour votre profil",
+      "metaDescription": "Découpez une image en 3, 6, 9 ou 12 vignettes pour la grille de votre profil Instagram, numérotées dans l’ordre de publication. Gratuit, sans inscription.",
+      "name": "Créateur de grille Instagram",
+      "description": "Découpez une image en grille de profil à trois colonnes.",
+      "title": "Créateur de grille Instagram",
+      "intro": "Découpez une image en 3, 6, 9 ou 12 vignettes qui forment une grande image sur votre profil. Chaque vignette est numérotée dans l’ordre où la publier.",
+      "rows": "Rangées",
+      "shape": "Forme des vignettes",
+      "tall": "Haute 3:4",
+      "portrait": "Portrait 4:5",
+      "square": "Carrée 1:1",
+      "shapeHint": "La grille du profil Instagram affiche les publications en rectangles hauts (3:4). Choisissez carrée si votre grille affiche encore des carrés.",
+      "order": "Ordre de publication",
+      "orderHint": "Votre publication la plus récente s’affiche en premier : publiez d’abord la vignette 1 (en bas à droite) et en dernier celle en haut à gauche.",
+      "post": "Publication {n}",
+      "steps": {
+        "1": {
+          "title": "Ajoutez une image",
+          "body": "Prenez-en une grande : une grille de 3 × 3 vignettes hautes demande environ 3240 × 4320 pixels pour rester nette."
+        },
+        "2": {
+          "title": "Choisissez rangées et forme",
+          "body": "Choisissez de 1 à 4 rangées et la forme des vignettes, puis déplacez l’image pour garder la partie voulue."
+        },
+        "3": {
+          "title": "Publiez dans l’ordre",
+          "body": "Téléchargez les vignettes et publiez-les une par une, en commençant par la vignette 1."
+        }
+      },
+      "faq": {
+        "1": {
+          "q": "Pourquoi publier d’abord la vignette en bas à droite ?",
+          "a": "Votre profil affiche la publication la plus récente en premier, en haut à gauche. En publiant d’abord la vignette en bas à droite, chaque vignette se retrouve à sa place à la fin."
+        },
+        "2": {
+          "q": "Quelle forme de vignette choisir ?",
+          "a": "La grille du profil Instagram affiche les publications en rectangles 3:4 : les vignettes hautes remplissent donc chaque case. Instagram modifie la grille de temps en temps, vérifiez votre profil après la première publication."
+        },
+        "3": {
+          "q": "Ma grille restera-t-elle alignée ?",
+          "a": "Chaque publication suivante décale toutes les vignettes d’une place. Publiez par trois pour garder les rangées intactes, et notez que les publications épinglées s’affichent en premier."
+        }
+      }
+    },
+    "linkedinFormatter": {
+      "metaTitle": "Mise en forme de texte LinkedIn : gras, italique et listes",
+      "metaDescription": "Rédigez une publication LinkedIn avec du gras, de l’italique, du souligné et des listes, voyez où elle est coupée, puis copiez-la. Gratuit, sans inscription.",
+      "name": "Mise en forme de texte LinkedIn",
+      "description": "Ajoutez gras, italique et listes à une publication LinkedIn.",
+      "title": "Mise en forme de texte LinkedIn",
+      "intro": "Les publications LinkedIn sont du texte brut : cet outil remplace les lettres par des caractères semblables en gras, en italique ou soulignés, que vous pouvez coller. Rédigez, mettez en forme, voyez où la publication est coupée, puis copiez-la.",
+      "editor": "Votre publication",
+      "placeholder": "Rédigez votre publication ici. Sélectionnez quelques mots, puis choisissez un style.",
+      "toolbar": "Mise en forme",
+      "bold": "Gras",
+      "italic": "Italique",
+      "boldItalic": "Gras italique",
+      "mono": "Chasse fixe",
+      "underline": "Souligné",
+      "strike": "Barré",
+      "bullets": "Liste à puces",
+      "numbers": "Liste numérotée",
+      "clear": "Effacer la mise en forme",
+      "selectFirst": "Sélectionnez d’abord du texte.",
+      "count": "{count} / {limit}",
+      "countLabel": "Caractères",
+      "countNote": "Comptage prudent : chaque lettre stylisée compte pour deux.",
+      "over": "{count, plural, one {# caractère au-delà de la limite} other {# caractères au-delà de la limite}}",
+      "desktop": "Ordinateur",
+      "mobile": "Téléphone",
+      "seeMore": "…voir plus",
+      "you": "Votre nom",
+      "headline": "Votre titre",
+      "now": "Maintenant",
+      "previewEmpty": "Votre publication s’affichera ici.",
+      "foldHint": "Les gens voient les premières lignes avant « voir plus ». Placez-y votre accroche.",
+      "a11yNote": "Les lecteurs d’écran peuvent lire les lettres stylisées une à une, ou les ignorer. Stylisez quelques mots, pas des publications entières.",
+      "steps": {
+        "1": {
+          "title": "Rédigez ou collez votre publication",
+          "body": "Utilisez la zone comme un éditeur de texte. Les retours à la ligne sont conservés."
+        },
+        "2": {
+          "title": "Sélectionnez des mots et choisissez un style",
+          "body": "Gras, italique, souligné et listes. Appuyez de nouveau sur un style pour le retirer."
+        },
+        "3": {
+          "title": "Copiez-la dans LinkedIn",
+          "body": "Appuyez sur Copier, puis collez dans une nouvelle publication LinkedIn. Les styles suivent."
+        }
+      },
+      "faq": {
+        "1": {
+          "q": "Comment fonctionne le gras sur LinkedIn ?",
+          "a": "Les publications LinkedIn n’ont pas de boutons de mise en forme. Cet outil remplace chaque lettre par un caractère Unicode semblable en gras ou en italique, que LinkedIn affiche comme n’importe quel caractère."
+        },
+        "2": {
+          "q": "Quels caractères peut-on styliser ?",
+          "a": "Les lettres de A à Z et les chiffres de 0 à 9. Les lettres accentuées, les autres alphabets et les emoji restent tels quels."
+        },
+        "3": {
+          "q": "Le texte stylisé est-il accessible ?",
+          "a": "Pas entièrement. Les lecteurs d’écran peuvent épeler les mots stylisés ou les ignorer, et la recherche peut ne pas les trouver. Limitez le style à quelques mots."
+        }
+      }
+    },
+    "youtubeTitle": {
+      "metaTitle": "Vérificateur de titre YouTube : longueur et aperçu",
+      "metaDescription": "Vérifiez la longueur du titre de votre vidéo YouTube, voyez où il est coupé sur téléphone et sur ordinateur, et repérez les erreurs avant de publier. Gratuit, sans inscription.",
+      "name": "Vérificateur de titre YouTube",
+      "description": "Voyez où un titre est coupé et repérez les erreurs.",
+      "title": "Vérificateur de titre YouTube",
+      "intro": "Saisissez un titre pour voir sa longueur, la part visible sur téléphone et sur ordinateur, et tout ce que YouTube refuserait.",
+      "label": "Titre de la vidéo",
+      "placeholder": "Comment je monte une vidéo verticale en 10 minutes",
+      "count": "{count} / {limit}",
+      "mobile": "Téléphone · accueil",
+      "desktop": "Ordinateur · résultats de recherche",
+      "visible": "{count, plural, one {Environ # caractère s’affiche avant la coupure.} other {Environ # caractères s’affichent avant la coupure.}}",
+      "fits": "Le titre s’affiche en entier.",
+      "channel": "Votre chaîne",
+      "meta": "1,2 k vues · il y a 2 heures",
+      "checksTitle": "Vérifications",
+      "checks": {
+        "length": {
+          "pass": "Dans la limite de {limit} caractères de YouTube.",
+          "block": "{over, plural, one {# caractère au-delà de la limite de {limit} caractères de YouTube.} other {# caractères au-delà de la limite de {limit} caractères de YouTube.}}"
+        },
+        "angleBrackets": {
+          "pass": "Aucun chevron.",
+          "block": "YouTube n’accepte pas < ni > dans les titres."
+        },
+        "caps": {
+          "pass": "Pas tout en majuscules.",
+          "warn": "Un titre presque tout en majuscules peut donner l’impression de crier."
+        },
+        "punctuation": {
+          "pass": "Pas de !!! ni de ???.",
+          "warn": "Les !!! ou ??? répétés peuvent faire racoleur."
+        },
+        "spaces": {
+          "pass": "Pas d’espaces en trop.",
+          "warn": "Il y a des espaces en trop au début, à la fin ou entre les mots."
+        }
+      },
+      "fixSpaces": "Supprimer les espaces en trop",
+      "empty": "Saisissez un titre pour le vérifier.",
+      "approx": "Les aperçus sont approximatifs : la mise en page de YouTube varie avec la taille de l’écran.",
+      "steps": {
+        "1": {
+          "title": "Saisissez votre titre",
+          "body": "Ou collez-le. Le compteur et les aperçus se mettent à jour pendant la saisie."
+        },
+        "2": {
+          "title": "Vérifiez les aperçus",
+          "body": "Voyez la part visible sur un téléphone et sur un ordinateur avant que YouTube ne coupe."
+        },
+        "3": {
+          "title": "Corrigez et copiez",
+          "body": "Réglez ce qui est signalé, puis copiez le titre dans YouTube Studio."
+        }
+      },
+      "faq": {
+        "1": {
+          "q": "Quelle longueur peut faire un titre YouTube ?",
+          "a": "Jusqu’à {limit} caractères. Les titres courts se lisent plus facilement en entier, surtout sur téléphone."
+        },
+        "2": {
+          "q": "Où YouTube coupe-t-il les titres ?",
+          "a": "Cela dépend de l’écran et de la page. Sur téléphone, l’accueil affiche en général environ deux lignes : placez les mots les plus importants en premier."
+        },
+        "3": {
+          "q": "Puis-je utiliser des emoji ?",
+          "a": "Oui. Ici, chaque emoji compte pour un caractère. Utilisez-les avec parcimonie : ils peuvent repousser des mots importants hors de vue."
+        }
+      }
+    },
+    "username": {
+      "label": "Nom d’utilisateur ou nom",
+      "placeholder": "votrenom",
+      "count": "{count} / {max}",
+      "rulesTitle": "Règles de {platform}",
+      "rules": {
+        "length": "De {min} à {max} caractères",
+        "characters": "Uniquement des lettres, des chiffres, des points et des tirets bas",
+        "startPeriod": "Ne commence pas par un point",
+        "endPeriod": "Ne finit pas par un point",
+        "doublePeriod": "Jamais deux points à la suite"
+      },
+      "valid": "@{handle} respecte les règles de {platform}.",
+      "invalid": "@{handle} ne respecte pas encore les règles de {platform}.",
+      "empty": "Saisissez un nom d’utilisateur, ou un nom pour obtenir des idées.",
+      "open": "Voir s’il est pris",
+      "openHint": "Ouvre {platform} dans un nouvel onglet. Si un profil s’affiche, le nom est pris.",
+      "ideas": "Idées qui respectent les règles",
+      "ideasEmpty": "Saisissez un nom avec des lettres latines ou des chiffres pour obtenir des idées.",
+      "openIdea": "Ouvrir @{handle} sur {platform}",
+      "availability": "Nous ne pouvons pas vous dire si un nom est libre : {platform} n’offre aucun moyen de le vérifier, et nous n’extrayons pas ses pages."
+    },
+    "instagramUsername": {
+      "metaTitle": "Vérificateur de nom d’utilisateur Instagram : règles et idées",
+      "metaDescription": "Vérifiez un nom d’utilisateur selon les règles d’Instagram, obtenez des idées qui les respectent et ouvrez le profil pour voir s’il est pris. Gratuit, sans inscription.",
+      "name": "Vérificateur de nom Instagram",
+      "description": "Vérifiez un nom d’utilisateur selon les règles d’Instagram.",
+      "title": "Vérificateur de nom d’utilisateur Instagram",
+      "intro": "Saisissez un nom d’utilisateur ou un nom pour voir s’il respecte les règles d’Instagram, obtenez des idées qui les respectent et ouvrez l’adresse du profil pour voir s’il est pris.",
+      "steps": {
+        "1": {
+          "title": "Saisissez un nom d’utilisateur ou un nom",
+          "body": "Les majuscules et le @ sont ignorés : les noms d’utilisateur Instagram sont en minuscules."
+        },
+        "2": {
+          "title": "Vérifiez les règles",
+          "body": "Jusqu’à 30 lettres, chiffres, points et tirets bas, sans point au début ni à la fin et jamais deux points à la suite."
+        },
+        "3": {
+          "title": "Voyez s’il est libre",
+          "body": "Ouvrez l’adresse du profil. Si un profil s’affiche, le nom est pris ; sinon, il est peut-être libre."
+        }
+      },
+      "faq": {
+        "1": {
+          "q": "Cet outil peut-il me dire si un nom est libre ?",
+          "a": "Non. Instagram n’offre aucun moyen public de le vérifier, et nous n’extrayons pas ses pages. Ouvrez le lien du profil : si un profil s’affiche, le nom est pris."
+        },
+        "2": {
+          "q": "Que peut contenir un nom d’utilisateur Instagram ?",
+          "a": "Des lettres, des chiffres, des points et des tirets bas, jusqu’à 30 caractères. Les espaces, les accents et les autres symboles ne sont pas acceptés."
+        },
+        "3": {
+          "q": "Pourquoi un nom qui semble libre est-il refusé ?",
+          "a": "Instagram peut aussi réserver des noms, par exemple ceux de comptes fermés. Si un nom est refusé, essayez l’une des idées."
+        }
+      }
+    },
+    "tiktokUsername": {
+      "metaTitle": "Vérificateur de nom d’utilisateur TikTok : règles et idées",
+      "metaDescription": "Vérifiez un nom d’utilisateur selon les règles de TikTok, obtenez des idées qui les respectent et ouvrez le profil pour voir s’il est pris. Gratuit, sans inscription.",
+      "name": "Vérificateur de nom TikTok",
+      "description": "Vérifiez un nom d’utilisateur selon les règles de TikTok.",
+      "title": "Vérificateur de nom d’utilisateur TikTok",
+      "intro": "Saisissez un nom d’utilisateur ou un nom pour voir s’il respecte les règles de TikTok, obtenez des idées qui les respectent et ouvrez l’adresse du profil pour voir s’il est pris.",
+      "steps": {
+        "1": {
+          "title": "Saisissez un nom d’utilisateur ou un nom",
+          "body": "Les majuscules et le @ sont ignorés."
+        },
+        "2": {
+          "title": "Vérifiez les règles",
+          "body": "De 2 à 24 lettres, chiffres, points et tirets bas, sans point à la fin."
+        },
+        "3": {
+          "title": "Voyez s’il est libre",
+          "body": "Ouvrez l’adresse du profil. Si un profil s’affiche, le nom est pris ; sinon, il est peut-être libre."
+        }
+      },
+      "faq": {
+        "1": {
+          "q": "Cet outil peut-il me dire si un nom est libre ?",
+          "a": "Non. TikTok n’offre aucun moyen public de le vérifier, et nous n’extrayons pas ses pages. Ouvrez le lien du profil : si un profil s’affiche, le nom est pris."
+        },
+        "2": {
+          "q": "Que peut contenir un nom d’utilisateur TikTok ?",
+          "a": "Des lettres, des chiffres, des points et des tirets bas, de 2 à 24 caractères, et il ne peut pas finir par un point."
+        },
+        "3": {
+          "q": "Mes noms TikTok et Instagram doivent-ils être identiques ?",
+          "a": "Cela aide les gens à vous trouver. TikTok accepte 24 caractères et Instagram 30 : un nom valable sur les deux en compte donc 24 ou moins. Vérifiez-le avec les deux outils."
+        }
+      }
     }
   },
   "auth": {

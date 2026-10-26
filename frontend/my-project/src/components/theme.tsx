@@ -60,14 +60,14 @@ export function useTheme(): ThemePreference {
   return useSyncExternalStore(subscribe, read, () => "system");
 }
 
-export function ThemeMenu() {
+export function ThemeMenu({ className }: { className?: string }) {
   const t = useTranslations("theme");
   const pref = useTheme();
   const Icon = pref === "dark" ? Moon : pref === "light" ? Sun : Monitor;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" aria-label={t("label")}>
+        <Button variant="ghost" size="icon" aria-label={t("label")} className={className}>
           <Icon aria-hidden />
         </Button>
       </DropdownMenuTrigger>

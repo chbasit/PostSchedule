@@ -36,10 +36,10 @@ The colour combination comes from the reference image you shared (a lime announc
 
 | Pattern | How we use it |
 |---|---|
-| Dismissible lime announcement strip above the navbar | Launch offers, the founding-customer price lock, maintenance notices. One at a time. |
+| Dismissible announcement strip above the navbar (light green since 2026-10-26; lime retired) | Launch offers, the founding-customer price lock, maintenance notices. One at a time. |
 | White canvas, near-black text | The default page. Calm and readable for long working sessions. |
-| Near-black primary button, outlined secondary button | Primary actions are black (or lime on dark theme). One primary button per view. |
-| Small monospace uppercase "eyebrow" label above the headline | Section labels on the marketing site only. App page headers and the app sidebar have none: icon and title only. |
+| Near-black primary button, outlined secondary button | Primary actions are black (sky on the dark theme). One primary button per view. |
+| ~~Small monospace uppercase "eyebrow" label above the headline~~ | Dropped 2026-10-26 at the founder's request: headings stand on their own on the public site, and app page headers never had one (icon and title only). |
 | Large, light-weight, sentence-case headline in short lines ending in full stops | Marketing hero and empty states. |
 | Product screenshot in a device frame, over a big coral shape | Marketing hero. The coral shape is decorative only. |
 | Full-width coral band with white logos and a proof statement | Social proof strip on the marketing home page. |
@@ -56,14 +56,15 @@ The colour combination comes from the reference image you shared (a lime announc
 
 **Sample marketing copy (placeholder, change once the name is decided)**
 
-- Eyebrow: `SOCIAL MEDIA MANAGEMENT FOR TEAMS`
-- Headline: "Post once. / Look right everywhere. / Keep every pixel."
-- Sub: "Schedule to every platform, preview each one, and fix video problems before you publish."
+- Headline (since 2026-10-26): "Post to all your social accounts from one dashboard" (before: "Post once. / Look right everywhere. / Keep every pixel.")
+- Sub: "Built for startups, agencies and teams in many countries. Preview every platform, fix video problems before you publish, and let AI write the first draft."
 - Buttons: **Start free** and *Start with Google*
 
 ---
 
 ## 2. Colour system
+
+**Current palette (2026-10-26).** Lime `#DEFF00` is retired: no lime token, no `accent` button, no lime marker, logo check or strip. `app/globals.css` is the source of truth; where the original tables below disagree, it wins. Today: ink primary (sky `#ADDAFF` on dark), sky focus ring on dark, the light green `#E6F4EA` for highlights, selections and the announcement strip, sky and mint for icons and the logo's check, pastel tints for cards. The tables below are the original sampled set, kept for the contrast history.
 
 ### 2.1 Sampled brand colours
 
@@ -71,7 +72,7 @@ Sampled from the pixels of the reference image.
 
 | Name | Hex | Where it came from |
 |---|---|---|
-| Lime | `#DEFF00` | Announcement strip |
+| Lime (retired 2026-10-26) | `#DEFF00` | Announcement strip |
 | Ink | `#1D1E20` | Headline text, black buttons |
 | Coral | `#FF4B32` | Full-width band at the bottom |
 | Coral soft | `#FF7D4B` | Lighter end of the large swoosh |
@@ -88,7 +89,7 @@ Aim for roughly: **85% white, grey and ink**, **10% coral**, **5% lime**.
 | Colour | Use for | Never use for |
 |---|---|---|
 | **Ink** | Text, primary buttons, focus rings, icons | |
-| **Lime** | Announcement strip, "new" or "founding" badges, highlights behind a word, primary button on the dark theme | Text on a light background (contrast 1.14:1), status colours |
+| **Lime** (retired 2026-10-26) | Nothing any more; the light green highlight and sky took its jobs | Anything |
 | **Coral** | Decorative shapes, the social-proof band, chart series 2, large display text (24 px and up), brand moments | Error states, small text, white text on coral |
 | **Coral strong** `#C23B22` | Small coral-coloured text when needed (5.33:1 on white) | Links (links are ink and underlined), error states |
 | **Pastels** | Avatars, tags, soft backgrounds behind ink text | Text |
@@ -120,7 +121,7 @@ These names match shadcn/ui, so generated components pick them up. Hex values on
 | `--destructive` | `#B3261E` | `#FF8A80` |
 | `--shell` (app sidebar and the frame around the page panel) | `#F7F6F3` | `#0B0C0D` |
 | `--shell-hover` (sidebar item hover) | `#EAE8E5` | `#232427` |
-| `--brand-lime` | `#DEFF00` | `#DEFF00` |
+| ~~`--brand-lime`~~ (removed 2026-10-26) | | |
 | `--brand-coral` | `#FF4B32` | `#FF4B32` |
 | `--brand-coral-strong` | `#C23B22` | `#FF6A52` |
 
@@ -282,6 +283,19 @@ Using shadcn/ui variable names. If you scaffold with Tailwind v4, map them with 
 
 **Theme behaviour:** follow the system setting by default, with a toggle in the user menu. Set the theme before first paint so there is no flash.
 
+**Dashboard accents (2026-10-25, see DECISIONS.md).** `app/globals.css` is the source of truth; these are the tokens added since the table above:
+
+| Token | Light | Dark | Use |
+|---|---|---|---|
+| `--highlight` / `--highlight-foreground` | `#E6F4EA` / ink | `#12301F` / `#FAFAFA` | Current page, selections, date and plan badges (13:1 or better) |
+| `--brand-sky` (`bg-sky`) | `#ADDAFF` | `#ADDAFF` | Icon chips, the workspace mark; ink on top |
+| `--chip-*` (`components/tint.ts` `chips`) | sky, violet, green, rose, blue, amber | lighter steps | Stat-card icon chips; decorative, the label carries the meaning |
+| `--shadow-card`, `card-surface` utility | | | Dashboard cards: 16 px radius, hairline border, soft shadow |
+
+Primary buttons stay ink with white text (sky on dark). Coral is not used inside the dashboard.
+
+**Landing page (2026-10-26).** Light first, after the postiz reference. No small labels above headings (hero pill, section labels and card labels were removed at the founder's request); buttons on public pages are pill-shaped. The founder's five card colours (`--card-aqua` `#A4F1E9`, `--card-yellow` `#FFD88A`, `--card-pink` `#FAC3FF`, `--card-salmon` `#FFB2A8`, `--card-lavender` `#D4C2FF`; deep versions in dark, ink text 10.9:1 or better) fill the fact cards, the feature cards and icon chips, framed Buffer-style (a white frame around the coloured panel). The AI section sits on `.ai-mesh` (a mesh of lavender, pink and aqua) with the agent console in a turning `.glow-border` (still with reduced motion); its lines fade in once it is in view. Product clips come from `scripts/clips` (see its README) and play through `ViewportVideo`: muted, looping, only while a third is on screen, nothing downloaded before that, a `-sm` file below 768 px, a pause button that shows on hover, focus, touch screens or while paused, and the poster only with reduced motion or data saving. The moving fact row pauses on hover, focus or its button and stands still (scrollable) with reduced motion.
+
 ---
 
 ## 3. Typography
@@ -289,8 +303,10 @@ Using shadcn/ui variable names. If you scaffold with Tailwind v4, map them with 
 | Role | Font | Notes |
 |---|---|---|
 | UI and body | Inter (variable) | Self-host with `next/font`. Brand font is an open decision (section 19). |
-| Display headlines (marketing) | Inter at weight 300, tight tracking (-0.02em), line height 1.05 | Gives the light, large feel of the reference |
-| Eyebrow labels | A monospace face (Geist Mono or JetBrains Mono), uppercase, letter-spacing 0.08em, 12–13 px | In Arabic there is no uppercase, so use the normal UI font in regular case |
+| Public site (landing, pricing, tools) | DM Sans for text, Plus Jakarta Sans for headlines | Founder's choice (2026-10-26). Loaded by the marketing layout only (`src/features/marketing/fonts.ts`); the classes also go on `<html>` while a public page is open so menus match. Arabic keeps Noto Sans Arabic |
+| Display headlines (public site) | Plus Jakarta Sans 700, tracking -0.035em, line height 1.06 | `.display`; its full stop and comma are set wide, so the ones that end a word are pulled in with `tightStops()` |
+| Display headlines (elsewhere) | Inter at weight 300, tight tracking (-0.02em), line height 1.05 | Gives the light, large feel of the reference |
+| Eyebrow labels | A monospace face (Geist Mono or JetBrains Mono), uppercase, letter-spacing 0.08em, 12–13 px | Only the 404 page still uses one; the public site dropped them (2026-10-26). In Arabic there is no uppercase, so use the normal UI font in regular case |
 | Arabic | Noto Sans Arabic | Matches Inter's weight range |
 | Numbers in analytics | Inter with tabular figures (`font-variant-numeric: tabular-nums`) | Columns line up |
 
@@ -322,7 +338,7 @@ Rules: sentence case for all labels and buttons. Body text 16 px minimum on mobi
 - **Control heights:** 32 (compact), 40 (default), 48 (hero and mobile primary).
 - **Icons:** one set (Lucide). 16, 20 and 24 px. Mirror directional icons in right-to-left.
 - **Motion:** 150–250 ms ease-out for state changes. No decorative animation. Honour `prefers-reduced-motion` by removing movement and keeping fades.
-- **Focus ring:** 2 px ring in `--ring` with a 2 px offset. On dark theme the ring is lime. Never remove outlines without a replacement.
+- **Focus ring:** 2 px ring in `--ring` with a 2 px offset. On dark theme the ring is sky. Never remove outlines without a replacement.
 - **Breakpoints:** `sm` 640, `md` 768, `lg` 1024, `xl` 1280, `2xl` 1536.
 
 ---
@@ -335,7 +351,7 @@ Every component must define: default, hover, focus-visible, active, disabled, lo
 
 | Component | Variants and notes |
 |---|---|
-| **Button** | `primary` (ink; lime on dark), `secondary` (outlined ink), `accent` (lime, for promos only), `destructive`, `ghost`, `link` (ink, underlined). Sizes 32/40/48. `loading` shows a spinner, keeps width, sets `aria-busy`, and **ignores further activation** (section 10). Icon-only buttons need an `aria-label`. |
+| **Button** | `primary` (ink; sky on dark), `secondary` (outlined ink), `destructive`, `ghost`, `link` (ink, underlined); the lime `accent` was removed 2026-10-26. Public pages round buttons fully (`rounded-full`). Sizes 32/40/48. `loading` shows a spinner, keeps width, sets `aria-busy`, and **ignores further activation** (section 10). Icon-only buttons need an `aria-label`. |
 | **Input, Textarea, Select** | Visible label above, helper text below, error text with an icon. Outline uses `--input`. Character counter for captions. Filter bars use the borderless `Select variant="ghost"`. |
 | **Combobox** | Account picker and market picker: searchable, multi-select, remembers the last selection, keyboard operable. |
 | **Status chip** | Draft (grey), In review (violet), Scheduled (ink outline), Published (green), Partial (amber), Failed (crimson), Lapsed (amber), Needs reconnect (amber). Always icon + text. |
@@ -345,7 +361,7 @@ Every component must define: default, hover, focus-visible, active, disabled, lo
 | **Filter bar** | Buffer-style. List tabs on the left; on the right of the same row (from `xl`; below that, a row under the tabs) a small search box and borderless dropdowns for platform and tags: label and chevron, a muted fill on hover or open, a shadowed menu. Same pattern on Posts and Calendar, later Inbox and Analytics. Saved views and "clear all" come later. |
 | **Dialog and Sheet** | Dialog for decisions, sheet for detail panels and mobile. Trap focus, close on Escape, return focus to the trigger. |
 | **Toast** | Success and info only; errors that need action stay inline. Undo toast for quick destructive actions (8 s). |
-| **Banner** | `announcement` (lime, dismissible), `warning` (amber, for needs-reconnect and plan limits), `danger`, `info`. Persist dismissal per user. |
+| **Banner** | `announcement` (light green, centred, dismissible), `warning` (amber, for needs-reconnect and plan limits), `danger`, `info`. Persist dismissal per user. |
 | **Empty state** | Illustration or icon, one sentence on what this is, one primary action. Never a blank area. |
 | **Skeleton** | Matches the final layout to prevent layout shift. |
 | **Tabs** | Underlined tabs for the Posts lists (All posts, Scheduled, Posted, Drafts) and per-platform caption editing. Posts tabs live in `?tab=` on one route, switch without reloading, and keep search and filters. Caption tabs use arrow-key navigation. |
@@ -355,7 +371,7 @@ Every component must define: default, hover, focus-visible, active, disabled, lo
 | **Preview frame** | Composer preview per platform, drawn from the platform's `preview` spec: a vertical player for Shorts, Reels and TikTok (video plays muted with play/pause, sound and progress; side rail of actions; handle with Follow or Subscribe; caption or title), a feed card for Facebook, LinkedIn, Bluesky and Instagram photos (header, text above or below the media, carousel or grid for several photos, action bar), and a Story frame. Landscape video shows with bars until the "Make 9:16" fix is on, then fills the frame. A disconnected or unsupported combination shows why instead. The free video checker keeps the simpler frame with safe-zone guides. |
 | **Pre-flight item** | Icon (pass, warn, block), rule title, one-line explanation, optional fix button. |
 | **Upload dropzone** | In the composer, the caption box is the drop zone: drop files anywhere on it, paste an image into the text, or use "Add photos or a video". Thumbnails sit inside the box under the text, each with its own progress bar, pause/resume, remove, and a warning badge when pre-flight finds something; a dashed "Add" tile adds more. Several photos upload side by side. |
-| **Plan card** | Name, price (monthly/yearly toggle), accounts and seats, feature list from `plans.ts`, current-plan badge. |
+| **Plan card** | Name, who it is for, price (monthly/yearly toggle), accounts and seats in bold, then a short list from `plans.ts`: the five main features on the first card in a row, "Everything in <previous>, plus" and the additions on the others. Current-plan or ink "Most popular" badge. The same card on the landing page (three plans: Free, Pro, Agency; Pro on lavender), Pricing (all five, with the full comparison table) and Billing. |
 | **Account insights** | Per account (`/dashboard/accounts/[id]`): header with platform mark, name and handle; Insights and Posts tabs; a 7 / 30 / 90 day toggle and an "Updated …" time; stat tiles for the platform's own metrics (`providers/<platform>` `insights.metrics`, with its own words such as LinkedIn "Reactions" or YouTube "Subscribers"), each with the change against the previous period (icon + text, never colour alone); one single-series column chart with a metric switcher (new followers, posts, engagements; weekly columns for 90 days); a per-post table sortable by any metric, where posts made outside the app are labelled. A disconnected account shows its last numbers with a reconnect notice. |
 | **Export menu** | "Export" on an account's Insights: CSV (per-post rows, raw numbers, UTF-8 with BOM, formula-like cells prefixed), Markdown (summary and posts tables) and PDF (a print-ready report through the print dialog's Save as PDF, so every script and emoji renders). File names: `<account>-<platform>-insights-<from>-to-<to>`. |
 | **Usage tag** | A bordered pill with the label and the count in a filled tag ("Social accounts · 4 of 25"); the tag turns amber at the limit. Used on Billing instead of meters. |
@@ -404,7 +420,8 @@ All routes sit under a locale prefix: `/[locale]/...` (for example `/en/pricing`
 
 ### Navigation
 
-- **Marketing navbar:** logo, Product, Pricing, Free tools, Resources, **language switcher**, Log in, Start free. Lime announcement strip above it when active.
+- **Marketing navbar (2026-10-26):** a floating, fully rounded bar 12 px below the top, 56 px tall, blurred white: logo, then Product, Pricing, Free tools in the centre, then **language switcher**, theme, Log in, Start free (a menu button below `md`). The light green announcement strip sits above it when active. The hero below it is plain white (its gradient glow was removed at the founder's request); the product clip sits in a lavender frame.
+- **Marketing footer (2026-10-26):** a rounded panel inset from the page edges in the founder's deep green `--footer` `#213130` (both themes; white text 13.6:1, muted links 7.5:1, white focus rings): brand column (logo, tagline, platform marks), Product, Free tools (every tool) and Account columns with bold headings, the copyright line, and the product name set very large and faint along the bottom edge.
 - **App header:** workspace switcher, market switcher (when markets exist), global search, notifications, language, user menu.
 - **App sidebar:**
   - Create: New post, Studio, Bulk tools
@@ -993,7 +1010,7 @@ Rules:
 ## 19. Open decisions
 
 1. **Product name and logo.** Everything uses `{{PRODUCT_NAME}}` until decided.
-2. **Brand colours.** This file uses the lime, ink and coral from the reference image. Confirm them, or change the three brand values in `globals.css`. All contrast numbers must be re-checked after a change (section 2.5).
+2. **Brand colours.** This file started from the lime, ink and coral of the reference image. The founder has since retired coral from the dashboard (2026-10-25) and lime everywhere (2026-10-26) in favour of ink, the light green `#E6F4EA`, sky and mint. Confirm the set, or change the brand values in `globals.css`. All contrast numbers must be re-checked after a change (section 2.5).
 3. **Brand font.** Inter is the default. A distinct display face is optional.
 4. **Sign-up order.** Value first (assumed here) or card first.
 5. **Wave 1 languages.** English, Spanish, Portuguese (Brazil), French, German are assumed.

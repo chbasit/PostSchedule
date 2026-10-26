@@ -5,8 +5,7 @@
 
 /* Tokens from docs/FRONTEND.md §2.7. Components use these names, never raw hex. */
 :root {
-  /* brand, sampled from the reference image */
-  --brand-lime: #deff00;
+  /* brand, sampled from the reference image (the lime #DEFF00 was retired 2026-10-26) */
   --brand-ink: #1d1e20;
   --brand-coral: #ff4b32;
   --brand-coral-soft: #ff7d4b;
@@ -116,7 +115,28 @@
   --pastel-5: #ffe9d4;
   --pastel-6: #f38364;
 
+  /* Soft sky surface for landing cards, the partner of --highlight (ink text 17:1). */
+  --soft-sky: #e4f2ff;
+
+  /* The public site's footer, the same deep green in both themes (white text 13.6:1). */
+  --footer: #213130;
+  --footer-foreground: #ffffff;
+
+  /* Landing card colours (founder's palette, 2026-10-26). Ink text 10.9:1 or better,
+     muted text 5.4:1 or better; as surfaces the dark theme uses deep versions of each. */
+  --brand-aqua: #a4f1e9;
+  --brand-yellow: #ffd88a;
+  --brand-pink: #fac3ff;
+  --brand-salmon: #ffb2a8;
+  --brand-lavender: #d4c2ff;
+  --card-aqua: var(--brand-aqua);
+  --card-yellow: var(--brand-yellow);
+  --card-pink: var(--brand-pink);
+  --card-salmon: var(--brand-salmon);
+  --card-lavender: var(--brand-lavender);
+
   --font-stack: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading-stack: var(--font-stack);
   --font-mono-stack: var(--font-mono-face), ui-monospace, monospace;
 
   color-scheme: light;
@@ -148,6 +168,13 @@
 
   --highlight: #12301f;
   --highlight-foreground: #fafafa;
+  --soft-sky: #13263a;
+
+  --card-aqua: #113a36;
+  --card-yellow: #3b2f12;
+  --card-pink: #3b1d3f;
+  --card-salmon: #42211d;
+  --card-lavender: #272046;
 
   --chip-sky: #addaff;
   --chip-violet: #8f7bf2;
@@ -212,6 +239,14 @@
   --font-stack: "Inter", var(--font-arabic), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
+/* The public site: DM Sans for text, Plus Jakarta Sans for headlines (fonts.ts sets the
+   class on the marketing wrapper and on <html>). Arabic keeps the stack above: neither
+   face has Arabic script. */
+.site-fonts:not(:lang(ar)) {
+  --font-stack: var(--font-site-text), ui-sans-serif, system-ui, sans-serif;
+  --font-heading-stack: var(--font-site-heading), var(--font-site-text), ui-sans-serif, system-ui, sans-serif;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -233,13 +268,20 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --color-lime: var(--brand-lime);
   --color-shell: var(--shell);
   --color-shell-hover: var(--shell-hover);
   --color-sky: var(--brand-sky);
   --color-mint: var(--brand-mint);
   --color-highlight: var(--highlight);
   --color-highlight-foreground: var(--highlight-foreground);
+  --color-soft-sky: var(--soft-sky);
+  --color-footer: var(--footer);
+  --color-footer-foreground: var(--footer-foreground);
+  --color-card-aqua: var(--card-aqua);
+  --color-card-yellow: var(--card-yellow);
+  --color-card-pink: var(--card-pink);
+  --color-card-salmon: var(--card-salmon);
+  --color-card-lavender: var(--card-lavender);
   --color-chip-sky: var(--chip-sky);
   --color-chip-violet: var(--chip-violet);
   --color-chip-green: var(--chip-green);
@@ -301,6 +343,7 @@
   --color-pastel-6: var(--pastel-6);
 
   --font-sans: var(--font-stack);
+  --font-heading: var(--font-heading-stack);
   --font-mono: var(--font-mono-stack);
 
   /* Menus, popovers and selects float on a small shadow instead of a border. */
@@ -328,6 +371,7 @@
   --animate-grow-x: grow-x 1000ms cubic-bezier(0.16, 1, 0.3, 1) both;
   --animate-reveal-x: reveal-x 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
   --animate-float: float 900ms cubic-bezier(0.34, 1.56, 0.64, 1) infinite alternate;
+  --animate-marquee: marquee 60s linear infinite;
 }
 
 @keyframes fade-in {
@@ -430,6 +474,12 @@
     transform: scale(0.97);
   }
 }
+/* The track holds its items twice; moving it by half loops without a seam. */
+@keyframes marquee {
+  to {
+    transform: translateX(calc(-50% * var(--slide-sign, 1)));
+  }
+}
 @keyframes slide-in-end {
   from {
     opacity: 0;
@@ -451,13 +501,16 @@
     -webkit-text-size-adjust: 100%;
   }
 
+  body,
+  .site-fonts {
+    font-family: var(--font-stack);
+  }
   body {
     background: var(--background);
     color: var(--foreground);
-    font-family: var(--font-stack);
   }
 
-  /* 2 px ring with a 2 px offset; lime on the dark theme (FRONTEND.md §4).
+  /* 2 px ring with a 2 px offset; sky on the dark theme (FRONTEND.md §4).
      Text fields override this with a solid border instead (see .field-control). */
   :focus-visible {
     outline: 2px solid var(--ring);
@@ -526,6 +579,18 @@
   }
 }
 
+/* The glow border's angle, registered so it can animate. */
+@property --glow-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes glow-turn {
+  to {
+    --glow-angle: 360deg;
+  }
+}
+
 /* Meter fill position. Registered so it can animate: the fill grows from empty on mount
    and glides to each new value. */
 @property --p {
@@ -580,13 +645,50 @@
     letter-spacing: -0.02em;
     line-height: 1.05;
   }
+  /* The public site sets headlines bold and tight. */
+  .site-fonts .display {
+    font-family: var(--font-heading-stack);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.06;
+  }
+  /* The heading face sets its full stop wide (see tight-stops.tsx). */
+  .site-fonts:not(:lang(ar)) .tight-stop {
+    margin-inline-start: -0.1em;
+  }
+
+  /* A faint dot grid, fading out from the top; sections set their own mask. */
+  .dot-grid {
+    background-image: radial-gradient(color-mix(in oklab, var(--foreground) 16%, transparent) 1px, transparent 1.6px);
+    background-size: 22px 22px;
+    mask-image: radial-gradient(ellipse 70% 62% at 50% 0%, black 25%, transparent 75%);
+  }
+
+  /* The AI section: a soft mesh of the card colours. */
+  .ai-mesh {
+    background:
+      radial-gradient(48% 62% at 0% 0%, color-mix(in oklab, var(--card-lavender) 90%, transparent), transparent 72%),
+      radial-gradient(42% 58% at 100% 8%, color-mix(in oklab, var(--card-pink) 85%, transparent), transparent 72%),
+      radial-gradient(55% 62% at 62% 100%, color-mix(in oklab, var(--card-aqua) 85%, transparent), transparent 72%),
+      var(--card);
+  }
+
+  /* A slowly turning edge in the card colours, for the agent console. With reduced motion
+     the animation ends at once and the edge stands still. */
+  .glow-border {
+    border: 2px solid transparent;
+    background:
+      linear-gradient(var(--card), var(--card)) padding-box,
+      conic-gradient(from var(--glow-angle), var(--brand-lavender), var(--brand-aqua), var(--brand-yellow), var(--brand-salmon), var(--brand-pink), var(--brand-lavender)) border-box;
+    animation: glow-turn 8s linear infinite;
+  }
 
   .tabular {
     font-variant-numeric: tabular-nums;
   }
 }
 
-/* Text fields: on focus the border itself turns ink (lime on dark) and doubles to 2 px
+/* Text fields: on focus the border itself turns ink (sky on dark) and doubles to 2 px
    with an inset outline. No offset gap, no shadow, nothing clipped by scroll containers.
    Unlayered so it wins over the global focus ring above. */
 .field-control:focus-visible {

@@ -117,7 +117,7 @@ export function RangeField({
         value={value}
         disabled={disabled}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="h-2 w-full cursor-pointer accent-coral disabled:cursor-not-allowed"
+        className="h-2 w-full cursor-pointer accent-foreground disabled:cursor-not-allowed"
       />
     </div>
   );

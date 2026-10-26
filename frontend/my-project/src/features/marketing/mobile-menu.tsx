@@ -23,7 +23,7 @@ export function MobileMenu({ links, loginLabel, startLabel }: Props) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="ghost" size="icon" className="md:hidden" aria-label={t("openMenu")}>
+        <Button variant="ghost" size="icon" className="rounded-full md:hidden" aria-label={t("openMenu")}>
           <Menu aria-hidden />
         </Button>
       </DialogTrigger>
@@ -35,7 +35,7 @@ export function MobileMenu({ links, loginLabel, startLabel }: Props) {
           <ul className="flex flex-col gap-1">
             {links.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} onClick={close} className="flex h-12 items-center rounded px-3 text-lg hover:bg-muted">
+                <Link href={link.href} onClick={close} className="flex h-12 items-center rounded-xl px-3 font-heading text-lg font-semibold hover:bg-muted">
                   {link.label}
                 </Link>
               </li>
@@ -43,10 +43,10 @@ export function MobileMenu({ links, loginLabel, startLabel }: Props) {
           </ul>
         </nav>
         <div className="mt-auto flex flex-col gap-2 pt-8">
-          <Link href="/signup" onClick={close} className={cn(buttonVariants({ size: "lg" }))}>
+          <Link href="/signup" onClick={close} className={cn(buttonVariants({ size: "lg" }), "rounded-full")}>
             {startLabel}
           </Link>
-          <Link href="/login" onClick={close} className={cn(buttonVariants({ variant: "secondary", size: "lg" }))}>
+          <Link href="/login" onClick={close} className={cn(buttonVariants({ variant: "secondary", size: "lg" }), "rounded-full border-border")}>
             {loginLabel}
           </Link>
         </div>

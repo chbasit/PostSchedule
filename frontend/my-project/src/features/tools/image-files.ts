@@ -96,9 +96,11 @@ export async function saveZip(files: TileFile[], name: string) {
   saveBlob(new Blob([zipStore(entries)], { type: "application/zip" }), name);
 }
 
-// Phones can hand the images straight to the share sheet (Save to Photos, Instagram...).
+// Phones and tablets can hand the images straight to the share sheet (Save to Photos,
+// Instagram...). Desktops download instead, so the button is touch-only.
 export function canShareFiles(): boolean {
   if (typeof navigator === "undefined" || typeof navigator.canShare !== "function") return false;
+  if (!matchMedia("(pointer: coarse)").matches) return false;
   try {
     return navigator.canShare({ files: [new File([new Uint8Array(1)], "probe.jpg", { type: "image/jpeg" })] });
   } catch {
