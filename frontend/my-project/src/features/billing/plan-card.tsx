@@ -15,13 +15,15 @@ type Props = {
   // The plan shown before this one: the card then lists only what this plan adds.
   previous?: Plan;
   current?: boolean;
+  // No ring or shadow: the card stands on its own fill (the landing page passes one).
+  flat?: boolean;
   className?: string;
 };
 
 // Name, who it is for, price, the account and seat limits, then a short list from plans.ts
 // (FRONTEND.md §5): the main features on the first card, "Everything in <previous>, plus"
 // and the additions on the others. The full list is the comparison table on Pricing.
-export function PlanCard({ plan, interval, action, previous, current, className }: Props) {
+export function PlanCard({ plan, interval, action, previous, current, flat, className }: Props) {
   const t = useTranslations("plans");
   const locale = useLocale();
   const price = priceFor(plan, interval);
@@ -32,8 +34,9 @@ export function PlanCard({ plan, interval, action, previous, current, className 
   return (
     <article
       className={cn(
-        "relative flex flex-col rounded-3xl bg-card p-6 shadow-card",
-        plan.highlighted ? "ring-2 ring-foreground" : "ring-1 ring-border",
+        "relative flex flex-col rounded-3xl bg-card p-6",
+        !flat && "shadow-card",
+        !flat && (plan.highlighted ? "ring-2 ring-foreground" : "ring-1 ring-border"),
         className,
       )}
       aria-labelledby={`plan-${plan.key}`}

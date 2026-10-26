@@ -5,16 +5,15 @@ import arDark from "@/assets/screens/dashboard-ar-dark.webp";
 import arLight from "@/assets/screens/dashboard-ar-light.webp";
 import enDark from "@/assets/screens/dashboard-en-dark.webp";
 import enLight from "@/assets/screens/dashboard-en-light.webp";
-import { BrowserFrame } from "./browser-frame";
 
-// The real dashboard (sample workspace) in a browser frame, in the visitor's theme. Arabic
-// pages show the right-to-left screen; the other languages show the English one.
+// The real dashboard (sample workspace) in the visitor's theme, with rounded corners and no
+// frame. Arabic pages show the right-to-left screen; the other languages show the English one.
 // Both images stay lazy so only the visible theme downloads (Next.js image docs, "Theme
 // detection"); fetchPriority lifts it because it is the hero's largest element.
 const SHOTS = { en: { light: enLight, dark: enDark }, ar: { light: arLight, dark: arDark } } as const;
 
-// Marketing container 1200 px minus its padding, and the frame's own padding on wide screens.
-const SIZES = "(min-width: 1200px) 1088px, (min-width: 768px) 90vw, 100vw";
+// Landing container 1440 px minus its padding, and the panel's own padding on wide screens.
+const SIZES = "(min-width: 1440px) 1344px, (min-width: 768px) 92vw, 100vw";
 
 export function ProductShot() {
   const t = useTranslations("marketing.home");
@@ -22,9 +21,9 @@ export function ProductShot() {
   const alt = t("shotAlt", { product: PRODUCT_NAME });
 
   return (
-    <BrowserFrame>
+    <figure className="overflow-hidden rounded-2xl bg-card">
       <Image src={shot.light} alt={alt} sizes={SIZES} placeholder="blur" fetchPriority="high" className="h-auto w-full dark:hidden" />
       <Image src={shot.dark} alt={alt} sizes={SIZES} placeholder="blur" fetchPriority="high" className="hidden h-auto w-full dark:block" />
-    </BrowserFrame>
+    </figure>
   );
 }

@@ -46,7 +46,7 @@ export function AgentConsole({ className }: { className?: string }) {
   }, []);
 
   return (
-    <figure ref={ref} className={cn("glow-border overflow-hidden rounded-3xl shadow-dialog", className)}>
+    <figure ref={ref} className={cn("overflow-hidden rounded-3xl bg-card", className)}>
       <figcaption className="sr-only">{t("label")}</figcaption>
       <div aria-hidden>
         <div className="flex items-center gap-3 border-b px-4 py-3">
@@ -75,7 +75,7 @@ export function AgentConsole({ className }: { className?: string }) {
           </Line>
           {STEPS.map((step, i) => (
             <Line key={step.key} index={2 + i} shown={shown}>
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-xl border bg-muted/50 px-3 py-2.5">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-xl bg-muted px-3 py-2.5">
                 <code dir="ltr" className="font-mono text-xs font-semibold">
                   <span className="text-muted-foreground">› </span>
                   {step.tool}()

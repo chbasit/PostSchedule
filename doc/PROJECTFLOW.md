@@ -259,6 +259,14 @@ Do these in order. Each is small enough for one sitting.
 
 Newest first. What is actually built, so the phase map can be checked against it. The reasons live in `DECISIONS.md`; screen details in `FRONTEND.md`.
 
+### 2026-10-26 — Wider, flat landing; full-width navbar and footer
+
+- **Width:** landing sections 1440 px wide (were 1200 px), plan cards included; the navbar and footer content lines up with them.
+- **Navbar:** a full-width bar at the top of the window, with a hairline under it once the page scrolls.
+- **Footer:** the deep green now runs edge to edge.
+- **Flat cards:** no borders, shadows or white frames on the landing page; clips and the Arabic screenshot show without the browser frame; the agent console lost its glowing edge. Pricing and Billing cards are unchanged.
+- **Checks:** typecheck, lint, 77 unit tests, the message check and the production build pass; checked at 1550 px and 1366 px, in dark mode, at phone width and in Arabic, plus the Pricing page.
+
 ### 2026-10-26 — New hero headline, deep green footer
 
 - **Hero:** "Post to all your social accounts from one dashboard" with a new subheading in all six languages; no gradient glow; the clip in a lavender frame.

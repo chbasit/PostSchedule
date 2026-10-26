@@ -29,7 +29,6 @@ import { PLATFORMS } from "@/providers/catalog";
 import { PlanCard } from "@/features/billing/plan-card";
 import { GoogleIcon } from "@/features/auth/google-icon";
 import { AgentConsole } from "@/features/marketing/agent-console";
-import { BrowserFrame } from "@/features/marketing/browser-frame";
 import { Clip, type ClipName } from "@/features/marketing/clip";
 import { Marquee } from "@/features/marketing/marquee";
 import { ProductShot } from "@/features/marketing/product-shot";
@@ -70,13 +69,9 @@ const FEATURED_TOOLS = TOOLS.slice(0, 4);
 // Three plans here; Pricing lists all of them with the full comparison.
 const LANDING_PLANS: PlanKey[] = ["free", "pro", "agency"];
 
-// A coloured panel in a white frame, after the founder's reference (Buffer).
-function Framed({ surface, className, children }: { surface: string; className?: string; children: ReactNode }) {
-  return (
-    <div className={cn("rounded-[30px] border bg-card p-1.5 shadow-card", className)}>
-      <div className={cn("relative isolate h-full overflow-hidden rounded-[24px]", surface)}>{children}</div>
-    </div>
-  );
+// A coloured panel. The landing page is flat: no frames, borders or shadows on its cards.
+function Panel({ surface, className, children }: { surface: string; className?: string; children: ReactNode }) {
+  return <div className={cn("relative isolate overflow-hidden rounded-[28px]", surface, className)}>{children}</div>;
 }
 
 // A feature card with its clip. "side" puts the clip beside the text on wide screens;
@@ -108,11 +103,11 @@ function ShowcaseCard({
   );
 
   return (
-    <Framed surface={surface} className={className}>
+    <Panel surface={surface} className={className}>
       {layout === "side" ? (
-        <div className="grid items-center gap-8 p-6 sm:p-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-14">
+        <div className="grid items-center gap-8 p-6 sm:p-10 lg:grid-cols-2 lg:gap-14">
           {text}
-          <div className={cn("w-full justify-self-center overflow-hidden rounded-2xl border bg-card shadow-dialog", mediaClassName)}>
+          <div className={cn("w-full justify-self-center overflow-hidden rounded-2xl bg-card", mediaClassName)}>
             <Clip name={clip} />
           </div>
         </div>
@@ -120,13 +115,13 @@ function ShowcaseCard({
         <div className="flex h-full flex-col">
           <div className="p-6 sm:p-8">{text}</div>
           <div className="mt-auto ps-6 sm:ps-8">
-            <div className="overflow-hidden rounded-ss-2xl border-s border-t bg-card shadow-dialog">
+            <div className="overflow-hidden rounded-ss-2xl bg-card">
               <Clip name={clip} />
             </div>
           </div>
         </div>
       )}
-    </Framed>
+    </Panel>
   );
 }
 
@@ -170,7 +165,7 @@ export default function HomePage() {
 
       {/* Hero: the promise, the platforms, then the product at work. */}
       <section>
-        <div className="mx-auto max-w-[1200px] px-4 pt-12 text-center md:px-6 lg:px-8 lg:pt-20">
+        <div className="mx-auto max-w-[1440px] px-4 pt-12 text-center md:px-6 lg:px-8 lg:pt-20">
           <h1 className="display mx-auto max-w-5xl text-[clamp(2.5rem,5.6vw,4.5rem)] text-balance">{tightStops(t("headline"))}</h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-balance text-muted-foreground md:text-xl">{t("sub")}</p>
           <div className="mx-auto mt-8 flex max-w-sm flex-col items-center justify-center gap-3 sm:max-w-none sm:flex-row">
@@ -184,59 +179,55 @@ export default function HomePage() {
           <p className="mt-4 text-sm text-muted-foreground">{t("ctaNote", { days: TRIAL_DAYS })}</p>
           <div className="mt-8">
             <p className="text-sm font-medium text-muted-foreground">{t("platformsLabel")}</p>
-            <ul className="mt-3 flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
+            <ul className="mt-3 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
               {PLATFORMS.map((platform) => (
-                <li key={platform.id} className="rounded-2xl bg-card p-1 shadow-card ring-1 ring-border sm:p-1.5">
-                  <PlatformMark id={platform.id} size="lg" className="size-9 rounded-xl sm:size-10" />
+                <li key={platform.id} className="flex">
+                  <PlatformMark id={platform.id} size="lg" className="rounded-xl sm:size-12" />
                   <span className="sr-only">{platform.name}</span>
                 </li>
               ))}
             </ul>
           </div>
         </div>
-        <div className="mx-auto mt-10 max-w-[1200px] px-4 pb-16 md:px-6 md:pb-20 lg:mt-12 lg:px-8">
-          <Framed surface="bg-card-lavender">
-            <div className="p-2 sm:p-3 lg:p-4">
-              {/* The clips are recorded in English; Arabic pages keep the right-to-left screenshot. */}
-              {locale === "ar" ? (
-                <ProductShot />
-              ) : (
-                <BrowserFrame>
-                  <Clip name="compose" />
-                </BrowserFrame>
-              )}
-            </div>
-          </Framed>
+        <div className="mx-auto mt-10 max-w-[1440px] px-4 pb-16 md:px-6 md:pb-20 lg:mt-12 lg:px-8">
+          <Panel surface="bg-card-lavender" className="p-2 sm:p-3 lg:p-4">
+            {/* The clips are recorded in English; Arabic pages keep the right-to-left screenshot. */}
+            {locale === "ar" ? (
+              <ProductShot />
+            ) : (
+              <div className="overflow-hidden rounded-2xl bg-card">
+                <Clip name="compose" />
+              </div>
+            )}
+          </Panel>
         </div>
       </section>
 
       {/* Facts: what is true of the product today, in place of customer logos we do not have. */}
       <section aria-labelledby="facts-title" className="pb-16 md:pb-24">
-        <div className="mx-auto max-w-[1200px] px-4 text-center md:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1440px] px-4 text-center md:px-6 lg:px-8">
           <h2 id="facts-title" className="display mx-auto max-w-3xl text-4xl text-balance md:text-5xl">
             {tightStops(t("facts.title"))}
           </h2>
         </div>
         <Marquee className="mt-10">
           {FACTS.map(({ key, icon: Icon, surface, values }) => (
-            <li key={key} className="w-72 shrink-0 rounded-[26px] border bg-card p-1.5 shadow-card">
-              <div className={cn("flex h-48 flex-col justify-between rounded-[20px] p-5", surface)}>
-                <div className="flex items-start justify-between gap-3">
-                  <p className="tabular font-heading text-[2.75rem] font-extrabold leading-none tracking-tight">{t(`facts.items.${key}.value`, values)}</p>
-                  <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-card/70">
-                    <Icon className="size-5" aria-hidden />
-                  </span>
-                </div>
-                <p className="text-[15px] leading-snug text-foreground/80">{t(`facts.items.${key}.label`)}</p>
+            <li key={key} className={cn("flex h-48 w-72 shrink-0 flex-col justify-between rounded-[24px] p-5", surface)}>
+              <div className="flex items-start justify-between gap-3">
+                <p className="tabular font-heading text-[2.75rem] font-extrabold leading-none tracking-tight">{t(`facts.items.${key}.value`, values)}</p>
+                <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-card/70">
+                  <Icon className="size-5" aria-hidden />
+                </span>
               </div>
+              <p className="text-[15px] leading-snug text-foreground/80">{t(`facts.items.${key}.label`)}</p>
             </li>
           ))}
         </Marquee>
       </section>
 
       {/* AI: the writing assistant today, agents through the API and MCP server soon. */}
-      <section aria-labelledby="ai-title" className="mx-auto max-w-[1200px] px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
-        <Framed surface="ai-mesh">
+      <section aria-labelledby="ai-title" className="mx-auto max-w-[1440px] px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
+        <Panel surface="ai-mesh">
           <div aria-hidden className="dot-grid absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_75%_75%_at_30%_40%,black,transparent)]" />
           <div className="grid items-center gap-12 px-6 py-12 sm:px-10 md:py-16 lg:grid-cols-[1fr_1.05fr] lg:px-14">
             <div>
@@ -260,11 +251,11 @@ export default function HomePage() {
             </div>
             <AgentConsole />
           </div>
-        </Framed>
+        </Panel>
       </section>
 
       {/* Features: each with a clip of the real screen. */}
-      <section id="features" aria-labelledby="features-title" className="mx-auto max-w-[1200px] scroll-mt-24 px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
+      <section id="features" aria-labelledby="features-title" className="mx-auto max-w-[1440px] scroll-mt-24 px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 id="features-title" className="display text-4xl text-balance md:text-5xl">
             {tightStops(t("featuresTitle"))}
@@ -283,7 +274,7 @@ export default function HomePage() {
               <ul className="space-y-2.5 pt-2">
                 {(["captions", "frames", "fix"] as const).map((point) => (
                   <li key={point} className="flex items-start gap-2.5 font-medium">
-                    <span aria-hidden className="mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full bg-card shadow-card">
+                    <span aria-hidden className="mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full bg-card">
                       <Check className="size-3" />
                     </span>
                     {t(`showcase.previews.points.${point}`)}
@@ -299,7 +290,6 @@ export default function HomePage() {
             clip="tools"
             surface="bg-card-yellow"
             layout="side"
-            mediaClassName="lg:w-[560px]"
             className="lg:col-span-2"
             action={
               <div className="space-y-5 pt-2">
@@ -308,7 +298,7 @@ export default function HomePage() {
                     <li key={tool.key}>
                       <Link
                         href={toolHref(tool)}
-                        className="inline-flex items-center gap-1.5 rounded-full bg-card px-3 py-1.5 text-sm font-medium shadow-card transition-colors hover:bg-muted"
+                        className="inline-flex items-center gap-1.5 rounded-full bg-card px-3 py-1.5 text-sm font-medium transition-colors hover:bg-muted"
                       >
                         <tool.icon className="size-4" aria-hidden />
                         {tt(`${tool.key}.name`)}
@@ -325,7 +315,7 @@ export default function HomePage() {
         </div>
         <ul className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {EXTRAS.map(({ key, icon: Icon, chip }) => (
-            <li key={key} className="card-surface rounded-3xl p-6">
+            <li key={key} className="rounded-3xl bg-muted p-6">
               <span className={cn("inline-flex size-11 items-center justify-center rounded-2xl", chip)}>
                 <Icon className="size-5" aria-hidden />
               </span>
@@ -337,14 +327,14 @@ export default function HomePage() {
       </section>
 
       {/* How it works */}
-      <section className="border-y bg-shell">
-        <div className="mx-auto max-w-[1200px] px-4 py-16 md:px-6 md:py-24 lg:px-8">
+      <section className="bg-shell">
+        <div className="mx-auto max-w-[1440px] px-4 py-16 md:px-6 md:py-24 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="display text-4xl text-balance md:text-5xl">{tightStops(t("stepsTitle"))}</h2>
           </div>
           <ol className="mt-12 grid gap-5 md:grid-cols-3">
             {(["connect", "check", "schedule"] as const).map((step, i) => (
-              <li key={step} className="card-surface rounded-3xl p-7">
+              <li key={step} className="rounded-3xl bg-card p-7">
                 <span aria-hidden className={cn("tabular inline-flex size-11 items-center justify-center rounded-2xl font-heading text-lg font-bold", STEP_CHIPS[i])}>
                   {i + 1}
                 </span>
@@ -357,16 +347,17 @@ export default function HomePage() {
       </section>
 
       {/* Pricing: three plans; Pricing compares all of them. */}
-      <section className="mx-auto max-w-[1200px] px-4 py-16 md:px-6 md:py-24 lg:px-8">
+      <section className="mx-auto max-w-[1440px] px-4 py-16 md:px-6 md:py-24 lg:px-8">
         <h2 className="display mx-auto max-w-2xl text-center text-4xl text-balance md:text-5xl">{tightStops(t("pricingTitle"))}</h2>
-        <div className="mx-auto mt-12 grid max-w-5xl gap-5 md:grid-cols-3">
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
           {plans.map((plan, i) => (
             <PlanCard
               key={plan.key}
               plan={plan}
               interval="month"
               previous={plans[i - 1]}
-              className={plan.highlighted ? "bg-card-lavender" : undefined}
+              flat
+              className={plan.highlighted ? "bg-card-lavender" : "bg-muted"}
               action={
                 <Link href="/signup" className={cn(buttonVariants({ variant: plan.highlighted ? "primary" : "secondary" }), "w-full rounded-full")}>
                   {t("ctaPrimary")}
@@ -383,15 +374,15 @@ export default function HomePage() {
       </section>
 
       {/* FAQ: visible questions with direct answers (SEO-AEO.md workflow 2) */}
-      <section className="border-t">
-        <div className="mx-auto grid max-w-[1200px] gap-10 px-4 py-16 md:px-6 md:py-24 lg:grid-cols-[1fr_1.6fr] lg:px-8">
+      <section>
+        <div className="mx-auto grid max-w-[1440px] gap-10 px-4 pb-16 md:px-6 md:pb-24 lg:grid-cols-[1fr_1.6fr] lg:px-8">
           <h2 className="display text-4xl md:text-5xl">{tightStops(t("faqTitle"))}</h2>
           <div className="space-y-3">
             {FAQ_KEYS.map((key) => (
-              <details key={key} className="group card-surface rounded-2xl px-5 py-4 transition-colors open:bg-highlight/50">
+              <details key={key} className="group rounded-2xl bg-muted px-5 py-4 transition-colors open:bg-highlight">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded font-semibold [&::-webkit-details-marker]:hidden">
                   {t(`faq.${key}.q`, { product: PRODUCT_NAME })}
-                  <span aria-hidden className="inline-flex size-8 shrink-0 items-center justify-center rounded-full bg-muted transition-transform group-open:rotate-45">
+                  <span aria-hidden className="inline-flex size-8 shrink-0 items-center justify-center rounded-full bg-card transition-transform group-open:rotate-45">
                     <Plus className="size-4" />
                   </span>
                 </summary>
@@ -403,14 +394,14 @@ export default function HomePage() {
       </section>
 
       {/* Final call to action */}
-      <section className="mx-auto max-w-[1200px] px-4 pb-20 md:px-6 lg:px-8">
-        <Framed surface="bg-highlight text-highlight-foreground">
+      <section className="mx-auto max-w-[1440px] px-4 pb-20 md:px-6 lg:px-8">
+        <Panel surface="bg-highlight text-highlight-foreground">
           <div className="px-6 py-16 text-center md:py-24">
             <div aria-hidden className="dot-grid absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_65%_75%_at_50%_50%,black,transparent)]" />
             <ul aria-hidden className="flex flex-wrap justify-center gap-2">
               {PLATFORMS.map((platform) => (
                 <li key={platform.id}>
-                  <PlatformMark id={platform.id} className="rounded-lg shadow-card" />
+                  <PlatformMark id={platform.id} className="rounded-lg" />
                 </li>
               ))}
             </ul>
@@ -425,7 +416,7 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-        </Framed>
+        </Panel>
       </section>
     </>
   );

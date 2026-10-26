@@ -2,6 +2,13 @@
 
 Newest first. Format from `PROJECTFLOW.md` §9.
 
+## 2026-10-26 — Wider, flat landing; full-width navbar and footer
+
+Decision: The landing page's content width grows from 1200 px to 1440 px (same gutters), and the plan cards use the full width too. The navbar is a full-width bar at the top of the window (64 px, blurred white) that shows a hairline only once the page scrolls under it; the footer is a full-width deep green block. Both put their content on the landing's 1440 px line. Cards and media on the landing page have no borders, shadows or white frames: coloured panels stand on their fill, white cards became light grey (`bg-muted`) or sit on the steps band, and the clips and the Arabic screenshot show without the browser frame (`BrowserFrame` is removed). The agent console lost its turning glow edge, and the AI section's mesh now sits on pale lavender so the panel still shows its edge. `PlanCard` takes `flat` for this; Pricing and Billing keep the ring and shadow.
+Why: Founder's direction: wider components, a full-width navbar and footer, no border or shadow on cards, and no border around the images.
+Alternatives: A wider floating navbar (rejected: the founder asked for full length). Keeping the browser frame without its border (rejected: it is still a frame around the image). Widening Pricing and the tool pages as well (not asked; they stay at 1200 px and 1152 px).
+Revisit when: A brand designer sets the final layout.
+
 ## 2026-10-26 — New hero headline, plain hero, deep green footer
 
 Decision: The hero headline is "Post to all your social accounts from one dashboard", with "Built for startups, agencies and teams in many countries. Preview every platform, fix video problems before you publish, and let AI write the first draft." It replaces "Post once. Look right everywhere. Keep every pixel." The hero's gradient glow and dot grid are gone (plain page background) and the clip's frame is solid lavender in the white card frame. The footer panel is `#213130` (`--footer`, same in both themes).

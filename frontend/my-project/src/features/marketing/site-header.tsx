@@ -5,9 +5,11 @@ import { ThemeMenu } from "@/components/theme";
 import { buttonVariants } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
+import { HeaderBar } from "./header-bar";
 import { MobileMenu } from "./mobile-menu";
 
-// A floating, rounded bar: 12 px from the top and 56 px tall, blurred over the page.
+// A full-width bar, 64 px tall, blurred over the page. Its content lines up with the landing
+// sections (1440 px).
 export function SiteHeader() {
   const t = useTranslations("marketing.nav");
   const links = [
@@ -17,8 +19,8 @@ export function SiteHeader() {
   ] as const;
 
   return (
-    <header className="sticky top-0 z-40 px-3 pt-3 md:px-4">
-      <div className="mx-auto grid h-14 max-w-[1200px] grid-cols-[1fr_auto] items-center gap-3 rounded-full border bg-background/80 pe-2 ps-4 shadow-card backdrop-blur-md md:grid-cols-[1fr_auto_1fr]">
+    <HeaderBar>
+      <div className="mx-auto grid h-16 max-w-[1440px] grid-cols-[1fr_auto] items-center gap-3 px-4 md:grid-cols-[1fr_auto_1fr] md:px-6 lg:px-8">
         <Link href="/" className="justify-self-start rounded-full" aria-label={t("home")}>
           <Logo />
         </Link>
@@ -48,6 +50,6 @@ export function SiteHeader() {
           <MobileMenu links={links.map((l) => ({ ...l }))} loginLabel={t("login")} startLabel={t("startFree")} />
         </div>
       </div>
-    </header>
+    </HeaderBar>
   );
 }

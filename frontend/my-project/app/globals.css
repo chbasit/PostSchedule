@@ -579,18 +579,6 @@
   }
 }
 
-/* The glow border's angle, registered so it can animate. */
-@property --glow-angle {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
-}
-@keyframes glow-turn {
-  to {
-    --glow-angle: 360deg;
-  }
-}
-
 /* Meter fill position. Registered so it can animate: the fill grows from empty on mount
    and glides to each new value. */
 @property --p {
@@ -664,23 +652,14 @@
     mask-image: radial-gradient(ellipse 70% 62% at 50% 0%, black 25%, transparent 75%);
   }
 
-  /* The AI section: a soft mesh of the card colours. */
+  /* The AI section: a soft mesh of the card colours over pale lavender, so the panel keeps
+     its edge without a border. */
   .ai-mesh {
     background:
       radial-gradient(48% 62% at 0% 0%, color-mix(in oklab, var(--card-lavender) 90%, transparent), transparent 72%),
       radial-gradient(42% 58% at 100% 8%, color-mix(in oklab, var(--card-pink) 85%, transparent), transparent 72%),
       radial-gradient(55% 62% at 62% 100%, color-mix(in oklab, var(--card-aqua) 85%, transparent), transparent 72%),
-      var(--card);
-  }
-
-  /* A slowly turning edge in the card colours, for the agent console. With reduced motion
-     the animation ends at once and the edge stands still. */
-  .glow-border {
-    border: 2px solid transparent;
-    background:
-      linear-gradient(var(--card), var(--card)) padding-box,
-      conic-gradient(from var(--glow-angle), var(--brand-lavender), var(--brand-aqua), var(--brand-yellow), var(--brand-salmon), var(--brand-pink), var(--brand-lavender)) border-box;
-    animation: glow-turn 8s linear infinite;
+      color-mix(in oklab, var(--card-lavender) 30%, var(--background));
   }
 
   .tabular {
