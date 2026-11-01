@@ -1,4 +1,4 @@
-# Frontend guide — {{PRODUCT_NAME}}
+# Frontend guide — AgentiqSocial
 
 The design system, screens, and user flows for everything the customer sees. Backend work is in `docs/BACKEND.md`. Rules are in `CLAUDE.md`. Test cases are in `docs/TEST.md`.
 
@@ -475,13 +475,13 @@ Account-creation order is **value first** (recommended in the plan for the first
 - **Entry:** marketing page, free tool, comparison page, or a shared approval link.
 - **Steps**
   1. `/signup`: "Start with Google" or email and password. Shows password rules inline and allows paste.
-  2. Email verification: "Check your inbox" screen with a resend button (cooldown shown). The link opens a confirm button (not auto-consumed).
+  2. Email verification: "Check your email" screen at `/verify-email` takes the code from the email (6 to 10 digits, paste allowed, `autocomplete="one-time-code"`), with a "Send a new code" button (cooldown shown). A right code signs the person in. Codes, not links, so mail scanners cannot use them up.
   3. `/onboarding/start`: "What best describes you?" (solo creator, startup, agency, other). Stored on the profile. Skippable.
   4. `/onboarding/connect`: grid of platforms. Each opens that platform's own sign-in screen, then returns here. Skippable.
   5. `/onboarding/plan`: shown only if the user hit a paid feature, or in card-first mode. Otherwise skipped.
   6. `/onboarding/done` → `/dashboard` with the **first-post checklist**: connect an account, upload a video, schedule a post.
 - **System:** one transaction creates the profile, the default workspace and the membership. The workspace starts a 14-day trial (no card).
-- **Edge cases:** email already registered (neutral message), verification link expired (resend), Google sign-in cancelled, user closes the tab mid-onboarding (resume where they left off on next sign-in).
+- **Edge cases:** email already registered (neutral message), code wrong or expired (send a new one; 5 wrong codes lock the address for 15 minutes or until a new code is sent), signing in before confirming (the sign-in form links to the code page), Google sign-in cancelled, user closes the tab mid-onboarding (resume where they left off on next sign-in).
 - **Success:** user reaches the dashboard. Metric: signup → first account connected within 24 hours.
 
 ### F2. Free video checker (acquisition tool)
@@ -649,7 +649,7 @@ flowchart TD
 
 ### F16. Account recovery and security
 
-- **Forgot password:** neutral message whether or not the email exists, single-use short-lived link, other sessions end after reset.
+- **Forgot password:** `/forgot-password` emails a code, then `/reset-password?email=` takes the code with the new password. The page reads the same whether or not the email exists; the code is single-use and short-lived, a newer code replaces it, 5 wrong codes lock it; every session ends after the reset.
 - **MFA:** enrol, recovery codes, lost-device path. Strongly suggested for owners and admins.
 - **Sensitive actions** (change email, delete workspace, create API key, billing change) ask for the password again.
 - **Sessions:** list of devices with "Sign out everywhere".
@@ -1009,7 +1009,7 @@ Rules:
 
 ## 19. Open decisions
 
-1. **Product name and logo.** Everything uses `{{PRODUCT_NAME}}` until decided.
+1. **Product name and logo.** The name is AgentiqSocial (agentiqsocial.com), set in `src/config/site.ts`. The logo is still a placeholder mark.
 2. **Brand colours.** This file started from the lime, ink and coral of the reference image. The founder has since retired coral from the dashboard (2026-10-25) and lime everywhere (2026-10-26) in favour of ink, the light green `#E6F4EA`, sky and mint. Confirm the set, or change the brand values in `globals.css`. All contrast numbers must be re-checked after a change (section 2.5).
 3. **Brand font.** Inter is the default. A distinct display face is optional.
 4. **Sign-up order.** Value first (assumed here) or card first.

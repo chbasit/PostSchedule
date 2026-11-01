@@ -1,4 +1,4 @@
-# Test plan — {{PRODUCT_NAME}}
+# Test plan — AgentiqSocial
 
 Everything we test before users touch the product, and how. Covers automated tests, real-user scenarios, double-click and duplicate-payment protection, slow networks, mobile, speed, and security (auth, tokens, tenant isolation).
 

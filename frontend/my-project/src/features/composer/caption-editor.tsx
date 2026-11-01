@@ -22,6 +22,8 @@ type Props = {
   // Files dropped on or pasted into the box.
   onFiles: (files: File[]) => void;
   onAddMedia: () => void;
+  // Shown next to "Add media": picking images from the AI library.
+  aiAction?: ReactNode;
 };
 
 function Counter({ text, limit, label }: { text: string; limit: number; label: string }) {
@@ -38,7 +40,7 @@ const hasFiles = (e: DragEvent) => Array.from(e.dataTransfer.types).includes("Fi
 
 // One main caption, plus tabs to override per account. Text, media and counters share one
 // box: drop files anywhere on it, or paste an image into the text.
-export function CaptionEditor({ main, overrides, accounts, onMainChange, onOverrideChange, onBlur, media, onFiles, onAddMedia }: Props) {
+export function CaptionEditor({ main, overrides, accounts, onMainChange, onOverrideChange, onBlur, media, onFiles, onAddMedia, aiAction }: Props) {
   const t = useTranslations("composer.caption");
   const tm = useTranslations("composer.media");
   const [over, setOver] = useState(false);
@@ -79,6 +81,7 @@ export function CaptionEditor({ main, overrides, accounts, onMainChange, onOverr
         >
           <ImagePlus className="size-4" aria-hidden /> {tm("add")}
         </button>
+        {aiAction}
         <span className="hidden text-muted-foreground sm:inline">{tm("dropHint")}</span>
         <span className="ms-auto flex flex-wrap justify-end gap-x-3 gap-y-1">{counters}</span>
       </div>

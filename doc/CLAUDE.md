@@ -1,4 +1,4 @@
-# {{PRODUCT_NAME}} — project guide for Claude
+# AgentiqSocial — project guide for Claude
 
 Read this first in every session. Keep it short. Deeper detail lives in `docs/`.
 
@@ -34,7 +34,8 @@ Frontend (`frontend/my-project`, npm — see `docs/DECISIONS.md`):
 
 ```
 npm install
-npm run dev            # http://localhost:3000; demo login demo@example.com with any password (mock API)
+npm run dev            # http://localhost:3000, development mode: real backend, sign-up/reset codes shown on screen
+npm run check:api      # 57 end-to-end API checks against the running dev server (throwaway accounts, deleted after)
 npm run build
 npm run lint
 npm run typecheck

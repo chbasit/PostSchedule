@@ -20,7 +20,7 @@ import type { ReactNode } from "react";
 import { JsonLd } from "@/components/json-ld";
 import { PlatformMark } from "@/components/platform-badge";
 import { buttonVariants } from "@/components/ui/button";
-import { PRODUCT_NAME, SITE_URL } from "@/config/site";
+import { AI_ENABLED, PRODUCT_NAME, SITE_URL } from "@/config/site";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { PLANS, TRIAL_DAYS, type PlanKey } from "@/lib/billing/plans";
@@ -167,7 +167,7 @@ export default function HomePage() {
       <section>
         <div className="mx-auto max-w-[1440px] px-4 pt-12 text-center md:px-6 lg:px-8 lg:pt-20">
           <h1 className="display mx-auto max-w-5xl text-[clamp(2.5rem,5.6vw,4.5rem)] text-balance">{tightStops(t("headline"))}</h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-balance text-muted-foreground md:text-xl">{t("sub")}</p>
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-balance text-muted-foreground md:text-xl">{t(AI_ENABLED ? "sub" : "subSoon")}</p>
           <div className="mx-auto mt-8 flex max-w-sm flex-col items-center justify-center gap-3 sm:max-w-none sm:flex-row">
             <Link href="/signup" className={pill}>
               {t("ctaPrimary")} <ArrowRight className="rtl:-scale-x-100" aria-hidden />
@@ -234,7 +234,7 @@ export default function HomePage() {
               <h2 id="ai-title" className="display text-4xl text-balance md:text-5xl">
                 {tightStops(t("ai.title"))}
               </h2>
-              <p className="mt-5 max-w-xl text-lg text-foreground/80">{t("ai.sub")}</p>
+              <p className="mt-5 max-w-xl text-lg text-foreground/80">{t(AI_ENABLED ? "ai.sub" : "ai.subSoon")}</p>
               <ul className="mt-8 space-y-5">
                 {AI_POINTS.map(({ key, icon: Icon, chip }) => (
                   <li key={key} className="flex gap-4">
@@ -242,7 +242,13 @@ export default function HomePage() {
                       <Icon className="size-5" aria-hidden />
                     </span>
                     <div>
-                      <h3 className="font-heading font-bold">{t(`ai.points.${key}.title`)}</h3>
+                      <h3 className="font-heading font-bold">
+                        {t(`ai.points.${key}.title`)}
+                        {/* While AI is switched off, the writing and image tools are announced, not offered. */}
+                        {key === "write" && !AI_ENABLED ? (
+                          <span className="ms-2 rounded-full bg-card px-2 py-0.5 align-middle font-sans text-xs font-semibold">{t("ai.console.soon")}</span>
+                        ) : null}
+                      </h3>
                       <p className="mt-1 text-sm text-foreground/75">{t(`ai.points.${key}.body`)}</p>
                     </div>
                   </li>
@@ -386,7 +392,9 @@ export default function HomePage() {
                     <Plus className="size-4" />
                   </span>
                 </summary>
-                <p className="mt-3 text-muted-foreground">{t(`faq.${key}.a`, { product: PRODUCT_NAME, days: TRIAL_DAYS })}</p>
+                <p className="mt-3 text-muted-foreground">
+                  {key === "ai" && !AI_ENABLED ? t("faq.ai.aSoon", { product: PRODUCT_NAME }) : t(`faq.${key}.a`, { product: PRODUCT_NAME, days: TRIAL_DAYS })}
+                </p>
               </details>
             ))}
           </div>

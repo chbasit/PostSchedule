@@ -1,7 +1,10 @@
 import { z } from "zod";
 import { routing } from "@/i18n/routing";
-import type { Session } from "@/lib/api/types";
+import { DEV_MODE } from "@/config/site";
+import type { DevDelivery, Session } from "@/lib/api/types";
 import { authFailure, email, password } from "@/server/auth";
+import { resetCodeTries } from "@/server/auth-codes";
+import { devSignUp } from "@/server/dev-codes";
 import { siteUrl } from "@/server/env";
 import { readBody, route } from "@/server/route";
 import { loadSession, markSignedIn } from "@/server/session";
@@ -25,29 +28,16 @@ function validZone(zone: string | undefined) {
   }
 }
 
-// With email confirmation on (production), there is no session until the link is opened,
-// and an address that already has an account gets the same answer (no enumeration).
+// With email confirmation on (production), there is no session until the emailed code is
+// entered, and an address that already has an account gets the same answer (no enumeration).
 export const POST = route(async (req) => {
   const input = await readBody(req, body);
   const locale = input.locale ?? "en";
   const timezone = validZone(input.timezone);
-  const db = await userClient();
-  const { data, error } = await db.auth.signUp({
-    email: input.email,
-    password: input.password,
-    options: {
-      data: { display_name: input.displayName, locale, timezone },
-      emailRedirectTo: `${siteUrl()}/auth/confirm`,
-    },
-  });
-  if (error) throw authFailure(error);
-  if (data.session && data.user) {
-    await markSignedIn();
-    return loadSession(db, data.user);
-  }
-  const pending: Session = {
+  // Until the code is entered there is only the address; the same shape whether or not it is new.
+  const pending = (userId: string | undefined): Session => ({
     user: {
-      id: data.user?.id ?? "",
+      id: userId ?? "",
       email: input.email,
       displayName: input.displayName,
       emailVerified: false,
@@ -58,6 +48,29 @@ export const POST = route(async (req) => {
       onboardedAt: null,
     },
     workspaces: [],
-  };
-  return pending;
+  });
+
+  if (DEV_MODE) {
+    const dev = await devSignUp({ email: input.email, password: input.password, data: { display_name: input.displayName, locale, timezone } });
+    await resetCodeTries("signup", input.email);
+    return { ...pending(undefined), dev } satisfies Session & DevDelivery;
+  }
+
+  const db = await userClient();
+  const { data, error } = await db.auth.signUp({
+    email: input.email,
+    password: input.password,
+    options: {
+      data: { display_name: input.displayName, locale, timezone },
+      // Only used if the email template still carries Supabase's default link instead of the
+      // code: the callback signs the person in (same browser only).
+      emailRedirectTo: `${siteUrl()}/api/v1/auth/callback`,
+    },
+  });
+  if (error) throw authFailure(error);
+  if (data.session && data.user) {
+    await markSignedIn();
+    return loadSession(db, data.user);
+  }
+  return pending(data.user?.id);
 });

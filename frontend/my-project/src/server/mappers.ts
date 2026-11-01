@@ -115,6 +115,8 @@ export type MediaRow = {
   width: number | null;
   height: number | null;
   duration_ms: number | null;
+  storage_key?: string;
+  source?: "upload" | "ai";
 };
 
 export function toMedia(m: MediaRow): MediaSummary {
@@ -166,7 +168,7 @@ export type PostRow = {
 export const POST_SELECT =
   "id, workspace_id, type, status, main_caption, scheduled_at, timezone, version, created_by, created_at, updated_at, ai_generated, " +
   "post_targets(id, social_account_id, provider, caption_override, options, status, error_code, error_message, provider_url, published_at), " +
-  "post_tags(tag_id), post_media(position, media_assets(id, kind, name, bytes, width, height, duration_ms))";
+  "post_tags(tag_id), post_media(position, media_assets(id, kind, name, bytes, width, height, duration_ms, storage_key, source))";
 
 export function toPost(p: PostRow): Post {
   const media = (p.post_media ?? [])

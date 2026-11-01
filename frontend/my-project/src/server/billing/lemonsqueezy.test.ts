@@ -70,6 +70,7 @@ describe("subscriptionPatch", () => {
       status: "active",
       account_limit: 25,
       member_limit: 3,
+      ai_credit_limit: 800,
       ls_subscription_id: "9001",
       ls_customer_id: "55",
       current_period_end: "2026-11-23T10:00:00.000000Z",
@@ -97,7 +98,7 @@ describe("subscriptionPatch", () => {
 
   it("drops to Free with Free limits when expired", () => {
     const patch = subscriptionPatch("1", attrs({ status: "expired", ends_at: "2026-10-23T00:00:00Z" }), variants);
-    expect(patch).toMatchObject({ plan_key: "free", interval: null, status: "active", account_limit: 3, member_limit: 1, cancel_at: null });
+    expect(patch).toMatchObject({ plan_key: "free", interval: null, status: "active", account_limit: 3, member_limit: 1, ai_credit_limit: 25, cancel_at: null });
   });
 
   it("ignores variants we did not sell (PAY-07)", () => {

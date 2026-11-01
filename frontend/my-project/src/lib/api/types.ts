@@ -1,5 +1,6 @@
 import type { Role } from "@/lib/auth/permissions";
-import type { BillingInterval, PlanKey } from "@/lib/billing/plans";
+import type { ImageAspect, ImageStyle } from "@/lib/ai/images";
+import type { AiImageQuality, BillingInterval, PlanKey } from "@/lib/billing/plans";
 import type { InsightMetric, PlatformId, PostType, Privacy } from "@/providers/catalog";
 
 // Wire types shared with the backend (E:\PostSchedule\backend). Field names are
@@ -73,6 +74,11 @@ export type Session = {
   user: User;
   workspaces: Workspace[];
 };
+
+// Development mode only (src/config/site.ts): the code that would have been emailed, or why
+// none was made. Production responses never carry it.
+export type DevNote = "account_exists" | "no_account" | "already_confirmed";
+export type DevDelivery = { dev?: { code?: string; note?: DevNote } };
 
 export type SocialAccount = {
   id: string;
@@ -195,6 +201,41 @@ export type AiResult = {
   creditsLimit: number | null;
 };
 
+// The workspace's AI credits this month (UTC calendar month). Bonus credits come from
+// top-up packs and are spent after the plan's monthly credits.
+export type AiCredits = {
+  limit: number;
+  bonus: number;
+  used: number;
+  remaining: number;
+  resetsAt: string;
+};
+
+export type AiImageInput = {
+  prompt: string;
+  style: ImageStyle;
+  aspect: ImageAspect;
+  quality: AiImageQuality;
+  count: number;
+};
+
+// A generated image in the workspace's AI library. `media` is an ordinary media asset, so
+// it attaches to posts like an upload.
+export type AiImage = {
+  id: string;
+  prompt: string;
+  style: ImageStyle;
+  aspect: ImageAspect;
+  quality: AiImageQuality;
+  createdAt: string;
+  media: MediaSummary;
+};
+
+export type AiImageResult = {
+  images: AiImage[];
+  credits: AiCredits;
+};
+
 export type InsightsRange = 7 | 30 | 90;
 
 export type InsightPost = {
@@ -283,14 +324,15 @@ export interface ApiClient {
   auth: {
     session(): Promise<Session | null>;
     signIn(input: { email: string; password: string }): Promise<Session>;
-    signUp(input: { displayName: string; email: string; password: string }): Promise<Session>;
+    signUp(input: { displayName: string; email: string; password: string }): Promise<Session & DevDelivery>;
     signOut(): Promise<void>;
-    requestPasswordReset(email: string): Promise<void>;
-    // The token comes from the emailed reset link.
-    resetPassword(input: { token: string; password: string }): Promise<void>;
-    resendVerification(email: string): Promise<{ retryAfterSec: number }>;
-    // The emailed link opens a page with a confirm button; it is never consumed by a GET.
-    verifyEmail(token: string): Promise<Session>;
+    // Emails a reset code; the same answer whether or not the address has an account.
+    requestPasswordReset(email: string): Promise<{ retryAfterSec: number } & DevDelivery>;
+    // The emailed reset code with the new password. Every session ends afterwards.
+    resetPassword(input: { email: string; code: string; password: string }): Promise<void>;
+    resendVerification(email: string): Promise<{ retryAfterSec: number } & DevDelivery>;
+    // The code from the sign-up email; a right code confirms the address and signs in.
+    verifyEmail(input: { email: string; code: string }): Promise<Session>;
   };
   me: {
     update(patch: Partial<Pick<User, "displayName" | "locale" | "timezone" | "use24h" | "persona" | "onboardedAt">>): Promise<User>;
@@ -331,6 +373,14 @@ export interface ApiClient {
   ai: {
     generate(ws: string, input: AiGenerateInput): Promise<AiResult>;
     rewrite(ws: string, input: AiRewriteInput): Promise<AiResult>;
+    credits(ws: string): Promise<AiCredits>;
+    images: {
+      // Newest first.
+      list(ws: string): Promise<AiImage[]>;
+      // Charges the credits up front and refunds them if the provider fails.
+      generate(ws: string, input: AiImageInput, opts?: MutationOptions): Promise<AiImageResult>;
+      remove(ws: string, imageId: string): Promise<void>;
+    };
   };
   billing: {
     createCheckout(ws: string, plan: PlanKey, interval: BillingInterval, opts?: MutationOptions): Promise<{ url: string }>;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   Briefcase,
   Check,
@@ -31,6 +31,7 @@ import { api, isApiError, usingMockApi, type AiResult, type AiRewriteAction } fr
 import { captionLength } from "@/lib/preflight/rules";
 import { cn } from "@/lib/utils";
 import type { PlatformDescriptor } from "@/providers/catalog";
+import { aiCreditsOptions } from "@/features/session/query-options";
 import { useWorkspace } from "@/features/session/workspace-context";
 
 const INTRO_KEY = "ai-intro-seen";
@@ -133,7 +134,8 @@ type Props = {
 export function AiPanel({ platforms, currentCaption, onInsert }: Props) {
   const t = useTranslations("ai");
   const locale = useLocale();
-  const { workspace } = useWorkspace();
+  const { workspace, scope } = useWorkspace();
+  const queryClient = useQueryClient();
   const [introSeen, markIntroSeen] = useIntroSeen();
   const [prompt, setPrompt] = useState("");
   const [result, setResult] = useState<AiResult | null>(null);
@@ -152,6 +154,8 @@ export function AiPanel({ platforms, currentCaption, onInsert }: Props) {
       setResult(r);
       setCopied(false);
     },
+    // The sidebar and AI Studio show the same balance.
+    onSettled: () => void queryClient.invalidateQueries({ queryKey: aiCreditsOptions(workspace.id, scope).queryKey }),
   });
 
   const send = (req: LastRequest) => {

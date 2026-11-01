@@ -1,11 +1,11 @@
 "use client";
 
-import { API_URL } from "@/config/site";
+import { API_URL, MOCK_API } from "@/config/site";
 import { createHttpClient } from "./http";
 import { mockClient } from "./mock";
 import type { ApiClient } from "./types";
 
-export const usingMockApi = !API_URL;
+export const usingMockApi = MOCK_API;
 
 export const api: ApiClient = usingMockApi ? mockClient : createHttpClient(API_URL);
 

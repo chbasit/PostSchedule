@@ -1,5 +1,6 @@
 import "server-only";
 import { z } from "zod";
+import { AI_ENABLED } from "@/config/site";
 import { fail } from "./errors";
 
 // Server configuration, checked on first use so a missing value fails with a clear message
@@ -22,6 +23,22 @@ const billing = z.object({
   LEMONSQUEEZY_VARIANTS: z.string().min(2),
   LEMONSQUEEZY_TEST_MODE: z.enum(["true", "false"]).default("true"),
 });
+
+// AI services (BACKEND.md §16). Each kind of work picks its provider; only that provider's
+// key is required. Models can be changed without a deploy of new code.
+const ai = z.object({
+  AI_TEXT_PROVIDER: z.enum(["openai", "gemini"]).default("openai"),
+  AI_IMAGE_PROVIDER: z.enum(["openai", "gemini"]).default("openai"),
+  OPENAI_API_KEY: z.string().min(20).optional(),
+  GEMINI_API_KEY: z.string().min(20).optional(),
+  // Defaults per provider live in src/server/ai/providers.
+  AI_TEXT_MODEL: z.string().min(1).optional(),
+  AI_IMAGE_MODEL: z.string().min(1).optional(),
+  // Private Supabase Storage bucket for generated images; created on first use.
+  AI_STORAGE_BUCKET: z.string().regex(/^[a-z0-9-]{3,63}$/).default("ai-images"),
+});
+
+export type AiEnv = z.infer<typeof ai>;
 
 let coreEnv: z.infer<typeof core> | null = null;
 
@@ -46,6 +63,26 @@ export function billingEnv() {
     console.error("[env] billing missing or invalid:", parsed.error.issues.map((i) => i.path.join(".")).join(", "));
     throw fail.notConfigured("Billing");
   }
+  return parsed.data;
+}
+
+// Every AI route starts here: while AI is switched off ("Coming soon"), nothing runs and
+// nothing is charged, whatever keys are set.
+export function requireAi() {
+  if (!AI_ENABLED) throw fail.notConfigured("AI features");
+}
+
+export function aiEnv(kind: "text" | "image"): AiEnv {
+  requireAi();
+  // A key left blank in .env (KEY=) means "not set", not an invalid value.
+  const parsed = ai.safeParse(Object.fromEntries(Object.entries(process.env).filter(([, v]) => v !== "")));
+  const feature = kind === "image" ? "AI images" : "The AI writer";
+  if (!parsed.success) {
+    console.error("[env] AI settings invalid:", parsed.error.issues.map((i) => i.path.join(".")).join(", "));
+    throw fail.notConfigured(feature);
+  }
+  const provider = kind === "image" ? parsed.data.AI_IMAGE_PROVIDER : parsed.data.AI_TEXT_PROVIDER;
+  if (!(provider === "openai" ? parsed.data.OPENAI_API_KEY : parsed.data.GEMINI_API_KEY)) throw fail.notConfigured(feature);
   return parsed.data;
 }
 

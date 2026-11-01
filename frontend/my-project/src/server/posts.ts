@@ -4,8 +4,9 @@ import { z } from "zod";
 import { matchesFilter } from "@/lib/api/filter";
 import type { Post, PostFilter, PostStatus } from "@/lib/api/types";
 import { utcToZoned, zonedToUtc } from "@/lib/time";
+import { signedUrls } from "./ai/storage";
 import { fail } from "./errors";
-import { POST_SELECT, toPost, type PostRow } from "./mappers";
+import { POST_SELECT, toPost, type MediaRow, type PostRow } from "./mappers";
 import { fromDb, must, uuid } from "./route";
 
 const options = z
@@ -47,20 +48,59 @@ export const postInput = z.object({
 
 export type PostInputParsed = z.infer<typeof postInput>;
 
+// AI images are private files; their previews get signed URLs, all in one request.
+async function withPreviews(rows: PostRow[]): Promise<Post[]> {
+  const posts = rows.map(toPost);
+  const keys = new Map<string, string>();
+  for (const row of rows) {
+    for (const pm of row.post_media ?? []) {
+      const m: MediaRow | undefined = Array.isArray(pm.media_assets) ? pm.media_assets[0] : (pm.media_assets ?? undefined);
+      if (m?.source === "ai" && m.storage_key) keys.set(m.id, m.storage_key);
+    }
+  }
+  if (keys.size === 0) return posts;
+  const urls = await signedUrls([...keys.values()]);
+  for (const post of posts) {
+    for (const media of post.media) {
+      const key = keys.get(media.id);
+      if (key) media.previewUrl = urls.get(key) ?? null;
+    }
+  }
+  return posts;
+}
+
 export async function getPost(db: SupabaseClient, workspaceId: string, postId: string): Promise<Post> {
   if (!uuid.safeParse(postId).success) throw fail.notFound();
   const row = must(await db.from("posts").select(POST_SELECT).eq("workspace_id", workspaceId).eq("id", postId).maybeSingle());
-  return toPost(row as unknown as PostRow);
+  return (await withPreviews([row as unknown as PostRow]))[0];
 }
 
-// Newest first by scheduled time (or last edit), filtered like the preview mock does.
+const isoDate = z.iso.datetime({ offset: true });
+// PostgREST filter values with ":" or "," must be quoted; ISO timestamps have no quotes.
+const quoted = (value: string) => `"${value}"`;
+// ilike treats % and _ as wildcards; a search for "50%" means the characters.
+const likeEscape = (value: string) => value.replace(/[\\%_]/g, (c) => `\\${c}`);
+
+// Newest first by scheduled time (or last edit), filtered like the preview mock does. The
+// database applies the status, date and text filters, so a month in the calendar reads that
+// month only; matchesFilter() then applies the exact rule (and tags) to what comes back.
 export async function listPosts(db: SupabaseClient, workspaceId: string, filter: PostFilter): Promise<Post[]> {
-  let query = db.from("posts").select(POST_SELECT).eq("workspace_id", workspaceId).limit(1000);
+  let query = db.from("posts").select(POST_SELECT).eq("workspace_id", workspaceId);
   const statuses = filter.status === undefined ? [] : [filter.status].flat();
   if (statuses.length) query = query.in("status", statuses);
-  const rows = must(await query) as unknown as PostRow[];
-  return rows
-    .map(toPost)
+
+  // A post's time is scheduled_at, or updated_at when it has none (drafts).
+  const from = filter.from && isoDate.safeParse(filter.from).success ? quoted(filter.from) : null;
+  const to = filter.to && isoDate.safeParse(filter.to).success ? quoted(filter.to) : null;
+  if (from || to) {
+    const range = (column: string) => [from ? `${column}.gte.${from}` : null, to ? `${column}.lt.${to}` : null].filter(Boolean).join(",");
+    query = query.or(`and(${range("scheduled_at")}),and(scheduled_at.is.null,${range("updated_at")})`);
+  }
+  const q = filter.q?.trim();
+  if (q) query = query.ilike("main_caption", `%${likeEscape(q)}%`);
+
+  const rows = must(await query.order("updated_at", { ascending: false }).limit(1000)) as unknown as PostRow[];
+  return (await withPreviews(rows))
     .filter((p) => matchesFilter(p, filter))
     .sort((a, b) => (b.scheduledAt ?? b.updatedAt).localeCompare(a.scheduledAt ?? a.updatedAt));
 }
@@ -69,7 +109,10 @@ export async function listPosts(db: SupabaseClient, workspaceId: string, filter:
 // 15 minutes away (same rule as the composer's preview).
 async function nextQueueSlot(db: SupabaseClient, workspaceId: string, timeZone: string): Promise<string> {
   const taken = new Set(
-    (must(await db.from("posts").select("scheduled_at").eq("workspace_id", workspaceId).eq("status", "scheduled")) as Array<{ scheduled_at: string | null }>)
+    // Only future slots can collide, so past posts are never read.
+    (must(await db.from("posts").select("scheduled_at").eq("workspace_id", workspaceId).eq("status", "scheduled").gte("scheduled_at", new Date().toISOString())) as Array<{
+      scheduled_at: string | null;
+    }>)
       .map((r) => (r.scheduled_at ? new Date(r.scheduled_at).toISOString() : ""))
       .filter(Boolean),
   );

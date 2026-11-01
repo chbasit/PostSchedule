@@ -242,7 +242,7 @@ Decisions still open:
 
 Do these in order. Each is small enough for one sitting.
 
-1. Choose a working name and domain (can change later; keep the code on `{{PRODUCT_NAME}}`).
+1. ~~Choose a working name and domain.~~ Done: AgentiqSocial, agentiqsocial.com (2026-10-28).
 2. Create the GitHub repo, copy `CLAUDE.md` to the root, `SKILL.md` to `.claude/skills/scheduler-dev/`, and these docs to `docs/`.
 3. Export the product plan to `docs/PRODUCT-PLAN.md`.
 4. Scaffold Next.js (App Router, TypeScript strict, Tailwind) and add shadcn/ui and next-intl.

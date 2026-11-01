@@ -98,7 +98,7 @@ Do not rely on `robots.txt` to hide anything sensitive.
 
 ### Prompt set (monthly check)
 
-Keep 30–50 prompts that real buyers would ask, grouped by intent: category ("best social media scheduler for agencies"), comparison ("X vs Y", "X alternatives"), problem ("why is my Reels video blurry after scheduling"), how-to ("schedule posts to TikTok and Instagram together"), and brand ("what is {{PRODUCT_NAME}}"). Once a month run them in ChatGPT, Perplexity, Gemini, Claude and Google, and record: were we mentioned, were we cited with a link, who else was named, and was the description accurate. Fix inaccurate descriptions by fixing the sources they come from.
+Keep 30–50 prompts that real buyers would ask, grouped by intent: category ("best social media scheduler for agencies"), comparison ("X vs Y", "X alternatives"), problem ("why is my Reels video blurry after scheduling"), how-to ("schedule posts to TikTok and Instagram together"), and brand ("what is AgentiqSocial"). Once a month run them in ChatGPT, Perplexity, Gemini, Claude and Google, and record: were we mentioned, were we cited with a link, who else was named, and was the description accurate. Fix inaccurate descriptions by fixing the sources they come from.
 
 ---
 
@@ -145,7 +145,7 @@ Example, pricing page:
   data={{
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: '{{PRODUCT_NAME}}',
+    name: 'AgentiqSocial',
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web',
     offers: plans.map((p) => ({
@@ -180,7 +180,7 @@ Programmatic pages are generated from a template plus structured data. They work
 
 | Pattern | Example | Data needed | Value to the visitor |
 |---|---|---|---|
-| `/compare/[tool]` | {{PRODUCT_NAME}} vs Metricool | Both tools' prices, limits, features, with sources and dates | A fair side-by-side table and who should choose which |
+| `/compare/[tool]` | AgentiqSocial vs Metricool | Both tools' prices, limits, features, with sources and dates | A fair side-by-side table and who should choose which |
 | `/alternatives/[tool]` | Best Buffer alternatives | Shortlist with honest pros and cons | A usable shortlist, including cases where staying is right |
 | `/switch-from/[tool]` | Switch from Hootsuite | Import steps, what carries over, what does not | A real migration path |
 | `/for/[audience]` | Scheduler for agencies, startups, realtors, restaurants | Audience-specific workflow, features, example calendar | A tailored workflow, not a reworded home page |

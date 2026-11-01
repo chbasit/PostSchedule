@@ -2,7 +2,7 @@
 # https://supabase.com/docs/guides/local-development/cli/config
 # A string used to distinguish different Supabase projects on the same host. Defaults to the
 # working directory name when running `supabase init`.
-project_id = "postschedule"
+project_id = "agentiqsocial"
 
 [api]
 enabled = true
@@ -233,8 +233,9 @@ secure_password_change = false
 max_frequency = "1s"
 # Number of characters used in the email OTP.
 otp_length = 6
-# Number of seconds before the email OTP expires (defaults to 1 hour).
-otp_expiry = 3600
+# Number of seconds before the email OTP expires (defaults to 1 hour). Sign-up and reset codes
+# are short-lived (TEST.md AUTH-06); set the same in the hosted project.
+otp_expiry = 900
 
 # Use a production-ready SMTP server
 # [auth.email.smtp]
@@ -246,14 +247,15 @@ otp_expiry = 3600
 # admin_email = "admin@email.com"
 # sender_name = "Admin"
 
-# Links in these emails open our own pages, which confirm only when the person clicks a
-# button (mail scanners follow links; BACKEND.md section 6.5).
+# These emails carry a code ({{ .Token }}) that people type into our pages, not a link, so mail
+# scanners that open links cannot use them. The hosted project needs the same two templates
+# (Authentication > Emails), pasted from these files.
 [auth.email.template.confirmation]
-subject = "Confirm your email"
+subject = "Your AgentiqSocial code"
 content_path = "./supabase/templates/confirmation.html"
 
 [auth.email.template.recovery]
-subject = "Reset your password"
+subject = "Reset your AgentiqSocial password"
 content_path = "./supabase/templates/recovery.html"
 
 # Uncomment to customize email template

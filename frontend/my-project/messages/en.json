@@ -89,7 +89,8 @@
     "tooLong": "This is too long.",
     "email": "Enter an email address like name@example.com.",
     "passwordLength": "Use at least 10 characters.",
-    "passwordMix": "Use at least one letter and one number."
+    "passwordMix": "Use at least one letter and one number.",
+    "code": "Enter the code from the email: 6 to 10 digits."
   },
   "marketing": {
     "announcement": "Founding price for the first {count} customers, locked for 24 months. See the offer",
@@ -119,6 +120,7 @@
     "home": {
       "eyebrow": "Social media management for teams",
       "sub": "Built for startups, agencies and teams in many countries. Preview every platform, fix video problems before you publish, and let AI write the first draft.",
+      "subSoon": "Built for startups, agencies and teams in many countries. Preview every platform and fix video problems before you publish. AI writing and images are coming soon.",
       "ctaPrimary": "Start free",
       "ctaGoogle": "Start with Google",
       "ctaNote": "{days}-day trial. No card needed.",
@@ -183,7 +185,8 @@
         },
         "ai": {
           "q": "Does {product} use AI?",
-          "a": "Yes. The AI assistant in the composer drafts and rewrites captions for each platform, and marks posts made with AI for your team. An API and MCP server for AI agents are coming, with keys limited to one workspace."
+          "a": "Yes. The AI assistant in the composer drafts and rewrites captions for each platform, and marks posts made with AI for your team. An API and MCP server for AI agents are coming, with keys limited to one workspace.",
+          "aSoon": "Soon. AI Studio for images and an AI writer for captions are on the way, with monthly AI credits in every plan. An API and MCP server for AI agents will follow, with keys limited to one workspace."
         }
       },
       "finalTitle": "Your next post can look exactly how you made it.",
@@ -253,11 +256,12 @@
       },
       "ai": {
         "title": "AI does the busywork. You stay in control.",
-        "sub": "The AI assistant writes captions shaped for each platform. Soon, AI agents can plan and schedule through a safe API, and every post still passes the same checks.",
+        "sub": "AI Studio creates on-brand images and the assistant writes captions shaped for each platform. Soon, AI agents can plan and schedule through a safe API, and every post still passes the same checks.",
+        "subSoon": "Coming soon: AI Studio creates on-brand images and the assistant writes captions shaped for each platform. Later, AI agents can plan and schedule through a safe API, and every post still passes the same checks.",
         "points": {
           "write": {
-            "title": "Writes for every platform",
-            "body": "Describe the post and get a caption sized for each platform. Rephrase, shorten or change the tone in one click."
+            "title": "Images and captions in seconds",
+            "body": "Generate images in the right size for each platform, then let AI write the caption. Rephrase, shorten or change the tone in one click."
           },
           "agents": {
             "title": "Agents with a scoped key",
@@ -306,6 +310,7 @@
     "perYear": "/ year",
     "accounts": "{count, plural, one {# social account} other {# social accounts}}",
     "seats": "{count, plural, one {# seat} other {# seats}}",
+    "aiCredits": "{count, plural, one {# AI credit a month} other {# AI credits a month}}",
     "features": {
       "preflight": "Video pre-flight checks",
       "previews": "Per-platform previews",
@@ -860,7 +865,7 @@
     "signUpTitle": "Create your account",
     "signUpSub": "Free for {days} days. No card needed.",
     "forgotTitle": "Reset your password",
-    "forgotSub": "Enter your email and we will send you a link to choose a new password.",
+    "forgotSub": "Enter your email and we will send you a code to choose a new password.",
     "google": "Continue with Google",
     "googleUnavailable": "Google sign-in becomes available once the backend is connected.",
     "or": "or",
@@ -876,7 +881,7 @@
     "signInFailed": "That email and password do not match. Check them and try again.",
     "signUpFailed": "We could not create your account. Try again in a moment.",
     "genericFailed": "Something went wrong. Try again in a moment.",
-    "emailMaybeUsed": "If this address can be used, we have sent it a link. Check your inbox, or sign in instead.",
+    "emailMaybeUsed": "If this address can be used, we have sent it a code. Check your inbox, or sign in instead.",
     "emailNotAllowed": "We can't send email to this address yet. Try another address, or try again later.",
     "demoHint": "Preview mode: sign in with {email} and any password.",
     "noAccount": "New here? <link>Create an account</link>",
@@ -886,24 +891,17 @@
     "ruleMix": "A letter and a number",
     "ruleMet": "(done)",
     "ruleNotMet": "(not yet)",
-    "resetSent": "If an account uses this email, we have sent a reset link. It works once and expires soon.",
     "backToSignIn": "Back to sign in",
-    "sendResetLink": "Send reset link",
-    "checkInbox": "Check your inbox",
-    "sentTo": "We sent a confirmation link to {email}. Open it to finish setting up.",
-    "sentGeneric": "We sent you a confirmation link. Open it to finish setting up.",
-    "resend": "Resend email",
-    "resendIn": "Resend in {seconds} s",
-    "resent": "We sent another link. It can take a minute to arrive.",
-    "mockOpenLink": "Open the confirmation link (preview)",
+    "checkInbox": "Check your email",
+    "sentTo": "We sent a code to {email}. Enter it below to confirm your address.",
+    "sentGeneric": "We sent a code to your email. Enter it below to confirm your address.",
+    "resend": "Send a new code",
+    "resendIn": "New code in {seconds} s",
+    "resent": "We sent a new code. It can take a minute to arrive.",
     "wrongEmail": "Wrong address? <link>Sign up again</link> with the right one.",
-    "confirmTitle": "Confirm your email",
-    "confirmBody": "Press the button to confirm this address and continue.",
-    "confirmButton": "Confirm email",
-    "confirmFailed": "This link has expired or was already used. Request a new one from the sign-in page.",
     "googleOff": "Google sign-in is not available yet. Use your email and password.",
     "googleFailed": "Google sign-in did not finish. Try again, or use your email and password.",
-    "emailNotConfirmed": "Confirm your email before signing in. Open the link we sent you, or <link>get a new link</link>.",
+    "emailNotConfirmed": "Confirm your email before signing in. <link>Enter your code</link>, or get a new one there.",
     "tooManyTries": "Too many tries. Wait a minute, then try again.",
     "serviceOff": "Accounts are not switched on yet. Try again later.",
     "networkFailed": "We could not reach the server. Check your connection and try again.",
@@ -914,7 +912,23 @@
     "newPassword": "New password",
     "savePassword": "Save password",
     "resetDone": "Your password is changed. Sign in with your new password.",
-    "resetExpired": "This link has expired or was already used. Ask for a new one."
+    "code": "Code",
+    "codeHint": "Only the newest code works. Not in your inbox? Check your spam folder.",
+    "verifyButton": "Verify email",
+    "codeInvalid": "That code is wrong or has expired. Check it, or send a new code.",
+    "codeLocked": "Too many wrong codes. Send a new code, then try again.",
+    "sendCode": "Send code",
+    "resetCodeSent": "If an account uses {email}, we sent it a code. Enter it below with your new password.",
+    "differentEmail": "Use a different email",
+    "dev": {
+      "badge": "Development mode",
+      "badgeHint": "Codes are shown on screen instead of being emailed. A production build always emails them.",
+      "code": "Development mode: no email was sent. Your code is {code}, already filled in.",
+      "noCode": "Development mode: no email is sent here. Press “Send a new code” and it appears in this box.",
+      "account_exists": "Development mode: this address already has a confirmed account, so no code was made. Sign in instead.",
+      "no_account": "Development mode: no account uses this address, so no code was made.",
+      "already_confirmed": "Development mode: this address is already confirmed. Sign in instead."
+    }
   },
   "nav": {
     "label": "App",
@@ -922,6 +936,7 @@
     "items": {
       "home": "Home",
       "newPost": "New post",
+      "aiStudio": "AI Studio",
       "calendar": "Calendar",
       "allPosts": "All posts",
       "scheduled": "Scheduled",
@@ -1215,7 +1230,7 @@
     "preflightOpen": "Show pre-flight checks",
     "aiHelp": "Write with AI",
     "aiLabel": "Made with AI",
-    "aiLabelHint": "Lets your team see that AI helped write this post.",
+    "aiLabelHint": "Lets your team see that AI helped make this post: its text, its images or both.",
     "createAnother": "Create another",
     "moreProblems": "{count, plural, other {(+# more)}}",
     "previewPane": {
@@ -1327,7 +1342,127 @@
       "casual": "More casual",
       "formal": "More formal"
     },
-    "inserted": "Caption updated."
+    "inserted": "Caption updated.",
+    "imagesAdded": "{count, plural, one {# AI image added.} other {# AI images added.}}"
+  },
+  "aiStudio": {
+    "title": "AI Studio",
+    "soon": "Soon",
+    "subtitle": "Create on-brand images for your posts in seconds, then schedule them with a caption.",
+    "viewerNote": "Viewers can browse the library. Ask an editor or admin to generate images.",
+    "previewNote": "Preview mode: sample artwork stands in until the image service is connected.",
+    "retry": "Try again",
+    "generated": "{count, plural, one {# image ready and selected.} other {# images ready and selected.}}",
+    "generating": "{count, plural, one {Creating your image. This can take up to a minute.} other {Creating # images. This can take up to a minute.}}",
+    "credits": {
+      "title": "AI credits this month",
+      "left": "{count, plural, one {# credit left} other {# credits left}}",
+      "meter": "AI credits left this month",
+      "resets": "Resets on {date}",
+      "getMore": "Get more credits",
+      "unavailable": "Your AI credit balance is unavailable right now."
+    },
+    "form": {
+      "prompt": "Describe the image",
+      "promptHint": "Say what is in it, the mood and the colours. Ctrl or ⌘ + Enter generates.",
+      "placeholder": "e.g. A latte on a marble table by a sunny window, warm morning light",
+      "clear": "Clear",
+      "try": "Try:",
+      "style": "Style",
+      "aspect": "Size",
+      "quality": "Quality",
+      "qualities": {
+        "standard": "Standard · {credits}",
+        "hd": "HD · {credits}"
+      },
+      "count": "Images",
+      "cost": "This uses",
+      "credits": "{count, plural, one {# credit} other {# credits}}",
+      "generate": "{count, plural, one {Generate image} other {Generate # images}}",
+      "notEnough": "Not enough credits: {remaining} left this month.",
+      "upgrade": "Get more credits",
+      "disclaimer": "Check images before you post them. Generated people, products and places are not real."
+    },
+    "styles": {
+      "photo": "Photo",
+      "illustration": "Illustration",
+      "3d": "3D render",
+      "minimal": "Minimal",
+      "flat": "Flat graphic",
+      "cinematic": "Cinematic"
+    },
+    "aspects": {
+      "square": "Feed post",
+      "portrait": "Instagram portrait",
+      "story": "Story, Reel, TikTok",
+      "wide": "YouTube, X, LinkedIn"
+    },
+    "ideaLabels": {
+      "coffee": "Café promo",
+      "launch": "Product launch",
+      "team": "Team photo"
+    },
+    "ideas": {
+      "coffee": "A latte with heart-shaped foam art on a marble café table, morning sunlight through the window, cosy and inviting",
+      "launch": "A sleek new smartphone standing on a pastel podium, soft studio light, clean background in mint and sky blue",
+      "team": "A small, diverse startup team smiling around a laptop in a bright modern office with plants"
+    },
+    "errors": {
+      "credits": "You do not have enough AI credits left this month.",
+      "notConfigured": "AI images are not set up on this server yet.",
+      "invalid": "That description can't be used. Change it and try again.",
+      "busy": "The image service is busy. Try again in a minute.",
+      "generic": "The images could not be created. Credits are refunded when a generation fails. Try again."
+    },
+    "library": {
+      "title": "Your images",
+      "hint": "Select images, then create a post with them.",
+      "select": "Select image: {prompt}",
+      "download": "Download",
+      "delete": "Delete",
+      "deleteTitle": "Delete this image?",
+      "deleteBody": "It is removed from your library. Posts that already use it keep it.",
+      "cancel": "Cancel",
+      "deleted": "Image deleted.",
+      "deleteFailed": "The image could not be deleted. Try again.",
+      "emptyTitle": "No images yet",
+      "emptyBody": "Describe an image, pick a style and size, and generate. Your images are kept here for every post.",
+      "quality": {
+        "standard": "Standard",
+        "hd": "HD"
+      }
+    },
+    "selection": {
+      "label": "Selected images",
+      "count": "{count, plural, one {# selected} other {# selected}}",
+      "clear": "Clear",
+      "createPost": "Create post",
+      "max": "A post takes up to {max} images."
+    },
+    "picker": {
+      "open": "AI image",
+      "title": "Add AI images",
+      "body": "Pick up to {max} images from your library.",
+      "generateNew": "Create new",
+      "emptyTitle": "Your AI library is empty",
+      "emptyBody": "Generate images in AI Studio. Your draft is saved while you are there.",
+      "openStudio": "Open AI Studio",
+      "add": "{count, plural, =0 {Add images} one {Add # image} other {Add # images}}"
+    },
+    "comingSoon": {
+      "title": "AI Studio is coming soon",
+      "body": "Create on-brand images for your posts in seconds, sized for every platform, then schedule them with a caption.",
+      "points": {
+        "sizes": "Images in the right size for Instagram, TikTok, YouTube, LinkedIn and more",
+        "library": "A library of your images, ready for any post",
+        "credits": "Monthly AI credits in every plan"
+      },
+      "action": "Create a post"
+    },
+    "writerSoon": {
+      "title": "AI writing is coming soon",
+      "body": "Describe your post and get a caption shaped for each platform, then rephrase, shorten or change the tone in one click."
+    }
   },
   "posts": {
     "title": "Posts",
@@ -1537,6 +1672,7 @@
     "usageTitle": "Usage",
     "accounts": "Social accounts",
     "seats": "Seats",
+    "aiCredits": "AI credits",
     "usage": "{used} of {limit}",
     "downgradeNote": "If you move to a smaller plan, nothing is deleted. Items over the limit stay read-only.",
     "ownerOnly": "Only the workspace owner can change the plan.",

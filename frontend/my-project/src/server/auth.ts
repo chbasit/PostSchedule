@@ -15,9 +15,10 @@ export function authFailure(error: AuthError): ApiFailure {
       return fail.validation("Choose a stronger password.", { reason: "weak_password" });
     case "same_password":
       return fail.validation("Choose a password you have not used here before.", { reason: "same_password" });
+    // Emailed codes: wrong, already used, replaced by a newer one, or expired.
     case "otp_expired":
     case "bad_jwt":
-      return fail.validation("This link has expired or was already used.", { reason: "expired" });
+      return fail.validation("That code is wrong or has expired.", { reason: "invalid_code" });
     case "signup_disabled":
     case "email_provider_disabled":
       return fail.forbidden("Sign-ups are closed at the moment.");
@@ -31,7 +32,7 @@ export function authFailure(error: AuthError): ApiFailure {
       return fail.rateLimited(60);
     default:
       if (error.status === 429) return fail.rateLimited(60);
-      if (error.status === 403 || error.status === 401) return fail.validation("This link has expired or was already used.", { reason: "expired" });
+      if (error.status === 403 || error.status === 401) return fail.validation("That code is wrong or has expired.", { reason: "invalid_code" });
       console.error("[auth]", error.code, error.status, error.message);
       return new ApiFailure(500, "internal", "Something went wrong on our side.");
   }

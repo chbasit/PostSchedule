@@ -8,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: t("resetTitle") };
 }
 
-// The password-reset email links here with ?token=.
+// Forgot password sends people here with ?email= after emailing them a code.
 export default function ResetPasswordPage() {
   const t = useTranslations("auth");
   return (

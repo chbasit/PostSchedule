@@ -1,7 +1,9 @@
-import { Check, UserRound, UsersRound } from "lucide-react";
+import { Check, Sparkles, UserRound, UsersRound } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import type { ReactNode } from "react";
+import { AI_ENABLED } from "@/config/site";
 import { routing } from "@/i18n/routing";
+import { SoonBadge } from "@/features/ai-studio/coming-soon";
 import { formatPrice, planFeatures, priceFor, type BillingInterval, type Feature, type Plan } from "@/lib/billing/plans";
 import { cn } from "@/lib/utils";
 
@@ -64,6 +66,13 @@ export function PlanCard({ plan, interval, action, previous, current, flat, clas
         <li className="flex gap-2.5 font-semibold">
           <UserRound className="mt-0.5 size-4 shrink-0" aria-hidden />
           {t("seats", { count: plan.seats })}
+        </li>
+        <li className="flex gap-2.5 font-semibold">
+          <Sparkles className="mt-0.5 size-4 shrink-0" aria-hidden />
+          <span>
+            {t("aiCredits", { count: plan.aiCredits })}
+            {AI_ENABLED ? null : <SoonBadge className="ms-1.5 align-middle" />}
+          </span>
         </li>
         {previous ? <li className="pt-1 text-muted-foreground">{t("everythingIn", { plan: t(`names.${previous.key}`) })}</li> : null}
         {features.map((feature) => (

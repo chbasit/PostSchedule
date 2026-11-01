@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { useTranslations } from "next-intl";
 import { Suspense } from "react";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Logo } from "@/components/logo";
 import { ThemeMenu } from "@/components/theme";
 import { Skeleton } from "@/components/ui/misc";
+import { DEV_MODE } from "@/config/site";
 import { Link } from "@/i18n/navigation";
 
 export const metadata: Metadata = { robots: { index: false } };
@@ -23,9 +25,16 @@ function FormSkeleton() {
 
 // One centred card on the shell colour: logo above, language and theme in the corner.
 export default function AuthLayout({ children }: LayoutProps<"/[locale]">) {
+  const t = useTranslations("auth.dev");
   return (
     <div className="flex min-h-dvh flex-col bg-shell">
       <div className="flex h-14 shrink-0 items-center justify-end gap-1 px-4 sm:px-6">
+        {/* So nobody mistakes on-screen codes for the real thing (src/config/site.ts). */}
+        {DEV_MODE ? (
+          <span className="me-auto rounded-full border border-dashed border-info/50 bg-info-bg px-2.5 py-0.5 text-xs font-semibold text-info" title={t("badgeHint")}>
+            {t("badge")}
+          </span>
+        ) : null}
         <LanguageSwitcher />
         <ThemeMenu />
       </div>

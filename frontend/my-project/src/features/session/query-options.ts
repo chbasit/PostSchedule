@@ -36,6 +36,12 @@ export const membersOptions = (ws: string, scope: Scope) =>
 export const invitesOptions = (ws: string, scope: Scope) =>
   queryOptions({ queryKey: [...scope, "invites"], queryFn: () => api.members.invites(ws) });
 
+export const aiCreditsOptions = (ws: string, scope: Scope) =>
+  queryOptions({ queryKey: [...scope, "ai", "credits"], queryFn: () => api.ai.credits(ws) });
+
+export const aiImagesOptions = (ws: string, scope: Scope) =>
+  queryOptions({ queryKey: [...scope, "ai", "images"], queryFn: () => api.ai.images.list(ws), staleTime: 5 * 60_000 });
+
 export const tagsOptions = (ws: string, scope: Scope) =>
   queryOptions({ queryKey: [...scope, "tags"], queryFn: () => api.tags.list(ws), staleTime: 5 * 60_000 });
 

@@ -13,6 +13,9 @@ import type { SocialAccount } from "@/lib/api/client";
 import { can } from "@/lib/auth/permissions";
 import { cn } from "@/lib/utils";
 import { getPlatform, PLATFORMS } from "@/providers/catalog";
+import { AI_ENABLED } from "@/config/site";
+import { SoonBadge } from "@/features/ai-studio/coming-soon";
+import { CreditsPill } from "@/features/ai-studio/credits";
 import { ConnectDialog } from "@/features/connections/connect-dialog";
 import { useAccounts, usePosts } from "@/features/session/queries";
 import { useWorkspace, useWorkspaceState } from "@/features/session/workspace-context";
@@ -187,7 +190,14 @@ function MainNav({ pathname, onNavigate }: Nav) {
       <ul className="space-y-0.5">
         {NAV.map((item) => (
           <li key={item.href}>
-            <NavLink href={item.href} active={isActive(pathname, item)} icon={item.icon} label={t(`items.${item.key}`)} onNavigate={onNavigate} />
+            <NavLink
+              href={item.href}
+              active={isActive(pathname, item)}
+              icon={item.icon}
+              label={t(`items.${item.key}`)}
+              onNavigate={onNavigate}
+              aside={item.key !== "aiStudio" ? undefined : !AI_ENABLED ? <SoonBadge className="ms-auto" /> : state.status === "ready" ? <CreditsPill className="ms-auto" /> : undefined}
+            />
           </li>
         ))}
       </ul>

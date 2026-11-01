@@ -351,3 +351,111 @@ describe("plan limits", () => {
     await expect(invite("three@example.com")).rejects.toThrow(/seat_limit_reached/);
   });
 });
+
+describe("AI credits and images", () => {
+  const reserve = (ws: string, user: User, credits: number) =>
+    server<{ generation_id: string; remaining: number }>(`select * from public.reserve_ai_credits($1, $2, 'image', $3, '{}'::jsonb)`, [ws, user.id, credits]).then(
+      (r) => r.rows[0],
+    );
+  const settle = (ws: string, id: string, ok: boolean) => server(`select public.settle_ai_generation($1, $2, $3, 'openai', 'test', null)`, [id, ws, ok]);
+  const status = (ws: string) =>
+    server<{ credit_limit: number; bonus: number; used: number }>(`select credit_limit, bonus, used from public.ai_credit_status($1)`, [ws]).then((r) => r.rows[0]);
+
+  it("AI-01 charges before the call, refuses past the month's credits, and refunds failures", async () => {
+    const alice = await signUp("Alice");
+    // Free: 25 credits a month (plans.ts).
+    expect(await status(alice.ws)).toEqual({ credit_limit: 25, bonus: 0, used: 0 });
+    const first = await reserve(alice.ws, alice, 20);
+    expect(first.remaining).toBe(5);
+    await settle(alice.ws, first.generation_id, true);
+    await expect(reserve(alice.ws, alice, 10)).rejects.toThrow(/ai_credits_exhausted/);
+    const second = await reserve(alice.ws, alice, 5);
+    expect(second.remaining).toBe(0);
+    await settle(alice.ws, second.generation_id, false);
+    expect((await status(alice.ws)).used).toBe(20);
+    // Settling twice changes nothing.
+    await settle(alice.ws, second.generation_id, true);
+    expect((await status(alice.ws)).used).toBe(20);
+  });
+
+  it("AI-02 spends bonus credits after the month's and returns them when a call fails", async () => {
+    const alice = await signUp("Alice");
+    await server(`update public.subscriptions set ai_bonus_credits = 30 where workspace_id = $1`, [alice.ws]);
+    const call = await reserve(alice.ws, alice, 40);
+    expect(call.remaining).toBe(15);
+    expect(await status(alice.ws)).toEqual({ credit_limit: 25, bonus: 15, used: 25 });
+    await settle(alice.ws, call.generation_id, false);
+    expect(await status(alice.ws)).toEqual({ credit_limit: 25, bonus: 30, used: 0 });
+  });
+
+  it("AI-03 shows a workspace's AI library only to its members, and only the server writes it", async () => {
+    const alice = await signUp("Alice");
+    const bob = await signUp("Bob");
+    const call = await reserve(alice.ws, alice, 5);
+    const { rows: media } = await server<{ id: string }>(
+      `insert into public.media_assets (workspace_id, storage_key, kind, status, source) values ($1, $2, 'image', 'ready', 'ai') returning id`,
+      [alice.ws, `${alice.ws}/${call.generation_id}/1.jpg`],
+    );
+    await server(
+      `insert into public.ai_images (workspace_id, generation_id, media_asset_id, prompt, style, aspect, quality) values ($1, $2, $3, 'A latte', 'photo', '1:1', 'standard')`,
+      [alice.ws, call.generation_id, media[0].id],
+    );
+    expect((await as(alice, `select id from public.ai_images`)).rows).toHaveLength(1);
+    expect((await as(alice, `select id from public.ai_generations`)).rows).toHaveLength(1);
+    expect((await as(bob, `select id from public.ai_images`)).rows).toHaveLength(0);
+    expect((await as(bob, `select id from public.ai_generations`)).rows).toHaveLength(0);
+    await expect(as(alice, `delete from public.ai_images`)).rejects.toThrow(/permission denied/);
+    await expect(
+      as(alice, `insert into public.ai_generations (workspace_id, kind, credits) values ($1, 'image', 0)`, [alice.ws]),
+    ).rejects.toThrow(/permission denied/);
+    await expect(as(alice, `update public.subscriptions set ai_bonus_credits = 1000`)).rejects.toThrow(/permission denied/);
+    await expect(as(null, `select * from public.ai_images`)).rejects.toThrow(/permission denied/);
+  });
+
+  it("AI-04 never lets clients charge, refund or read credits directly", async () => {
+    const alice = await signUp("Alice");
+    const call = await reserve(alice.ws, alice, 5);
+    await expect(as(alice, `select * from public.reserve_ai_credits($1, $2, 'image', 0, '{}'::jsonb)`, [alice.ws, alice.id])).rejects.toThrow(/permission denied/);
+    await expect(as(alice, `select public.settle_ai_generation($1, $2, false, null, null, null)`, [call.generation_id, alice.ws])).rejects.toThrow(/permission denied/);
+    await expect(as(alice, `select * from public.ai_credit_status($1)`, [alice.ws])).rejects.toThrow(/permission denied/);
+  });
+});
+
+describe("email code attempts", () => {
+  const hash = () => randomUUID().replace(/-/g, "").padEnd(64, "0");
+  const locked = (h: string, purpose = "signup") =>
+    server<{ locked: boolean }>(`select public.auth_code_locked($1, $2) as locked`, [purpose, h]).then((r) => r.rows[0].locked);
+  const failed = (h: string, purpose = "signup") =>
+    server<{ n: number }>(`select public.auth_code_failed($1, $2) as n`, [purpose, h]).then((r) => r.rows[0].n);
+
+  it("AUTH-04 locks an address after 5 wrong codes, per purpose, until a new code is sent", async () => {
+    const h = hash();
+    for (let i = 1; i <= 4; i++) expect(await failed(h)).toBe(i);
+    expect(await locked(h)).toBe(false);
+    expect(await failed(h)).toBe(5);
+    expect(await locked(h)).toBe(true);
+    // The reset code for the same address is counted separately.
+    expect(await locked(h, "recovery")).toBe(false);
+    await server(`select public.auth_code_reset('signup', $1)`, [h]);
+    expect(await locked(h)).toBe(false);
+  });
+
+  it("AUTH-04 lets the lock lapse after 15 minutes and starts a new count", async () => {
+    const h = hash();
+    for (let i = 0; i < 5; i++) await failed(h);
+    await server(`update public.auth_code_attempts set last_failed_at = now() - interval '16 minutes' where email_hash = $1`, [h]);
+    expect(await locked(h)).toBe(false);
+    expect(await failed(h)).toBe(1);
+  });
+
+  it("AUTH-04 keeps the attempt counts away from clients", async () => {
+    const alice = await signUp("Alice");
+    const h = hash();
+    await failed(h);
+    await expect(as(alice, `select * from public.auth_code_attempts`)).rejects.toThrow(/permission denied/);
+    await expect(as(null, `select * from public.auth_code_attempts`)).rejects.toThrow(/permission denied/);
+    for (const fn of [`auth_code_locked('signup', $1)`, `auth_code_failed('signup', $1)`, `auth_code_reset('signup', $1)`]) {
+      await expect(as(alice, `select public.${fn}`, [h])).rejects.toThrow(/permission denied/);
+    }
+  });
+});

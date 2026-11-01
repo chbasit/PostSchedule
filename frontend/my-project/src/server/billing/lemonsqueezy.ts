@@ -74,6 +74,7 @@ export type SubscriptionPatch = {
   status: "trialing" | "active" | "past_due" | "paused" | "cancelled" | "expired";
   account_limit: number;
   member_limit: number;
+  ai_credit_limit: number;
   ls_customer_id: string;
   ls_subscription_id: string;
   ls_variant_id: string;
@@ -108,6 +109,7 @@ export function subscriptionPatch(subscriptionId: string, rawAttributes: unknown
       status: "active",
       account_limit: free.accounts,
       member_limit: free.seats,
+      ai_credit_limit: free.aiCredits,
       current_period_end: null,
       cancel_at: null,
     };
@@ -122,6 +124,7 @@ export function subscriptionPatch(subscriptionId: string, rawAttributes: unknown
     status,
     account_limit: plan.accounts,
     member_limit: plan.seats,
+    ai_credit_limit: plan.aiCredits,
     current_period_end: a.renews_at ?? a.ends_at ?? null,
     // Cancelled keeps access until the end of the paid period (PAY-13).
     cancel_at: a.status === "cancelled" ? (a.ends_at ?? a.renews_at ?? null) : null,

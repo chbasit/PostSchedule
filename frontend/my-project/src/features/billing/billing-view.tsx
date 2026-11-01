@@ -10,6 +10,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { Card } from "@/components/ui/misc";
 import { Spinner } from "@/components/ui/spinner";
 import { Link } from "@/i18n/navigation";
+import { AI_ENABLED } from "@/config/site";
 import { api, usingMockApi } from "@/lib/api/client";
 import { can } from "@/lib/auth/permissions";
 import { getPlan, PLANS, type BillingInterval, type PlanKey } from "@/lib/billing/plans";
@@ -17,7 +18,7 @@ import { formatDateTime } from "@/lib/time";
 import { useIntentKey } from "@/lib/use-intent-key";
 import { cn } from "@/lib/utils";
 import { FormAlert } from "@/features/auth/form-alert";
-import { useAccounts, useMembers } from "@/features/session/queries";
+import { useAccounts, useAiCredits, useMembers } from "@/features/session/queries";
 import { sessionKey, useWorkspace } from "@/features/session/workspace-context";
 import { IntervalToggle } from "./interval-toggle";
 import { PlanCard } from "./plan-card";
@@ -99,6 +100,7 @@ export function BillingView() {
   const params = useSearchParams();
   const accounts = useAccounts();
   const members = useMembers();
+  const credits = useAiCredits();
   const [interval, setInterval] = useState<BillingInterval>(workspace.subscription.interval ?? "month");
   const intent = useIntentKey();
   const owner = can(workspace.role, "billing.manage");
@@ -151,6 +153,9 @@ export function BillingView() {
           <ul aria-label={t("usageTitle")} className="flex flex-wrap gap-2">
             <UsageTag label={t("accounts")} used={accounts.data?.length} limit={workspace.accountLimit} />
             <UsageTag label={t("seats")} used={members.data?.length} limit={workspace.memberLimit} />
+            {AI_ENABLED ? (
+              <UsageTag label={t("aiCredits")} used={credits.data?.used} limit={credits.data ? credits.data.limit + credits.data.bonus : plan.aiCredits} />
+            ) : null}
           </ul>
           {sub.status === "past_due" ? <FormAlert>{t("pastDue")}</FormAlert> : null}
         </div>

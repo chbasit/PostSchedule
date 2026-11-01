@@ -28,7 +28,7 @@ export function GoogleSignIn() {
             return;
           }
           // A full-page visit: the server sets the sign-in cookies and sends the person to Google.
-          const start = new URL("/api/v1/auth/google", API_URL);
+          const start = new URL("/api/v1/auth/google", API_URL || window.location.origin);
           const next = safeNextPath(new URLSearchParams(window.location.search).get("next"));
           if (next) start.searchParams.set("next", next);
           setLeaving(true);

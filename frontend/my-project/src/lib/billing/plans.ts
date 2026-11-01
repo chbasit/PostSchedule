@@ -28,6 +28,8 @@ export type Plan = {
   priceMonthly: number; // USD
   accounts: number;
   seats: number;
+  // AI credits granted each calendar month (UTC); unused credits do not roll over.
+  aiCredits: number;
   highlighted?: boolean;
   features: Feature[];
 };
@@ -37,12 +39,27 @@ export type Plan = {
 export const EVERY_PLAN: readonly Feature[] = ["preflight", "previews", "fixes", "captions", "calendar", "timing", "tags", "languages"];
 
 export const PLANS: readonly Plan[] = [
-  { key: "free", priceMonthly: 0, accounts: 3, seats: 1, features: [...EVERY_PLAN] },
-  { key: "solo", priceMonthly: 12, accounts: 10, seats: 1, features: [...EVERY_PLAN, "reports"] },
-  { key: "pro", priceMonthly: 24, accounts: 25, seats: 3, highlighted: true, features: [...EVERY_PLAN, "reports", "approvals"] },
-  { key: "agency", priceMonthly: 59, accounts: 75, seats: 10, features: [...EVERY_PLAN, "reports", "approvals", "clientLinks"] },
-  { key: "scale", priceMonthly: 119, accounts: 200, seats: 25, features: [...EVERY_PLAN, "reports", "approvals", "clientLinks", "api"] },
+  { key: "free", priceMonthly: 0, accounts: 3, seats: 1, aiCredits: 25, features: [...EVERY_PLAN] },
+  { key: "solo", priceMonthly: 12, accounts: 10, seats: 1, aiCredits: 300, features: [...EVERY_PLAN, "reports"] },
+  { key: "pro", priceMonthly: 24, accounts: 25, seats: 3, aiCredits: 800, highlighted: true, features: [...EVERY_PLAN, "reports", "approvals"] },
+  { key: "agency", priceMonthly: 59, accounts: 75, seats: 10, aiCredits: 2000, features: [...EVERY_PLAN, "reports", "approvals", "clientLinks"] },
+  { key: "scale", priceMonthly: 119, accounts: 200, seats: 25, aiCredits: 4000, features: [...EVERY_PLAN, "reports", "approvals", "clientLinks", "api"] },
 ];
+
+// What each AI action costs in credits. One credit is about US$0.0125 of model cost at
+// OpenAI's and Google's list prices (2026-10), so a plan's worst-case AI spend stays well
+// under its price: Pro's 800 credits are about $10 at most. Change costs here only; the
+// server charges from this table and the UI shows the same numbers.
+export const AI_COSTS = {
+  caption: 1,
+  image: { standard: 5, hd: 20 },
+} as const;
+
+export type AiImageQuality = keyof typeof AI_COSTS.image;
+
+export function imageCost(quality: AiImageQuality, count: number): number {
+  return AI_COSTS.image[quality] * count;
+}
 
 // A plan's features in display order.
 export function planFeatures(plan: Plan): Feature[] {

@@ -1,4 +1,4 @@
-# Backend guide — {{PRODUCT_NAME}}
+# Backend guide — AgentiqSocial
 
 Architecture, data, security, and background work for everything that runs on the server. UI work is in `docs/FRONTEND.md`. Rules are in `CLAUDE.md`. Recipes are in `.claude/skills/scheduler-dev/SKILL.md`. Test cases are in `docs/TEST.md`.
 
@@ -441,6 +441,7 @@ Every workspace gets a `subscriptions` row at creation (the Free plan), and the 
 ### 6.1 Supabase Auth
 
 - Methods: Google and email with password. Email confirmation on. Add MFA (TOTP) for owners and admins.
+- **Email codes, not links** (DECISIONS.md 2026-10-28). Sign-up confirmation and password reset email a code (`{{ .Token }}` in the Supabase templates; copies in `supabase/templates/`). Routes: `POST /auth/verify-email {email, code}` (`verifyOtp` type `email`, signs in), `POST /auth/resend-verification`, `POST /auth/password-reset {email}`, `POST /auth/password-update {email, code, password}` (`verifyOtp` type `recovery`, then `updateUser`, then global sign-out). On top of Supabase's per-IP limit, `auth_code_attempts` locks an address after 5 wrong codes for 15 minutes or until a new code is sent (`src/server/auth-codes.ts`). Code lifetime: 15 minutes (`otp_expiry`; set the same in the hosted project). **Development mode** (`npm run dev`, `DEV_MODE`): the code routes call `auth.admin.generateLink` instead (`src/server/dev-codes.ts`), so Supabase makes the code without sending email; it is printed in the terminal and returned as `dev: { code }` (or `dev: { note }` when no code is made). Production builds never do this. `npm run check:api` exercises every auth and workspace route end to end against the dev server.
 - Use `@supabase/ssr` for cookie sessions in Next.js. **Verify** which cookies the library marks `HttpOnly`, document any that the browser client must read, and offset that with a strict Content-Security-Policy (`TEST.md` AUTH-08).
 - Redirect URL allow-list is exact. Unused providers are off. JWT lifetime is short; refresh tokens rotate.
 - Sign-ups can be restricted during the private beta.
@@ -869,8 +870,10 @@ These come after the first release. The design is noted here so earlier choices 
 
 ## 16. AI services
 
-- One small gateway module (`src/lib/ai`) for caption, hashtag and translation requests, so the model can be swapped without touching features.
-- **Quotas:** monthly AI credits per plan in `ai_usage`, checked before each call, with a hard cost cap per workspace. Prompts have a size limit.
+- One gateway (`src/server/ai`) for captions and images: `providers.ts` is the only code that calls OpenAI or Gemini (plain fetch), so the model or vendor is swapped by env (`AI_TEXT_PROVIDER`, `AI_IMAGE_PROVIDER`, `AI_TEXT_MODEL`, `AI_IMAGE_MODEL`) without touching features. Shared options (styles, sizes, prompt rules) live in `src/lib/ai/images.ts`.
+- **Quotas:** monthly AI credits per plan (`plans.ts` `aiCredits`, copied to `subscriptions.ai_credit_limit` by the billing webhook) plus never-expiring bonus credits (`ai_bonus_credits`). Every call goes through `withCredits()`: `reserve_ai_credits` charges under a row lock and writes an `ai_generations` ledger row, the call runs, `settle_ai_generation` keeps or refunds the charge. A call still pending after 15 minutes stops counting. Costs are in `AI_COSTS`. Prompts have a size limit (images 1,000 characters, captions 600).
+- **Images:** cropped to the exact platform ratio with sharp (1080 px short side, JPEG), stored in the private Supabase Storage bucket `AI_STORAGE_BUCKET` and registered as `media_assets` (`source = 'ai'`) plus an `ai_images` library row, so they attach to posts like uploads. Previews use signed URLs (one hour, one batched request per list). Deleting from the library keeps the file while any post uses it.
+- **Routes:** `GET /ai/credits`, `GET|POST /ai/images` (POST takes an Idempotency-Key), `DELETE /ai/images/:id`, `POST /ai/generate`, `POST /ai/rewrite`.
 - **Isolation:** a prompt contains only the requesting workspace's data. Caches are keyed by workspace. No secrets in prompts. Customer data is not used to train models.
 - **Output** is treated as untrusted text: escaped when displayed, never executed.
 - **Quality:** golden prompts check platform length limits, language correctness and no invented claims. A person reviews before anything is published (the default).
@@ -1038,7 +1041,7 @@ app/api/webhooks/lemonsqueezy/route.ts
 supabase/            config.toml, migrations/20261023120000_core.sql, templates/ (auth emails)
 ```
 
-Not built yet, answering 503 `not_configured`: connecting social accounts, media uploads, publishing and retries, insights, the AI writer.
+Not built yet, answering 503 `not_configured`: connecting social accounts, media uploads, publishing and retries, insights. The AI writer and AI Studio answer 503 until an AI key is set.
 
 **Layers:** route or action → service (business rules, uses repositories) → database or provider. Routes and actions never contain business rules. Services never import UI code. Only `src/providers/<platform>` imports platform SDKs.
 

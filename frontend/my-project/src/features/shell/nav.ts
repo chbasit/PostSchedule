@@ -1,8 +1,8 @@
-import { Building2, CalendarDays, CreditCard, House, List, Plug, SlidersHorizontal, SquarePen, Tag, UserRound, Users, type LucideIcon } from "lucide-react";
+import { Building2, CalendarDays, CreditCard, House, List, Plug, SlidersHorizontal, SquarePen, Tag, UserRound, Users, WandSparkles, type LucideIcon } from "lucide-react";
 
 export type NavItem = {
   href: string;
-  key: "home" | "newPost" | "calendar" | "allPosts";
+  key: "home" | "newPost" | "aiStudio" | "calendar" | "allPosts";
   icon: LucideIcon;
   exact?: boolean;
 };
@@ -19,6 +19,7 @@ export type SettingsItem = {
 export const NAV: NavItem[] = [
   { href: "/dashboard", key: "home", icon: House, exact: true },
   { href: "/dashboard/create", key: "newPost", icon: SquarePen },
+  { href: "/dashboard/ai-studio", key: "aiStudio", icon: WandSparkles },
   { href: "/dashboard/posts/calendar", key: "calendar", icon: CalendarDays },
   { href: "/dashboard/posts", key: "allPosts", icon: List, exact: true },
 ];

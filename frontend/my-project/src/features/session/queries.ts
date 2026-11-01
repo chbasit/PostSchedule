@@ -2,9 +2,12 @@
 
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import type { InsightsRange, Post, PostFilter } from "@/lib/api/client";
+import { AI_ENABLED } from "@/config/site";
 import { matchesFilter } from "@/lib/api/filter";
 import {
   accountsOptions,
+  aiCreditsOptions,
+  aiImagesOptions,
   insightsOptions,
   invitesOptions,
   membersOptions,
@@ -60,4 +63,14 @@ export function useAccountInsights(accountId: string, days: InsightsRange) {
     ...insightsOptions(workspace.id, scope, accountId, days, user.timezone),
     placeholderData: (previous) => (previous?.accountId === accountId ? previous : undefined),
   });
+}
+
+export function useAiCredits() {
+  const { workspace, scope } = useWorkspace();
+  return useQuery({ ...aiCreditsOptions(workspace.id, scope), enabled: AI_ENABLED });
+}
+
+export function useAiImages() {
+  const { workspace, scope } = useWorkspace();
+  return useQuery({ ...aiImagesOptions(workspace.id, scope), enabled: AI_ENABLED });
 }

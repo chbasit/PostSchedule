@@ -1,18 +1,28 @@
 import { z } from "zod";
-import { authFailure, password } from "@/server/auth";
-import { fail } from "@/server/errors";
+import { authFailure, email, password } from "@/server/auth";
+import { assertCanTryCode, code, invalidCode, isWrongCode, noteWrongCode, resetCodeTries } from "@/server/auth-codes";
 import { readBody, route } from "@/server/route";
 import { markSignedOut } from "@/server/session";
 import { userClient } from "@/server/supabase";
 
-// The reset link's token, plus the new password. The token works once. Afterwards every
-// session of this person is ended, including any held by whoever knew the old password.
+// The reset code with the new password. The code works once; afterwards every session of
+// this person is ended, including any held by whoever knew the old password.
 export const POST = route(async (req) => {
-  const input = await readBody(req, z.object({ token: z.string().min(10).max(500), password }));
+  const input = await readBody(req, z.object({ email, code, password }));
   const db = await userClient();
-  const verified = await db.auth.verifyOtp({ type: "recovery", token_hash: input.token });
-  if (verified.error) throw authFailure(verified.error);
-  if (!verified.data.user) throw fail.validation("This link has expired or was already used.", { reason: "expired" });
+  // A right code signs the person in. If the new password is then refused (the old one, or
+  // a leaked one), that session lets them try another without a second code; a signed-in
+  // person may change their password anyway.
+  const { data: current } = await db.auth.getUser();
+  if (current.user?.email?.toLowerCase() !== input.email) {
+    await assertCanTryCode("recovery", input.email);
+    const verified = await db.auth.verifyOtp({ type: "recovery", email: input.email, token: input.code });
+    if (verified.error || !verified.data.user) {
+      if (!verified.error || isWrongCode(verified.error)) await noteWrongCode("recovery", input.email);
+      throw verified.error ? authFailure(verified.error) : invalidCode();
+    }
+    await resetCodeTries("recovery", input.email);
+  }
   const updated = await db.auth.updateUser({ password: input.password });
   if (updated.error) throw authFailure(updated.error);
   await db.auth.signOut({ scope: "global" });

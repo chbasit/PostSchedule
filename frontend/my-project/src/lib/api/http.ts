@@ -7,6 +7,8 @@ import type { ApiClient, MediaSummary, MutationOptions, UploadHandle } from "./t
 // and the server re-checks membership on every request.
 
 const TIMEOUT_MS = 20_000;
+// Image models take 10–60 s; the route answers when the images are stored.
+const AI_IMAGE_TIMEOUT_MS = 120_000;
 
 type Method = "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
 
@@ -15,7 +17,7 @@ export function createHttpClient(baseUrl: string): ApiClient {
     method: Method,
     path: string,
     body?: unknown,
-    opts: MutationOptions & { ifMatch?: number } = {},
+    opts: MutationOptions & { ifMatch?: number; timeoutMs?: number } = {},
   ): Promise<T> {
     const headers: Record<string, string> = { Accept: "application/json" };
     if (body !== undefined) headers["Content-Type"] = "application/json";
@@ -30,7 +32,7 @@ export function createHttpClient(baseUrl: string): ApiClient {
         body: body === undefined ? undefined : JSON.stringify(body),
         credentials: "include",
         cache: "no-store",
-        signal: AbortSignal.timeout(TIMEOUT_MS),
+        signal: AbortSignal.timeout(opts.timeoutMs ?? TIMEOUT_MS),
       });
     } catch (e) {
       if (e instanceof DOMException && e.name === "TimeoutError") {
@@ -106,7 +108,7 @@ export function createHttpClient(baseUrl: string): ApiClient {
       requestPasswordReset: (email) => request("POST", "/auth/password-reset", { email }),
       resetPassword: (input) => request("POST", "/auth/password-update", input),
       resendVerification: (email) => request("POST", "/auth/resend-verification", { email }),
-      verifyEmail: (token) => request("POST", "/auth/verify-email", { token }),
+      verifyEmail: (input) => request("POST", "/auth/verify-email", input),
     },
     me: {
       update: (patch) => request("PATCH", "/me", patch),
@@ -154,6 +156,12 @@ export function createHttpClient(baseUrl: string): ApiClient {
     ai: {
       generate: (id, input) => request("POST", `${ws(id)}/ai/generate`, input),
       rewrite: (id, input) => request("POST", `${ws(id)}/ai/rewrite`, input),
+      credits: (id) => request("GET", `${ws(id)}/ai/credits`),
+      images: {
+        list: (id) => request("GET", `${ws(id)}/ai/images`),
+        generate: (id, input, opts) => request("POST", `${ws(id)}/ai/images`, input, { ...opts, timeoutMs: AI_IMAGE_TIMEOUT_MS }),
+        remove: (id, imageId) => request("DELETE", `${ws(id)}/ai/images/${encodeURIComponent(imageId)}`),
+      },
     },
     billing: {
       createCheckout: (id, plan, interval, opts) => request("POST", `${ws(id)}/billing/checkout`, { plan, interval }, opts),

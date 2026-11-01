@@ -89,7 +89,8 @@
     "tooLong": "Está longo demais.",
     "email": "Digite um e-mail como nome@exemplo.com.",
     "passwordLength": "Use pelo menos 10 caracteres.",
-    "passwordMix": "Use pelo menos uma letra e um número."
+    "passwordMix": "Use pelo menos uma letra e um número.",
+    "code": "Digite o código do e-mail: de 6 a 10 dígitos."
   },
   "marketing": {
     "announcement": "Preço de fundador para os primeiros {count} clientes, travado por 24 meses. Ver a oferta",
@@ -119,6 +120,7 @@
     "home": {
       "eyebrow": "Gestão de redes sociais para equipes",
       "sub": "Feito para startups, agências e equipes em vários países. Veja a prévia de cada plataforma, corrija problemas de vídeo antes de publicar e deixe a IA escrever o primeiro rascunho.",
+      "subSoon": "Feito para startups, agências e equipes em vários países. Veja a prévia de cada plataforma e corrija problemas de vídeo antes de publicar. Escrita e imagens com IA chegam em breve.",
       "ctaPrimary": "Comece grátis",
       "ctaGoogle": "Comece com o Google",
       "ctaNote": "Teste de {days} dias. Sem cartão.",
@@ -183,7 +185,8 @@
         },
         "ai": {
           "q": "O {product} usa IA?",
-          "a": "Sim. O assistente de IA do editor escreve e reescreve legendas para cada plataforma e marca para sua equipe os posts feitos com IA. Uma API e um servidor MCP para agentes de IA estão a caminho, com chaves limitadas a um espaço de trabalho."
+          "a": "Sim. O assistente de IA do editor escreve e reescreve legendas para cada plataforma e marca para sua equipe os posts feitos com IA. Uma API e um servidor MCP para agentes de IA estão a caminho, com chaves limitadas a um espaço de trabalho.",
+          "aSoon": "Em breve. Um Estúdio IA para imagens e um assistente de escrita com IA para legendas estão a caminho, com créditos de IA mensais em todos os planos. Depois virão uma API e um servidor MCP para agentes de IA, com chaves limitadas a um espaço de trabalho."
         }
       },
       "finalTitle": "Seu próximo post pode ficar exatamente como você criou.",
@@ -253,11 +256,12 @@
       },
       "ai": {
         "title": "A IA faz o trabalho pesado. Você continua no controle.",
-        "sub": "O assistente de IA escreve legendas sob medida para cada plataforma. Em breve, agentes de IA vão planejar e agendar por uma API segura, e cada post continua passando pelas mesmas verificações.",
+        "sub": "O Estúdio IA cria imagens com a cara da sua marca e o assistente escreve legendas no formato de cada plataforma. Em breve, agentes de IA poderão planejar e agendar por uma API segura, e cada post passa pelas mesmas verificações.",
+        "subSoon": "Em breve: o Estúdio IA cria imagens com a cara da sua marca e o assistente escreve legendas no formato de cada plataforma. Depois, agentes de IA poderão planejar e agendar por uma API segura, e cada post passa pelas mesmas verificações.",
         "points": {
           "write": {
-            "title": "Escreve para cada plataforma",
-            "body": "Descreva o post e receba uma legenda no tamanho certo para cada plataforma. Reescreva, encurte ou mude o tom com um clique."
+            "title": "Imagens e legendas em segundos",
+            "body": "Gere imagens no tamanho certo para cada plataforma e deixe a IA escrever a legenda. Reescreva, encurte ou mude o tom com um clique."
           },
           "agents": {
             "title": "Agentes com chave limitada",
@@ -306,6 +310,7 @@
     "perYear": "/ ano",
     "accounts": "{count, plural, one {# conta social} other {# contas sociais}}",
     "seats": "{count, plural, one {# usuário} other {# usuários}}",
+    "aiCredits": "{count, plural, one {# crédito de IA por mês} other {# créditos de IA por mês}}",
     "features": {
       "preflight": "Verificação prévia do vídeo",
       "previews": "Prévia por plataforma",
@@ -860,7 +865,7 @@
     "signUpTitle": "Crie sua conta",
     "signUpSub": "Grátis por {days} dias. Sem cartão.",
     "forgotTitle": "Redefinir senha",
-    "forgotSub": "Digite seu e-mail e enviaremos um link para escolher uma nova senha.",
+    "forgotSub": "Digite seu e-mail e enviaremos um código para você escolher uma nova senha.",
     "google": "Continuar com o Google",
     "googleUnavailable": "O login com Google fica disponível quando o backend estiver conectado.",
     "or": "ou",
@@ -876,7 +881,7 @@
     "signInFailed": "O e-mail e a senha não conferem. Verifique e tente de novo.",
     "signUpFailed": "Não conseguimos criar sua conta. Tente de novo em instantes.",
     "genericFailed": "Algo deu errado. Tente de novo em instantes.",
-    "emailMaybeUsed": "Se este endereço puder ser usado, enviamos um link para ele. Confira sua caixa de entrada ou entre.",
+    "emailMaybeUsed": "Se este endereço puder ser usado, enviamos um código para ele. Confira sua caixa de entrada ou entre na sua conta.",
     "emailNotAllowed": "Ainda não conseguimos enviar e-mails para este endereço. Use outro ou tente mais tarde.",
     "demoHint": "Modo de prévia: entre com {email} e qualquer senha.",
     "noAccount": "Primeira vez aqui? <link>Crie uma conta</link>",
@@ -886,24 +891,17 @@
     "ruleMix": "Uma letra e um número",
     "ruleMet": "(ok)",
     "ruleNotMet": "(pendente)",
-    "resetSent": "Se houver uma conta com este e-mail, enviamos um link. Ele funciona uma vez e expira em breve.",
     "backToSignIn": "Voltar para o login",
-    "sendResetLink": "Enviar link",
     "checkInbox": "Confira seu e-mail",
-    "sentTo": "Enviamos um link de confirmação para {email}. Abra-o para concluir.",
-    "sentGeneric": "Enviamos um link de confirmação. Abra-o para concluir.",
-    "resend": "Reenviar e-mail",
-    "resendIn": "Reenviar em {seconds} s",
-    "resent": "Enviamos outro link. Pode levar um minuto para chegar.",
-    "mockOpenLink": "Abrir o link de confirmação (prévia)",
+    "sentTo": "Enviamos um código para {email}. Digite-o abaixo para confirmar seu endereço.",
+    "sentGeneric": "Enviamos um código para o seu e-mail. Digite-o abaixo para confirmar seu endereço.",
+    "resend": "Enviar um novo código",
+    "resendIn": "Novo código em {seconds} s",
+    "resent": "Enviamos um novo código. Pode levar um minuto para chegar.",
     "wrongEmail": "Endereço errado? <link>Cadastre-se de novo</link> com o certo.",
-    "confirmTitle": "Confirme seu e-mail",
-    "confirmBody": "Clique no botão para confirmar este endereço e continuar.",
-    "confirmButton": "Confirmar e-mail",
-    "confirmFailed": "Este link expirou ou já foi usado. Peça um novo na página de login.",
     "googleOff": "O login com Google ainda não está disponível. Use seu e-mail e senha.",
     "googleFailed": "O login com Google não foi concluído. Tente de novo ou use seu e-mail e senha.",
-    "emailNotConfirmed": "Confirme seu e-mail antes de entrar. Abra o link que enviamos ou <link>peça um novo link</link>.",
+    "emailNotConfirmed": "Confirme seu e-mail antes de entrar. <link>Digite seu código</link> ou peça um novo por lá.",
     "tooManyTries": "Muitas tentativas. Aguarde um minuto e tente de novo.",
     "serviceOff": "As contas ainda não estão ativadas. Tente mais tarde.",
     "networkFailed": "Não conseguimos falar com o servidor. Verifique sua conexão e tente de novo.",
@@ -914,7 +912,23 @@
     "newPassword": "Nova senha",
     "savePassword": "Salvar senha",
     "resetDone": "Sua senha foi alterada. Entre com a nova senha.",
-    "resetExpired": "Este link expirou ou já foi usado. Peça um novo."
+    "code": "Código",
+    "codeHint": "Só o código mais recente funciona. Não chegou? Confira a pasta de spam.",
+    "verifyButton": "Confirmar e-mail",
+    "codeInvalid": "Esse código está errado ou expirou. Confira ou peça um novo.",
+    "codeLocked": "Muitos códigos errados. Peça um novo código e tente de novo.",
+    "sendCode": "Enviar código",
+    "resetCodeSent": "Se alguma conta usa {email}, enviamos um código para ela. Digite-o abaixo com sua nova senha.",
+    "differentEmail": "Usar outro e-mail",
+    "dev": {
+      "badge": "Modo de desenvolvimento",
+      "badgeHint": "Os códigos aparecem na tela em vez de irem por e-mail. Uma versão de produção sempre os envia por e-mail.",
+      "code": "Modo de desenvolvimento: nenhum e-mail foi enviado. Seu código é {code} e já está preenchido.",
+      "noCode": "Modo de desenvolvimento: nenhum e-mail é enviado aqui. Toque em “Enviar um novo código” e ele aparece neste quadro.",
+      "account_exists": "Modo de desenvolvimento: este endereço já tem uma conta confirmada, então nenhum código foi criado. Entre na sua conta.",
+      "no_account": "Modo de desenvolvimento: nenhuma conta usa este endereço, então nenhum código foi criado.",
+      "already_confirmed": "Modo de desenvolvimento: este endereço já está confirmado. Entre na sua conta."
+    }
   },
   "nav": {
     "label": "App",
@@ -922,6 +936,7 @@
     "items": {
       "home": "Início",
       "newPost": "Novo post",
+      "aiStudio": "Estúdio IA",
       "calendar": "Calendário",
       "allPosts": "Todos os posts",
       "scheduled": "Agendados",
@@ -1215,7 +1230,7 @@
     "preflightOpen": "Ver a verificação prévia",
     "aiHelp": "Escrever com IA",
     "aiLabel": "Feito com IA",
-    "aiLabelHint": "Sua equipe vai ver que a IA ajudou a escrever este post.",
+    "aiLabelHint": "Sua equipe vai ver que a IA ajudou a criar este post: o texto, as imagens ou os dois.",
     "createAnother": "Criar outro",
     "moreProblems": "{count, plural, other {(e mais #)}}",
     "previewPane": {
@@ -1327,7 +1342,127 @@
       "casual": "Mais casual",
       "formal": "Mais formal"
     },
-    "inserted": "Legenda atualizada."
+    "inserted": "Legenda atualizada.",
+    "imagesAdded": "{count, plural, one {# imagem de IA adicionada.} other {# imagens de IA adicionadas.}}"
+  },
+  "aiStudio": {
+    "title": "Estúdio IA",
+    "soon": "Em breve",
+    "subtitle": "Crie em segundos imagens com a cara da sua marca para seus posts e agende-as com uma legenda.",
+    "viewerNote": "Leitores podem ver a biblioteca. Peça a um editor ou administrador para gerar imagens.",
+    "previewNote": "Modo de prévia: imagens de exemplo aparecem até o serviço de imagens ser conectado.",
+    "retry": "Tentar de novo",
+    "generated": "{count, plural, one {# imagem pronta e selecionada.} other {# imagens prontas e selecionadas.}}",
+    "generating": "{count, plural, one {Criando sua imagem. Pode levar até um minuto.} other {Criando # imagens. Pode levar até um minuto.}}",
+    "credits": {
+      "title": "Créditos de IA neste mês",
+      "left": "{count, plural, one {# crédito restante} other {# créditos restantes}}",
+      "meter": "Créditos de IA restantes neste mês",
+      "resets": "Renovam em {date}",
+      "getMore": "Obter mais créditos",
+      "unavailable": "Seu saldo de créditos de IA não está disponível agora."
+    },
+    "form": {
+      "prompt": "Descreva a imagem",
+      "promptHint": "Diga o que aparece, o clima e as cores. Ctrl ou ⌘ + Enter gera.",
+      "placeholder": "ex.: Um latte numa mesa de mármore perto de uma janela ensolarada, luz quente da manhã",
+      "clear": "Limpar",
+      "try": "Experimente:",
+      "style": "Estilo",
+      "aspect": "Tamanho",
+      "quality": "Qualidade",
+      "qualities": {
+        "standard": "Padrão · {credits}",
+        "hd": "HD · {credits}"
+      },
+      "count": "Imagens",
+      "cost": "Isso usa",
+      "credits": "{count, plural, one {# crédito} other {# créditos}}",
+      "generate": "{count, plural, one {Gerar imagem} other {Gerar # imagens}}",
+      "notEnough": "Créditos insuficientes: restam {remaining} neste mês.",
+      "upgrade": "Obter mais créditos",
+      "disclaimer": "Confira as imagens antes de postar. Pessoas, produtos e lugares gerados não são reais."
+    },
+    "styles": {
+      "photo": "Foto",
+      "illustration": "Ilustração",
+      "3d": "Render 3D",
+      "minimal": "Minimalista",
+      "flat": "Gráfico plano",
+      "cinematic": "Cinematográfico"
+    },
+    "aspects": {
+      "square": "Post do feed",
+      "portrait": "Retrato do Instagram",
+      "story": "Story, Reel, TikTok",
+      "wide": "YouTube, X, LinkedIn"
+    },
+    "ideaLabels": {
+      "coffee": "Promo de café",
+      "launch": "Lançamento",
+      "team": "Foto da equipe"
+    },
+    "ideas": {
+      "coffee": "Um latte com arte de coração na espuma numa mesa de mármore de café, sol da manhã pela janela, aconchegante",
+      "launch": "Um smartphone novo e elegante num pódio em tons pastel, luz suave de estúdio, fundo limpo em menta e azul-céu",
+      "team": "Uma pequena equipe diversa de startup sorrindo em volta de um notebook num escritório moderno e claro com plantas"
+    },
+    "errors": {
+      "credits": "Você não tem créditos de IA suficientes neste mês.",
+      "notConfigured": "Imagens com IA ainda não estão configuradas neste servidor.",
+      "invalid": "Essa descrição não pode ser usada. Altere e tente de novo.",
+      "busy": "O serviço de imagens está ocupado. Tente de novo em um minuto.",
+      "generic": "Não foi possível criar as imagens. Os créditos são devolvidos quando a geração falha. Tente de novo."
+    },
+    "library": {
+      "title": "Suas imagens",
+      "hint": "Selecione imagens e crie um post com elas.",
+      "select": "Selecionar imagem: {prompt}",
+      "download": "Baixar",
+      "delete": "Excluir",
+      "deleteTitle": "Excluir esta imagem?",
+      "deleteBody": "Ela sai da sua biblioteca. Posts que já a usam continuam com ela.",
+      "cancel": "Cancelar",
+      "deleted": "Imagem excluída.",
+      "deleteFailed": "Não foi possível excluir a imagem. Tente de novo.",
+      "emptyTitle": "Nenhuma imagem ainda",
+      "emptyBody": "Descreva uma imagem, escolha estilo e tamanho e gere. Suas imagens ficam aqui para qualquer post.",
+      "quality": {
+        "standard": "Padrão",
+        "hd": "HD"
+      }
+    },
+    "selection": {
+      "label": "Imagens selecionadas",
+      "count": "{count, plural, one {# selecionada} other {# selecionadas}}",
+      "clear": "Limpar",
+      "createPost": "Criar post",
+      "max": "Um post aceita até {max} imagens."
+    },
+    "picker": {
+      "open": "Imagem IA",
+      "title": "Adicionar imagens de IA",
+      "body": "Escolha até {max} imagens da sua biblioteca.",
+      "generateNew": "Criar nova",
+      "emptyTitle": "Sua biblioteca de IA está vazia",
+      "emptyBody": "Gere imagens no Estúdio IA. Seu rascunho fica salvo enquanto isso.",
+      "openStudio": "Abrir Estúdio IA",
+      "add": "{count, plural, =0 {Adicionar imagens} one {Adicionar # imagem} other {Adicionar # imagens}}"
+    },
+    "comingSoon": {
+      "title": "O Estúdio IA chega em breve",
+      "body": "Crie em segundos imagens com a cara da sua marca para seus posts, no tamanho certo para cada plataforma, e agende-as com uma legenda.",
+      "points": {
+        "sizes": "Imagens no tamanho certo para Instagram, TikTok, YouTube, LinkedIn e mais",
+        "library": "Uma biblioteca com suas imagens, pronta para qualquer post",
+        "credits": "Créditos de IA mensais em todos os planos"
+      },
+      "action": "Criar post"
+    },
+    "writerSoon": {
+      "title": "A escrita com IA chega em breve",
+      "body": "Descreva seu post e receba uma legenda no formato de cada plataforma. Reescreva, encurte ou mude o tom com um clique."
+    }
   },
   "posts": {
     "title": "Posts",
@@ -1537,6 +1672,7 @@
     "usageTitle": "Uso",
     "accounts": "Contas sociais",
     "seats": "Usuários",
+    "aiCredits": "Créditos de IA",
     "usage": "{used} de {limit}",
     "downgradeNote": "Se você mudar para um plano menor, nada é excluído. O que passar do limite fica somente leitura.",
     "ownerOnly": "Só o proprietário do espaço de trabalho pode mudar o plano.",

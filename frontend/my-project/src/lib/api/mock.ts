@@ -2,15 +2,19 @@
 
 import { SESSION_COOKIE } from "@/config/site";
 import type { Role } from "@/lib/auth/permissions";
-import { getPlan, TRIAL_DAYS, type PlanKey } from "@/lib/billing/plans";
+import { MAX_IMAGES_PER_REQUEST, PROMPT_MAX } from "@/lib/ai/images";
+import { AI_COSTS, getPlan, imageCost, TRIAL_DAYS, type PlanKey } from "@/lib/billing/plans";
 import { probeMedia } from "@/lib/preflight/probe";
 import { browserTimeZone, utcToZoned, zonedToUtc } from "@/lib/time";
 import type { PlatformId } from "@/providers/catalog";
 import { ApiError } from "./errors";
 import { matchesFilter } from "./filter";
 import { sampleInsights } from "./mock-insights";
+import { drawPlaceholder } from "./mock-images";
 import { clearFiles, keepFile, rememberUrl } from "./mock-media";
 import type {
+  AiCredits,
+  AiImage,
   AiRewriteAction,
   ApiClient,
   ConnectResult,
@@ -36,6 +40,8 @@ import type {
 
 const DB_KEY = "ps_mock_db_v2";
 export const DEMO_EMAIL = "demo@example.com";
+// No email is sent in preview mode; this code stands in for the emailed one.
+export const PREVIEW_CODE = "123456";
 
 type StoredWorkspace = Omit<Workspace, "role"> & { members: Record<string, { role: Role; joinedAt: string }> };
 
@@ -49,6 +55,7 @@ type Db = {
   tags: Tag[];
   // AI credits used per workspace in the current month ("YYYY-MM").
   aiUsage: Record<string, { month: string; used: number }>;
+  aiImages: Array<AiImage & { workspaceId: string }>;
 };
 
 const HOUR = 3600_000;
@@ -317,7 +324,7 @@ function seedWorkspaceContent(db: Db, ws: StoredWorkspace, authorId: string, now
 function seedDb(): Db {
   const now = Date.now();
   const tz = browserTimeZone();
-  const db: Db = { users: {}, workspaces: {}, accounts: [], posts: [], invites: [], notifications: [], tags: [], aiUsage: {} };
+  const db: Db = { users: {}, workspaces: {}, accounts: [], posts: [], invites: [], notifications: [], tags: [], aiUsage: {}, aiImages: [] };
 
   const demo = { ...newUser(DEMO_EMAIL, "Alex Morgan", true), onboardedAt: new Date(now - 30 * DAY).toISOString(), persona: "agency" as const };
   const sara = newUser("sara@example.com", "Sara Khan", true);
@@ -364,6 +371,7 @@ function seedTags(db: Db, workspaceId: string, now: number): Tag[] {
 function normalize(db: Db): Db {
   db.tags ??= [];
   db.aiUsage ??= {};
+  db.aiImages ??= [];
   for (const ws of Object.values(db.workspaces)) {
     if (!db.tags.some((t) => t.workspaceId === ws.id)) seedTags(db, ws.id, Date.now());
   }
@@ -511,8 +519,6 @@ function applyInput(db: Db, post: Post, input: PostInput, wsId: string) {
 // Sample writer for preview mode. It fills templates from the prompt so the AI panel can be
 // exercised end to end; the real service (BACKEND.md §16) replaces it.
 
-const AI_MONTHLY_CREDITS = 50;
-
 const STOP_WORDS = new Set([
   "about", "after", "again", "their", "there", "these", "those", "which", "where", "while", "would",
   "could", "should", "write", "promote", "people", "something", "really", "today", "tomorrow",
@@ -637,14 +643,45 @@ function sampleRewrite(text: string, action: AiRewriteAction, attempt: number): 
   return joinHashtags(next.trim(), tags);
 }
 
-function spendCredit(db: Db, ws: string): { remaining: number; limit: number } {
-  const month = new Date().toISOString().slice(0, 7);
-  const usage = db.aiUsage[ws]?.month === month ? db.aiUsage[ws] : { month, used: 0 };
-  if (usage.used >= AI_MONTHLY_CREDITS) {
-    throw new ApiError("plan_limit_reached", "You have used this month's AI credits.", { limit: AI_MONTHLY_CREDITS });
+function toAiImage(stored: AiImage & { workspaceId: string }): AiImage {
+  const { id, prompt, style, aspect, quality, createdAt, media } = stored;
+  return { id, prompt, style, aspect, quality, createdAt, media };
+}
+
+// The same monthly rule as the server (reserve_ai_credits): the plan's credits per UTC
+// calendar month, charged before the work runs.
+function aiCredits(db: Db, ws: string): AiCredits {
+  const now = new Date();
+  const month = now.toISOString().slice(0, 7);
+  const used = db.aiUsage[ws]?.month === month ? db.aiUsage[ws].used : 0;
+  const limit = getPlan(db.workspaces[ws]?.planKey ?? "free").aiCredits;
+  return {
+    limit,
+    bonus: 0,
+    used,
+    remaining: Math.max(0, limit - used),
+    resetsAt: new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 1, 1)).toISOString(),
+  };
+}
+
+function spendCredits(db: Db, ws: string, amount: number): AiCredits {
+  const credits = aiCredits(db, ws);
+  if (credits.remaining < amount) {
+    throw new ApiError("plan_limit_reached", "You do not have enough AI credits left this month.", {
+      reason: "ai_credits",
+      needed: amount,
+      remaining: credits.remaining,
+    });
   }
-  db.aiUsage[ws] = { month, used: usage.used + 1 };
-  return { remaining: AI_MONTHLY_CREDITS - usage.used - 1, limit: AI_MONTHLY_CREDITS };
+  db.aiUsage[ws] = { month: new Date().toISOString().slice(0, 7), used: credits.used + amount };
+  return aiCredits(db, ws);
+}
+
+function refundCredits(ws: string, amount: number) {
+  mutate((db) => {
+    const usage = db.aiUsage[ws];
+    if (usage) usage.used = Math.max(0, usage.used - amount);
+  });
 }
 
 const aiAttempts = new Map<string, number>();
@@ -671,6 +708,7 @@ export const mockClient: ApiClient = {
       const db = load();
       const user = Object.values(db.users).find((u) => u.email.toLowerCase() === email.trim().toLowerCase());
       if (!user) throw new ApiError("unauthenticated", "That email and password do not match.");
+      if (!user.emailVerified) throw new ApiError("forbidden", "Confirm your email before signing in.", { reason: "email_not_confirmed" });
       writeSession(user.id);
       return sessionFor(db, user);
     },
@@ -680,15 +718,15 @@ export const mockClient: ApiClient = {
         const normalized = email.trim().toLowerCase();
         const existing = Object.values(db.users).find((u) => u.email.toLowerCase() === normalized);
         // Neutral message: do not reveal whether an address is registered (F1 edge case).
-        if (existing) throw new ApiError("conflict", "If this address can be used, we have sent it a link.");
+        if (existing) throw new ApiError("conflict", "If this address can be used, we have sent it a code.");
         const now = Date.now();
         const user = newUser(normalized, displayName.trim(), false);
         db.users[user.id] = user;
         const ws = newWorkspace(`${user.displayName.split(" ")[0]}'s workspace`, "personal", "free", user.id, now);
         db.workspaces[ws.id] = ws;
         seedTags(db, ws.id, now);
-        writeSession(user.id);
-        return sessionFor(db, user);
+        // Like the real API: no session until the emailed code is entered.
+        return { ...sessionFor(db, user), workspaces: [], dev: { code: PREVIEW_CODE } };
       });
     },
     async signOut() {
@@ -697,20 +735,23 @@ export const mockClient: ApiClient = {
     },
     async requestPasswordReset() {
       await latency();
+      return { retryAfterSec: 60, dev: { code: PREVIEW_CODE } };
     },
-    async resetPassword({ token }) {
+    async resetPassword({ code }) {
       await latency();
-      if (token === "expired") throw new ApiError("validation_failed", "This link has expired.", { reason: "expired" });
+      if (code !== PREVIEW_CODE) throw new ApiError("validation_failed", "That code is wrong or has expired.", { reason: "invalid_code" });
     },
     async resendVerification() {
       await latency();
-      return { retryAfterSec: 60 };
+      return { retryAfterSec: 60, dev: { code: PREVIEW_CODE } };
     },
-    async verifyEmail() {
+    async verifyEmail({ email, code }) {
       await latency();
       return mutate((db) => {
-        const user = requireUser(db);
+        const user = Object.values(db.users).find((u) => u.email.toLowerCase() === email.trim().toLowerCase());
+        if (!user || code !== PREVIEW_CODE) throw new ApiError("validation_failed", "That code is wrong or has expired.", { reason: "invalid_code" });
         user.emailVerified = true;
+        writeSession(user.id);
         return sessionFor(db, user);
       });
     },
@@ -1080,7 +1121,7 @@ export const mockClient: ApiClient = {
       return mutate((db) => {
         requireMember(db, ws, ["owner", "admin", "editor"]);
         if (!input.prompt.trim()) throw new ApiError("validation_failed", "Describe what the post is about.", { field: "prompt" });
-        const credits = spendCredit(db, ws);
+        const credits = spendCredits(db, ws, AI_COSTS.caption);
         const text = fitText(sampleDraft(input.prompt, nextAttempt(input.prompt)), input.maxLength);
         return { text, creditsRemaining: credits.remaining, creditsLimit: credits.limit };
       });
@@ -1089,10 +1130,79 @@ export const mockClient: ApiClient = {
       await sleep(500 + Math.random() * 300);
       return mutate((db) => {
         requireMember(db, ws, ["owner", "admin", "editor"]);
-        const credits = spendCredit(db, ws);
+        const credits = spendCredits(db, ws, AI_COSTS.caption);
         const text = fitText(sampleRewrite(input.text, input.action, nextAttempt(input.text + input.action)), input.maxLength);
         return { text, creditsRemaining: credits.remaining, creditsLimit: credits.limit };
       });
+    },
+    async credits(ws) {
+      await latency();
+      const db = load();
+      requireMember(db, ws);
+      return aiCredits(db, ws);
+    },
+    images: {
+      async list(ws) {
+        await latency();
+        const db = load();
+        requireMember(db, ws);
+        return db.aiImages.filter((i) => i.workspaceId === ws).map((i) => toAiImage(i));
+      },
+      generate(ws, input, opts) {
+        return once("ai.images", opts?.idempotencyKey, async () => {
+          const prompt = input.prompt.trim();
+          if (!prompt) throw new ApiError("validation_failed", "Describe the image you want.", { field: "prompt" });
+          if (prompt.length > PROMPT_MAX) throw new ApiError("validation_failed", "The description is too long.", { field: "prompt" });
+          const count = Math.min(Math.max(1, Math.round(input.count)), MAX_IMAGES_PER_REQUEST);
+          const cost = imageCost(input.quality, count);
+          // Charged up front, like the server; refunded if drawing fails.
+          mutate((db) => {
+            requireMember(db, ws, ["owner", "admin", "editor"]);
+            spendCredits(db, ws, cost);
+          });
+          try {
+            await sleep(1400 + Math.random() * 900);
+            const attempt = nextAttempt(`img:${prompt}`);
+            const images: AiImage[] = [];
+            for (let i = 0; i < count; i++) {
+              const blob = await drawPlaceholder(prompt, input.style, input.aspect, attempt * MAX_IMAGES_PER_REQUEST + i);
+              const mediaId = id("med");
+              const url = URL.createObjectURL(blob);
+              rememberUrl(mediaId, url);
+              await keepFile(mediaId, blob);
+              const { width, height } = await new Promise<{ width: number; height: number }>((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve({ width: img.naturalWidth, height: img.naturalHeight });
+                img.onerror = () => resolve({ width: 0, height: 0 });
+                img.src = url;
+              });
+              images.push({
+                id: id("aii"),
+                prompt,
+                style: input.style,
+                aspect: input.aspect,
+                quality: input.quality,
+                createdAt: new Date().toISOString(),
+                media: { id: mediaId, kind: "image", name: `ai-${input.aspect.replace(":", "x")}-${i + 1}.jpg`, bytes: blob.size, width, height, durationSec: null, previewUrl: url },
+              });
+            }
+            return mutate((db) => {
+              db.aiImages.unshift(...images.map((image) => ({ ...image, workspaceId: ws })));
+              return { images, credits: aiCredits(db, ws) };
+            });
+          } catch (e) {
+            refundCredits(ws, cost);
+            throw e;
+          }
+        });
+      },
+      async remove(ws, imageId) {
+        await latency();
+        mutate((db) => {
+          requireMember(db, ws, ["owner", "admin", "editor"]);
+          db.aiImages = db.aiImages.filter((i) => !(i.id === imageId && i.workspaceId === ws));
+        });
+      },
     },
   },
 

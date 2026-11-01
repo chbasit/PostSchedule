@@ -28,8 +28,8 @@ const body = z
   .partial();
 
 export const PATCH = route(async (req) => {
-  const patch = await readBody(req, body);
   const { db, user } = await requireUser();
+  const patch = await readBody(req, body);
   const row: Record<string, unknown> = { updated_at: new Date().toISOString() };
   if (patch.displayName !== undefined) row.display_name = patch.displayName;
   if (patch.locale !== undefined) row.locale = patch.locale;

@@ -11,6 +11,7 @@ import { Link, useRouter } from "@/i18n/navigation";
 import { api, isApiError } from "@/lib/api/client";
 import { sessionKey } from "@/features/session/workspace-context";
 import { useAuthErrorText } from "./auth-error";
+import { rememberDevCode } from "./dev-code";
 import { FormAlert } from "./form-alert";
 import { GoogleSignIn } from "./google-button";
 import { PasswordInput, PasswordRules } from "./password-input";
@@ -33,6 +34,7 @@ export function SignUpForm() {
   const signUp = useMutation({
     mutationFn: (values: SignUpValues) => api.auth.signUp(values),
     onSuccess: (session, values) => {
+      rememberDevCode("signup", values.email, session.dev);
       // With email confirmation on there is no session yet, only the address to confirm.
       if (session.workspaces.length) queryClient.setQueryData(sessionKey, session);
       if (session.user.emailVerified) router.replace("/onboarding/start");

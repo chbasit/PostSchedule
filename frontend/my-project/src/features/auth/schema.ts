@@ -32,8 +32,19 @@ export const signUpSchema = z.object({
 
 export const forgotSchema = z.object({ email });
 
-export const resetSchema = z.object({ password });
+// The emailed code: 6 to 10 digits; spaces and dashes from pasting are dropped.
+const code = z
+  .string()
+  .transform((v) => v.replace(/[\s-]/g, ""))
+  .pipe(z.string().min(1, "required").regex(/^\d{6,10}$/, "code"));
+
+export const verifySchema = z.object({ code });
+
+export const resetSchema = z.object({ code, password });
 
 export type SignInValues = z.infer<typeof signInSchema>;
 export type SignUpValues = z.infer<typeof signUpSchema>;
-export type ResetValues = z.infer<typeof resetSchema>;
+export type VerifyInput = z.input<typeof verifySchema>;
+export type VerifyValues = z.output<typeof verifySchema>;
+export type ResetInput = z.input<typeof resetSchema>;
+export type ResetValues = z.output<typeof resetSchema>;

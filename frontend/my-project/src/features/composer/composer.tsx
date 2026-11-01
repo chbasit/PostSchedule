@@ -41,8 +41,11 @@ import { useIntentKey } from "@/lib/use-intent-key";
 import { cn } from "@/lib/utils";
 import { getPlatform, type PlatformId, type PostType } from "@/providers/catalog";
 import { AiPanel } from "@/features/ai/ai-panel";
+import { AI_ENABLED } from "@/config/site";
+import { AiImagePicker } from "@/features/ai-studio/ai-image-picker";
+import { AiImageSoon, AiWriterComingSoon, SoonBadge } from "@/features/ai-studio/coming-soon";
 import { PlatformReport, StatusIcon, SummaryChip } from "@/features/preflight/preflight-report";
-import { useAccounts } from "@/features/session/queries";
+import { useAccounts, useAiImages } from "@/features/session/queries";
 import { useWorkspace } from "@/features/session/workspace-context";
 import { TagChip } from "@/features/tags/tag-chip";
 import { TagPicker } from "@/features/tags/tag-picker";
@@ -142,7 +145,11 @@ export function Composer() {
   const dateParam = /^\d{4}-\d{2}-\d{2}$/.test(params.get("date") ?? "") ? params.get("date") : null;
   // An account page's "New post" links here with ?account=<id>.
   const accountParam = params.get("account");
+  // AI Studio's "Create post" links here with ?ai=<image id>,<image id>.
+  const aiParam = params.get("ai")?.split(",").filter(Boolean) ?? [];
   const accounts = useAccounts();
+  const aiImages = useAiImages();
+  const waitForAi = AI_ENABLED && aiParam.length > 0 && !editId && aiImages.isPending;
   const [formKey, setFormKey] = useState(0);
   const post = useQuery({
     queryKey: [...scope, "post", editId],
@@ -150,7 +157,7 @@ export function Composer() {
     enabled: !!editId,
   });
 
-  if (accounts.isPending || (editId && post.isPending)) {
+  if (accounts.isPending || (editId && post.isPending) || waitForAi) {
     return (
       <div className="mx-auto max-w-350 space-y-5" aria-busy>
         <Skeleton className="h-12 w-72" />
@@ -179,7 +186,9 @@ export function Composer() {
   }
 
   const storageKey = `composer:${workspace.id}:${editId ?? "new"}`;
-  const stored = readJson<Partial<Draft>>(storageKey);
+  const aiMedia = editId ? [] : (aiImages.data ?? []).filter((i) => aiParam.includes(i.id)).map((i) => i.media);
+  // Images sent from AI Studio start a fresh post instead of reopening the last unsent one.
+  const stored = aiMedia.length ? null : readJson<Partial<Draft>>(storageKey);
   const restored = stored ? restoreDraft(stored) : null;
   const last = readJson<{ type: PostType; accountIds: string[] }>(LAST_KEY);
   const usable = (ids: string[]) => ids.filter((id) => accounts.data.some((a) => a.id === id && a.status === "active"));
@@ -188,21 +197,22 @@ export function Composer() {
     (post.data
       ? fromPost(post.data, user.timezone)
       : {
-          type: last?.type ?? "video",
+          type: aiMedia.length ? "image" : (last?.type ?? "video"),
           accountIds: accountParam && usable([accountParam]).length ? [accountParam] : usable(last?.accountIds ?? []),
           main: "",
           overrides: {},
-          media: [],
+          media: aiMedia.slice(0, DEFAULT_IMAGE_CAP),
           options: {},
           fixes: {},
           when: dateParam ? { ...defaultWhen(user.timezone), date: dateParam } : defaultWhen(user.timezone),
           tagIds: [],
-          aiGenerated: false,
+          // AI images carry the platforms' "made with AI" label unless the author turns it off.
+          aiGenerated: aiMedia.length > 0,
         });
 
   return (
     <ComposerForm
-      key={`${editId}-${dateParam}-${formKey}`}
+      key={`${editId}-${dateParam}-${aiParam.join()}-${formKey}`}
       initial={initial}
       restored={!!restored}
       storageKey={storageKey}
@@ -511,6 +521,21 @@ function ComposerForm({ initial, restored, storageKey, accounts, editPost, onRes
     accepted.forEach((f) => startUpload(f));
   }
 
+  // Images from the AI library are already stored, so they join the post as ready media.
+  function addAiMedia(list: MediaSummary[]) {
+    const fresh = list.filter((m) => !items.some((it) => it.phase === "ready" && it.media.id === m.id));
+    if (fresh.length === 0) return;
+    const live = items.filter((it) => it.phase !== "error");
+    const type = live.length === 0 && draft.type !== "story" ? "image" : draft.type;
+    const accepted = fresh.slice(0, aiRoom);
+    if (accepted.length < fresh.length) toast.error(type === "image" ? t("media.tooMany", { max: imageCap }) : t("media.oneStory"));
+    if (accepted.length === 0) return;
+    setItems((current) => [...current, ...accepted.map((media) => ({ key: media.id, phase: "ready" as const, media }))]);
+    setDraft((d) => ({ ...d, type, media: [...d.media, ...accepted], fixes: {}, aiGenerated: true }));
+    setDirty(true);
+    toast.success(ta("imagesAdded", { count: accepted.length }));
+  }
+
   function removeItem(key: string) {
     const item = items.find((it) => it.key === key);
     const handle = handles.current.get(key);
@@ -569,6 +594,9 @@ function ComposerForm({ initial, restored, storageKey, accounts, editPost, onRes
   const savingDraft = submit.isPending && submit.variables === "draft";
   const live = items.filter((it) => it.phase !== "error").length;
   const canAdd = draft.type === "image" ? live < imageCap : live === 0;
+  // AI images fit an image post, or an empty post of any type but a story's single slot.
+  const liveImagesOnly = items.every((it) => it.phase === "error" || itemKind(it) === "image");
+  const aiRoom = live === 0 ? (draft.type === "story" ? 1 : imageCap) : draft.type === "image" && liveImagesOnly ? imageCap - live : 0;
   const optionAccounts = selected.filter((a) => getPlatform(a.provider).publishOptions);
 
   return (
@@ -637,6 +665,7 @@ function ComposerForm({ initial, restored, storageKey, accounts, editPost, onRes
                 onBlur={() => void autosave.flush()}
                 onFiles={addFiles}
                 onAddMedia={() => fileInput.current?.click()}
+                aiAction={AI_ENABLED ? <AiImagePicker room={aiRoom} onPick={addAiMedia} /> : <AiImageSoon />}
                 media={
                   <MediaStrip
                     items={items}
@@ -686,6 +715,7 @@ function ComposerForm({ initial, restored, storageKey, accounts, editPost, onRes
             <div className="flex flex-wrap items-center gap-x-4 gap-y-3 border-t px-4 py-3 sm:px-5">
               <Button size="sm" variant="ghost" onClick={() => showPanel("ai")}>
                 <Sparkles className="text-tint-violet-fg" aria-hidden /> {t("aiHelp")}
+                {AI_ENABLED ? null : <SoonBadge />}
               </Button>
               <div className="ms-auto flex items-center gap-2.5">
                 <Switch
@@ -777,7 +807,7 @@ function ComposerForm({ initial, restored, storageKey, accounts, editPost, onRes
             </TabsContent>
             {/* Stays mounted so a suggestion survives a look at the preview. */}
             <TabsContent value="ai" forceMount className="data-[state=inactive]:hidden">
-              <AiPanel platforms={platforms} currentCaption={draft.main} onInsert={applyAiText} />
+              {AI_ENABLED ? <AiPanel platforms={platforms} currentCaption={draft.main} onInsert={applyAiText} /> : <AiWriterComingSoon />}
             </TabsContent>
           </Tabs>
         </aside>

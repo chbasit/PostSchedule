@@ -89,7 +89,8 @@
     "tooLong": "Das ist zu lang.",
     "email": "Gib eine E-Mail-Adresse wie name@beispiel.de ein.",
     "passwordLength": "Verwende mindestens 10 Zeichen.",
-    "passwordMix": "Verwende mindestens einen Buchstaben und eine Zahl."
+    "passwordMix": "Verwende mindestens einen Buchstaben und eine Zahl.",
+    "code": "Gib den Code aus der E-Mail ein: 6 bis 10 Ziffern."
   },
   "marketing": {
     "announcement": "Gründerpreis für die ersten {count} Kunden, 24 Monate garantiert. Zum Angebot",
@@ -119,6 +120,7 @@
     "home": {
       "eyebrow": "Social-Media-Management für Teams",
       "sub": "Gemacht für Start-ups, Agenturen und Teams in vielen Ländern. Prüf jede Plattform in der Vorschau, behebe Videoprobleme vor dem Veröffentlichen und lass die KI den ersten Entwurf schreiben.",
+      "subSoon": "Gemacht für Start-ups, Agenturen und Teams in vielen Ländern. Prüf jede Plattform in der Vorschau und behebe Videoprobleme vor dem Veröffentlichen. KI-Texte und -Bilder kommen bald.",
       "ctaPrimary": "Kostenlos starten",
       "ctaGoogle": "Mit Google starten",
       "ctaNote": "{days} Tage testen. Keine Karte nötig.",
@@ -183,7 +185,8 @@
         },
         "ai": {
           "q": "Nutzt {product} KI?",
-          "a": "Ja. Der KI-Assistent im Editor schreibt und überarbeitet Texte für jede Plattform und markiert für dein Team Beiträge, die mit KI entstanden sind. Eine API und ein MCP-Server für KI-Agenten kommen bald, mit Schlüsseln, die auf einen Workspace beschränkt sind."
+          "a": "Ja. Der KI-Assistent im Editor schreibt und überarbeitet Texte für jede Plattform und markiert für dein Team Beiträge, die mit KI entstanden sind. Eine API und ein MCP-Server für KI-Agenten kommen bald, mit Schlüsseln, die auf einen Workspace beschränkt sind.",
+          "aSoon": "Bald. Ein KI-Studio für Bilder und ein KI-Assistent für Texte sind in Arbeit, mit monatlichen KI-Credits in jedem Tarif. Danach folgen eine API und ein MCP-Server für KI-Agenten, mit Schlüsseln, die auf einen Workspace beschränkt sind."
         }
       },
       "finalTitle": "Dein nächster Beitrag kann genau so aussehen, wie du ihn gemacht hast.",
@@ -253,11 +256,12 @@
       },
       "ai": {
         "title": "KI erledigt die Fleißarbeit. Du behältst die Kontrolle.",
-        "sub": "Der KI-Assistent schreibt Texte passend für jede Plattform. Bald planen KI-Agenten über eine sichere API, und jeder Beitrag durchläuft weiter dieselben Prüfungen.",
+        "sub": "Das KI-Studio erstellt Bilder passend zu deiner Marke, und der Assistent schreibt Texte für jede Plattform. Bald können KI-Agenten über eine sichere API planen und einplanen, und jeder Beitrag durchläuft dieselben Prüfungen.",
+        "subSoon": "Bald: Das KI-Studio erstellt Bilder passend zu deiner Marke, und der Assistent schreibt Texte für jede Plattform. Später können KI-Agenten über eine sichere API planen und einplanen, und jeder Beitrag durchläuft dieselben Prüfungen.",
         "points": {
           "write": {
-            "title": "Schreibt für jede Plattform",
-            "body": "Beschreib den Beitrag und erhalte einen Text in der richtigen Länge für jede Plattform. Umformulieren, kürzen oder den Ton ändern mit einem Klick."
+            "title": "Bilder und Texte in Sekunden",
+            "body": "Erstelle Bilder im richtigen Format für jede Plattform und lass die KI den Text schreiben. Umformulieren, kürzen oder den Ton ändern mit einem Klick."
           },
           "agents": {
             "title": "Agenten mit begrenztem Schlüssel",
@@ -306,6 +310,7 @@
     "perYear": "/ Jahr",
     "accounts": "{count, plural, one {# Social-Media-Konto} other {# Social-Media-Konten}}",
     "seats": "{count, plural, one {# Nutzer} other {# Nutzer}}",
+    "aiCredits": "{count, plural, one {# KI-Credit pro Monat} other {# KI-Credits pro Monat}}",
     "features": {
       "preflight": "Video-Vorabprüfung",
       "previews": "Vorschau je Plattform",
@@ -860,7 +865,7 @@
     "signUpTitle": "Konto erstellen",
     "signUpSub": "{days} Tage kostenlos. Keine Karte nötig.",
     "forgotTitle": "Passwort zurücksetzen",
-    "forgotSub": "Gib deine E-Mail-Adresse ein, und wir senden dir einen Link für ein neues Passwort.",
+    "forgotSub": "Gib deine E-Mail-Adresse ein. Wir senden dir einen Code, mit dem du ein neues Passwort festlegst.",
     "google": "Weiter mit Google",
     "googleUnavailable": "Die Anmeldung mit Google ist verfügbar, sobald das Backend verbunden ist.",
     "or": "oder",
@@ -876,7 +881,7 @@
     "signInFailed": "E-Mail und Passwort passen nicht zusammen. Prüfe sie und versuche es erneut.",
     "signUpFailed": "Wir konnten dein Konto nicht erstellen. Versuche es gleich noch einmal.",
     "genericFailed": "Etwas ist schiefgelaufen. Versuche es gleich noch einmal.",
-    "emailMaybeUsed": "Falls diese Adresse genutzt werden kann, haben wir ihr einen Link geschickt. Sieh in dein Postfach oder melde dich an.",
+    "emailMaybeUsed": "Falls diese Adresse genutzt werden kann, haben wir ihr einen Code gesendet. Sieh in dein Postfach oder melde dich stattdessen an.",
     "emailNotAllowed": "An diese Adresse können wir noch keine E-Mails senden. Nutze eine andere Adresse oder versuche es später erneut.",
     "demoHint": "Vorschaumodus: Melde dich mit {email} und einem beliebigen Passwort an.",
     "noAccount": "Neu hier? <link>Konto erstellen</link>",
@@ -886,24 +891,17 @@
     "ruleMix": "Ein Buchstabe und eine Zahl",
     "ruleMet": "(erfüllt)",
     "ruleNotMet": "(noch nicht)",
-    "resetSent": "Falls ein Konto diese E-Mail nutzt, haben wir einen Link gesendet. Er funktioniert einmal und läuft bald ab.",
     "backToSignIn": "Zurück zur Anmeldung",
-    "sendResetLink": "Link senden",
-    "checkInbox": "Sieh in dein Postfach",
-    "sentTo": "Wir haben einen Bestätigungslink an {email} gesendet. Öffne ihn, um die Einrichtung abzuschließen.",
-    "sentGeneric": "Wir haben dir einen Bestätigungslink gesendet. Öffne ihn, um die Einrichtung abzuschließen.",
-    "resend": "E-Mail erneut senden",
-    "resendIn": "Erneut senden in {seconds} s",
-    "resent": "Wir haben einen weiteren Link gesendet. Es kann eine Minute dauern.",
-    "mockOpenLink": "Bestätigungslink öffnen (Vorschau)",
+    "checkInbox": "Sieh in deine E-Mails",
+    "sentTo": "Wir haben einen Code an {email} gesendet. Gib ihn unten ein, um deine Adresse zu bestätigen.",
+    "sentGeneric": "Wir haben dir einen Code per E-Mail gesendet. Gib ihn unten ein, um deine Adresse zu bestätigen.",
+    "resend": "Neuen Code senden",
+    "resendIn": "Neuer Code in {seconds} s",
+    "resent": "Wir haben einen neuen Code gesendet. Es kann eine Minute dauern, bis er ankommt.",
     "wrongEmail": "Falsche Adresse? <link>Registriere dich neu</link> mit der richtigen.",
-    "confirmTitle": "E-Mail bestätigen",
-    "confirmBody": "Drück auf die Schaltfläche, um diese Adresse zu bestätigen und fortzufahren.",
-    "confirmButton": "E-Mail bestätigen",
-    "confirmFailed": "Dieser Link ist abgelaufen oder wurde schon verwendet. Fordere auf der Anmeldeseite einen neuen an.",
     "googleOff": "Die Anmeldung mit Google ist noch nicht verfügbar. Nutze deine E-Mail und dein Passwort.",
     "googleFailed": "Die Anmeldung mit Google wurde nicht abgeschlossen. Versuche es erneut oder nutze deine E-Mail und dein Passwort.",
-    "emailNotConfirmed": "Bestätige deine E-Mail, bevor du dich anmeldest. Öffne den Link, den wir dir geschickt haben, oder <link>fordere einen neuen an</link>.",
+    "emailNotConfirmed": "Bestätige deine E-Mail, bevor du dich anmeldest. <link>Gib deinen Code ein</link> oder fordere dort einen neuen an.",
     "tooManyTries": "Zu viele Versuche. Warte eine Minute und versuche es dann erneut.",
     "serviceOff": "Konten sind noch nicht freigeschaltet. Versuche es später erneut.",
     "networkFailed": "Wir konnten den Server nicht erreichen. Prüfe deine Verbindung und versuche es erneut.",
@@ -914,7 +912,23 @@
     "newPassword": "Neues Passwort",
     "savePassword": "Passwort speichern",
     "resetDone": "Dein Passwort wurde geändert. Melde dich mit dem neuen Passwort an.",
-    "resetExpired": "Dieser Link ist abgelaufen oder wurde schon benutzt. Fordere einen neuen an."
+    "code": "Code",
+    "codeHint": "Nur der neueste Code gilt. Nicht im Postfach? Sieh im Spam-Ordner nach.",
+    "verifyButton": "E-Mail bestätigen",
+    "codeInvalid": "Dieser Code ist falsch oder abgelaufen. Prüf ihn oder fordere einen neuen an.",
+    "codeLocked": "Zu viele falsche Codes. Fordere einen neuen Code an und versuch es dann erneut.",
+    "sendCode": "Code senden",
+    "resetCodeSent": "Falls ein Konto {email} nutzt, haben wir dorthin einen Code gesendet. Gib ihn unten mit deinem neuen Passwort ein.",
+    "differentEmail": "Andere E-Mail-Adresse verwenden",
+    "dev": {
+      "badge": "Entwicklungsmodus",
+      "badgeHint": "Codes werden auf dem Bildschirm angezeigt statt per E-Mail gesendet. Ein Produktions-Build sendet sie immer per E-Mail.",
+      "code": "Entwicklungsmodus: Es wurde keine E-Mail gesendet. Dein Code ist {code}, schon eingetragen.",
+      "noCode": "Entwicklungsmodus: Hier wird keine E-Mail gesendet. Tippe auf „Neuen Code senden“, dann erscheint er in diesem Feld.",
+      "account_exists": "Entwicklungsmodus: Für diese Adresse gibt es schon ein bestätigtes Konto, daher wurde kein Code erstellt. Melde dich stattdessen an.",
+      "no_account": "Entwicklungsmodus: Kein Konto nutzt diese Adresse, daher wurde kein Code erstellt.",
+      "already_confirmed": "Entwicklungsmodus: Diese Adresse ist schon bestätigt. Melde dich stattdessen an."
+    }
   },
   "nav": {
     "label": "App",
@@ -922,6 +936,7 @@
     "items": {
       "home": "Start",
       "newPost": "Neuer Beitrag",
+      "aiStudio": "KI-Studio",
       "calendar": "Kalender",
       "allPosts": "Alle Beiträge",
       "scheduled": "Geplant",
@@ -1215,7 +1230,7 @@
     "preflightOpen": "Vorabprüfung anzeigen",
     "aiHelp": "Mit KI schreiben",
     "aiLabel": "Mit KI erstellt",
-    "aiLabelHint": "Dein Team sieht, dass KI beim Schreiben dieses Beitrags geholfen hat.",
+    "aiLabelHint": "Dein Team sieht, dass KI bei diesem Beitrag geholfen hat: beim Text, bei den Bildern oder bei beidem.",
     "createAnother": "Weiteren erstellen",
     "moreProblems": "{count, plural, other {(+# weitere)}}",
     "previewPane": {
@@ -1327,7 +1342,127 @@
       "casual": "Lockerer",
       "formal": "Förmlicher"
     },
-    "inserted": "Text aktualisiert."
+    "inserted": "Text aktualisiert.",
+    "imagesAdded": "{count, plural, one {# KI-Bild hinzugefügt.} other {# KI-Bilder hinzugefügt.}}"
+  },
+  "aiStudio": {
+    "title": "KI-Studio",
+    "soon": "Bald",
+    "subtitle": "Erstelle in Sekunden Bilder für deine Beiträge, passend zu deiner Marke, und plane sie mit einem Text ein.",
+    "viewerNote": "Betrachter können die Bibliothek ansehen. Bitte eine Person mit Bearbeitungsrechten, Bilder zu erstellen.",
+    "previewNote": "Vorschaumodus: Beispielbilder stehen bereit, bis der Bilddienst verbunden ist.",
+    "retry": "Erneut versuchen",
+    "generated": "{count, plural, one {# Bild fertig und ausgewählt.} other {# Bilder fertig und ausgewählt.}}",
+    "generating": "{count, plural, one {Dein Bild wird erstellt. Das kann bis zu einer Minute dauern.} other {# Bilder werden erstellt. Das kann bis zu einer Minute dauern.}}",
+    "credits": {
+      "title": "KI-Credits diesen Monat",
+      "left": "{count, plural, one {# Credit übrig} other {# Credits übrig}}",
+      "meter": "Verbleibende KI-Credits diesen Monat",
+      "resets": "Wird am {date} zurückgesetzt",
+      "getMore": "Mehr Credits holen",
+      "unavailable": "Dein KI-Guthaben ist gerade nicht verfügbar."
+    },
+    "form": {
+      "prompt": "Beschreibe das Bild",
+      "promptHint": "Was ist zu sehen, welche Stimmung, welche Farben? Strg oder ⌘ + Enter erstellt es.",
+      "placeholder": "z. B. Ein Latte auf einem Marmortisch am sonnigen Fenster, warmes Morgenlicht",
+      "clear": "Leeren",
+      "try": "Probier:",
+      "style": "Stil",
+      "aspect": "Format",
+      "quality": "Qualität",
+      "qualities": {
+        "standard": "Standard · {credits}",
+        "hd": "HD · {credits}"
+      },
+      "count": "Bilder",
+      "cost": "Das kostet",
+      "credits": "{count, plural, one {# Credit} other {# Credits}}",
+      "generate": "{count, plural, one {Bild erstellen} other {# Bilder erstellen}}",
+      "notEnough": "Nicht genug Credits: noch {remaining} diesen Monat.",
+      "upgrade": "Mehr Credits holen",
+      "disclaimer": "Prüfe Bilder vor dem Posten. Erzeugte Personen, Produkte und Orte sind nicht echt."
+    },
+    "styles": {
+      "photo": "Foto",
+      "illustration": "Illustration",
+      "3d": "3D-Render",
+      "minimal": "Minimal",
+      "flat": "Flache Grafik",
+      "cinematic": "Filmisch"
+    },
+    "aspects": {
+      "square": "Feed-Beitrag",
+      "portrait": "Instagram Hochformat",
+      "story": "Story, Reel, TikTok",
+      "wide": "YouTube, X, LinkedIn"
+    },
+    "ideaLabels": {
+      "coffee": "Café-Aktion",
+      "launch": "Produktstart",
+      "team": "Teamfoto"
+    },
+    "ideas": {
+      "coffee": "Ein Latte mit Herz-Milchschaum auf einem Marmortisch im Café, Morgensonne durchs Fenster, gemütlich und einladend",
+      "launch": "Ein schlankes neues Smartphone auf einem Podest in Pastellfarben, weiches Studiolicht, klarer Hintergrund in Mint und Himmelblau",
+      "team": "Ein kleines, vielfältiges Start-up-Team lächelt um einen Laptop in einem hellen, modernen Büro mit Pflanzen"
+    },
+    "errors": {
+      "credits": "Du hast diesen Monat nicht mehr genug KI-Credits.",
+      "notConfigured": "KI-Bilder sind auf diesem Server noch nicht eingerichtet.",
+      "invalid": "Diese Beschreibung kann nicht verwendet werden. Ändere sie und versuch es erneut.",
+      "busy": "Der Bilddienst ist ausgelastet. Versuch es in einer Minute erneut.",
+      "generic": "Die Bilder konnten nicht erstellt werden. Bei einem Fehler werden die Credits erstattet. Versuch es erneut."
+    },
+    "library": {
+      "title": "Deine Bilder",
+      "hint": "Wähle Bilder aus und erstelle damit einen Beitrag.",
+      "select": "Bild auswählen: {prompt}",
+      "download": "Herunterladen",
+      "delete": "Löschen",
+      "deleteTitle": "Dieses Bild löschen?",
+      "deleteBody": "Es wird aus deiner Bibliothek entfernt. Beiträge, die es schon nutzen, behalten es.",
+      "cancel": "Abbrechen",
+      "deleted": "Bild gelöscht.",
+      "deleteFailed": "Das Bild konnte nicht gelöscht werden. Versuch es erneut.",
+      "emptyTitle": "Noch keine Bilder",
+      "emptyBody": "Beschreibe ein Bild, wähle Stil und Format und erstelle es. Deine Bilder bleiben hier für jeden Beitrag.",
+      "quality": {
+        "standard": "Standard",
+        "hd": "HD"
+      }
+    },
+    "selection": {
+      "label": "Ausgewählte Bilder",
+      "count": "{count, plural, one {# ausgewählt} other {# ausgewählt}}",
+      "clear": "Leeren",
+      "createPost": "Beitrag erstellen",
+      "max": "Ein Beitrag fasst bis zu {max} Bilder."
+    },
+    "picker": {
+      "open": "KI-Bild",
+      "title": "KI-Bilder hinzufügen",
+      "body": "Wähle bis zu {max} Bilder aus deiner Bibliothek.",
+      "generateNew": "Neu erstellen",
+      "emptyTitle": "Deine KI-Bibliothek ist leer",
+      "emptyBody": "Erstelle Bilder im KI-Studio. Dein Entwurf bleibt gespeichert.",
+      "openStudio": "KI-Studio öffnen",
+      "add": "{count, plural, =0 {Bilder hinzufügen} one {# Bild hinzufügen} other {# Bilder hinzufügen}}"
+    },
+    "comingSoon": {
+      "title": "Das KI-Studio kommt bald",
+      "body": "Erstelle in Sekunden Bilder für deine Beiträge, passend zu deiner Marke und im richtigen Format für jede Plattform, und plane sie mit einem Text ein.",
+      "points": {
+        "sizes": "Bilder im richtigen Format für Instagram, TikTok, YouTube, LinkedIn und mehr",
+        "library": "Eine Bibliothek deiner Bilder, bereit für jeden Beitrag",
+        "credits": "Monatliche KI-Credits in jedem Tarif"
+      },
+      "action": "Beitrag erstellen"
+    },
+    "writerSoon": {
+      "title": "KI-Texte kommen bald",
+      "body": "Beschreibe deinen Beitrag und erhalte einen Text für jede Plattform. Umformulieren, kürzen oder den Ton ändern mit einem Klick."
+    }
   },
   "posts": {
     "title": "Beiträge",
@@ -1537,6 +1672,7 @@
     "usageTitle": "Nutzung",
     "accounts": "Social-Media-Konten",
     "seats": "Nutzer",
+    "aiCredits": "KI-Credits",
     "usage": "{used} von {limit}",
     "downgradeNote": "Beim Wechsel in einen kleineren Tarif wird nichts gelöscht. Was über dem Limit liegt, ist nur noch lesbar.",
     "ownerOnly": "Nur der Inhaber des Workspace kann den Tarif ändern.",

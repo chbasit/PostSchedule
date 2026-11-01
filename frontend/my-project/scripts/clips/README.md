@@ -1,13 +1,14 @@
 # Landing page clips
 
 The videos on the landing page are screen recordings of the real app (the sample workspace
-on the mock API), made by these scripts. Re-run them when the screens they show change.
+on the mock API, `NEXT_PUBLIC_MOCK_API=true`), made by these scripts. Re-run them when the
+screens they show change. Build without that setting afterwards: a mock build saves nothing.
 
 Needs Node 24 and Chrome. Set `CHROME_PATH` if Chrome is not at the default Windows path.
 Nothing is installed; working files go to `.clips/` (ignored by git).
 
 ```sh
-npm run build && npx next start -p 3100              # record against a production build
+NEXT_PUBLIC_MOCK_API=true npm run build && npx next start -p 3100   # a production build on the sample data
 node scripts/clips/samples.mjs                       # the clip and panorama the flows upload
 node scripts/clips/record.mjs http://localhost:3100 compose
 node scripts/clips/record.mjs http://localhost:3100 calendar
