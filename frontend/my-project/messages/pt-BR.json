@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "{product}: agende posts que ficam certos em todo lugar",
-    "description": "Agende em todas as plataformas, veja a prévia de cada uma e corrija problemas de vídeo antes de publicar."
+    "description": "Agende e publique no Instagram, TikTok, YouTube, Facebook, LinkedIn e Bluesky em um só painel, e veja como cada plataforma vai mostrar o post antes de publicar."
   },
   "common": {
     "close": "Fechar",
@@ -113,14 +113,33 @@
       "account": "Conta",
       "login": "Entrar",
       "signup": "Comece grátis",
-      "tagline": "Gestão de redes sociais para startups, agências e equipes em vários países.",
+      "tagline": "Agendamento de redes sociais para startups, agências e marcas em crescimento.",
       "copyright": "© {product}. Todos os direitos reservados.",
-      "allTools": "Todas as ferramentas grátis"
+      "allTools": "Todas as ferramentas grátis",
+      "legal": "Legal"
     },
     "home": {
       "eyebrow": "Gestão de redes sociais para equipes",
-      "sub": "Feito para startups, agências e equipes em vários países. Veja a prévia de cada plataforma, corrija problemas de vídeo antes de publicar e deixe a IA escrever o primeiro rascunho.",
-      "subSoon": "Feito para startups, agências e equipes em vários países. Veja a prévia de cada plataforma e corrija problemas de vídeo antes de publicar. Escrita e imagens com IA chegam em breve.",
+      "sub": "Publique e agende em todas as redes sociais em um só painel. Veja cada post antes de ele sair e deixe a IA escrever o primeiro rascunho.",
+      "subSoon": "Publique e agende em todas as redes sociais em um só painel, e veja cada post antes de ele sair.",
+      "core": {
+        "title": "Publique, agende e gerencie em um só lugar.",
+        "items": {
+          "publish": {
+            "title": "Publique em todas as plataformas de uma vez",
+            "body": "Poste em {platforms} em segundos, não em meia hora. Conecte suas contas pessoais e de marca uma vez e publique em todas com um clique. Sem ficar trocando de app e sem nada novo para aprender.",
+            "visual": "Desenho: um post enviado para {platforms}, cada um marcado como publicado."
+          },
+          "schedule": {
+            "title": "Agende posts com antecedência",
+            "body": "Planeje seu calendário de conteúdo com semanas de antecedência. Agende posts para cada plataforma, ajuste o texto e o formato de cada um e monte sua fila. O {product} publica cada post na hora certa e avisa se algo precisar da sua atenção."
+          },
+          "manage": {
+            "title": "Gerencie todo o seu conteúdo em um só lugar",
+            "body": "Veja juntos todos os posts agendados e publicados. Confira o que já saiu, edite o que vem por aí e mantenha seu plano de conteúdo em dia."
+          }
+        }
+      },
       "ctaPrimary": "Comece grátis",
       "ctaGoogle": "Comece com o Google",
       "ctaNote": "Teste de {days} dias. Sem cartão.",
@@ -159,88 +178,110 @@
           "body": "Escolha um fuso horário e um horário. Publicamos uma única vez, repetimos com segurança e avisamos se algo falhar."
         }
       },
+      "wall": {
+        "title": "Feito para todo tipo de negócio",
+        "sub": "Lojas, estúdios, agências e criadores postam do mesmo jeito: escrevem uma vez, veem cada plataforma e agendam.",
+        "items": {
+          "realEstate": {
+            "label": "Imobiliária",
+            "text": "Acabou de entrar: uma casa moderna para a família, com jardim. Visitas neste sábado, reserve seu horário."
+          },
+          "beauty": {
+            "label": "Marca de beleza",
+            "text": "Planeje um mês de lançamentos e tutoriais de uma vez e publique no Instagram e no TikTok no mesmo dia."
+          },
+          "agency": {
+            "label": "Agência",
+            "text": "Cuide das contas de todos os clientes em um só painel e envie posts para aprovação por link."
+          },
+          "bakery": {
+            "label": "Padaria",
+            "text": "Pão de fermentação natural saindo do forno às 7. Reserve o seu antes que acabe!"
+          },
+          "restaurant": {
+            "label": "Restaurante",
+            "text": "O especial de hoje: pato selado com gratinado de batata e molho da casa. Mesas a partir das 18h."
+          },
+          "shop": {
+            "label": "Loja online",
+            "text": "Agende lançamentos de produtos em todas as plataformas e confira cada vídeo antes de ir ao ar."
+          },
+          "creator": {
+            "label": "Criador",
+            "text": "Poste um vídeo no TikTok, Reels e Shorts de uma vez, cada um no formato certo."
+          },
+          "fitness": {
+            "label": "Personal trainer",
+            "text": "Mobilidade de segunda: 10 minutos, sem equipamento. Salve para amanhã de manhã."
+          }
+        }
+      },
+      "offer": {
+        "was": "Antes",
+        "payYearly": "Cobrado {total} uma vez por ano. Cancele quando quiser.",
+        "payMonthly": "Cobrado todo mês. Cancele quando quiser.",
+        "groups": {
+          "publishing": "Publicação",
+          "teams": "Equipes e clientes"
+        },
+        "trust": {
+          "trial": "Teste de {days} dias, sem cartão",
+          "cancel": "Cancele quando quiser",
+          "usd": "Preços em dólares americanos"
+        },
+        "free": "Está começando? O plano {plan} tem {count} contas sociais e não expira.",
+        "freeCta": "Comece grátis"
+      },
       "pricingTitle": "Pague pelo que usa. Nada escondido.",
       "pricingCta": "Comparar planos",
-      "faqTitle": "Respostas diretas.",
+      "faqTitle": "Perguntas frequentes sobre o {product}",
       "faq": {
         "what": {
           "q": "O que é {product}?",
-          "a": "{product} é uma plataforma de gestão de redes sociais para startups, agências e equipes em vários países. Você cria um post uma vez, vê a prévia em cada plataforma, verifica a qualidade do vídeo e agenda."
+          "a": "{product} é uma plataforma de gestão de redes sociais para startups, agências e marcas. Você cria um post uma vez, vê a prévia em cada plataforma, verifica a qualidade do vídeo e agenda."
         },
         "quality": {
           "q": "Por que meus vídeos ficam borrados depois de agendar?",
           "a": "Geralmente o vídeo não bate com o que a plataforma espera, então é cortado ou recodificado. Nossa verificação prévia avisa antes disso e oferece uma correção."
         },
+        "ai": {
+          "q": "O {product} usa IA?",
+          "a": "Sim. O assistente de IA do editor escreve e reescreve legendas para cada plataforma e marca para sua equipe os posts feitos com IA. Uma API e um servidor MCP para agentes de IA estão a caminho, com chaves limitadas a um espaço de trabalho.",
+          "aSoon": "Em breve. Um Estúdio IA para imagens e um assistente de escrita com IA para legendas estão a caminho, com créditos de IA mensais em todos os planos. Depois virão uma API e um servidor MCP para agentes de IA, com chaves limitadas a um espaço de trabalho."
+        },
         "platforms": {
           "q": "Em quais plataformas posso publicar?",
           "a": "Estamos preparando Instagram, TikTok, YouTube, Facebook, LinkedIn e Bluesky. Cada uma é liberada assim que a plataforma aprova nosso app."
+        },
+        "safety": {
+          "q": "É seguro conectar minhas contas sociais?",
+          "a": "Sim. Conectamos apenas pelo login oficial de cada plataforma e pedimos só as permissões necessárias para publicar. Os tokens de acesso são criptografados, nada é publicado sem que você tenha agendado e você pode desconectar uma conta quando quiser."
         },
         "trial": {
           "q": "Preciso de cartão para o teste?",
           "a": "Não. Você tem {days} dias com os recursos do Pro. Ao terminar, você passa para o plano Grátis e mantém todos os seus dados."
         },
+        "cancel": {
+          "q": "Posso cancelar a qualquer momento?",
+          "a": "Sim. Cancele em Faturamento quando quiser. Você mantém seu plano até o fim do período pago e depois passa para o plano Free. Nada é apagado."
+        },
         "switch": {
           "q": "Posso migrar de outro agendador?",
           "a": "Sim. Importe seus posts agendados e mídias quando a outra ferramenta permitir exportar. Os primeiros 100 clientes ganham ajuda gratuita na migração."
-        },
-        "ai": {
-          "q": "O {product} usa IA?",
-          "a": "Sim. O assistente de IA do editor escreve e reescreve legendas para cada plataforma e marca para sua equipe os posts feitos com IA. Uma API e um servidor MCP para agentes de IA estão a caminho, com chaves limitadas a um espaço de trabalho.",
-          "aSoon": "Em breve. Um Estúdio IA para imagens e um assistente de escrita com IA para legendas estão a caminho, com créditos de IA mensais em todos os planos. Depois virão uma API e um servidor MCP para agentes de IA, com chaves limitadas a um espaço de trabalho."
         }
       },
-      "finalTitle": "Seu próximo post pode ficar exatamente como você criou.",
       "shotAlt": "O painel do {product}: o plano de posts da semana, um post que precisa de atenção e os números da semana.",
       "platformsLabel": "Prévias e verificações para",
-      "facts": {
-        "title": "Os detalhes que outros agendadores ignoram.",
-        "pause": "Pausar animação",
-        "play": "Retomar animação",
-        "items": {
-          "platforms": {
-            "value": "{count}",
-            "label": "plataformas, cada uma com uma prévia fiel ao jeito que ela mostra seu post"
-          },
-          "checks": {
-            "value": "5",
-            "label": "verificações em cada vídeo: proporção, resolução, taxa de bits, duração e tamanho do arquivo"
-          },
-          "fix": {
-            "value": "1 clique",
-            "label": "cria uma cópia em 9:16 para uma plataforma. Seu original não muda."
-          },
-          "languages": {
-            "value": "{count}",
-            "label": "idiomas no app, incluindo o árabe, escrito da direita para a esquerda"
-          },
-          "tools": {
-            "value": "{count}",
-            "label": "ferramentas grátis que você usa sem criar conta"
-          }
-        }
-      },
       "showcase": {
         "previews": {
           "title": "Veja cada plataforma antes de postar",
           "body": "Escreva uma vez e confira como cada app vai mostrar. Se um vídeo for ser cortado ou recusado, você vê o motivo, e a correção está a um clique.",
+          "shot": "O mesmo post em prévia como Instagram Reels, TikTok e YouTube Shorts, cada um marcado como pronto.",
           "points": {
             "captions": "Uma legenda para todas ou uma por plataforma",
             "frames": "Prévias no celular com o corte e as áreas cobertas",
             "fix": "Uma cópia em 9:16 com um clique, sem mexer no original"
           }
-        },
-        "calendar": {
-          "title": "Planeje a semana num relance",
-          "body": "Alterne entre mês, semana e lista. Arraste um post para outro dia ou abra para ver todos os detalhes."
-        },
-        "home": {
-          "title": "Saiba o que precisa de você hoje",
-          "body": "Os posts da semana, o que sai em seguida e o que falhou, com um botão para tentar de novo ali mesmo."
-        },
-        "tools": {
-          "title": "Ferramentas grátis, sem conta",
-          "body": "Divida uma panorâmica em carrossel, planeje sua grade ou confira um vídeo antes de postar. Tudo roda no seu navegador.",
-          "cta": "Ver todas as ferramentas grátis"
         }
       },
       "video": {
@@ -346,6 +387,23 @@
     "included": "Incluído",
     "notIncluded": "Não incluído",
     "note": "Preços em dólares americanos. Impostos podem ser cobrados no pagamento. Ao mudar para um plano menor, nada é excluído."
+  },
+  "legal": {
+    "updated": "Última atualização: {date}",
+    "englishOnly": "Esta página está em inglês. A versão em inglês é a que vale.",
+    "onThisPage": "Nesta página",
+    "privacy": {
+      "title": "Política de privacidade",
+      "metaDescription": "Quais dados o {product} coleta, por quê, com quem compartilha e como ver, exportar ou excluir seus dados."
+    },
+    "terms": {
+      "title": "Termos de serviço",
+      "metaDescription": "As regras para usar o {product}: sua conta, seu conteúdo, plataformas conectadas, planos e pagamento."
+    },
+    "dataDeletion": {
+      "title": "Exclusão de dados",
+      "metaDescription": "Como excluir seus dados do {product}, remover uma conta conectada ou retirar nosso acesso em cada plataforma."
+    }
   },
   "preflight": {
     "summary": {

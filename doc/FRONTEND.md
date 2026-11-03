@@ -302,13 +302,13 @@ Primary buttons stay ink with white text (sky on dark). Coral is not used inside
 
 | Role | Font | Notes |
 |---|---|---|
-| UI and body | Inter (variable) | Self-host with `next/font`. Brand font is an open decision (section 19). |
-| Public site (landing, pricing, tools) | DM Sans for text, Plus Jakarta Sans for headlines | Founder's choice (2026-10-26). Loaded by the marketing layout only (`src/features/marketing/fonts.ts`); the classes also go on `<html>` while a public page is open so menus match. Arabic keeps Noto Sans Arabic |
-| Display headlines (public site) | Plus Jakarta Sans 700, tracking -0.035em, line height 1.06 | `.display`; its full stop and comma are set wide, so the ones that end a word are pulled in with `tightStops()` |
-| Display headlines (elsewhere) | Inter at weight 300, tight tracking (-0.02em), line height 1.05 | Gives the light, large feel of the reference |
+| Everything (site and app, text and headings) | DM Sans (variable) | Founder's choice (2026-11-03): one sans-serif face for the whole product. Self-hosted with `next/font` in `app/[locale]/layout.tsx` (`--font-dm-sans`). |
+| Display headlines (public site) | DM Sans 500, tracking -0.03em, line height 1.06 | `.site-fonts .display`; lighter headings (2026-11-03) |
+| Section and card titles | DM Sans 600 (`font-heading font-semibold`) | Never bold or extra bold |
+| Display headlines (elsewhere) | DM Sans at weight 300, tight tracking (-0.02em), line height 1.05 | Gives the light, large feel of the reference |
 | Eyebrow labels | A monospace face (Geist Mono or JetBrains Mono), uppercase, letter-spacing 0.08em, 12–13 px | Only the 404 page still uses one; the public site dropped them (2026-10-26). In Arabic there is no uppercase, so use the normal UI font in regular case |
-| Arabic | Noto Sans Arabic | Matches Inter's weight range |
-| Numbers in analytics | Inter with tabular figures (`font-variant-numeric: tabular-nums`) | Columns line up |
+| Arabic | Noto Sans Arabic | DM Sans has no Arabic script; Latin names and numbers stay in DM Sans |
+| Numbers in analytics | DM Sans with tabular figures (`font-variant-numeric: tabular-nums`) | Columns line up |
 
 **Scale** (px; use `rem`)
 
@@ -420,8 +420,8 @@ All routes sit under a locale prefix: `/[locale]/...` (for example `/en/pricing`
 
 ### Navigation
 
-- **Marketing navbar (2026-10-26):** a full-width bar stuck to the top, 64 px tall, blurred white, its content on the landing's 1440 px line: logo, then Product, Pricing, Free tools in the centre, then **language switcher**, theme, Log in, Start free (a menu button below `md`). No line at the top of the page; a hairline appears under it once the page scrolls (`HeaderBar`). The light green announcement strip sits above it when active. The hero below it is plain white (its gradient glow was removed at the founder's request); the product clip sits on a lavender panel.
-- **Marketing footer (2026-10-26):** full width in the founder's deep green `--footer` `#213130` (both themes; white text 13.6:1, muted links 7.5:1, white focus rings), its content on the landing's 1440 px line: brand column (logo, tagline, platform marks), Product, Free tools (every tool) and Account columns with bold headings, the copyright line, and the product name set very large and faint along the bottom edge.
+- **Marketing navbar (2026-10-26):** a full-width bar stuck to the top, 64 px tall, blurred white, its content on the landing's 1440 px line: logo, then Product, Pricing, Free tools in the centre, then **language switcher**, theme, Log in, Start free (a menu button below `md`). No line at the top of the page; a hairline appears under it once the page scrolls (`HeaderBar`). The light green announcement strip sits above it when active. The hero below it is plain white (its gradient glow was removed at the founder's request); the product clip sits on the page with a hairline border (its lavender panel was removed 2026-11-03).
+- **Marketing footer (2026-10-26):** full width in black `--footer` `#0b0b0c` (founder's call 2026-11-03, was deep green `#213130`; both themes; white text 19:1, white focus rings), its content on the landing's 1440 px line: brand column (logo, tagline, platform marks), Product, Free tools (every tool) and Account columns with bold headings, the copyright line, and the product name set very large and faint along the bottom edge.
 - **App header:** workspace switcher, market switcher (when markets exist), global search, notifications, language, user menu.
 - **App sidebar:**
   - Create: New post, Studio, Bulk tools
@@ -1011,7 +1011,7 @@ Rules:
 
 1. **Product name and logo.** The name is AgentiqSocial (agentiqsocial.com), set in `src/config/site.ts`. The logo is still a placeholder mark.
 2. **Brand colours.** This file started from the lime, ink and coral of the reference image. The founder has since retired coral from the dashboard (2026-10-25) and lime everywhere (2026-10-26) in favour of ink, the light green `#E6F4EA`, sky and mint. Confirm the set, or change the brand values in `globals.css`. All contrast numbers must be re-checked after a change (section 2.5).
-3. **Brand font.** Inter is the default. A distinct display face is optional.
+3. **Brand font.** DM Sans across the product (2026-11-03). A distinct display face is optional.
 4. **Sign-up order.** Value first (assumed here) or card first.
 5. **Wave 1 languages.** English, Spanish, Portuguese (Brazil), French, German are assumed.
 6. **What the 14-day trial includes** (assumed: Pro-level features, no card).

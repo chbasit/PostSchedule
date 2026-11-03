@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "{product}: programa publicaciones que se ven bien en todas partes",
-    "description": "Programa en todas las plataformas, previsualiza cada una y corrige los problemas de vídeo antes de publicar."
+    "description": "Programa y publica en Instagram, TikTok, YouTube, Facebook, LinkedIn y Bluesky desde un solo panel, y revisa cómo se verá en cada plataforma antes de publicar."
   },
   "common": {
     "close": "Cerrar",
@@ -113,14 +113,33 @@
       "account": "Cuenta",
       "login": "Iniciar sesión",
       "signup": "Empieza gratis",
-      "tagline": "Gestión de redes sociales para startups, agencias y equipos en muchos países.",
+      "tagline": "Programación de redes sociales para startups, agencias y marcas en crecimiento.",
       "copyright": "© {product}. Todos los derechos reservados.",
-      "allTools": "Todas las herramientas gratis"
+      "allTools": "Todas las herramientas gratis",
+      "legal": "Legal"
     },
     "home": {
       "eyebrow": "Gestión de redes sociales para equipos",
-      "sub": "Hecho para startups, agencias y equipos en muchos países. Previsualiza cada plataforma, corrige los problemas de vídeo antes de publicar y deja que la IA escriba el primer borrador.",
-      "subSoon": "Hecho para startups, agencias y equipos en muchos países. Previsualiza cada plataforma y corrige los problemas de vídeo antes de publicar. La redacción y las imágenes con IA llegan pronto.",
+      "sub": "Publica y programa en todas tus redes sociales desde un solo panel. Revisa cada publicación antes de que salga y deja que la IA escriba el primer borrador.",
+      "subSoon": "Publica y programa en todas tus redes sociales desde un solo panel, y revisa cada publicación antes de que salga.",
+      "core": {
+        "title": "Publica, programa y gestiona en un solo lugar.",
+        "items": {
+          "publish": {
+            "title": "Publica en todas las plataformas a la vez",
+            "body": "Comparte en {platforms} en segundos, no en media hora. Conecta tus cuentas personales y de marca una vez y publica en todas con un clic. Sin saltar de una app a otra y sin nada nuevo que aprender.",
+            "visual": "Dibujo: una publicación enviada a {platforms}, cada una marcada como publicada."
+          },
+          "schedule": {
+            "title": "Programa publicaciones con antelación",
+            "body": "Planifica tu calendario de contenidos con semanas de antelación. Programa publicaciones para cada plataforma, ajusta el texto y el formato de cada una y arma tu cola. {product} publica cada post a tiempo y te avisa si algo necesita tu atención."
+          },
+          "manage": {
+            "title": "Gestiona todo tu contenido en un solo lugar",
+            "body": "Ve juntas todas las publicaciones programadas y publicadas. Revisa lo que ya salió, edita lo que viene y mantén tu plan de contenidos al día."
+          }
+        }
+      },
       "ctaPrimary": "Empieza gratis",
       "ctaGoogle": "Empieza con Google",
       "ctaNote": "Prueba de {days} días. Sin tarjeta.",
@@ -159,88 +178,110 @@
           "body": "Elige una zona horaria y una hora. Publicamos una sola vez, reintentamos con seguridad y te avisamos si algo falla."
         }
       },
+      "wall": {
+        "title": "Hecho para todo tipo de negocio",
+        "sub": "Tiendas, estudios, agencias y creadores publican igual: escribes una vez, revisas cada plataforma y programas.",
+        "items": {
+          "realEstate": {
+            "label": "Inmobiliaria",
+            "text": "Recién publicado: una casa familiar moderna con jardín. Visitas este sábado, reserva tu hora."
+          },
+          "beauty": {
+            "label": "Marca de belleza",
+            "text": "Planifica un mes de lanzamientos y tutoriales de una sentada y publícalos en Instagram y TikTok el mismo día."
+          },
+          "agency": {
+            "label": "Agencia",
+            "text": "Gestiona las cuentas de todos tus clientes desde un solo panel y envía publicaciones para aprobar con un enlace."
+          },
+          "bakery": {
+            "label": "Panadería",
+            "text": "Pan de masa madre recién salido del horno a las 7. ¡Reserva el tuyo antes de que se acabe!"
+          },
+          "restaurant": {
+            "label": "Restaurante",
+            "text": "El especial de hoy: pato a la plancha con gratén de patata y salsa de la casa. Mesas desde las 18:00."
+          },
+          "shop": {
+            "label": "Tienda online",
+            "text": "Programa lanzamientos de productos en todas las plataformas y revisa cada vídeo antes de que salga."
+          },
+          "creator": {
+            "label": "Creador",
+            "text": "Publica un vídeo en TikTok, Reels y Shorts a la vez, cada uno en el formato correcto."
+          },
+          "fitness": {
+            "label": "Entrenador personal",
+            "text": "Movilidad del lunes: 10 minutos, sin material. Guárdalo para mañana por la mañana."
+          }
+        }
+      },
+      "offer": {
+        "was": "Antes",
+        "payYearly": "Se factura {total} una vez al año. Cancela cuando quieras.",
+        "payMonthly": "Se factura cada mes. Cancela cuando quieras.",
+        "groups": {
+          "publishing": "Publicación",
+          "teams": "Equipos y clientes"
+        },
+        "trust": {
+          "trial": "Prueba de {days} días, sin tarjeta",
+          "cancel": "Cancela cuando quieras",
+          "usd": "Precios en dólares estadounidenses"
+        },
+        "free": "¿Estás empezando? El plan {plan} incluye {count} cuentas sociales y no caduca.",
+        "freeCta": "Empieza gratis"
+      },
       "pricingTitle": "Paga por lo que usas. Sin sorpresas.",
       "pricingCta": "Comparar planes",
-      "faqTitle": "Respuestas directas.",
+      "faqTitle": "Preguntas frecuentes sobre {product}",
       "faq": {
         "what": {
           "q": "¿Qué es {product}?",
-          "a": "{product} es una plataforma de gestión de redes sociales para startups, agencias y equipos en varios países. Creas una publicación una vez, la previsualizas en cada plataforma, revisas la calidad del vídeo y la programas."
+          "a": "{product} es una plataforma de gestión de redes sociales para startups, agencias y marcas. Creas una publicación una vez, la previsualizas en cada plataforma, revisas la calidad del vídeo y la programas."
         },
         "quality": {
           "q": "¿Por qué mis vídeos se ven borrosos después de programarlos?",
           "a": "Normalmente el vídeo no coincide con lo que espera la plataforma, así que se recorta o se vuelve a codificar. Nuestra revisión previa te avisa antes y te ofrece una corrección."
         },
+        "ai": {
+          "q": "¿{product} usa IA?",
+          "a": "Sí. El asistente de IA del editor redacta y reescribe textos para cada plataforma, y marca para tu equipo las publicaciones hechas con IA. Llegarán una API y un servidor MCP para agentes de IA, con claves limitadas a un espacio de trabajo.",
+          "aSoon": "Pronto. Un Estudio IA para imágenes y un redactor con IA para textos están en camino, con créditos de IA mensuales en todos los planes. Después llegarán una API y un servidor MCP para agentes de IA, con claves limitadas a un espacio de trabajo."
+        },
         "platforms": {
           "q": "¿En qué plataformas puedo publicar?",
           "a": "Estamos preparando Instagram, TikTok, YouTube, Facebook, LinkedIn y Bluesky. Cada una se activa en cuanto esa plataforma aprueba nuestra app."
+        },
+        "safety": {
+          "q": "¿Es seguro conectar mis cuentas sociales?",
+          "a": "Sí. Solo nos conectamos a través del inicio de sesión oficial de cada plataforma y pedimos únicamente los permisos necesarios para publicar. Los tokens de acceso están cifrados, no se publica nada que no hayas programado y puedes desconectar una cuenta cuando quieras."
         },
         "trial": {
           "q": "¿Necesito una tarjeta para la prueba?",
           "a": "No. Tienes {days} días con las funciones de Pro. Al terminar pasas al plan Gratis y conservas todos tus datos."
         },
+        "cancel": {
+          "q": "¿Puedo cancelar en cualquier momento?",
+          "a": "Sí. Cancela desde Facturación cuando quieras. Conservas tu plan hasta el final del periodo que pagaste y después pasas al plan Free. No se borra nada."
+        },
         "switch": {
           "q": "¿Puedo cambiarme desde otro programador?",
           "a": "Sí. Importa tus publicaciones programadas y tus archivos cuando la otra herramienta permita exportarlos. Los primeros 100 clientes reciben ayuda gratuita con la migración."
-        },
-        "ai": {
-          "q": "¿{product} usa IA?",
-          "a": "Sí. El asistente de IA del editor redacta y reescribe textos para cada plataforma, y marca para tu equipo las publicaciones hechas con IA. Llegarán una API y un servidor MCP para agentes de IA, con claves limitadas a un espacio de trabajo.",
-          "aSoon": "Pronto. Un Estudio IA para imágenes y un redactor con IA para textos están en camino, con créditos de IA mensuales en todos los planes. Después llegarán una API y un servidor MCP para agentes de IA, con claves limitadas a un espacio de trabajo."
         }
       },
-      "finalTitle": "Tu próxima publicación puede verse exactamente como la creaste.",
       "shotAlt": "El panel de {product}: el plan de publicaciones de la semana, una publicación que requiere atención y las cifras de la semana.",
       "platformsLabel": "Vistas previas y revisiones para",
-      "facts": {
-        "title": "Los detalles que otras herramientas pasan por alto.",
-        "pause": "Pausar animación",
-        "play": "Reanudar animación",
-        "items": {
-          "platforms": {
-            "value": "{count}",
-            "label": "plataformas, cada una con una vista previa tal como mostrará tu publicación"
-          },
-          "checks": {
-            "value": "5",
-            "label": "revisiones en cada vídeo: relación de aspecto, resolución, tasa de bits, duración y tamaño del archivo"
-          },
-          "fix": {
-            "value": "1 clic",
-            "label": "crea una copia en 9:16 para una plataforma. Tu original no cambia."
-          },
-          "languages": {
-            "value": "{count}",
-            "label": "idiomas en la app, incluido el árabe, que se escribe de derecha a izquierda"
-          },
-          "tools": {
-            "value": "{count}",
-            "label": "herramientas gratis que puedes usar sin cuenta"
-          }
-        }
-      },
       "showcase": {
         "previews": {
           "title": "Mira cada plataforma antes de publicar",
           "body": "Escribe una vez y comprueba cómo lo mostrará cada app. Si un vídeo se va a recortar o rechazar, verás por qué, y la solución está a un clic.",
+          "shot": "La misma publicación previsualizada como Instagram Reels, TikTok y YouTube Shorts, cada una marcada como lista.",
           "points": {
             "captions": "Un texto para todas o uno por plataforma",
             "frames": "Vistas previas en el móvil con el recorte y las zonas tapadas",
             "fix": "Una copia en 9:16 con un clic, sin tocar el original"
           }
-        },
-        "calendar": {
-          "title": "Planifica la semana de un vistazo",
-          "body": "Cambia entre mes, semana y lista. Arrastra una publicación a otro día o ábrela para ver todos los detalles."
-        },
-        "home": {
-          "title": "Descubre qué necesita tu atención hoy",
-          "body": "Las publicaciones de esta semana, lo próximo que sale y lo que haya fallado, con un botón para reintentar ahí mismo."
-        },
-        "tools": {
-          "title": "Herramientas gratis, sin cuenta",
-          "body": "Divide una panorámica en un carrusel, planifica tu cuadrícula o revisa un vídeo antes de publicarlo. Todo funciona en tu navegador.",
-          "cta": "Ver todas las herramientas gratis"
         }
       },
       "video": {
@@ -346,6 +387,23 @@
     "included": "Incluido",
     "notIncluded": "No incluido",
     "note": "Precios en dólares estadounidenses. Pueden aplicarse impuestos al pagar. Si bajas de plan, no se elimina nada."
+  },
+  "legal": {
+    "updated": "Última actualización: {date}",
+    "englishOnly": "Esta página está en inglés. La versión en inglés es la que se aplica.",
+    "onThisPage": "En esta página",
+    "privacy": {
+      "title": "Política de privacidad",
+      "metaDescription": "Qué datos recopila {product}, para qué, con quién se comparten y cómo ver, exportar o eliminar tus datos."
+    },
+    "terms": {
+      "title": "Términos del servicio",
+      "metaDescription": "Las reglas para usar {product}: tu cuenta, tu contenido, las plataformas conectadas, los planes y el pago."
+    },
+    "dataDeletion": {
+      "title": "Eliminación de datos",
+      "metaDescription": "Cómo eliminar tus datos de {product}, quitar una cuenta conectada o retirar nuestro acceso en cada plataforma."
+    }
   },
   "preflight": {
     "summary": {

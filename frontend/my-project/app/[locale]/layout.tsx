@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
-import { Inter, JetBrains_Mono, Noto_Sans_Arabic } from "next/font/google";
+import { DM_Sans, JetBrains_Mono, Noto_Sans_Arabic } from "next/font/google";
 import { notFound } from "next/navigation";
 import { locale as rootLocale } from "next/root-params";
 import { AppProviders } from "@/components/app-providers";
@@ -10,7 +10,8 @@ import { PRODUCT_NAME, SITE_URL } from "@/config/site";
 import { isRtl, routing } from "@/i18n/routing";
 import "../globals.css";
 
-const inter = Inter({ subsets: ["latin", "latin-ext"], variable: "--font-inter", display: "swap" });
+// One face for the whole product, site and app, text and headings (DECISIONS.md 2026-11-03).
+const sans = DM_Sans({ subsets: ["latin", "latin-ext"], variable: "--font-dm-sans", display: "swap" });
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono-face", display: "swap" });
 // The script font is only downloaded on pages that use it.
 const arabic = Noto_Sans_Arabic({ subsets: ["arabic"], variable: "--font-arabic", display: "swap", preload: false });
@@ -58,7 +59,7 @@ export default async function RootLayout({ children }: LayoutProps<"/[locale]">)
       lang={locale}
       dir={dir}
       suppressHydrationWarning
-      className={`${inter.variable} ${mono.variable} ${arabic.variable}`}
+      className={`${sans.variable} ${mono.variable} ${arabic.variable}`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />

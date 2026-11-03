@@ -44,7 +44,7 @@ export function PlanCard({ plan, interval, action, previous, current, flat, clas
       aria-labelledby={`plan-${plan.key}`}
     >
       <div className="flex items-start justify-between gap-2">
-        <h3 id={`plan-${plan.key}`} className="font-heading text-lg font-bold tracking-tight">
+        <h3 id={`plan-${plan.key}`} className="font-heading text-lg font-semibold tracking-tight">
           {t(`names.${plan.key}`)}
         </h3>
         {current ? (
@@ -55,7 +55,7 @@ export function PlanCard({ plan, interval, action, previous, current, flat, clas
       </div>
       <p className="mt-1 min-h-10 text-sm text-muted-foreground">{t(`blurbs.${plan.key}`)}</p>
       <p className="mt-5 flex items-baseline gap-1">
-        <span className="tabular font-heading text-4xl font-bold tracking-tight">{formatPrice(price, locale)}</span>
+        <span className="tabular font-heading text-4xl font-semibold tracking-tight">{formatPrice(price, locale)}</span>
         <span className="text-sm text-muted-foreground">{interval === "year" ? t("perYear") : t("perMonth")}</span>
       </p>
       <ul className="mt-5 space-y-2.5 border-t pt-5 text-sm">

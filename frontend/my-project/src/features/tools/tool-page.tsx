@@ -6,7 +6,6 @@ import { buttonVariants } from "@/components/ui/button";
 import { PRODUCT_NAME, SITE_URL } from "@/config/site";
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
-import { tightStops } from "@/features/marketing/tight-stops";
 import { getTool, relatedTools, toolHref, type ToolKey } from "./registry";
 import { ToolCard, ToolGlyph } from "./tool-card";
 
@@ -69,7 +68,7 @@ export function ToolPage({ toolKey, values, children }: { toolKey: ToolKey; valu
         <header className="mb-10 flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-6">
           <ToolGlyph tool={tool} size="lg" />
           <div className="min-w-0 space-y-3">
-            <h1 className="display text-4xl md:text-5xl">{tightStops(t(`${toolKey}.title`))}</h1>
+            <h1 className="display text-4xl md:text-5xl">{t(`${toolKey}.title`)}</h1>
             <p className="max-w-3xl text-lg text-muted-foreground">{t(`${toolKey}.intro`, values)}</p>
             <ToolBadges className="pt-1" />
           </div>
@@ -79,12 +78,12 @@ export function ToolPage({ toolKey, values, children }: { toolKey: ToolKey; valu
 
         <section aria-labelledby="tool-steps" className="mt-20">
           <h2 id="tool-steps" className="display text-3xl md:text-4xl">
-            {tightStops(t("common.stepsTitle"))}
+            {t("common.stepsTitle")}
           </h2>
           <ol className="mt-8 grid gap-4 md:grid-cols-3">
             {STEPS.map((step) => (
               <li key={step} className="card-surface space-y-2 p-5">
-                <span className="tabular inline-flex size-9 items-center justify-center rounded-full bg-highlight font-heading font-bold text-highlight-foreground">{step}</span>
+                <span className="tabular inline-flex size-9 items-center justify-center rounded-full bg-highlight font-heading font-semibold text-highlight-foreground">{step}</span>
                 <h3 className="pt-2 font-semibold">{t(`${toolKey}.steps.${step}.title`, values)}</h3>
                 <p className="text-sm text-muted-foreground">{t(`${toolKey}.steps.${step}.body`, values)}</p>
               </li>
@@ -94,7 +93,7 @@ export function ToolPage({ toolKey, values, children }: { toolKey: ToolKey; valu
 
         <section aria-labelledby="tool-faq" className="mt-20 grid gap-8 lg:grid-cols-[1fr_2fr]">
           <h2 id="tool-faq" className="display text-3xl md:text-4xl">
-            {tightStops(t("common.faqTitle"))}
+            {t("common.faqTitle")}
           </h2>
           <div className="divide-y border-y">
             {STEPS.map((n) => (
@@ -114,7 +113,7 @@ export function ToolPage({ toolKey, values, children }: { toolKey: ToolKey; valu
         <section aria-labelledby="tool-more" className="mt-20">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <h2 id="tool-more" className="display text-3xl md:text-4xl">
-              {tightStops(t("common.moreTitle"))}
+              {t("common.moreTitle")}
             </h2>
             <Link href="/tools" className="group inline-flex items-center gap-1.5 rounded text-sm font-semibold">
               {t("common.allTools")}
@@ -157,7 +156,7 @@ export function ToolsCta() {
     <section className="mx-auto max-w-6xl px-4 pb-16 md:px-6 lg:px-8">
       <div className="flex flex-col items-start gap-6 rounded-[32px] bg-highlight px-6 py-12 text-highlight-foreground md:flex-row md:items-center md:justify-between md:px-12">
         <div className="max-w-2xl space-y-2">
-          <h2 className="display text-3xl md:text-4xl">{tightStops(t("ctaTitle"))}</h2>
+          <h2 className="display text-3xl md:text-4xl">{t("ctaTitle")}</h2>
           <p className="text-highlight-foreground/80">{t("ctaBody", { product: PRODUCT_NAME })}</p>
         </div>
         <Link href="/signup" className={cn(buttonVariants({ size: "lg" }), "shrink-0 rounded-full px-7")}>

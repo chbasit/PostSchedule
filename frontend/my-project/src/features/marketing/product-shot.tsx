@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { PRODUCT_NAME } from "@/config/site";
-import arDark from "@/assets/screens/dashboard-ar-dark.webp";
-import arLight from "@/assets/screens/dashboard-ar-light.webp";
-import enDark from "@/assets/screens/dashboard-en-dark.webp";
-import enLight from "@/assets/screens/dashboard-en-light.webp";
+import arDark from "@/assets/images/screens/dashboard-ar-dark.webp";
+import arLight from "@/assets/images/screens/dashboard-ar-light.webp";
+import enDark from "@/assets/images/screens/dashboard-en-dark.webp";
+import enLight from "@/assets/images/screens/dashboard-en-light.webp";
 
 // The real dashboard (sample workspace) in the visitor's theme, with rounded corners and no
 // frame. Arabic pages show the right-to-left screen; the other languages show the English one.

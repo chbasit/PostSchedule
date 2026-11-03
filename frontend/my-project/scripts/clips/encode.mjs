@@ -3,8 +3,8 @@
 // Usage: node scripts/clips/encode.mjs [--install] [name ...]
 // The clips are described in clips.json: the recording, the crop (CSS pixels), the parts to
 // play in order ([from, to, speed]; seconds or marker names such as "previews+0.5", "start",
-// "end") and the output sizes. --install copies the results into public/clips and
-// src/assets/clips.
+// "end") and the output sizes. --install copies the results into public/videos and
+// src/assets/images/posters.
 import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { join, resolve, sep } from "node:path";
@@ -101,11 +101,11 @@ try {
       console.log(`${spec.name}${track.suffix}: ${track.width}x${track.height} ${track.codec}, ${r.seconds}s, ${(mp4.length / 1e6).toFixed(2)} MB`);
     }
     if (install) {
-      for (const track of r.tracks) copyFileSync(join(outDir, `${spec.name}${track.suffix}.mp4`), join(ROOT, "public", "clips", `${spec.name}${track.suffix}.mp4`));
-      copyFileSync(join(outDir, `${spec.name}.webp`), join(ROOT, "src", "assets", "clips", `${spec.name}.webp`));
+      for (const track of r.tracks) copyFileSync(join(outDir, `${spec.name}${track.suffix}.mp4`), join(ROOT, "public", "videos", `${spec.name}${track.suffix}.mp4`));
+      copyFileSync(join(outDir, `${spec.name}.webp`), join(ROOT, "src", "assets", "images", "posters", `${spec.name}.webp`));
     }
   }
-  if (install) console.log("installed into public/clips and src/assets/clips");
+  if (install) console.log("installed into public/videos and src/assets/images/posters");
   if (page.errors.length) console.log(`errors:\n${page.errors.join("\n")}`);
 } finally {
   await close();

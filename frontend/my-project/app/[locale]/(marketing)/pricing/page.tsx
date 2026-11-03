@@ -8,7 +8,6 @@ import { PRODUCT_NAME, SITE_URL } from "@/config/site";
 import { routing } from "@/i18n/routing";
 import { FEATURES, FOUNDING_CUSTOMERS, FOUNDING_LOCK_MONTHS, PLANS, TRIAL_DAYS } from "@/lib/billing/plans";
 import { PricingPlans } from "@/features/billing/pricing-plans";
-import { tightStops } from "@/features/marketing/tight-stops";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("pricing");
@@ -38,20 +37,20 @@ export default function PricingPage() {
           })),
         }}
       />
-      <section className="mx-auto max-w-[1200px] px-4 pb-16 pt-14 text-center md:px-6 lg:px-8">
-        <h1 className="display mx-auto max-w-3xl text-5xl text-balance md:text-6xl">{tightStops(t("title"))}</h1>
+      <section className="mx-auto max-w-[1440px] px-4 pb-16 pt-14 text-center md:px-6 lg:px-8">
+        <h1 className="display mx-auto max-w-3xl text-5xl text-balance md:text-6xl">{t("title")}</h1>
         <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground">{t("sub", { days: TRIAL_DAYS })}</p>
         <p className="mx-auto mt-5 inline-flex rounded-full bg-highlight px-3.5 py-1 text-sm font-medium text-highlight-foreground">
           {t("founding", { count: FOUNDING_CUSTOMERS, months: FOUNDING_LOCK_MONTHS })}
         </p>
       </section>
 
-      <section className="mx-auto max-w-[1200px] px-4 md:px-6 lg:px-8">
+      <section className="mx-auto max-w-[1440px] px-4 md:px-6 lg:px-8">
         <PricingPlans />
       </section>
 
-      <section className="mx-auto max-w-[1200px] px-4 py-20 md:px-6 lg:px-8">
-        <h2 className="mb-6 font-heading text-2xl font-bold tracking-tight">{t("compareTitle")}</h2>
+      <section className="mx-auto max-w-[1440px] px-4 py-20 md:px-6 lg:px-8">
+        <h2 className="mb-6 font-heading text-2xl font-semibold tracking-tight">{t("compareTitle")}</h2>
         <div className="overflow-x-auto rounded-2xl border">
           <table className="w-full min-w-[720px] text-sm">
             <caption className="sr-only">{t("compareTitle")}</caption>

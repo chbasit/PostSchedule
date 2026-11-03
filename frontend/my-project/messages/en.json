@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "{product}: schedule posts that look right everywhere",
-    "description": "Schedule to every platform, preview each one, and fix video problems before you publish."
+    "description": "Schedule and publish posts to Instagram, TikTok, YouTube, Facebook, LinkedIn and Bluesky from one dashboard, and preview every platform before you post."
   },
   "common": {
     "close": "Close",
@@ -113,14 +113,33 @@
       "account": "Account",
       "login": "Log in",
       "signup": "Start free",
-      "tagline": "Social media management for startups, agencies and teams in many countries.",
+      "tagline": "Social media scheduling for startups, agencies and growing brands.",
       "copyright": "© {product}. All rights reserved.",
-      "allTools": "All free tools"
+      "allTools": "All free tools",
+      "legal": "Legal"
     },
     "home": {
       "eyebrow": "Social media management for teams",
-      "sub": "Built for startups, agencies and teams in many countries. Preview every platform, fix video problems before you publish, and let AI write the first draft.",
-      "subSoon": "Built for startups, agencies and teams in many countries. Preview every platform and fix video problems before you publish. AI writing and images are coming soon.",
+      "sub": "Publish and schedule to every social platform from one dashboard. Preview each post before it goes out, and let AI write the first draft.",
+      "subSoon": "Publish and schedule to every social platform from one dashboard, and preview each post before it goes out.",
+      "core": {
+        "title": "Publish, schedule and manage in one place.",
+        "items": {
+          "publish": {
+            "title": "Post to every platform at once",
+            "body": "Share to {platforms} in seconds instead of half an hour. Connect your personal and brand accounts once, then publish everywhere with one click. No switching between apps, and nothing new to learn.",
+            "visual": "Drawing: one post sent to {platforms}, each marked as posted."
+          },
+          "schedule": {
+            "title": "Schedule posts in advance",
+            "body": "Plan your content calendar weeks ahead. Schedule posts for every platform, adjust the caption and format for each one, and build your queue. {product} publishes each post on time and tells you if anything needs your attention."
+          },
+          "manage": {
+            "title": "Manage all your content in one place",
+            "body": "See every scheduled and published post together. Check what went out, edit what is coming next, and keep your content plan on track."
+          }
+        }
+      },
       "ctaPrimary": "Start free",
       "ctaGoogle": "Start with Google",
       "ctaNote": "{days}-day trial. No card needed.",
@@ -141,7 +160,7 @@
         },
         "languages": {
           "title": "Built for every language",
-          "body": "Use the app in your language, including right-to-left scripts, and schedule in each market's timezone."
+          "body": "Use the app in your language, including right-to-left scripts, and schedule in each market's time zone."
         }
       },
       "stepsTitle": "From upload to scheduled in minutes.",
@@ -156,91 +175,113 @@
         },
         "schedule": {
           "title": "Schedule with confidence",
-          "body": "Pick a timezone and a time. We publish once, retry safely, and tell you if anything fails."
+          "body": "Pick a time zone and a time. We publish once, retry safely, and tell you if anything fails."
         }
+      },
+      "wall": {
+        "title": "Built for every kind of business",
+        "sub": "Shops, studios, agencies and creators all post the same way: write once, preview every platform, schedule.",
+        "items": {
+          "realEstate": {
+            "label": "Real estate",
+            "text": "Just listed: a modern family home with a garden. Viewings this Saturday, book your slot."
+          },
+          "beauty": {
+            "label": "Beauty brand",
+            "text": "Plan a month of launches and tutorials in one sitting, and post them to Instagram and TikTok on the same day."
+          },
+          "agency": {
+            "label": "Agency",
+            "text": "Run every client’s accounts from one dashboard, and send posts for approval with a link."
+          },
+          "bakery": {
+            "label": "Bakery",
+            "text": "Fresh sourdough out of the oven at 7. Reserve yours before it’s gone!"
+          },
+          "restaurant": {
+            "label": "Restaurant",
+            "text": "Tonight’s special: seared duck with potato gratin and a rich sauce. Tables from 6 pm."
+          },
+          "shop": {
+            "label": "Online shop",
+            "text": "Schedule product drops on every platform, and check each video before it goes live."
+          },
+          "creator": {
+            "label": "Creator",
+            "text": "Post one video to TikTok, Reels and Shorts at once, each in the right format."
+          },
+          "fitness": {
+            "label": "Fitness coach",
+            "text": "Monday mobility: 10 minutes, no equipment. Save this for tomorrow morning."
+          }
+        }
+      },
+      "offer": {
+        "was": "Was",
+        "payYearly": "Billed {total} once a year. Cancel anytime.",
+        "payMonthly": "Billed every month. Cancel anytime.",
+        "groups": {
+          "publishing": "Publishing",
+          "teams": "Teams and clients"
+        },
+        "trust": {
+          "trial": "{days}-day trial, no card needed",
+          "cancel": "Cancel anytime",
+          "usd": "Prices in US dollars"
+        },
+        "free": "Just starting out? The {plan} plan has {count} social accounts and no time limit.",
+        "freeCta": "Start free"
       },
       "pricingTitle": "Pay for what you use. Nothing hidden.",
       "pricingCta": "Compare plans",
-      "faqTitle": "Straight answers.",
+      "faqTitle": "{product} platform FAQs",
       "faq": {
         "what": {
           "q": "What is {product}?",
-          "a": "{product} is a social media management platform for startups, agencies and multi-country teams. You compose a post once, preview it for every platform, check video quality, and schedule it."
+          "a": "{product} is a social media management platform for startups, agencies and brands. You compose a post once, preview it for every platform, check video quality, and schedule it."
         },
         "quality": {
           "q": "Why do my videos look blurry after I schedule them?",
           "a": "Usually the video does not match what the platform expects, so it gets cropped or re-encoded. Our pre-flight checks warn you before that happens and offer a fix."
         },
+        "ai": {
+          "q": "Does {product} use AI?",
+          "a": "Yes. The AI assistant in the composer drafts and rewrites captions for each platform, and marks posts made with AI for your team. An API and MCP server for AI agents are coming, with keys limited to one workspace.",
+          "aSoon": "Soon. AI Studio for images and an AI writer for captions are on the way, with monthly AI credits in every plan. An API and MCP server for AI agents will follow, with keys limited to one workspace."
+        },
         "platforms": {
           "q": "Which platforms can I post to?",
           "a": "We are building for Instagram, TikTok, YouTube, Facebook, LinkedIn and Bluesky. Each one goes live as soon as that platform approves our app."
+        },
+        "safety": {
+          "q": "Is it safe to connect my social accounts?",
+          "a": "Yes. We connect only through each platform's official sign-in and ask just for the permissions needed to post. Access tokens are encrypted, nothing is posted that you did not schedule, and you can disconnect an account at any time."
         },
         "trial": {
           "q": "Do I need a card for the trial?",
           "a": "No. You get {days} days with Pro features. When it ends, you move to the Free plan and keep all your data."
         },
+        "cancel": {
+          "q": "Can I cancel at any time?",
+          "a": "Yes. Cancel from Billing whenever you like. You keep your plan until the end of the period you paid for, then move to the Free plan. Nothing is deleted."
+        },
         "switch": {
           "q": "Can I switch from another scheduler?",
           "a": "Yes. Import your scheduled posts and media where the other tool allows an export. The first 100 customers get free help moving."
-        },
-        "ai": {
-          "q": "Does {product} use AI?",
-          "a": "Yes. The AI assistant in the composer drafts and rewrites captions for each platform, and marks posts made with AI for your team. An API and MCP server for AI agents are coming, with keys limited to one workspace.",
-          "aSoon": "Soon. AI Studio for images and an AI writer for captions are on the way, with monthly AI credits in every plan. An API and MCP server for AI agents will follow, with keys limited to one workspace."
         }
       },
-      "finalTitle": "Your next post can look exactly how you made it.",
       "shotAlt": "The {product} dashboard: this week's posting plan, a post that needs attention, and the week's numbers.",
       "platformsLabel": "Previews and checks for",
-      "facts": {
-        "title": "The details other schedulers skip.",
-        "pause": "Pause animation",
-        "play": "Play animation",
-        "items": {
-          "platforms": {
-            "value": "{count}",
-            "label": "platforms, each previewed the way it really shows your post"
-          },
-          "checks": {
-            "value": "5",
-            "label": "checks on every video: aspect ratio, resolution, bitrate, length and file size"
-          },
-          "fix": {
-            "value": "1 click",
-            "label": "makes a 9:16 copy for a platform. Your original stays unchanged."
-          },
-          "languages": {
-            "value": "{count}",
-            "label": "languages in the app, including Arabic, written right to left"
-          },
-          "tools": {
-            "value": "{count}",
-            "label": "free tools you can use without an account"
-          }
-        }
-      },
       "showcase": {
         "previews": {
           "title": "See every platform before you post",
           "body": "Write once and check how each app will show it. If a video would be cropped or rejected, you see why, and the fix is one click away.",
+          "shot": "The same post previewed as Instagram Reels, TikTok and YouTube Shorts, each marked ready.",
           "points": {
             "captions": "One caption for all, or one per platform",
             "frames": "Phone previews with the crop and the covered areas",
             "fix": "A 9:16 copy in one click, original kept"
           }
-        },
-        "calendar": {
-          "title": "Plan the week at a glance",
-          "body": "Switch between month, week and list. Drag a post to another day, or open it to see every detail."
-        },
-        "home": {
-          "title": "Know what needs you today",
-          "body": "This week's posts, what goes out next and anything that failed, with a retry button right there."
-        },
-        "tools": {
-          "title": "Free tools, no account needed",
-          "body": "Split a panorama into a carousel, plan your grid or check a video before you post it. Everything runs in your browser.",
-          "cta": "See all free tools"
         }
       },
       "video": {
@@ -346,6 +387,23 @@
     "included": "Included",
     "notIncluded": "Not included",
     "note": "Prices in US dollars. Taxes may apply at checkout. When you downgrade, nothing is deleted."
+  },
+  "legal": {
+    "updated": "Last updated {date}",
+    "englishOnly": "This page is in English. The English version is the one that applies.",
+    "onThisPage": "On this page",
+    "privacy": {
+      "title": "Privacy policy",
+      "metaDescription": "What {product} collects, why, who it is shared with, and how to see, export or delete your data."
+    },
+    "terms": {
+      "title": "Terms of service",
+      "metaDescription": "The rules for using {product}: your account, your content, connected platforms, plans and payment."
+    },
+    "dataDeletion": {
+      "title": "Data deletion",
+      "metaDescription": "How to delete your {product} data, remove a connected account, or take back our access on each platform."
+    }
   },
   "preflight": {
     "summary": {

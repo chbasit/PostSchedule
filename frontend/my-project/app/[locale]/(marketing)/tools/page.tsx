@@ -2,7 +2,6 @@ import { useLocale, useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { JsonLd } from "@/components/json-ld";
 import { SITE_URL } from "@/config/site";
-import { tightStops } from "@/features/marketing/tight-stops";
 import { pageMetadata } from "@/features/tools/metadata";
 import { TOOLS, toolHref } from "@/features/tools/registry";
 import { ToolCard } from "@/features/tools/tool-card";
@@ -32,7 +31,7 @@ export default function ToolsPage() {
         }}
       />
       <section className="mx-auto max-w-6xl px-4 pb-12 pt-12 md:px-6 md:pt-16 lg:px-8">
-        <h1 className="display max-w-3xl text-5xl md:text-6xl">{tightStops(t("index.title"))}</h1>
+        <h1 className="display max-w-3xl text-5xl md:text-6xl">{t("index.title")}</h1>
         <p className="mt-5 max-w-2xl text-lg text-muted-foreground">{t("index.intro")}</p>
         <ToolBadges className="mt-6" />
       </section>

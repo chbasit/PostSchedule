@@ -155,7 +155,7 @@ export function VideoChecker() {
 
           <div className="flex flex-col items-start gap-3 rounded-3xl bg-highlight p-6 text-highlight-foreground sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="font-heading text-lg font-bold">{t("ctaTitle")}</p>
+              <p className="font-heading text-lg font-semibold">{t("ctaTitle")}</p>
               <p className="text-sm text-highlight-foreground/80">{t("ctaBody")}</p>
             </div>
             <Link href="/signup?from=video-checker" className={cn(buttonVariants({ size: "lg" }), "shrink-0 rounded-full px-7")}>

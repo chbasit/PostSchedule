@@ -1,6 +1,8 @@
 // The product name and domain (DECISIONS.md 2026-10-28); change them here only.
 export const PRODUCT_NAME = "AgentiqSocial";
 export const PRODUCT_DOMAIN = "agentiqsocial.com";
+// Support, privacy and deletion requests (the legal pages and platform app reviews list it).
+export const SUPPORT_EMAIL = `support@${PRODUCT_DOMAIN}`;
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 

@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "{product}: Beiträge planen, die überall richtig aussehen",
-    "description": "Auf allen Plattformen planen, jede Vorschau prüfen und Videoprobleme vor dem Veröffentlichen beheben."
+    "description": "Plane und veröffentliche Beiträge auf Instagram, TikTok, YouTube, Facebook, LinkedIn und Bluesky in einem Dashboard und sieh vorher, wie jede Plattform sie zeigt."
   },
   "common": {
     "close": "Schließen",
@@ -113,14 +113,33 @@
       "account": "Konto",
       "login": "Anmelden",
       "signup": "Kostenlos starten",
-      "tagline": "Social-Media-Management für Start-ups, Agenturen und Teams in vielen Ländern.",
+      "tagline": "Social-Media-Planung für Start-ups, Agenturen und wachsende Marken.",
       "copyright": "© {product}. Alle Rechte vorbehalten.",
-      "allTools": "Alle kostenlosen Tools"
+      "allTools": "Alle kostenlosen Tools",
+      "legal": "Rechtliches"
     },
     "home": {
       "eyebrow": "Social-Media-Management für Teams",
-      "sub": "Gemacht für Start-ups, Agenturen und Teams in vielen Ländern. Prüf jede Plattform in der Vorschau, behebe Videoprobleme vor dem Veröffentlichen und lass die KI den ersten Entwurf schreiben.",
-      "subSoon": "Gemacht für Start-ups, Agenturen und Teams in vielen Ländern. Prüf jede Plattform in der Vorschau und behebe Videoprobleme vor dem Veröffentlichen. KI-Texte und -Bilder kommen bald.",
+      "sub": "Veröffentliche und plane auf allen sozialen Netzwerken in einem Dashboard. Prüfe jeden Beitrag, bevor er online geht, und lass die KI den ersten Entwurf schreiben.",
+      "subSoon": "Veröffentliche und plane auf allen sozialen Netzwerken in einem Dashboard und prüfe jeden Beitrag, bevor er online geht.",
+      "core": {
+        "title": "Veröffentlichen, planen und verwalten an einem Ort.",
+        "items": {
+          "publish": {
+            "title": "Überall gleichzeitig posten",
+            "body": "Teile auf {platforms} in Sekunden statt in einer halben Stunde. Verbinde deine privaten Konten und Markenkonten einmal und veröffentliche dann mit einem Klick überall. Kein Wechseln zwischen Apps und nichts Neues zu lernen.",
+            "visual": "Zeichnung: ein Beitrag, gesendet an {platforms}, jeder als veröffentlicht markiert."
+          },
+          "schedule": {
+            "title": "Beiträge im Voraus planen",
+            "body": "Plane deinen Redaktionskalender Wochen im Voraus. Plane Beiträge für jede Plattform, passe Text und Format für jede an und fülle deine Warteschlange. {product} veröffentlicht jeden Beitrag pünktlich und sagt dir Bescheid, wenn etwas deine Aufmerksamkeit braucht."
+          },
+          "manage": {
+            "title": "Alle Inhalte an einem Ort verwalten",
+            "body": "Sieh alle geplanten und veröffentlichten Beiträge zusammen. Prüfe, was online ging, bearbeite, was als Nächstes kommt, und behalte deinen Content-Plan im Griff."
+          }
+        }
+      },
       "ctaPrimary": "Kostenlos starten",
       "ctaGoogle": "Mit Google starten",
       "ctaNote": "{days} Tage testen. Keine Karte nötig.",
@@ -159,88 +178,110 @@
           "body": "Wähle eine Zeitzone und eine Uhrzeit. Wir veröffentlichen genau einmal, wiederholen sicher und sagen dir, wenn etwas fehlschlägt."
         }
       },
+      "wall": {
+        "title": "Für jede Art von Unternehmen",
+        "sub": "Shops, Studios, Agenturen und Creator posten alle gleich: einmal schreiben, jede Plattform prüfen, planen.",
+        "items": {
+          "realEstate": {
+            "label": "Immobilien",
+            "text": "Neu im Angebot: ein modernes Familienhaus mit Garten. Besichtigung am Samstag, sichere dir einen Termin."
+          },
+          "beauty": {
+            "label": "Beauty-Marke",
+            "text": "Plane einen Monat voller Launches und Tutorials in einem Rutsch und poste sie am selben Tag auf Instagram und TikTok."
+          },
+          "agency": {
+            "label": "Agentur",
+            "text": "Betreue die Konten aller Kunden in einem Dashboard und schicke Beiträge per Link zur Freigabe."
+          },
+          "bakery": {
+            "label": "Bäckerei",
+            "text": "Frisches Sauerteigbrot um 7 Uhr aus dem Ofen. Reserviere deins, bevor es weg ist!"
+          },
+          "restaurant": {
+            "label": "Restaurant",
+            "text": "Heute Abend: gebratene Ente mit Kartoffelgratin und hausgemachter Sauce. Tische ab 18 Uhr."
+          },
+          "shop": {
+            "label": "Onlineshop",
+            "text": "Plane Produkt-Launches auf allen Plattformen und prüfe jedes Video, bevor es online geht."
+          },
+          "creator": {
+            "label": "Creator",
+            "text": "Poste ein Video gleichzeitig auf TikTok, Reels und Shorts, jedes im richtigen Format."
+          },
+          "fitness": {
+            "label": "Fitnesscoach",
+            "text": "Mobility am Montag: 10 Minuten, ohne Geräte. Speichere es für morgen früh."
+          }
+        }
+      },
+      "offer": {
+        "was": "Vorher",
+        "payYearly": "{total} einmal im Jahr abgerechnet. Jederzeit kündbar.",
+        "payMonthly": "Monatlich abgerechnet. Jederzeit kündbar.",
+        "groups": {
+          "publishing": "Veröffentlichen",
+          "teams": "Teams und Kunden"
+        },
+        "trust": {
+          "trial": "{days} Tage testen, ohne Karte",
+          "cancel": "Jederzeit kündbar",
+          "usd": "Preise in US-Dollar"
+        },
+        "free": "Gerade erst am Start? Der Tarif {plan} hat {count} Social-Media-Konten und läuft nicht ab.",
+        "freeCta": "Kostenlos starten"
+      },
       "pricingTitle": "Zahl für das, was du nutzt. Ohne Haken.",
       "pricingCta": "Tarife vergleichen",
-      "faqTitle": "Klare Antworten.",
+      "faqTitle": "FAQ zur Plattform {product}",
       "faq": {
         "what": {
           "q": "Was ist {product}?",
-          "a": "{product} ist eine Social-Media-Management-Plattform für Start-ups, Agenturen und Teams in mehreren Ländern. Du erstellst einen Beitrag einmal, siehst die Vorschau für jede Plattform, prüfst die Videoqualität und planst ihn."
+          "a": "{product} ist eine Social-Media-Management-Plattform für Start-ups, Agenturen und Marken. Du erstellst einen Beitrag einmal, siehst die Vorschau für jede Plattform, prüfst die Videoqualität und planst ihn."
         },
         "quality": {
           "q": "Warum sehen meine Videos nach dem Planen unscharf aus?",
           "a": "Meist passt das Video nicht zu dem, was die Plattform erwartet, und wird beschnitten oder neu kodiert. Unsere Vorabprüfung warnt dich vorher und bietet eine Korrektur an."
         },
+        "ai": {
+          "q": "Nutzt {product} KI?",
+          "a": "Ja. Der KI-Assistent im Editor schreibt und überarbeitet Texte für jede Plattform und markiert für dein Team Beiträge, die mit KI entstanden sind. Eine API und ein MCP-Server für KI-Agenten kommen bald, mit Schlüsseln, die auf einen Workspace beschränkt sind.",
+          "aSoon": "Bald. Ein KI-Studio für Bilder und ein KI-Assistent für Texte sind in Arbeit, mit monatlichen KI-Credits in jedem Tarif. Danach folgen eine API und ein MCP-Server für KI-Agenten, mit Schlüsseln, die auf einen Workspace beschränkt sind."
+        },
         "platforms": {
           "q": "Auf welchen Plattformen kann ich posten?",
           "a": "Wir bauen für Instagram, TikTok, YouTube, Facebook, LinkedIn und Bluesky. Jede Plattform wird freigeschaltet, sobald sie unsere App genehmigt hat."
+        },
+        "safety": {
+          "q": "Ist es sicher, meine Social-Media-Konten zu verbinden?",
+          "a": "Ja. Wir verbinden uns nur über die offizielle Anmeldung der jeweiligen Plattform und fragen nur die Berechtigungen an, die zum Posten nötig sind. Zugriffstoken werden verschlüsselt, es wird nichts veröffentlicht, was du nicht geplant hast, und du kannst ein Konto jederzeit trennen."
         },
         "trial": {
           "q": "Brauche ich für den Test eine Karte?",
           "a": "Nein. Du bekommst {days} Tage mit Pro-Funktionen. Danach wechselst du in den Gratis-Tarif und behältst alle deine Daten."
         },
+        "cancel": {
+          "q": "Kann ich jederzeit kündigen?",
+          "a": "Ja. Kündige jederzeit unter Abrechnung. Du behältst deinen Tarif bis zum Ende des bezahlten Zeitraums und wechselst dann in den Free-Tarif. Es wird nichts gelöscht."
+        },
         "switch": {
           "q": "Kann ich von einem anderen Planungstool wechseln?",
           "a": "Ja. Importiere geplante Beiträge und Medien, sofern das andere Tool einen Export erlaubt. Die ersten 100 Kunden bekommen kostenlose Hilfe beim Umzug."
-        },
-        "ai": {
-          "q": "Nutzt {product} KI?",
-          "a": "Ja. Der KI-Assistent im Editor schreibt und überarbeitet Texte für jede Plattform und markiert für dein Team Beiträge, die mit KI entstanden sind. Eine API und ein MCP-Server für KI-Agenten kommen bald, mit Schlüsseln, die auf einen Workspace beschränkt sind.",
-          "aSoon": "Bald. Ein KI-Studio für Bilder und ein KI-Assistent für Texte sind in Arbeit, mit monatlichen KI-Credits in jedem Tarif. Danach folgen eine API und ein MCP-Server für KI-Agenten, mit Schlüsseln, die auf einen Workspace beschränkt sind."
         }
       },
-      "finalTitle": "Dein nächster Beitrag kann genau so aussehen, wie du ihn gemacht hast.",
       "shotAlt": "Das Dashboard von {product}: der Posting-Plan der Woche, ein Beitrag, der Aufmerksamkeit braucht, und die Zahlen der Woche.",
       "platformsLabel": "Vorschauen und Prüfungen für",
-      "facts": {
-        "title": "Die Details, die andere Tools übersehen.",
-        "pause": "Animation anhalten",
-        "play": "Animation abspielen",
-        "items": {
-          "platforms": {
-            "value": "{count}",
-            "label": "Plattformen, jede mit einer Vorschau, die zeigt, wie dein Beitrag dort wirklich aussieht"
-          },
-          "checks": {
-            "value": "5",
-            "label": "Prüfungen für jedes Video: Seitenverhältnis, Auflösung, Bitrate, Länge und Dateigröße"
-          },
-          "fix": {
-            "value": "1 Klick",
-            "label": "erstellt eine 9:16-Kopie für eine Plattform. Dein Original bleibt unverändert."
-          },
-          "languages": {
-            "value": "{count}",
-            "label": "Sprachen in der App, darunter Arabisch, von rechts nach links"
-          },
-          "tools": {
-            "value": "{count}",
-            "label": "kostenlose Tools, die du ohne Konto nutzen kannst"
-          }
-        }
-      },
       "showcase": {
         "previews": {
           "title": "Sieh jede Plattform vor dem Posten",
           "body": "Schreib einmal und prüf, wie jede App es zeigt. Würde ein Video beschnitten oder abgelehnt, siehst du den Grund, und die Lösung ist nur einen Klick entfernt.",
+          "shot": "Derselbe Beitrag in der Vorschau als Instagram Reels, TikTok und YouTube Shorts, jeweils als bereit markiert.",
           "points": {
             "captions": "Ein Text für alle oder einer je Plattform",
             "frames": "Handy-Vorschauen mit Zuschnitt und verdeckten Bereichen",
             "fix": "Eine 9:16-Kopie mit einem Klick, das Original bleibt"
           }
-        },
-        "calendar": {
-          "title": "Die Woche auf einen Blick planen",
-          "body": "Wechsle zwischen Monat, Woche und Liste. Zieh einen Beitrag auf einen anderen Tag oder öffne ihn, um alle Details zu sehen."
-        },
-        "home": {
-          "title": "Sieh, was heute deine Aufmerksamkeit braucht",
-          "body": "Die Beiträge dieser Woche, was als Nächstes rausgeht und was fehlgeschlagen ist, mit einem Button zum erneuten Versuch direkt daneben."
-        },
-        "tools": {
-          "title": "Kostenlose Tools, ohne Konto",
-          "body": "Teil ein Panorama in ein Karussell, plane dein Raster oder prüf ein Video vor dem Posten. Alles läuft in deinem Browser.",
-          "cta": "Alle kostenlosen Tools ansehen"
         }
       },
       "video": {
@@ -346,6 +387,23 @@
     "included": "Enthalten",
     "notIncluded": "Nicht enthalten",
     "note": "Preise in US-Dollar. Beim Bezahlen können Steuern anfallen. Beim Wechsel in einen kleineren Tarif wird nichts gelöscht."
+  },
+  "legal": {
+    "updated": "Zuletzt aktualisiert: {date}",
+    "englishOnly": "Diese Seite ist auf Englisch. Maßgeblich ist die englische Fassung.",
+    "onThisPage": "Auf dieser Seite",
+    "privacy": {
+      "title": "Datenschutzerklärung",
+      "metaDescription": "Welche Daten {product} erhebt, wofür, mit wem sie geteilt werden und wie du sie einsehen, exportieren oder löschen kannst."
+    },
+    "terms": {
+      "title": "Nutzungsbedingungen",
+      "metaDescription": "Die Regeln für die Nutzung von {product}: dein Konto, deine Inhalte, verbundene Plattformen, Tarife und Zahlung."
+    },
+    "dataDeletion": {
+      "title": "Datenlöschung",
+      "metaDescription": "So löschst du deine Daten bei {product}, entfernst ein verbundenes Konto oder entziehst uns den Zugriff auf jeder Plattform."
+    }
   },
   "preflight": {
     "summary": {

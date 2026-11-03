@@ -1,0 +1,5 @@
+node_modules/
+out/
+# Copied from the app by `npm run sync`.
+public/clips/
+public/logo-mark.png
