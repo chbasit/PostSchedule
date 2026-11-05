@@ -23,14 +23,6 @@ const nextConfig: NextConfig = {
     // `radix-ui` re-exports ~40 packages; without this every route compiles all of them in dev.
     optimizePackageImports: ["radix-ui"],
   },
-  turbopack: {
-    rules: {
-      "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
-        as: "*.css",
-      },
-    },
-  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

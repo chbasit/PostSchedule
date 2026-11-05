@@ -2,6 +2,13 @@
 
 Newest first. Format from `PROJECTFLOW.md` §9.
 
+## 2026-11-05 — Production builds use webpack; Tailwind runs through PostCSS
+
+Decision: `npm run build` is `next build --webpack`; `npm run dev` stays on Turbopack. Tailwind is a PostCSS plugin (`postcss.config.mjs`, `@tailwindcss/postcss`) instead of the Turbopack-only `@tailwindcss/turbopack` loader, which is removed with its `turbopack.rules` entry in `next.config.ts`, so both bundlers compile the same CSS.
+Why: The first Hostinger build failed in `app/globals.css`: Turbopack runs CSS loaders in a separate Node process and the build host ended it before Turbopack could connect ("node process exited before we could connect to it"). webpack runs PostCSS in the build process itself. The webpack build was checked locally: same output, same rendering.
+Alternatives: Keeping Turbopack for builds and asking Hostinger to allow the worker process (not in our control). Building elsewhere and uploading the output (rejected for now: Hostinger rebuilds on every push, and a second pipeline is more to maintain).
+Revisit when: The app moves to a host whose builds allow Turbopack's worker processes (Vercel, a VPS), or Turbopack stops needing them.
+
 ## 2026-11-03 — The founder's logo across the product
 
 Decision: The founder's logo (green and orange figures over an oval) replaces the placeholder spark everywhere. The original (2000 × 2000, a mark on a flat off-white square) is kept in `src/assets/images/brand/logo-original.png`; from it, with the background made transparent and the mark trimmed: `logo-mark.png` (256 px tall) in the shared `Logo` component (site header and menu, footer, app sidebar and mobile nav, sign-in, onboarding, 404), `app/icon.png` (512 px) and `app/favicon.ico` (16/32/48 px) for browser tabs, `app/apple-icon.png` (180 px on white) for home screens, and the product video's intro and closing scene (copied by its `npm run sync`). The old `app/icon.svg` and create-next-app's `favicon.ico` are gone. The publish / schedule / manage rows lost their icon tiles, their heading sits on one line from the md breakpoint, and the line under it was removed.
