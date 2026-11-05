@@ -5,7 +5,7 @@ import { WifiOff } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Direction } from "radix-ui";
 import { useSyncExternalStore, type ReactNode } from "react";
-import { Toaster } from "sonner";
+import { Toaster } from "@/components/toaster";
 import { isApiError } from "@/lib/api/errors";
 
 function makeQueryClient() {
@@ -62,12 +62,7 @@ export function AppProviders({ dir, children }: { dir: "ltr" | "rtl"; children: 
       <Direction.Provider dir={dir}>
         {children}
         <OfflineBanner />
-        {/* Top centre keeps toasts off the composer's action bar and the phone navigation. */}
-        <Toaster
-          position="top-center"
-          dir={dir}
-          toastOptions={{ className: "rounded-xl! border-0! bg-popover! text-popover-foreground! shadow-menu! dark:ring-1! dark:ring-white/10!" }}
-        />
+        <Toaster dir={dir} />
       </Direction.Provider>
     </QueryClientProvider>
   );

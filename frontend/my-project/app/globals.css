@@ -346,9 +346,8 @@
   /* Menus, popovers and selects float on a small shadow instead of a border. */
   --shadow-menu: 0 12px 32px -12px rgb(17 18 20 / 0.22), 0 2px 6px -1px rgb(17 18 20 / 0.08);
   --shadow-dialog: 0 24px 64px -16px rgb(17 18 20 / 0.28), 0 4px 12px -2px rgb(17 18 20 / 0.08);
-  /* Dashboard cards: a hairline border plus a barely-there lift; more on hover. */
+  /* A barely-there lift for previews and pills that sit on the page; dashboard cards stay flat. */
   --shadow-card: 0 1px 2px rgb(17 18 20 / 0.04), 0 4px 12px -6px rgb(17 18 20 / 0.06);
-  --shadow-card-hover: 0 2px 4px rgb(17 18 20 / 0.05), 0 14px 28px -12px rgb(17 18 20 / 0.16);
 
   --animate-fade-in: fade-in 180ms ease-out;
   --animate-fade-out: fade-out 140ms ease-in forwards;
@@ -552,12 +551,16 @@
   }
 }
 
-/* The dashboard's card: 16 px radius, hairline border, soft lift (FRONTEND.md §4). */
+/* The dashboard's card: 16 px radius, hairline border, flat (FRONTEND.md §4). */
 @utility card-surface {
   border-radius: 1rem;
   border: 1px solid var(--border);
   background-color: var(--card);
-  box-shadow: var(--shadow-card);
+}
+
+/* Toasts rise above a page's sticky action bar (the composer's) instead of covering it. */
+body:has([data-action-bar]) [data-sonner-toaster][data-y-position="bottom"] {
+  bottom: 5.5rem;
 }
 
 /* Horizontal tab rows scroll without showing a scrollbar. */

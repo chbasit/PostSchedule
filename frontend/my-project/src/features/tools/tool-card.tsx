@@ -30,7 +30,7 @@ export function ToolCard({ tool }: { tool: ToolInfo }) {
   return (
     <Link
       href={toolHref(tool)}
-      className="card-surface group flex h-full flex-col gap-4 p-5 transition-[translate,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-card-hover"
+      className="card-surface group flex h-full flex-col gap-4 p-5 transition-colors duration-200 hover:border-foreground/25"
     >
       <ToolGlyph tool={tool} />
       <div className="flex-1 space-y-1">

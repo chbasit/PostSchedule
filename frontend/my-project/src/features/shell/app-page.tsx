@@ -89,7 +89,7 @@ export function PageSkeleton({ kind }: { kind: SkeletonKind }) {
  */
 export function AppPage({ skeleton, children }: { skeleton: SkeletonKind; children: ReactNode }) {
   const state = useWorkspaceState();
-  if (state.status === "ready") return <div className="animate-fade-up">{children}</div>;
+  if (state.status === "ready") return <div className="flex-1 animate-fade-up">{children}</div>;
   if (state.status === "error") {
     return <ErrorState error={state.error} onRetry={state.retry} className="mx-auto max-w-md" />;
   }

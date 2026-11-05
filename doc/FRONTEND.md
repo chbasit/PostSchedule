@@ -290,7 +290,7 @@ Using shadcn/ui variable names. If you scaffold with Tailwind v4, map them with 
 | `--highlight` / `--highlight-foreground` | `#E6F4EA` / ink | `#12301F` / `#FAFAFA` | Current page, selections, date and plan badges (13:1 or better) |
 | `--brand-sky` (`bg-sky`) | `#ADDAFF` | `#ADDAFF` | Icon chips, the workspace mark; ink on top |
 | `--chip-*` (`components/tint.ts` `chips`) | sky, violet, green, rose, blue, amber | lighter steps | Stat-card icon chips; decorative, the label carries the meaning |
-| `--shadow-card`, `card-surface` utility | | | Dashboard cards: 16 px radius, hairline border, soft shadow |
+| `--shadow-card`, `card-surface` utility | | | Dashboard cards: 16 px radius, hairline border, no shadow |
 
 Primary buttons stay ink with white text (sky on dark). Coral is not used inside the dashboard.
 
@@ -360,7 +360,7 @@ Every component must define: default, hover, focus-visible, active, disabled, lo
 | **Table** | Sticky header, sortable columns, row selection, bulk-action bar, column visibility, density toggle. Becomes cards below `md`. |
 | **Filter bar** | Buffer-style. List tabs on the left; on the right of the same row (from `xl`; below that, a row under the tabs) a small search box and borderless dropdowns for platform and tags: label and chevron, a muted fill on hover or open, a shadowed menu. Same pattern on Posts and Calendar, later Inbox and Analytics. Saved views and "clear all" come later. |
 | **Dialog and Sheet** | Dialog for decisions, sheet for detail panels and mobile. Trap focus, close on Escape, return focus to the trigger. |
-| **Toast** | Success and info only; errors that need action stay inline. Undo toast for quick destructive actions (8 s). |
+| **Toast** | Success and info only; errors that need action stay inline. Undo toast for quick destructive actions (8 s). One style for all (`src/components/toaster.tsx`): popover card with hairline border, coloured status icon, close button on the end side. Bottom end on desktop, raised above a sticky `data-action-bar`; top centre on phones. |
 | **Banner** | `announcement` (light green, centred, dismissible), `warning` (amber, for needs-reconnect and plan limits), `danger`, `info`. Persist dismissal per user. |
 | **Empty state** | Illustration or icon, one sentence on what this is, one primary action. Never a blank area. |
 | **Skeleton** | Matches the final layout to prevent layout shift. |

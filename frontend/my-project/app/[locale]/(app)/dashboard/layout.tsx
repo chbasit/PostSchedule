@@ -14,7 +14,8 @@ export const metadata: Metadata = { robots: { index: false, follow: false } };
 // From lg up the sidebar sits on the shell colour and the page is a white, rounded panel
 // that scrolls on its own, so the header stays inside its rounded corners. The panel is
 // positioned so visually hidden elements (sr-only text, Radix's hidden inputs) stay inside
-// it instead of stretching the page below the frame.
+// it instead of stretching the page below the frame. From lg up, main is a column that the
+// page fills, so a page can pin something to the panel's bottom edge (the composer's action bar).
 export default function DashboardLayout({ children }: LayoutProps<"/[locale]/dashboard">) {
   return (
     <SessionProvider>
@@ -23,7 +24,7 @@ export default function DashboardLayout({ children }: LayoutProps<"/[locale]/das
         <div className="relative flex min-w-0 flex-1 flex-col bg-background lg:my-2 lg:me-2 lg:overflow-y-auto lg:rounded-xl lg:border">
           <AppHeader />
           <ShellBanners />
-          <main id="main" className="flex-1 px-4 pb-24 pt-4 md:px-8 md:pt-5 lg:pb-8">
+          <main id="main" className="flex-1 px-4 pb-24 pt-4 md:px-8 md:pt-5 lg:flex lg:flex-col lg:pb-8">
             {children}
           </main>
         </div>

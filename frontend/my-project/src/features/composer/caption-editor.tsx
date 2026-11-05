@@ -121,7 +121,8 @@ export function CaptionEditor({ main, overrides, accounts, onMainChange, onOverr
             ))}
           </TabsList>
         ) : null}
-        <TabsContent value="main">
+        {/* Without the tab row above it, the box starts at the top of the card. */}
+        <TabsContent value="main" className={accounts.length > 0 ? undefined : "pt-0"}>
           {box(
             <textarea
               value={main}

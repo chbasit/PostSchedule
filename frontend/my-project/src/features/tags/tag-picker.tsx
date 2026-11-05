@@ -60,7 +60,7 @@ export function TagPicker({ value, onChange, mode = "assign", className }: Props
           type="button"
           className={cn(
             // Filtering sits in a filter bar, so it drops the field border.
-            mode === "filter" ? selectTriggerGhost : cn(selectTrigger, "h-9 w-auto shrink-0 gap-1.5 font-medium", value.length > 0 && "border-foreground/60"),
+            mode === "filter" ? selectTriggerGhost : cn(selectTrigger, "h-9 w-auto shrink-0 gap-1.5 rounded-full px-3.5 font-medium", value.length > 0 && "border-foreground/60"),
             "[&_svg]:size-4 [&_svg]:shrink-0",
             className,
           )}

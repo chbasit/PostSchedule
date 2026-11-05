@@ -37,7 +37,6 @@ export function WhenControl({ value, onChange, userTimeZone, result, className }
       <PopoverTrigger asChild>
         <Button
           variant="secondary"
-          size="lg"
           className={cn("min-w-0 max-w-full gap-2 px-3", invalid && "border-destructive text-destructive", className)}
           aria-label={t("change", { when: summary })}
           data-testid="when-control"

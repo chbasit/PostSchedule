@@ -8,6 +8,7 @@ import {
   FileText,
   Film,
   Image as ImageIcon,
+  Info,
   Plus,
   Smartphone,
   Sparkles,
@@ -600,7 +601,9 @@ function ComposerForm({ initial, restored, storageKey, accounts, editPost, onRes
   const optionAccounts = selected.filter((a) => getPlatform(a.provider).publishOptions);
 
   return (
-    <div className="mx-auto max-w-350 space-y-5">
+    // Fills the page panel (from lg up) so the action bar sits on its bottom edge even when
+    // the form is short.
+    <div className="mx-auto flex min-h-full max-w-350 flex-col gap-5">
       <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
         <div className="flex items-center gap-3">
           <span aria-hidden className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-tint-peach text-tint-peach-fg">
@@ -717,7 +720,8 @@ function ComposerForm({ initial, restored, storageKey, accounts, editPost, onRes
                 <Sparkles className="text-tint-violet-fg" aria-hidden /> {t("aiHelp")}
                 {AI_ENABLED ? null : <SoonBadge />}
               </Button>
-              <div className="ms-auto flex items-center gap-2.5">
+              {/* The hint wraps beside the switch rather than pushing it onto a line of its own. */}
+              <div className="flex min-w-0 items-center gap-2.5 sm:ms-auto sm:max-w-sm">
                 <Switch
                   checked={draft.aiGenerated}
                   onCheckedChange={(aiGenerated) => update({ aiGenerated })}
@@ -820,9 +824,10 @@ function ComposerForm({ initial, restored, storageKey, accounts, editPost, onRes
       ) : null}
 
       {/* Action bar: stays in reach while scrolling, above the phone navigation (MOB-04). */}
-      <div className="sticky bottom-[calc(3.5rem+env(safe-area-inset-bottom))] z-20 -mx-4 border-t bg-background/95 px-4 py-3 backdrop-blur md:-mx-8 md:px-8 lg:bottom-0">
-        {/* Phones: options, then what is missing, then timing and submit nearest the thumb. Wider: one row. */}
-        <div className="mx-auto flex max-w-350 flex-wrap items-center gap-x-4 gap-y-2">
+      <div data-action-bar className="sticky bottom-[calc(3.5rem+env(safe-area-inset-bottom))] z-20 -mx-4 mt-auto border-t bg-background/95 px-4 py-3 backdrop-blur md:-mx-8 md:px-8 lg:bottom-0 lg:-mb-8">
+        {/* Phones: options, then what is missing, then timing and submit nearest the thumb. Wider: one
+            row, with what is missing next to the button it holds back. */}
+        <div className="mx-auto flex max-w-350 flex-wrap items-center gap-x-3 gap-y-2">
           <div className="flex items-center gap-2">
             <Checkbox id={anotherId} checked={createAnother} onCheckedChange={(v) => setCreateAnother(v === true)} />
             <label htmlFor={anotherId} className="cursor-pointer text-sm font-medium">
@@ -833,35 +838,37 @@ function ComposerForm({ initial, restored, storageKey, accounts, editPost, onRes
           <Button variant="ghost" loading={savingDraft} disabled={submit.isPending && !savingDraft} onClick={() => !submit.isPending && submit.mutate("draft")}>
             {t("saveDraft")}
           </Button>
-          {problemText ? (
-            <p role="status" title={problemText} className="w-full text-sm text-muted-foreground sm:w-auto sm:min-w-48 sm:flex-1 sm:truncate">
-              {problemText}
-            </p>
-          ) : null}
-          <div className="flex w-full min-w-0 items-center gap-2 sm:ms-auto sm:w-auto">
-            {preflightStatus ? (
-              <button type="button" onClick={() => showPanel("preview")} className="hidden shrink-0 rounded-full sm:block">
-                <SummaryChip status={preflightStatus} />
-                <span className="sr-only">{t("preflightOpen")}</span>
-              </button>
+          <div className="flex min-w-0 flex-1 basis-full flex-wrap items-center justify-end gap-x-3 gap-y-2 sm:basis-0 sm:flex-nowrap">
+            {problemText ? (
+              <p role="status" title={problemText} className="flex w-full min-w-0 items-center gap-1.5 text-sm text-muted-foreground sm:w-auto">
+                <Info className="size-4 shrink-0" aria-hidden />
+                <span className="truncate">{problemText}</span>
+              </p>
             ) : null}
-            <WhenControl
-              value={draft.when}
-              onChange={(when) => update({ when })}
-              userTimeZone={user.timezone}
-              result={whenResult}
-              className="flex-1 max-sm:text-sm sm:flex-none"
-            />
-            <Button
-              size="lg"
-              className="shrink-0 max-sm:px-4 max-sm:text-sm"
-              disabled={problems.length > 0 || uploading || savingDraft}
-              loading={submit.isPending && !savingDraft}
-              onClick={() => !submit.isPending && submit.mutate(intent)}
-              data-testid="schedule-post"
-            >
-              {submit.isPending && !savingDraft ? t("submitting") : t(`submit.${intent}`)}
-            </Button>
+            <div className="flex w-full min-w-0 items-center gap-2 sm:w-auto sm:shrink-0">
+              {preflightStatus ? (
+                <button type="button" onClick={() => showPanel("preview")} className="hidden shrink-0 rounded-full sm:block">
+                  <SummaryChip status={preflightStatus} />
+                  <span className="sr-only">{t("preflightOpen")}</span>
+                </button>
+              ) : null}
+              <WhenControl
+                value={draft.when}
+                onChange={(when) => update({ when })}
+                userTimeZone={user.timezone}
+                result={whenResult}
+                className="flex-1 sm:flex-none"
+              />
+              <Button
+                className="shrink-0"
+                disabled={problems.length > 0 || uploading || savingDraft}
+                loading={submit.isPending && !savingDraft}
+                onClick={() => !submit.isPending && submit.mutate(intent)}
+                data-testid="schedule-post"
+              >
+                {submit.isPending && !savingDraft ? t("submitting") : t(`submit.${intent}`)}
+              </Button>
+            </div>
           </div>
         </div>
       </div>

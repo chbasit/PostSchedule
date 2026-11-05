@@ -15,15 +15,15 @@ export const tints: Record<Tint, { surface: string; icon: string; fg: string; li
 
 export const TINT_ORDER: readonly Tint[] = ["blue", "green", "violet", "peach", "rose", "amber"];
 
-// Solid icon chips (stat cards) with a soft halo of the same colour. Sky and amber carry
-// ink glyphs; the saturated chips use --chip-glyph (white in light, ink in dark).
+// Solid, single-colour icon chips (stat cards). Sky and amber carry ink glyphs; the saturated
+// chips use --chip-glyph (white in light, ink in dark).
 export type Chip = "sky" | "violet" | "green" | "rose" | "blue" | "amber";
 
 export const chips: Record<Chip, string> = {
-  sky: "bg-chip-sky text-ink ring-chip-sky/35",
-  violet: "bg-chip-violet text-chip-glyph ring-chip-violet/15",
-  green: "bg-chip-green text-chip-glyph ring-chip-green/15",
-  rose: "bg-chip-rose text-chip-glyph ring-chip-rose/15",
-  blue: "bg-chip-blue text-chip-glyph ring-chip-blue/15",
-  amber: "bg-chip-amber text-ink ring-chip-amber/20",
+  sky: "bg-chip-sky text-ink",
+  violet: "bg-chip-violet text-chip-glyph",
+  green: "bg-chip-green text-chip-glyph",
+  rose: "bg-chip-rose text-chip-glyph",
+  blue: "bg-chip-blue text-chip-glyph",
+  amber: "bg-chip-amber text-ink",
 };

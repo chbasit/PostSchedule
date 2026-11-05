@@ -74,13 +74,13 @@ function StatCard({
     <Link
       href={href}
       style={{ animationDelay: `${index * 70}ms` }}
-      className="card-surface group flex animate-fade-up flex-col gap-3 p-4 transition-[translate,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-card-hover sm:p-5"
+      className="card-surface group flex animate-fade-up flex-col gap-3 p-4 transition-colors duration-200 hover:border-foreground/25 sm:p-5"
     >
       <div className="flex items-start justify-between gap-3">
         <p className="pt-1 text-sm font-medium text-muted-foreground">{label}</p>
         <span
           aria-hidden
-          className={cn("inline-flex size-9 shrink-0 items-center justify-center rounded-full ring-4 transition-transform duration-200 group-hover:scale-105", chips[chip])}
+          className={cn("inline-flex size-9 shrink-0 items-center justify-center rounded-full transition-transform duration-200 group-hover:scale-105", chips[chip])}
         >
           <Icon className="size-4.5" />
         </span>
