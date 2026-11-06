@@ -22,6 +22,10 @@ const nextConfig: NextConfig = {
   experimental: {
     // `radix-ui` re-exports ~40 packages; without this every route compiles all of them in dev.
     optimizePackageImports: ["radix-ui"],
+    // One build worker. By default Next.js starts one per core, and Hostinger's build machine
+    // reports 64 cores but caps the threads a plan may run, so 63 workers crashed the build
+    // (DECISIONS.md 2026-11-05).
+    cpus: 1,
   },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
