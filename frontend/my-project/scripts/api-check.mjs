@@ -116,6 +116,12 @@ try {
   await check("a request from another site is refused (403)", async () => {
     expect(await anon.call("POST", "/auth/sign-in", { email: emailA, password: "x" }, { Origin: "https://evil.example" }), 403);
   });
+  await check("a browser request marked cross-site is refused (403), whatever its Origin", async () => {
+    expect(await anon.call("POST", "/auth/sign-in", { email: emailA, password: "x" }, { Origin: BASE, "Sec-Fetch-Site": "cross-site" }), 403);
+  });
+  await check("a browser request marked same-origin passes the site check", async () => {
+    expect(await anon.call("POST", "/auth/sign-in", "not json", { Origin: "https://0.0.0.0:3000", "Sec-Fetch-Site": "same-origin" }), 422);
+  });
   await check("a body that is not JSON is refused (422)", async () => {
     expect(await anon.call("POST", "/auth/sign-in", "not json"), 422);
   });

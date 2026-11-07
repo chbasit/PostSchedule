@@ -32,7 +32,11 @@ export function authFailure(error: AuthError): ApiFailure {
       return fail.rateLimited(60);
     default:
       if (error.status === 429) return fail.rateLimited(60);
-      if (error.status === 403 || error.status === 401) return fail.validation("That code is wrong or has expired.", { reason: "invalid_code" });
+      if (error.status === 403 || error.status === 401) {
+        // Usually a wrong code, but a wrong API key or a blocked request look the same: log it.
+        console.warn("[auth]", error.code, error.status, error.message);
+        return fail.validation("That code is wrong or has expired.", { reason: "invalid_code" });
+      }
       console.error("[auth]", error.code, error.status, error.message);
       return new ApiFailure(500, "internal", "Something went wrong on our side.");
   }

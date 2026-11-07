@@ -1,11 +1,13 @@
 import { NextResponse } from "next/server";
 import { safeNextPath } from "@/lib/utils";
+import { siteUrl } from "@/server/env";
 import { route } from "@/server/route";
 import { userClient } from "@/server/supabase";
 
 // Starts Google sign-in. Supabase keeps the PKCE verifier in a cookie for the callback.
+// Links use the public site URL: behind a proxy the request's own URL is an internal address.
 export const GET = route(async (req) => {
-  const origin = req.nextUrl.origin;
+  const origin = siteUrl();
   const next = safeNextPath(req.nextUrl.searchParams.get("next"));
   if (process.env.NEXT_PUBLIC_GOOGLE_AUTH !== "true") {
     return NextResponse.redirect(new URL("/login?error=google_unavailable", origin));

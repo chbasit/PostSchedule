@@ -1,12 +1,14 @@
 import { NextResponse } from "next/server";
 import { safeNextPath } from "@/lib/utils";
+import { siteUrl } from "@/server/env";
 import { route } from "@/server/route";
 import { markSignedIn } from "@/server/session";
 import { userClient } from "@/server/supabase";
 
-// Google sends people back here with a one-time code.
+// Google sends people back here with a one-time code. Redirects use the public site URL (see
+// the Google route).
 export const GET = route(async (req) => {
-  const origin = req.nextUrl.origin;
+  const origin = siteUrl();
   const code = req.nextUrl.searchParams.get("code");
   const next = safeNextPath(req.nextUrl.searchParams.get("next"));
   if (!code) return NextResponse.redirect(new URL("/login?error=oauth", origin));

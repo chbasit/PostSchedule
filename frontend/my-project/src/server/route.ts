@@ -3,6 +3,7 @@ import type { PostgrestError } from "@supabase/supabase-js";
 import { unstable_rethrow } from "next/navigation";
 import { connection, NextResponse, type NextRequest } from "next/server";
 import { z, ZodError, type ZodType } from "zod";
+import { siteUrl } from "./env";
 import { ApiFailure, fail } from "./errors";
 
 // Every route handler goes through route(): one error envelope, no caching, and mutating
@@ -29,10 +30,20 @@ export function route<P = Record<string, string>>(fn: Handler<P>) {
   };
 }
 
+// Browsers say where a request comes from in Sec-Fetch-Site; older ones only send Origin. Behind
+// a proxy the request's own URL is the app's internal address (Hostinger: https://0.0.0.0:3000),
+// so Origin is compared with the public site URL as well.
 function assertSameOrigin(req: NextRequest) {
+  const fetchSite = req.headers.get("sec-fetch-site");
+  if (fetchSite) {
+    if (fetchSite !== "same-origin") throw fail.forbidden("This request came from another site.");
+    return;
+  }
   const origin = req.headers.get("origin");
   // Browsers always send Origin on cross-site POSTs; no Origin means a non-browser client.
-  if (origin && origin !== req.nextUrl.origin) throw fail.forbidden("This request came from another site.");
+  if (origin && origin !== new URL(siteUrl()).origin && origin !== req.nextUrl.origin) {
+    throw fail.forbidden("This request came from another site.");
+  }
 }
 
 export function errorResponse(e: unknown, requestId: string): Response {
