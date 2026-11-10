@@ -1,4 +1,4 @@
-import { PRODUCT_DOMAIN, PRODUCT_NAME, SUPPORT_EMAIL } from "@/config/site";
+import { OPERATOR_NAME, OPERATOR_PLACE, PRODUCT_DOMAIN, PRODUCT_NAME, SUPPORT_EMAIL } from "@/config/site";
 import { TRIAL_DAYS } from "@/lib/billing/plans";
 import { mailLink } from "./inline";
 import type { LegalDocument } from "./types";
@@ -6,9 +6,9 @@ import type { LegalDocument } from "./types";
 const EMAIL = mailLink(SUPPORT_EMAIL);
 
 export const terms: LegalDocument = {
-  updated: "2026-11-02",
+  updated: "2026-11-10",
   intro: [
-    `These terms are the agreement between you and ${PRODUCT_NAME} ("we", "us") for using ${PRODUCT_DOMAIN}, the app and our free tools. By creating an account or using the service, you accept them. Please also read our [privacy policy](/privacy).`,
+    `These terms are the agreement between you and ${PRODUCT_NAME} ("we", "us"), the trading name of ${OPERATOR_NAME}, a sole proprietor based in ${OPERATOR_PLACE}, for using ${PRODUCT_DOMAIN}, the app and our free tools. By creating an account or using the service, you accept them. Please also read our [privacy policy](/privacy).`,
   ],
   sections: [
     {

@@ -2,6 +2,13 @@
 
 Newest first. Format from `PROJECTFLOW.md` §9.
 
+## 2026-11-10 — The legal pages name the operator
+
+Decision: AgentiqSocial is the trading name of Abdul Basit, a sole proprietor (FBR taxpayer registration as an individual, activity "Business") based in Sahiwal, Pakistan. `OPERATOR_NAME` and `OPERATOR_PLACE` in `src/config/site.ts` hold this. The terms' opening line and the privacy policy's "Who we are" say so; the footer and the rest of the site stay brand-only. The street address is left off the site.
+Why: Meta's business verification checks that the website shows the legal name on the submitted document, and the registration is in the founder's own name, not "AgentiqSocial". It also settles the 2026-11-02 entry's "no legal entity yet".
+Alternatives: The name in the footer's copyright line on every page (tried and dropped: a personal name there looks unprofessional; the legal pages are where operators are usually named). Registering "AgentiqSocial" as a company with SECP first (costs fees and time; not needed to start). Publishing the full street address (left off: it is a home address; add it if a reviewer asks).
+Revisit when: A company is registered (put its name in), or a platform review asks for the street address on the site.
+
 ## 2026-11-05 — Production builds use webpack; Tailwind runs through PostCSS
 
 Decision: `npm run build` is `next build --webpack`; `npm run dev` stays on Turbopack. Tailwind is a PostCSS plugin (`postcss.config.mjs`, `@tailwindcss/postcss`) instead of the Turbopack-only `@tailwindcss/turbopack` loader, which is removed with its `turbopack.rules` entry in `next.config.ts`, so both bundlers compile the same CSS.

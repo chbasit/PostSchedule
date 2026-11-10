@@ -1,11 +1,11 @@
-import { PRODUCT_DOMAIN, PRODUCT_NAME, SUPPORT_EMAIL } from "@/config/site";
+import { OPERATOR_NAME, OPERATOR_PLACE, PRODUCT_DOMAIN, PRODUCT_NAME, SUPPORT_EMAIL } from "@/config/site";
 import { mailLink } from "./inline";
 import type { LegalDocument } from "./types";
 
 const EMAIL = mailLink(SUPPORT_EMAIL);
 
 export const privacy: LegalDocument = {
-  updated: "2026-11-02",
+  updated: "2026-11-10",
   intro: [
     `This policy explains what ${PRODUCT_NAME} collects when you use ${PRODUCT_DOMAIN}, why we collect it, who we share it with, and how you can see, export or delete it.`,
     "We do not sell your personal data, we do not use it for advertising, and we do not use your content to train AI models.",
@@ -15,7 +15,8 @@ export const privacy: LegalDocument = {
       id: "who-we-are",
       heading: "Who we are",
       blocks: [
-        `${PRODUCT_NAME} ("we", "us") is a social media management service run from Pakistan. It lets you plan, preview, schedule and publish posts to the social accounts you connect, and see how they perform.`,
+        `${PRODUCT_NAME} ("we", "us") is a social media management service. It lets you plan, preview, schedule and publish posts to the social accounts you connect, and see how they perform.`,
+        `${PRODUCT_NAME} is the trading name of ${OPERATOR_NAME}, a sole proprietor based in ${OPERATOR_PLACE}, who is responsible for your personal data.`,
         `For any privacy question or request, email ${EMAIL}.`,
       ],
     },

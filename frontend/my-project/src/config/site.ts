@@ -3,6 +3,10 @@ export const PRODUCT_NAME = "AgentiqSocial";
 export const PRODUCT_DOMAIN = "agentiqsocial.com";
 // Support, privacy and deletion requests (the legal pages and platform app reviews list it).
 export const SUPPORT_EMAIL = `support@${PRODUCT_DOMAIN}`;
+// Who runs the product, as on the FBR registration (DECISIONS.md 2026-11-10). Only the terms and
+// privacy policy name them; Meta's business verification looks for this name on the site.
+export const OPERATOR_NAME = "Abdul Basit";
+export const OPERATOR_PLACE = "Sahiwal, Pakistan";
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
