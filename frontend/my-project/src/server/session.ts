@@ -50,6 +50,14 @@ export async function markSignedIn() {
   });
 }
 
+// Where a sign-in through Google or an email link lands: the page it started from, otherwise
+// onboarding or the dashboard.
+export async function landingAfterSignIn(db: SupabaseClient, userId: string, next: string | null): Promise<string> {
+  if (next) return next;
+  const { data: profile } = await db.from("profiles").select("onboarded_at").eq("id", userId).maybeSingle();
+  return profile?.onboarded_at ? "/dashboard" : "/onboarding/start";
+}
+
 export async function markSignedOut() {
   const store = await cookies();
   store.set(SESSION_COOKIE, "", { httpOnly: true, sameSite: "lax", path: "/", maxAge: 0 });

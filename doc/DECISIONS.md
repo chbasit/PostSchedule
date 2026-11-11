@@ -2,6 +2,13 @@
 
 Newest first. Format from `PROJECTFLOW.md` §9.
 
+## 2026-11-11 — Google sign-in runs on our own domain
+
+Decision: The app does Google's OAuth code flow itself and hands the ID token to Supabase (`signInWithIdToken`) instead of sending people through Supabase's `/auth/v1/authorize`. `/api/v1/auth/google` builds Google's sign-in URL (PKCE S256, a state value, the SHA-256 of a nonce) and keeps the attempt in a ten-minute `ps_google` cookie limited to the Google routes. `/api/v1/auth/google/callback` checks the state, swaps the code for the ID token (with the client secret) and passes the token and the raw nonce to Supabase, which checks the signature, the audience and the nonce, then signs the person in or creates their account. The OAuth client is the one Supabase's Google provider already lists (`GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, server only). `/api/v1/auth/callback` stays for Supabase's own email links. Helpers and tests: `src/server/google-oauth.ts`.
+Why: With Supabase's redirect, Google's account chooser said "to continue to bzmntxjjdrvvtelqznaf.supabase.co": Google shows the redirect host for apps whose branding is not verified, and Supabase's docs warn that the project address hurts trust. Now it shows agentiqsocial.com, and "AgentiqSocial" once Google verifies the branding.
+Alternatives: A Supabase custom domain such as auth.agentiqsocial.com (no code, but it needs a paid Supabase plan and the custom domain add-on). Branding verification alone (free, but the redirect would still be on supabase.co).
+Revisit when: The project moves to a Supabase custom domain, or Supabase can show the site's own domain on Google's screens without one.
+
 ## 2026-11-10 — The legal pages and the footer name the operator
 
 Decision: AgentiqSocial is the trading name of Abdul Basit, a sole proprietor (FBR taxpayer registration as an individual, activity "Business") based in Sahiwal, Pakistan. `OPERATOR_NAME` and `OPERATOR_PLACE` in `src/config/site.ts` hold this. The terms' opening line and the privacy policy's "Who we are" say so, and the footer has a small line under the copyright ("AgentiqSocial is a trading name of Abdul Basit.", key `marketing.footer.operator`, all six locales). The rest of the site stays brand-only. The street address is left off the site.

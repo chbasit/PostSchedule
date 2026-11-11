@@ -24,6 +24,13 @@ const billing = z.object({
   LEMONSQUEEZY_TEST_MODE: z.enum(["true", "false"]).default("true"),
 });
 
+// Google sign-in's OAuth client: the same one Supabase's Google provider lists, so Supabase
+// accepts its ID tokens (DECISIONS.md 2026-11-11).
+const google = z.object({
+  GOOGLE_CLIENT_ID: z.string().min(10),
+  GOOGLE_CLIENT_SECRET: z.string().min(10),
+});
+
 // AI services (BACKEND.md §16). Each kind of work picks its provider; only that provider's
 // key is required. Models can be changed without a deploy of new code.
 const ai = z.object({
@@ -62,6 +69,18 @@ export function billingEnv() {
   if (!parsed.success) {
     console.error("[env] billing missing or invalid:", parsed.error.issues.map((i) => i.path.join(".")).join(", "));
     throw fail.notConfigured("Billing");
+  }
+  return parsed.data;
+}
+
+// Null while Google sign-in is switched off or its client is not set; the caller sends the
+// person back to the sign-in page instead of showing an error body.
+export function googleEnv() {
+  if (process.env.NEXT_PUBLIC_GOOGLE_AUTH !== "true") return null;
+  const parsed = google.safeParse(process.env);
+  if (!parsed.success) {
+    console.error("[env] Google sign-in missing or invalid:", parsed.error.issues.map((i) => i.path.join(".")).join(", "));
+    return null;
   }
   return parsed.data;
 }
