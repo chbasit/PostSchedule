@@ -246,42 +246,25 @@
           "body": "Pick a time zone and a time. We publish once, retry safely, and tell you if anything fails."
         }
       },
-      "wall": {
-        "title": "Built for every kind of business",
-        "sub": "Shops, studios, agencies and creators all post the same way: write once, preview every platform, schedule.",
-        "items": {
-          "realEstate": {
-            "label": "Real estate",
-            "text": "Just listed: a modern family home with a garden. Viewings this Saturday, book your slot."
-          },
-          "beauty": {
-            "label": "Beauty brand",
-            "text": "Plan a month of launches and tutorials in one sitting, and post them to Instagram and TikTok on the same day."
-          },
-          "agency": {
-            "label": "Agency",
-            "text": "Run every client’s accounts from one dashboard, and send posts for approval with a link."
-          },
-          "bakery": {
-            "label": "Bakery",
-            "text": "Fresh sourdough out of the oven at 7. Reserve yours before it’s gone!"
-          },
-          "restaurant": {
-            "label": "Restaurant",
-            "text": "Tonight’s special: seared duck with potato gratin and a rich sauce. Tables from 6 pm."
-          },
-          "shop": {
-            "label": "Online shop",
-            "text": "Schedule product drops on every platform, and check each video before it goes live."
-          },
-          "creator": {
-            "label": "Creator",
-            "text": "Post one video to TikTok, Reels and Shorts at once, each in the right format."
-          },
-          "fitness": {
-            "label": "Fitness coach",
-            "text": "Monday mobility: 10 minutes, no equipment. Save this for tomorrow morning."
-          }
+      "businesses": {
+        "bakery": {
+          "label": "Bakery",
+          "text": "Fresh sourdough out of the oven at 7. Reserve yours before it’s gone!"
+        },
+        "agency": {
+          "label": "Agency"
+        },
+        "realEstate": {
+          "label": "Real estate"
+        },
+        "fitness": {
+          "label": "Fitness coach"
+        },
+        "shop": {
+          "label": "Online shop"
+        },
+        "restaurant": {
+          "label": "Restaurant"
         }
       },
       "brands": {

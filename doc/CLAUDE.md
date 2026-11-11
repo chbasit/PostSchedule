@@ -110,7 +110,7 @@ e2e/                           end-to-end tests
 | Agency | $60 | $680 | 75 | 10 |
 | Scale | $130 | $1,480 | 200 | 25 |
 
-- Yearly prices are set per plan (saving 5–17%; `src/lib/billing/plans.ts`, matching the Lemon Squeezy variants). 14-day trial, no card. Founding customers (first 100) get a 24-month price lock.
+- Yearly prices are set per plan (saving 5–17%; `src/lib/billing/plans.ts`, matching the Lemon Squeezy variants). 7-day trial, no card. Founding customers (first 100) get a 24-month price lock.
 - Lemon Squeezy fee is 5% + $0.50 per sale. Confirm Pakistan payout before committing to launch date.
 - Single source of truth for plans in code will be `src/lib/billing/plans.ts`.
 

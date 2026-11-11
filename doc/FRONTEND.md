@@ -480,7 +480,7 @@ Account-creation order is **value first** (recommended in the plan for the first
   4. `/onboarding/connect`: grid of platforms. Each opens that platform's own sign-in screen, then returns here. Skippable.
   5. `/onboarding/plan`: shown only if the user hit a paid feature, or in card-first mode. Otherwise skipped.
   6. `/onboarding/done` → `/dashboard` with the **first-post checklist**: connect an account, upload a video, schedule a post.
-- **System:** one transaction creates the profile, the default workspace and the membership. The workspace starts a 14-day trial (no card).
+- **System:** one transaction creates the profile, the default workspace and the membership. The workspace starts a 7-day trial (no card).
 - **Edge cases:** email already registered (neutral message), code wrong or expired (send a new one; 5 wrong codes lock the address for 15 minutes or until a new code is sent), signing in before confirming (the sign-in form links to the code page), Google sign-in cancelled, user closes the tab mid-onboarding (resume where they left off on next sign-in).
 - **Success:** user reaches the dashboard. Metric: signup → first account connected within 24 hours.
 
@@ -1014,6 +1014,6 @@ Rules:
 3. **Brand font.** DM Sans across the product (2026-11-03). A distinct display face is optional.
 4. **Sign-up order.** Value first (assumed here) or card first.
 5. **Wave 1 languages.** English, Spanish, Portuguese (Brazil), French, German are assumed.
-6. **What the 14-day trial includes** (assumed: Pro-level features, no card).
+6. **What the 7-day trial includes** (assumed: Pro-level features, no card).
 7. **Which module follows Publish** (Engage is assumed).
 8. **Design deliverables:** low-fidelity wireframes of the nine key screens first, then high-fidelity designs once name and colours are final, then a clickable prototype of the first-post flow, the approval flow and the inbox, tested with five people per module.

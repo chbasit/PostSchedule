@@ -5,6 +5,7 @@ import { Bell, Check, ChevronDown, CircleCheck, CircleX, Search, Unplug, UserChe
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { Avatar } from "@/components/avatar";
+import { ThemeToggle } from "@/components/theme";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -178,6 +179,7 @@ function ReadyTools() {
   return (
     <>
       <GlobalSearch />
+      <ThemeToggle />
       <NotificationBell />
       <UserMenu key={user.id} />
     </>

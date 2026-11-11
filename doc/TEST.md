@@ -264,7 +264,7 @@ Platform OAuth tokens let someone post as our customers. Treat them like passwor
 | PAY-14 | Downgrade with usage over the new limit (for example 40 accounts to a 25-account plan) → existing data kept, new connections blocked, clear message, defined publishing behaviour | P0 |
 | PAY-15 | Upgrade mid-cycle → new limits apply right after the webhook; proration shown matches the provider | P1 |
 | PAY-16 | Refund or chargeback → entitlement changes per policy; audit-logged | P1 |
-| PAY-17 | 14-day trial with no card: expires correctly; cannot be restarted by creating new workspaces with the same user or email | P1 |
+| PAY-17 | 7-day trial with no card: expires correctly; cannot be restarted by creating new workspaces with the same user or email | P1 |
 | PAY-18 | Prices on the pricing page, in `plans.ts` and at checkout match; yearly equals 10 months | P1 |
 | PAY-19 | Customer-portal link is authenticated and scoped to the workspace | P0 |
 | PAY-20 | Only owner and billing roles can see or start billing actions (enforced on the server) | P0 |

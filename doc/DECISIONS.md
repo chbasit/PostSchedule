@@ -2,6 +2,28 @@
 
 Newest first. Format from `PROJECTFLOW.md` §9.
 
+## 2026-11-11 — 7-day trial; theme button only on the site and in the dashboard; lighter auth headings
+
+Decision:
+- **7-day trial.** The free trial is 7 days, not 14. `TRIAL_DAYS` in `plans.ts` drives every text (hero note, pricing, sign-up, terms). The signup function sets the trial end in the database, so `supabase/migrations/20261111120000_seven_day_trial.sql` replaces it with the same body and `interval '7 days'`. Trials that already started keep their end date.
+- **Theme button.** The moon/sun button is on the public site and in the dashboard header (next to search), but not on sign-in, sign-up, password pages or onboarding. Those still follow the saved theme.
+- **Auth headings.** The sign-in, sign-up, password and "check your inbox" headings are larger and light: `text-3xl font-light`, up from `text-2xl font-semibold`.
+
+Why: The founder asked for all three.
+Alternatives: Changing only the texts to 7 days (rejected: new accounts would still get 14 days from the database).
+Revisit when: Trial conversion data suggests a different length. Change `TRIAL_DAYS` and the signup function together.
+
+## 2026-11-11 — The business wall is gone; borderless cards in the band
+
+Decision:
+- **Business wall removed.** The "Built for every kind of business" section is gone (`business-wall.tsx`), with its fitness, real-estate and restaurant photos. The phone previews keep the bakery photo, and the texts they and the brand tree use moved to `marketing.home.businesses`.
+- **Reviews and spacing.** `marquee.tsx` stays for the reviews section. The brand tree now spaces itself below, not above, because Pricing follows it directly.
+- **Band cards.** The features band's cards ("Video pre-flight checks" and so on, and the three steps) have no border: white on the `#F7F7F7` band.
+
+Why: The founder asked for both.
+Alternatives: None considered.
+Revisit when: Real customer posts can be shown (with permission). A wall or slider of them could come back then.
+
 ## 2026-11-11 — English only; no dark sections in the light theme; four highlights under the hero
 
 Decision:

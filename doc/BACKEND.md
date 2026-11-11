@@ -448,7 +448,7 @@ Every workspace gets a `subscriptions` row at creation (the Free plan), and the 
 
 ### 6.2 Signup transaction
 
-A database trigger (or one RPC) on new auth users creates, in one transaction: the `profiles` row, a default `workspaces` row, the owner's `workspace_members` row, and a free-plan `subscriptions` row with a 14-day trial end. If any step fails, none are kept.
+A database trigger (or one RPC) on new auth users creates, in one transaction: the `profiles` row, a default `workspaces` row, the owner's `workspace_members` row, and a free-plan `subscriptions` row with a 7-day trial end. If any step fails, none are kept.
 
 ### 6.3 Server helpers
 
@@ -814,7 +814,7 @@ Enforced on the server in every action and route, and again in the database for 
 ### 11.5 Reconciliation and trials
 
 - A daily job compares our subscription rows with Lemon Squeezy and alerts on any mismatch (covers missed webhooks).
-- Trials: 14 days, no card, a trial end date on the row, reminders 3 days and 1 day before, automatic move to Free. Repeat trials are limited per user and email (`TEST.md` PAY-17).
+- Trials: 7 days (DECISIONS.md 2026-11-11), no card, a trial end date on the row, reminders 3 days and 1 day before, automatic move to Free. Repeat trials are limited per user and email (`TEST.md` PAY-17).
 - Avoid per-account metering at launch: fixed bundles are simpler to build and explain.
 
 ---

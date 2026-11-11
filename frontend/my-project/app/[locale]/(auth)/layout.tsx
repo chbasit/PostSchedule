@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { useTranslations } from "next-intl";
 import { Suspense } from "react";
 import { Logo } from "@/components/logo";
-import { ThemeToggle } from "@/components/theme";
 import { Skeleton } from "@/components/ui/misc";
 import { DEV_MODE } from "@/config/site";
 import { Link } from "@/i18n/navigation";
@@ -34,7 +33,7 @@ export default function AuthLayout({ children }: LayoutProps<"/[locale]">) {
             {t("badge")}
           </span>
         ) : null}
-        <ThemeToggle />
+        {/* No theme button here: only the site and the dashboard have one (founder's call, 2026-11-11). */}
       </div>
       <main id="main" className="flex flex-1 flex-col items-center justify-center px-4 pb-14">
         <Link href="/" className="mb-6 rounded">

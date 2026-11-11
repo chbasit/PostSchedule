@@ -28,7 +28,6 @@ import { PLATFORMS } from "@/providers/catalog";
 import { GoogleIcon } from "@/features/auth/google-icon";
 import { AgentConsole } from "@/features/marketing/agent-console";
 import { BrandTree } from "@/features/marketing/brand-tree";
-import { BusinessWall } from "@/features/marketing/business-wall";
 import { Clip, type ClipName } from "@/features/marketing/clip";
 import { Comparison } from "@/features/marketing/comparison";
 import { CustomerReviews } from "@/features/marketing/customer-reviews";
@@ -319,7 +318,7 @@ export default function HomePage() {
 
           <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {EXTRAS.map(({ key, icon: Icon, chip }) => (
-              <li key={key} className="rounded-2xl bg-card p-6 ring-1 ring-border">
+              <li key={key} className="rounded-2xl bg-card p-6">
                 <span className={cn("inline-flex size-11 items-center justify-center rounded-2xl text-foreground", chip)}>
                   <Icon className="size-5" aria-hidden />
                 </span>
@@ -333,7 +332,7 @@ export default function HomePage() {
             <h3 className="display text-center text-2xl text-balance md:text-3xl">{t("stepsTitle")}</h3>
             <ol className="mt-10 grid gap-4 md:grid-cols-3">
               {(["connect", "check", "schedule"] as const).map((step, i) => (
-                <li key={step} className="rounded-2xl bg-card p-7 ring-1 ring-border">
+                <li key={step} className="rounded-2xl bg-card p-7">
                   <span aria-hidden className={cn("tabular inline-flex size-11 items-center justify-center rounded-2xl font-heading text-lg font-semibold text-foreground", STEP_CHIPS[i])}>
                     {i + 1}
                   </span>
@@ -346,10 +345,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* One account, a workspace per brand; sample posts sliding by; real reviews once there
-          are any (each section explains itself). */}
+      {/* One account, a workspace per brand; real reviews once there are any (each section
+          explains itself). */}
       <BrandTree />
-      <BusinessWall />
       <CustomerReviews />
 
       {/* Pricing: the four paid plans side by side; Pricing compares all five. */}

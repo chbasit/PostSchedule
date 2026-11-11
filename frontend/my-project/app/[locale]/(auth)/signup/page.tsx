@@ -14,7 +14,7 @@ export default function SignupPage() {
   return (
     <div className="space-y-6">
       <div className="space-y-1.5 text-center">
-        <h1 className="text-2xl font-semibold tracking-tight">{t("signUpTitle")}</h1>
+        <h1 className="text-3xl font-light tracking-tight">{t("signUpTitle")}</h1>
         <p className="text-sm text-muted-foreground">{t("signUpSub", { days: TRIAL_DAYS })}</p>
       </div>
       <SignUpForm />

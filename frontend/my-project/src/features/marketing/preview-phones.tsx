@@ -53,7 +53,7 @@ const TOP_BARS: Partial<Record<PlatformId, ReactNode>> = {
 
 // badge: the top corner for the ready mark, the one the front phone does not cover.
 function Phone({ id, badge = "end", className }: { id: PlatformId; badge?: "start" | "end"; className?: string }) {
-  const t = useTranslations("marketing.home.wall.items");
+  const t = useTranslations("marketing.home.businesses");
   const platform = getPlatform(id);
   return (
     <div className={cn("absolute top-0 w-[250px] [&_figcaption]:hidden", className)}>

@@ -18,10 +18,10 @@ const BRANDS: Array<{ key: "bakery" | "agency" | "realEstate" | "fitness" | "sho
 
 export function BrandTree() {
   const t = useTranslations("marketing.home.brands");
-  const tw = useTranslations("marketing.home.wall.items");
+  const tw = useTranslations("marketing.home.businesses");
   const step = 600 / BRANDS.length;
   return (
-    <section aria-labelledby="brands-title" className="mx-auto max-w-[1440px] px-4 pt-16 md:px-6 md:pt-24 lg:px-8">
+    <section aria-labelledby="brands-title" className="mx-auto max-w-[1440px] px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
       <div className="mx-auto max-w-2xl text-center">
         <h2 id="brands-title" className="display text-3xl text-balance md:text-4xl">
           {t("title")}

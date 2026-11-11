@@ -13,7 +13,7 @@ export default function LoginPage() {
   return (
     <div className="space-y-6">
       <div className="space-y-1.5 text-center">
-        <h1 className="text-2xl font-semibold tracking-tight">{t("signInTitle")}</h1>
+        <h1 className="text-3xl font-light tracking-tight">{t("signInTitle")}</h1>
         <p className="text-sm text-muted-foreground">{t("signInSub")}</p>
       </div>
       <SignInForm />

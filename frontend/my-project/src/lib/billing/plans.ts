@@ -84,7 +84,8 @@ export function planFeatures(plan: Plan): Feature[] {
   return FEATURES.filter((f) => plan.features.includes(f));
 }
 
-export const TRIAL_DAYS = 14;
+// Also set in the signup function (supabase/migrations/20261111120000_seven_day_trial.sql).
+export const TRIAL_DAYS = 7;
 export const FOUNDING_CUSTOMERS = 100;
 export const FOUNDING_LOCK_MONTHS = 24;
 

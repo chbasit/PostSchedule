@@ -89,11 +89,11 @@ async function savePost(user: User, ws: string, input: string, postId: string | 
 }
 
 describe("sign-up", () => {
-  it("creates a profile, a personal workspace, owner membership and a 14-day Free trial", async () => {
+  it("creates a profile, a personal workspace, owner membership and a 7-day Free trial", async () => {
     const alice = await signUp("Alice", { display_name: "Alice Martin", locale: "fr", timezone: "Europe/Paris" });
     const { rows } = await server<Record<string, unknown>>(
       `select p.display_name, p.locale, p.timezone, w.name, w.kind, m.role, s.plan_key, s.status, s.account_limit, s.member_limit,
-              s.trial_ends_at between now() + interval '13 days 23 hours' and now() + interval '14 days 1 hour' as trial_14_days
+              s.trial_ends_at between now() + interval '6 days 23 hours' and now() + interval '7 days 1 hour' as trial_7_days
        from public.profiles p
        join public.workspace_members m on m.user_id = p.id
        join public.workspaces w on w.id = m.workspace_id
@@ -113,7 +113,7 @@ describe("sign-up", () => {
         status: "trialing",
         account_limit: 3,
         member_limit: 1,
-        trial_14_days: true,
+        trial_7_days: true,
       },
     ]);
   });
