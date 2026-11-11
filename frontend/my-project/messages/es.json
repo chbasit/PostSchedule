@@ -370,12 +370,13 @@
     "interval": "Periodo de facturación",
     "monthly": "Mensual",
     "yearly": "Anual",
-    "twoMonthsFree": "2 meses gratis",
+    "saveUpTo": "Ahorra hasta un {percent} %",
+    "save": "Ahorra un {percent} %",
     "everythingIn": "Todo lo de {plan}, más:"
   },
   "pricing": {
     "metaTitle": "Precios",
-    "metaDescription": "Planes sencillos según el número de cuentas sociales y usuarios. La facturación anual incluye dos meses gratis.",
+    "metaDescription": "Planes sencillos según el número de cuentas sociales y usuarios. La facturación anual ahorra hasta un {percent} %.",
     "title": "El precio fijo más bajo en cada tamaño.",
     "sub": "Todos los planes incluyen revisión previa y vistas previas. Empieza con una prueba de Pro de {days} días, sin tarjeta.",
     "founding": "Primeros {count} clientes: precio fijo durante {months} meses",

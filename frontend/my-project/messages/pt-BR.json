@@ -370,12 +370,13 @@
     "interval": "Período de cobrança",
     "monthly": "Mensal",
     "yearly": "Anual",
-    "twoMonthsFree": "2 meses grátis",
+    "saveUpTo": "Economize até {percent}%",
+    "save": "Economize {percent}%",
     "everythingIn": "Tudo do {plan}, mais:"
   },
   "pricing": {
     "metaTitle": "Preços",
-    "metaDescription": "Planos simples pelo número de contas sociais e usuários. A cobrança anual dá dois meses grátis.",
+    "metaDescription": "Planos simples pelo número de contas sociais e usuários. A cobrança anual economiza até {percent}%.",
     "title": "O menor preço fixo em cada tamanho.",
     "sub": "Todos os planos incluem verificação prévia e prévias. Comece com um teste do Pro de {days} dias, sem cartão.",
     "founding": "Primeiros {count} clientes: preço travado por {months} meses",

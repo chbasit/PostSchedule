@@ -102,15 +102,15 @@ e2e/                           end-to-end tests
 
 ## Product facts (hypothesis, validate with ~20 buyers before launch)
 
-| Plan | Price / month | Accounts | Seats |
-|---|---|---|---|
-| Free | $0 | 3 | 1 |
-| Solo | $12 | 10 | 1 |
-| Pro | $24 | 25 | 3 |
-| Agency | $59 | 75 | 10 |
-| Scale | $119 | 200 | 25 |
+| Plan | Price / month | Price / year | Accounts | Seats |
+|---|---|---|---|---|
+| Free | $0 | $0 | 3 | 1 |
+| Solo | $15 | $150 | 10 | 1 |
+| Pro | $25 | $270 | 25 | 3 |
+| Agency | $60 | $680 | 75 | 10 |
+| Scale | $130 | $1,480 | 200 | 25 |
 
-- Yearly billing = 2 months free. 14-day trial, no card. Founding customers (first 100) get a 24-month price lock.
+- Yearly prices are set per plan (saving 5–17%; `src/lib/billing/plans.ts`, matching the Lemon Squeezy variants). 14-day trial, no card. Founding customers (first 100) get a 24-month price lock.
 - Lemon Squeezy fee is 5% + $0.50 per sale. Confirm Pakistan payout before committing to launch date.
 - Single source of truth for plans in code will be `src/lib/billing/plans.ts`.
 

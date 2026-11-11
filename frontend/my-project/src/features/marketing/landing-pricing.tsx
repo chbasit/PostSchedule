@@ -13,6 +13,7 @@ import {
   formatPrice,
   getPlan,
   yearlyPrice,
+  yearlySaving,
   type BillingInterval,
   type Feature,
   type Plan,
@@ -36,8 +37,9 @@ const TRUST: Array<{ key: "trial" | "cancel" | "usd"; icon: LucideIcon }> = [
   { key: "usd", icon: Globe },
 ];
 
-// Yearly is two months free, shown as the monthly price struck through and the yearly
-// price per month. Both prices are real: monthly billing costs the struck price.
+// Yearly billing costs less (the saving differs by plan), shown as the monthly price struck
+// through and the yearly price per month. Both prices are real: monthly billing costs the
+// struck price.
 function OfferCard({ plan, interval }: { plan: Plan; interval: BillingInterval }) {
   const t = useTranslations("marketing.home.offer");
   const tp = useTranslations("plans");
@@ -60,7 +62,7 @@ function OfferCard({ plan, interval }: { plan: Plan; interval: BillingInterval }
         {dark ? (
           <span className="rounded-full bg-card-lavender px-2.5 py-0.5 text-xs font-semibold text-foreground">{tp("popular")}</span>
         ) : yearly ? (
-          <span className="rounded-full bg-highlight px-2.5 py-0.5 text-xs font-semibold text-highlight-foreground">{tp("twoMonthsFree")}</span>
+          <span className="rounded-full bg-highlight px-2.5 py-0.5 text-xs font-semibold text-highlight-foreground">{tp("save", { percent: yearlySaving(plan) })}</span>
         ) : null}
       </div>
       <p className={cn("mt-1 min-h-10 text-sm", soft)}>{tp(`blurbs.${plan.key}`)}</p>

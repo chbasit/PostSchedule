@@ -370,12 +370,13 @@
     "interval": "Abrechnungszeitraum",
     "monthly": "Monatlich",
     "yearly": "Jährlich",
-    "twoMonthsFree": "2 Monate gratis",
+    "saveUpTo": "Bis zu {percent} % sparen",
+    "save": "{percent} % sparen",
     "everythingIn": "Alles aus {plan}, plus:"
   },
   "pricing": {
     "metaTitle": "Preise",
-    "metaDescription": "Einfache Tarife nach Anzahl der Social-Media-Konten und Nutzer. Bei jährlicher Zahlung sind zwei Monate gratis.",
+    "metaDescription": "Einfache Tarife nach Anzahl der Social-Media-Konten und Nutzer. Bei jährlicher Zahlung sparen Sie bis zu {percent} %.",
     "title": "Der niedrigste Festpreis in jeder Größe.",
     "sub": "Jeder Tarif enthält Vorabprüfung und Vorschauen. Starte mit {days} Tagen Pro zum Testen, ohne Karte.",
     "founding": "Erste {count} Kunden: Preis {months} Monate garantiert",

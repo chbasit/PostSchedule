@@ -2,6 +2,13 @@
 
 Newest first. Format from `PROJECTFLOW.md` §9.
 
+## 2026-11-11 — New prices; yearly prices set per plan
+
+Decision: Solo $15 a month or $150 a year, Pro $25 or $270, Agency $60 or $680, Scale $130 or $1,480 (Free stays $0). `priceYearly` in `src/lib/billing/plans.ts` holds each yearly price instead of "ten times monthly", and must equal the Lemon Squeezy variants. The yearly saving therefore differs by plan (Solo 17%, Pro 10%, Agency 6%, Scale 5%): the toggle says "Save up to 17%" (`MAX_YEARLY_SAVING`), each yearly card on the landing page shows its own saving, and the pricing page's description says "saves up to 17%". The old "2 months free" label is gone.
+Why: The founder set these prices in the Lemon Squeezy store and chose them over the earlier hypothesis ($12, $24, $59, $119; yearly = two months free). The site must show what checkout charges.
+Alternatives: Keeping the old prices and editing the Lemon Squeezy variants instead (declined by the founder). Keeping a uniform "2 months free" (no longer true for Pro, Agency and Scale).
+Revisit when: Buyer interviews or conversion data say otherwise; change `plans.ts` and the Lemon Squeezy variants together.
+
 ## 2026-11-11 — Google sign-in runs on our own domain
 
 Decision: The app does Google's OAuth code flow itself and hands the ID token to Supabase (`signInWithIdToken`) instead of sending people through Supabase's `/auth/v1/authorize`. `/api/v1/auth/google` builds Google's sign-in URL (PKCE S256, a state value, the SHA-256 of a nonce) and keeps the attempt in a ten-minute `ps_google` cookie limited to the Google routes. `/api/v1/auth/google/callback` checks the state, swaps the code for the ID token (with the client secret) and passes the token and the raw nonce to Supabase, which checks the signature, the audience and the nonce, then signs the person in or creates their account. The OAuth client is the one Supabase's Google provider already lists (`GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, server only). `/api/v1/auth/callback` stays for Supabase's own email links. Helpers and tests: `src/server/google-oauth.ts`.

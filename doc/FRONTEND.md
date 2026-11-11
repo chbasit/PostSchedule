@@ -598,7 +598,7 @@ flowchart TD
 ```
 
 1. **Trigger.** Limit reached (accounts, seats, storage), locked feature, or the Billing page.
-2. **Plans screen.** Monthly and yearly toggle (yearly = two months free), five plans with account and seat limits, honest note on what the trial includes, currency and language follow the visitor.
+2. **Plans screen.** Monthly and yearly toggle ("Save up to 17%"; each yearly card shows its own saving), five plans with account and seat limits, honest note on what the trial includes, currency and language follow the visitor.
 3. **Checkout.** Hosted by Lemon Squeezy. Our button creates one checkout and ignores repeat clicks.
 4. **Return.** "Confirming your payment…" screen that checks until the server has the confirmed state. Access changes only when the server says so.
 5. **Manage.** `/dashboard/settings/billing` shows one current-plan card (plan, renewal date, usage as pill tags for social accounts and seats, amber at the limit, and the invoices and payment link), then the plans with the Monthly/Yearly toggle. Next invoice, cancel and resume come with the customer portal.

@@ -752,15 +752,15 @@ Rules are data (see `SKILL.md`): platform, format, severity (`info`, `warn`, `bl
 
 Plan hypothesis (validate with about 20 buyers before launch):
 
-| Plan | $/month | Accounts | Seats |
-|---|---|---|---|
-| Free | 0 | 3 | 1 |
-| Solo | 12 | 10 | 1 |
-| Pro | 24 | 25 | 3 |
-| Agency | 59 | 75 | 10 |
-| Scale | 119 | 200 | 25 |
+| Plan | $/month | $/year | Accounts | Seats |
+|---|---|---|---|---|
+| Free | 0 | 0 | 3 | 1 |
+| Solo | 15 | 150 | 10 | 1 |
+| Pro | 25 | 270 | 25 | 3 |
+| Agency | 60 | 680 | 75 | 10 |
+| Scale | 130 | 1480 | 200 | 25 |
 
-Yearly price is ten times the monthly price (two months free). Fees are 5% plus $0.50 per sale. **Confirm Pakistan payout in Lemon Squeezy's current docs and with support before the launch date is set**, and keep a plan B.
+Yearly prices are set per plan (DECISIONS.md 2026-11-11) and must equal the Lemon Squeezy variants. Fees are 5% plus $0.50 per sale. **Confirm Pakistan payout in Lemon Squeezy's current docs and with support before the launch date is set**, and keep a plan B.
 
 ### 11.2 Creating a checkout
 

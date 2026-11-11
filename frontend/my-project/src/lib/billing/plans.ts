@@ -26,6 +26,8 @@ export type Feature = (typeof FEATURES)[number];
 export type Plan = {
   key: PlanKey;
   priceMonthly: number; // USD
+  // USD for a year paid at once. Must equal the Lemon Squeezy variants' prices.
+  priceYearly: number;
   accounts: number;
   seats: number;
   // AI credits granted each calendar month (UTC); unused credits do not roll over.
@@ -39,11 +41,28 @@ export type Plan = {
 export const EVERY_PLAN: readonly Feature[] = ["preflight", "previews", "fixes", "captions", "calendar", "timing", "tags", "languages"];
 
 export const PLANS: readonly Plan[] = [
-  { key: "free", priceMonthly: 0, accounts: 3, seats: 1, aiCredits: 25, features: [...EVERY_PLAN] },
-  { key: "solo", priceMonthly: 12, accounts: 10, seats: 1, aiCredits: 300, features: [...EVERY_PLAN, "reports"] },
-  { key: "pro", priceMonthly: 24, accounts: 25, seats: 3, aiCredits: 800, highlighted: true, features: [...EVERY_PLAN, "reports", "approvals"] },
-  { key: "agency", priceMonthly: 59, accounts: 75, seats: 10, aiCredits: 2000, features: [...EVERY_PLAN, "reports", "approvals", "clientLinks"] },
-  { key: "scale", priceMonthly: 119, accounts: 200, seats: 25, aiCredits: 4000, features: [...EVERY_PLAN, "reports", "approvals", "clientLinks", "api"] },
+  { key: "free", priceMonthly: 0, priceYearly: 0, accounts: 3, seats: 1, aiCredits: 25, features: [...EVERY_PLAN] },
+  { key: "solo", priceMonthly: 15, priceYearly: 150, accounts: 10, seats: 1, aiCredits: 300, features: [...EVERY_PLAN, "reports"] },
+  {
+    key: "pro",
+    priceMonthly: 25,
+    priceYearly: 270,
+    accounts: 25,
+    seats: 3,
+    aiCredits: 800,
+    highlighted: true,
+    features: [...EVERY_PLAN, "reports", "approvals"],
+  },
+  { key: "agency", priceMonthly: 60, priceYearly: 680, accounts: 75, seats: 10, aiCredits: 2000, features: [...EVERY_PLAN, "reports", "approvals", "clientLinks"] },
+  {
+    key: "scale",
+    priceMonthly: 130,
+    priceYearly: 1480,
+    accounts: 200,
+    seats: 25,
+    aiCredits: 4000,
+    features: [...EVERY_PLAN, "reports", "approvals", "clientLinks", "api"],
+  },
 ];
 
 // What each AI action costs in credits. One credit is about US$0.0125 of model cost at
@@ -70,10 +89,18 @@ export const TRIAL_DAYS = 14;
 export const FOUNDING_CUSTOMERS = 100;
 export const FOUNDING_LOCK_MONTHS = 24;
 
-// Yearly billing = two months free.
 export function yearlyPrice(plan: Plan): number {
-  return plan.priceMonthly * 10;
+  return plan.priceYearly;
 }
+
+// What a year paid at once saves against twelve monthly payments, in whole percent. It
+// differs by plan (DECISIONS.md 2026-11-11).
+export function yearlySaving(plan: Plan): number {
+  return plan.priceMonthly ? Math.round((1 - plan.priceYearly / (plan.priceMonthly * 12)) * 100) : 0;
+}
+
+// The best saving on any plan, for the yearly toggle ("Save up to …").
+export const MAX_YEARLY_SAVING = Math.max(...PLANS.map(yearlySaving));
 
 export function priceFor(plan: Plan, interval: BillingInterval): number {
   return interval === "year" ? yearlyPrice(plan) : plan.priceMonthly;

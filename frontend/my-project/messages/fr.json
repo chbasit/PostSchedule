@@ -370,12 +370,13 @@
     "interval": "Période de facturation",
     "monthly": "Mensuel",
     "yearly": "Annuel",
-    "twoMonthsFree": "2 mois offerts",
+    "saveUpTo": "Jusqu’à {percent} % d’économie",
+    "save": "{percent} % d’économie",
     "everythingIn": "Tout ce qu’offre {plan}, plus :"
   },
   "pricing": {
     "metaTitle": "Tarifs",
-    "metaDescription": "Des offres simples selon le nombre de comptes sociaux et d’utilisateurs. La facturation annuelle offre deux mois.",
+    "metaDescription": "Des offres simples selon le nombre de comptes sociaux et d’utilisateurs. La facturation annuelle fait économiser jusqu’à {percent} %.",
     "title": "Le prix fixe le plus bas, quelle que soit la taille.",
     "sub": "Toutes les offres incluent les vérifications et les aperçus. Commencez par un essai Pro de {days} jours, sans carte bancaire.",
     "founding": "{count} premiers clients : prix garanti {months} mois",

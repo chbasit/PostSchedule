@@ -370,12 +370,13 @@
     "interval": "Billing period",
     "monthly": "Monthly",
     "yearly": "Yearly",
-    "twoMonthsFree": "2 months free",
+    "saveUpTo": "Save up to {percent}%",
+    "save": "Save {percent}%",
     "everythingIn": "Everything in {plan}, plus:"
   },
   "pricing": {
     "metaTitle": "Pricing",
-    "metaDescription": "Simple plans by number of social accounts and seats. Yearly billing gives two months free.",
+    "metaDescription": "Simple plans by number of social accounts and seats. Yearly billing saves up to {percent}%.",
     "title": "The lowest flat price at every size.",
     "sub": "Every plan includes pre-flight checks and previews. Start with a {days}-day trial of Pro, no card needed.",
     "founding": "First {count} customers: price locked for {months} months",

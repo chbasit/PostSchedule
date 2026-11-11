@@ -6,13 +6,13 @@ import { locale as rootLocale } from "next/root-params";
 import { JsonLd } from "@/components/json-ld";
 import { PRODUCT_NAME, SITE_URL } from "@/config/site";
 import { routing } from "@/i18n/routing";
-import { FEATURES, FOUNDING_CUSTOMERS, FOUNDING_LOCK_MONTHS, PLANS, TRIAL_DAYS } from "@/lib/billing/plans";
+import { FEATURES, FOUNDING_CUSTOMERS, FOUNDING_LOCK_MONTHS, MAX_YEARLY_SAVING, PLANS, TRIAL_DAYS } from "@/lib/billing/plans";
 import { PricingPlans } from "@/features/billing/pricing-plans";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("pricing");
   const locale = await rootLocale();
-  return { title: t("metaTitle"), description: t("metaDescription"), alternates: { canonical: `/${locale}/pricing` } };
+  return { title: t("metaTitle"), description: t("metaDescription", { percent: MAX_YEARLY_SAVING }), alternates: { canonical: `/${locale}/pricing` } };
 }
 
 export default function PricingPage() {

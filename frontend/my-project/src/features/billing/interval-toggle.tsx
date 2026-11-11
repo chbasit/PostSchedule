@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Segmented } from "@/components/ui/segmented";
-import type { BillingInterval } from "@/lib/billing/plans";
+import { MAX_YEARLY_SAVING, type BillingInterval } from "@/lib/billing/plans";
 import { cn } from "@/lib/utils";
 
 export function IntervalToggle({ value, onChange }: { value: BillingInterval; onChange: (v: BillingInterval) => void }) {
@@ -19,7 +19,7 @@ export function IntervalToggle({ value, onChange }: { value: BillingInterval; on
           label: (
             <>
               {t("yearly")}
-              <span className={cn("rounded-full px-1.5 text-xs", value === "year" ? "bg-highlight text-highlight-foreground" : "bg-muted")}>{t("twoMonthsFree")}</span>
+              <span className={cn("rounded-full px-1.5 text-xs", value === "year" ? "bg-highlight text-highlight-foreground" : "bg-muted")}>{t("saveUpTo", { percent: MAX_YEARLY_SAVING })}</span>
             </>
           ),
         },
