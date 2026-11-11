@@ -5,7 +5,6 @@ import { getTranslations } from "next-intl/server";
 import { locale as rootLocale } from "next/root-params";
 import { JsonLd } from "@/components/json-ld";
 import { PRODUCT_NAME, SITE_URL } from "@/config/site";
-import { routing } from "@/i18n/routing";
 import { FEATURES, FOUNDING_CUSTOMERS, FOUNDING_LOCK_MONTHS, MAX_YEARLY_SAVING, PLANS, TRIAL_DAYS } from "@/lib/billing/plans";
 import { PricingPlans } from "@/features/billing/pricing-plans";
 
@@ -90,7 +89,7 @@ export default function PricingPage() {
               {FEATURES.map((row) => (
                 <tr key={row}>
                   <th scope="row" className="sticky start-0 bg-background px-4 py-3 text-start font-normal">
-                    {tp(`features.${row}`, { count: routing.locales.length })}
+                    {tp(`features.${row}`)}
                   </th>
                   {PLANS.map((p) => (
                     <td key={p.key} className="px-4 py-3">

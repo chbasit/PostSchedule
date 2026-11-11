@@ -30,6 +30,14 @@ const nextConfig: NextConfig = {
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
+  // English only since 2026-11-11 (DECISIONS.md): pages in the removed languages go to the
+  // English page, so old links and search results keep working.
+  async redirects() {
+    return [
+      { source: "/:locale(es|pt-BR|fr|de|ar)", destination: "/en", permanent: true },
+      { source: "/:locale(es|pt-BR|fr|de|ar)/:path*", destination: "/en/:path*", permanent: true },
+    ];
+  },
 };
 
 export default withNextIntl(nextConfig);

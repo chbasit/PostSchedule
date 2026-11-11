@@ -8,7 +8,7 @@ describe("reviewSchema", () => {
     expect(reviewSchema([])).toEqual({});
   });
 
-  it("lists each review's text and author, with no rating since the wall shows none", () => {
+  it("lists each review's text and author, with no rating since the cards show none", () => {
     const schema = reviewSchema([review("A"), review("B")]);
     expect(schema.review).toHaveLength(2);
     expect(schema.review?.[0]).toEqual({ "@type": "Review", reviewBody: "Saves me an hour a day.", datePublished: "2026-11-03", author: { "@type": "Person", name: "A" } });

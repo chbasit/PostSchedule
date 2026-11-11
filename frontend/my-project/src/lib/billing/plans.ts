@@ -19,7 +19,6 @@ export const FEATURES = [
   "approvals",
   "clientLinks",
   "api",
-  "languages",
 ] as const;
 export type Feature = (typeof FEATURES)[number];
 
@@ -37,8 +36,8 @@ export type Plan = {
 };
 
 // What every plan has: the checks and previews, one-click fixes, a caption per platform, the
-// calendar, posting now, by queue or at any time zone, tags, and every app language.
-export const EVERY_PLAN: readonly Feature[] = ["preflight", "previews", "fixes", "captions", "calendar", "timing", "tags", "languages"];
+// calendar, posting now, by queue or at any time zone, and tags.
+export const EVERY_PLAN: readonly Feature[] = ["preflight", "previews", "fixes", "captions", "calendar", "timing", "tags"];
 
 export const PLANS: readonly Plan[] = [
   { key: "free", priceMonthly: 0, priceYearly: 0, accounts: 3, seats: 1, aiCredits: 25, features: [...EVERY_PLAN] },

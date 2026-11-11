@@ -1,8 +1,9 @@
-// Real customer reviews for the landing wall, shown in the language they were given in. Only
+// Real customer reviews for the landing page, shown in the language they were given in. Only
 // reviews a customer actually gave and agreed to publish, with their real name and role:
 // invented or edited reviews are unlawful in most markets, break platform app reviews, and
-// marked up as structured data they break Google's spam policies. Each review takes the
-// place of a "use" card on the wall (business-wall.tsx) and feeds the page's JSON-LD.
+// marked up as structured data they break Google's spam policies. They slide by in their own
+// section (customer-reviews.tsx), which stays hidden while this list is empty, and feed the
+// page's JSON-LD.
 export type Testimonial = {
   quote: string;
   name: string;

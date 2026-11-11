@@ -1,7 +1,8 @@
 import { defineRouting } from "next-intl/routing";
 
-// Wave 1 (FRONTEND.md §12) plus Arabic so right-to-left is exercised from day one.
-export const locales = ["en", "es", "pt-BR", "fr", "de", "ar"] as const;
+// English only (DECISIONS.md 2026-11-11). URLs keep the /en prefix, because links such as
+// /en/privacy are registered with Meta, Google and Supabase.
+export const locales = ["en"] as const;
 export type AppLocale = (typeof locales)[number];
 
 export const routing = defineRouting({
@@ -10,16 +11,7 @@ export const routing = defineRouting({
   localePrefix: "always",
 });
 
-// Each language is shown in its own name.
-export const localeNames: Record<AppLocale, string> = {
-  en: "English",
-  es: "Español",
-  "pt-BR": "Português (Brasil)",
-  fr: "Français",
-  de: "Deutsch",
-  ar: "العربية",
-};
-
+// Right-to-left support stays in place for when a language like Arabic comes back.
 const rtlLocales: ReadonlySet<string> = new Set(["ar"]);
 
 export function isRtl(locale: string): boolean {

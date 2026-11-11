@@ -1,11 +1,15 @@
 import {
   ArrowRight,
   Bot,
+  CalendarClock,
   Check,
   FileCheck,
   Gauge,
   Globe,
+  Layers,
+  PenLine,
   Plus,
+  ScanEye,
   ShieldCheck,
   Sparkles,
   UserCheck,
@@ -21,15 +25,16 @@ import { Link } from "@/i18n/navigation";
 import { PLANS, TRIAL_DAYS } from "@/lib/billing/plans";
 import { cn } from "@/lib/utils";
 import { PLATFORMS } from "@/providers/catalog";
-import { locales } from "@/i18n/routing";
 import { GoogleIcon } from "@/features/auth/google-icon";
 import { AgentConsole } from "@/features/marketing/agent-console";
+import { BrandTree } from "@/features/marketing/brand-tree";
 import { BusinessWall } from "@/features/marketing/business-wall";
 import { Clip, type ClipName } from "@/features/marketing/clip";
+import { Comparison } from "@/features/marketing/comparison";
+import { CustomerReviews } from "@/features/marketing/customer-reviews";
 import { HubVisual } from "@/features/marketing/hub-visual";
 import { LandingPricing } from "@/features/marketing/landing-pricing";
 import { PreviewPhones } from "@/features/marketing/preview-phones";
-import { ProductShot } from "@/features/marketing/product-shot";
 import { PublishVisual } from "@/features/marketing/publish-visual";
 import { reviewSchema } from "@/features/marketing/testimonials";
 
@@ -42,7 +47,7 @@ const CORE: Array<{ key: "publish" | "schedule" | "manage"; clip?: ClipName }> =
 ];
 
 // The pills around the centre picture: true numbers only, taken from the code where they live.
-const PROMISE: Array<{ key: "platforms" | "click" | "checks" | "trial" | "original" | "languages"; value: number; percent?: boolean }> = [
+const PROMISE: Array<{ key: "platforms" | "click" | "checks" | "trial" | "original" | "cards"; value: number; percent?: boolean }> = [
   { key: "platforms", value: PLATFORMS.length },
   { key: "click", value: 1 },
   // Aspect ratio, resolution, bitrate, duration and size (features.preflight).
@@ -50,7 +55,16 @@ const PROMISE: Array<{ key: "platforms" | "click" | "checks" | "trial" | "origin
   { key: "trial", value: TRIAL_DAYS },
   // The uploaded file is never changed (features.original).
   { key: "original", value: 1, percent: true },
-  { key: "languages", value: locales.length },
+  // The trial needs no card (pricing.ctaNote).
+  { key: "cards", value: 0 },
+];
+
+// Under the hero: four things the product does today.
+const HIGHLIGHTS: Array<{ key: "write" | "check" | "schedule" | "brands"; icon: LucideIcon }> = [
+  { key: "write", icon: PenLine },
+  { key: "check", icon: ScanEye },
+  { key: "schedule", icon: CalendarClock },
+  { key: "brands", icon: Layers },
 ];
 
 const AI_POINTS: Array<{ key: "write" | "agents" | "control"; icon: LucideIcon; chip: string }> = [
@@ -60,11 +74,11 @@ const AI_POINTS: Array<{ key: "write" | "agents" | "control"; icon: LucideIcon; 
 ];
 
 // The features the clips do not show.
-const EXTRAS: Array<{ key: "preflight" | "original" | "approvals" | "languages"; icon: LucideIcon; chip: string }> = [
+const EXTRAS: Array<{ key: "preflight" | "original" | "approvals" | "timezones"; icon: LucideIcon; chip: string }> = [
   { key: "preflight", icon: Gauge, chip: "bg-card-yellow" },
   { key: "original", icon: FileCheck, chip: "bg-card-aqua" },
   { key: "approvals", icon: UserCheck, chip: "bg-card-pink" },
-  { key: "languages", icon: Globe, chip: "bg-card-lavender" },
+  { key: "timezones", icon: Globe, chip: "bg-card-lavender" },
 ];
 
 const STEP_CHIPS = ["bg-card-lavender", "bg-card-aqua", "bg-card-yellow"] as const;
@@ -74,7 +88,7 @@ const FAQ_KEYS = ["what", "quality", "ai", "platforms", "safety", "trial", "canc
 // A coloured panel. The landing page is flat: no frames, borders or shadows on its cards.
 function Panel({ surface, className, style, children }: { surface: string; className?: string; style?: CSSProperties; children: ReactNode }) {
   return (
-    <div className={cn("relative isolate overflow-hidden rounded-[28px]", surface, className)} style={style}>
+    <div className={cn("relative isolate overflow-hidden rounded-2xl", surface, className)} style={style}>
       {children}
     </div>
   );
@@ -150,11 +164,19 @@ export default function HomePage() {
             </ul>
           </div>
         </div>
-        <div className="mx-auto mt-10 max-w-[1440px] px-4 pb-16 md:px-6 md:pb-20 lg:mt-12 lg:px-8">
-          {/* No coloured frame (founder's call, 2026-11-03); a hairline keeps the white screen's
-              edge on the white page. The clips are recorded in English; Arabic pages keep the
-              right-to-left screenshot. */}
-          <div className="overflow-hidden rounded-[28px] bg-card ring-1 ring-border">{locale === "ar" ? <ProductShot /> : <Clip name="compose" />}</div>
+        {/* Four things the product does, in place of the product video (founder's call,
+            2026-11-11): columns with hairlines between them, two by two on phones. No numbers:
+            there are no customer results to show yet. */}
+        <div className="mx-auto max-w-[1440px] px-4 pt-14 pb-16 md:px-6 md:pb-24 lg:px-8">
+          <ul className="mx-auto grid max-w-6xl grid-cols-1 gap-y-8 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-border rtl:lg:divide-x-reverse">
+            {HIGHLIGHTS.map(({ key, icon: Icon }) => (
+              <li key={key} className="px-2 lg:px-8">
+                <Icon className="size-6 text-muted-foreground" strokeWidth={1.5} aria-hidden />
+                <h2 className="mt-4 font-heading text-lg font-semibold tracking-tight">{t(`highlights.${key}.title`)}</h2>
+                <p className="mt-2 text-muted-foreground">{t(`highlights.${key}.body`)}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -173,7 +195,7 @@ export default function HomePage() {
             <Panel
               key={key}
               surface="bg-card-periwinkle"
-              className="lg:[@media(min-height:38rem)]:sticky lg:[@media(min-height:38rem)]:top-(--stack-top) lg:[@media(min-height:38rem)]:shadow-[0_-12px_32px_-16px_rgb(0_0_0/0.18)]"
+              className="lg:[@media(min-height:38rem)]:sticky lg:[@media(min-height:38rem)]:top-(--stack-top)"
               style={{ "--stack-top": `${5 + i}rem` } as CSSProperties}
             >
               <div className="grid items-center gap-10 p-6 sm:p-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16 lg:p-14">
@@ -185,7 +207,7 @@ export default function HomePage() {
                   </Link>
                 </div>
                 {clip ? (
-                  <div className="overflow-hidden rounded-2xl bg-card">
+                  <div className="overflow-hidden rounded-xl bg-card">
                     <Clip name={clip} />
                   </div>
                 ) : (
@@ -226,12 +248,9 @@ export default function HomePage() {
             </ul>
           ))}
         </div>
-        <div className="mt-10 flex justify-center lg:mt-14">
-          <Link href="/signup" className={pill}>
-            {t("ctaPrimary")} <ArrowRight className="rtl:-scale-x-100" aria-hidden />
-          </Link>
-        </div>
       </section>
+
+      <Comparison />
 
       {/* AI: the writing assistant today, agents through the API and MCP server soon. */}
       <section aria-labelledby="ai-title" className="mx-auto max-w-[1440px] px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
@@ -268,26 +287,26 @@ export default function HomePage() {
         </Panel>
       </section>
 
-      {/* Features and how it works, in one full-width dark band with square edges: the
-          previews (a drawing of three phones), the details, then the three steps. Chips keep
-          their light colours, so their icons and numbers stay in the foreground colour. */}
-      <section id="features" aria-labelledby="features-title" className="mb-16 scroll-mt-24 bg-ink text-white md:mb-24 dark:border-y dark:border-white/15">
+      {/* Features and how it works, in one full-width band with square edges, light grey in
+          the light theme (founder's call, 2026-11-11): the previews (a drawing of three phones),
+          the details, then the three steps. */}
+      <section id="features" aria-labelledby="features-title" className="mb-16 scroll-mt-24 bg-band md:mb-24 dark:border-y dark:border-border">
         <div className="mx-auto max-w-[1440px] px-4 py-16 md:px-6 md:py-24 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 id="features-title" className="display text-3xl text-balance md:text-4xl">
               {t("featuresTitle")}
             </h2>
-            <p className="mt-4 text-lg text-white/70">{t("featuresSub")}</p>
+            <p className="mt-4 text-lg text-muted-foreground">{t("featuresSub")}</p>
           </div>
 
           <div className="mt-14 grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
             <div>
               <h3 className="font-heading text-2xl font-semibold tracking-tight text-balance md:text-[1.75rem] md:leading-tight">{t("showcase.previews.title")}</h3>
-              <p className="mt-3 max-w-md text-white/70">{t("showcase.previews.body")}</p>
+              <p className="mt-3 max-w-md text-muted-foreground">{t("showcase.previews.body")}</p>
               <ul className="mt-6 space-y-3">
                 {(["captions", "frames", "fix"] as const).map((point) => (
                   <li key={point} className="flex items-start gap-2.5 font-medium">
-                    <span aria-hidden className="mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full bg-white/15">
+                    <span aria-hidden className="mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full bg-foreground/10">
                       <Check className="size-3" />
                     </span>
                     {t(`showcase.previews.points.${point}`)}
@@ -300,26 +319,26 @@ export default function HomePage() {
 
           <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {EXTRAS.map(({ key, icon: Icon, chip }) => (
-              <li key={key} className="rounded-3xl bg-white/[0.06] p-6 ring-1 ring-white/10">
+              <li key={key} className="rounded-2xl bg-card p-6 ring-1 ring-border">
                 <span className={cn("inline-flex size-11 items-center justify-center rounded-2xl text-foreground", chip)}>
                   <Icon className="size-5" aria-hidden />
                 </span>
                 <h3 className="mt-4 font-heading text-lg font-semibold tracking-tight">{t(`features.${key}.title`)}</h3>
-                <p className="mt-2 text-sm text-white/70">{t(`features.${key}.body`)}</p>
+                <p className="mt-2 text-sm text-muted-foreground">{t(`features.${key}.body`)}</p>
               </li>
             ))}
           </ul>
 
-          <div className="mt-16 border-t border-white/10 pt-14">
+          <div className="mt-16 border-t border-border pt-14">
             <h3 className="display text-center text-2xl text-balance md:text-3xl">{t("stepsTitle")}</h3>
             <ol className="mt-10 grid gap-4 md:grid-cols-3">
               {(["connect", "check", "schedule"] as const).map((step, i) => (
-                <li key={step} className="rounded-3xl bg-white/[0.06] p-7 ring-1 ring-white/10">
+                <li key={step} className="rounded-2xl bg-card p-7 ring-1 ring-border">
                   <span aria-hidden className={cn("tabular inline-flex size-11 items-center justify-center rounded-2xl font-heading text-lg font-semibold text-foreground", STEP_CHIPS[i])}>
                     {i + 1}
                   </span>
                   <h4 className="mt-5 font-heading text-xl font-semibold tracking-tight">{t(`steps.${step}.title`)}</h4>
-                  <p className="mt-2 text-white/70">{t(`steps.${step}.body`)}</p>
+                  <p className="mt-2 text-muted-foreground">{t(`steps.${step}.body`)}</p>
                 </li>
               ))}
             </ol>
@@ -327,8 +346,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Businesses that post with it, with real customer quotes once there are any. */}
+      {/* One account, a workspace per brand; sample posts sliding by; real reviews once there
+          are any (each section explains itself). */}
+      <BrandTree />
       <BusinessWall />
+      <CustomerReviews />
 
       {/* Pricing: the four paid plans side by side; Pricing compares all five. */}
       <section aria-labelledby="pricing-title" className="mx-auto max-w-[1440px] px-4 pb-16 md:px-6 md:pb-24 lg:px-8">

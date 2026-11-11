@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { LanguageSwitcher } from "@/components/language-switcher";
 import { Logo } from "@/components/logo";
 import { ThemeToggle } from "@/components/theme";
 import { SessionProvider } from "@/features/session/workspace-context";
@@ -12,7 +11,6 @@ export default function OnboardingLayout({ children }: LayoutProps<"/[locale]/on
       <div className="flex h-16 items-center justify-between border-b px-4 sm:px-8">
         <Logo />
         <div className="flex items-center gap-1">
-          <LanguageSwitcher />
           <ThemeToggle />
         </div>
       </div>

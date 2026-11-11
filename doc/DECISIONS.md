@@ -2,6 +2,33 @@
 
 Newest first. Format from `PROJECTFLOW.md` §9.
 
+## 2026-11-11 — English only; no dark sections in the light theme; four highlights under the hero
+
+Decision:
+- **English only.** The Spanish, Portuguese, French, German and Arabic messages are deleted, and `routing.locales` is `["en"]`. Gone with them: the language button (site, app, sign-in and onboarding headers), the language setting in Preferences, and "The app in 6 languages" from the plans. The landing pill "6 Languages" became "0 Cards needed to start", and the "Built for every language" card became "Built for every time zone".
+- **Addresses.** URLs keep the `/en` prefix, because `/en/privacy`, `/en/terms` and `/en/data-deletion` are registered with Meta, and Supabase's redirect list uses the site address. `next.config.ts` sends the old language paths (`/de/...`, `/ar/...`, and so on) to `/en/...` with a permanent redirect. Texts still live in `messages/en.json` (CLAUDE.md rule 7), and right-to-left support stays in place.
+- **Light sections.** The landing page's features band and the footer use `#F7F7F7` with ink text in the light theme (`--band` and `--footer`). The dark theme keeps them near black.
+- **Under the hero.** Four highlights with icons and hairlines between them (Write once, See it first, Post on time, Every brand in one place) replace the founding-offer numbers.
+- **Simpler wording.** The features band reads "Check your post before you share it." and "Preview every app before you post".
+
+Why: The founder wants one language in simple English, a light theme with no black sections, and different content under the hero. Percentages like "92% time savings" were declined because there is no data behind them.
+Alternatives: Keeping the other languages with a note (not wanted). Dropping the `/en` prefix (it would break links already given to Meta and others).
+Revisit when: A second language is needed. Add its messages file and locale, remove its redirect, and bring back the language button.
+
+## 2026-11-11 — Landing: offer numbers instead of the video, a comparison, brands, sliding rows
+
+Decision:
+- **Hero.** The product video under the hero is gone. In its place is a row of the founding offer's numbers, all from `plans.ts`: from $15 a month, 14 days free, 100 founding spots, 24 months at the founding price.
+- **"Post faster without losing quality."** The section has no button now.
+- **"Why posting the usual way falls short".** New, after it (`comparison.tsx`): two cards, "Posting by hand" and "Basic schedulers", with three ✕ points each, in our own words and naming no product.
+- **"Every brand in its own workspace".** New, before the business wall (`brand-tree.tsx`): the logo with lines branching to six example businesses, and no count of brands.
+- **Business wall.** It is now one row that slides on its own (`marquee.tsx`; it stops on hover or focus, and stands still and scrolls by hand with reduced motion). The cards keep their own height, centred. `parallax-columns.tsx` is removed.
+- **Reviews.** They have their own sliding section (`customer-reviews.tsx`), which stays hidden while `testimonials.ts` is empty.
+
+Why: The founder asked for sections like a competitor's (results bars, a "why others fail" comparison, a brand tree, auto-moving post and review sliders) and for stats in place of the video. Each was built in AgentiqSocial's own words and with true facts only. Declined: a "results in 6 months" block, customer counts ("10K+ posts", "100% retention") and reviews in invented words, because there are no customers yet. Fake reviews and results are unlawful (FTC rule on fake reviews, EU consumer law), break Google's spam policies, and would be seen by the Meta and Lemon Squeezy reviewers. The founder asked for invented reviews anyway; that was declined.
+Alternatives: Product facts in the hero (6 platforms, 1 click…; they repeat the pills further down). A "be one of our first 100 customers" card where the reviews will go.
+Revisit when: There are real customers. Add their reviews (with permission) to `testimonials.ts`, and real results or customer numbers only from real data.
+
 ## 2026-11-11 — Feature order: posting first, then features without AI, then AI
 
 Decision: The founder's feature list goes into `doc/UPCOMING-FEATURES.md`, not onto the website. It covers the post composer extras, publishing, performance insights and brand management, each marked "in the app today", "after posting works (no AI)" or "AI". Work goes in that order: posting to every platform end to end first, then analytics, goals and brand tools, then AI (brand voice, AI images and video, hashtag suggestions, Magic create). A feature appears on the site or in a Product menu only once it works.
@@ -11,8 +38,8 @@ Revisit when: A stage is finished; move its features to "in the app today".
 
 ## 2026-11-11 — Landing: centre picture with true numbers; stacking cards
 
-Decision: A new section after "Publish, schedule and manage" reads "Post faster without losing quality.": the logo in the middle with the six platforms on a slowly turning ring (`hub-visual.tsx`; still with reduced motion), three pills each side with true numbers taken from the code (6 platforms, 1 click, 5 video checks, 14 days free, 100% original kept, 6 languages), and a "Start free" button. On phones the pills wrap under the picture. The section is clipped sideways (`overflow-x-clip`), because the turning ring's empty corners widened the page on phones. The three "Publish, schedule and manage" cards stack: from lg up, on screens at least 38rem (608 px) tall, so a laptop browser window qualifies, each card sticks under the header, a step lower than the one before, and the next slides over it. Phones and short screens scroll them normally.
-Why: The founder asked for a centre-picture section like one on another site, built from AgentiqSocial's own product (no stock or copied image), and for the three cards to move with the scroll.
+Decision: A new section after "Publish, schedule and manage" reads "Post faster without losing quality.": the logo in the middle with the six platforms on a slowly turning ring (`hub-visual.tsx`; still with reduced motion), three pills each side with true numbers taken from the code (6 platforms, 1 click, 5 video checks, 14 days free, 100% original kept, 6 languages), and a "Start free" button. On phones the pills wrap under the picture. The section is clipped sideways (`overflow-x-clip`), because the turning ring's empty corners widened the page on phones. The three "Publish, schedule and manage" cards stack: from lg up, on screens at least 38rem (608 px) tall, so a laptop browser window qualifies, each card sticks under the header, a step lower than the one before, and the next slides over it. Phones and short screens scroll them normally. The landing cards have 16 px corners (`rounded-2xl`, were 28 px), as do the hero frame and the pricing cards, with no shadow while stacked. The site header has no "Log in" link: it is in the phone menu, the footer and on the sign-up page.
+Why: The founder asked for a centre-picture section like one on another site, built from AgentiqSocial's own product (no stock or copied image), for the three cards to move with the scroll, then for less rounded cards without shadows and no "Log in" in the header.
 Alternatives: A stock photo in the centre. A browser-window frame or a pinned picture with changing text for the three cards (not chosen).
 Revisit when: The product has real customer numbers worth showing, or the stack feels slow on long pages.
 

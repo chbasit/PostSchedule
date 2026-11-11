@@ -39,9 +39,6 @@
     "toDark": "Switch to dark theme",
     "toLight": "Switch to light theme"
   },
-  "language": {
-    "label": "Language"
-  },
   "status": {
     "draft": "Draft",
     "pending_approval": "In review",
@@ -153,14 +150,69 @@
           "checks": "Video checks",
           "trial": "Days free",
           "original": "Original kept",
-          "languages": "Languages"
+          "cards": "Cards needed to start"
+        }
+      },
+      "compare": {
+        "title": "Why posting the usual way falls short",
+        "manual": {
+          "title": "Posting by hand",
+          "items": {
+            "time": {
+              "title": "Half an hour per post",
+              "body": "Logging in to every app, resizing the video and pasting the caption again and again."
+            },
+            "missed": {
+              "title": "Easy to miss a day",
+              "body": "Without a schedule, posts go out whenever someone remembers."
+            },
+            "looks": {
+              "title": "Different on every platform",
+              "body": "A video that looks right on TikTok can be cropped or blurry on Instagram."
+            }
+          }
+        },
+        "basic": {
+          "title": "Basic schedulers",
+          "items": {
+            "hope": {
+              "title": "Send the file and hope",
+              "body": "No warning before a platform crops, compresses or rejects your video."
+            },
+            "preview": {
+              "title": "One preview for everything",
+              "body": "You can't see how each platform will really show your post."
+            },
+            "fixes": {
+              "title": "Fixes mean starting over",
+              "body": "When something is wrong, you edit somewhere else and upload again."
+            }
+          }
         }
       },
       "ctaPrimary": "Start free",
       "ctaGoogle": "Start with Google",
       "ctaNote": "{days}-day trial. No card needed.",
-      "featuresTitle": "See it before your audience does.",
-      "featuresSub": "Other schedulers send your file and hope. We show you exactly how each platform will display it, and warn you before quality drops.",
+      "highlights": {
+        "write": {
+          "title": "Write once",
+          "body": "One caption for every app, or a different one for each."
+        },
+        "check": {
+          "title": "See it first",
+          "body": "Check how each app will show your post before it goes out."
+        },
+        "schedule": {
+          "title": "Post on time",
+          "body": "Plan weeks ahead and post in any time zone."
+        },
+        "brands": {
+          "title": "Every brand in one place",
+          "body": "A workspace for each brand or client, with its own team."
+        }
+      },
+      "featuresTitle": "Check your post before you share it.",
+      "featuresSub": "See how each app will show your post. We tell you if the quality will drop, before anyone sees it.",
       "features": {
         "preflight": {
           "title": "Video pre-flight checks",
@@ -174,9 +226,9 @@
           "title": "Approvals for clients",
           "body": "Send a post for review by link. Clients approve or comment on a phone, with no account needed."
         },
-        "languages": {
-          "title": "Built for every language",
-          "body": "Use the app in your language, including right-to-left scripts, and schedule in each market's time zone."
+        "timezones": {
+          "title": "Built for every time zone",
+          "body": "Schedule each post for your audience's time zone, wherever they are."
         }
       },
       "stepsTitle": "From upload to scheduled in minutes.",
@@ -231,6 +283,14 @@
             "text": "Monday mobility: 10 minutes, no equipment. Save this for tomorrow morning."
           }
         }
+      },
+      "brands": {
+        "title": "Every brand in its own workspace",
+        "sub": "Give each brand or client its own accounts, calendar and team, then switch between them in one click.",
+        "visual": "{product} connected to a workspace for each brand."
+      },
+      "reviews": {
+        "title": "What customers say"
       },
       "offer": {
         "was": "Was",
@@ -290,7 +350,7 @@
       "platformsLabel": "Previews and checks for",
       "showcase": {
         "previews": {
-          "title": "See every platform before you post",
+          "title": "Preview every app before you post",
           "body": "Write once and check how each app will show it. If a video would be cropped or rejected, you see why, and the fix is one click away.",
           "shot": "The same post previewed as Instagram Reels, TikTok and YouTube Shorts, each marked ready.",
           "points": {
@@ -379,8 +439,7 @@
       "captions": "A caption for each platform",
       "timing": "Scheduling in any time zone",
       "tags": "Tags and filters",
-      "fixes": "One-click fixes, original kept",
-      "languages": "The app in {count} languages"
+      "fixes": "One-click fixes, original kept"
     },
     "interval": "Billing period",
     "monthly": "Monthly",
@@ -1827,8 +1886,6 @@
     "save": "Save changes",
     "saved": "Settings saved.",
     "saveFailed": "We could not save your settings. Try again.",
-    "language": "Language",
-    "languageHint": "Each language is shown in its own name.",
     "tags": {
       "title": "Tags",
       "body": "Group posts by campaign or theme. Tags appear on posts and in filters, and only your team sees them.",
@@ -1860,10 +1917,10 @@
       "nameRequired": "Give the tag a name."
     },
     "profileBody": "How you appear to your team.",
-    "preferencesBody": "Theme, language and how times are shown. Changes save straight away.",
+    "preferencesBody": "Theme and how times are shown. Changes save straight away.",
     "appearanceTitle": "Appearance",
     "themeHint": "Applies to this device only.",
-    "languageTimeTitle": "Language and time",
+    "timeTitle": "Time",
     "clockTitle": "Time format",
     "clockHint": "Used in the calendar, post lists and the composer.",
     "clock12": "12-hour ({time})",

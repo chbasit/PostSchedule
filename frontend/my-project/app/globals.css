@@ -118,9 +118,12 @@
   /* Soft sky surface for landing cards, the partner of --highlight (ink text 17:1). */
   --soft-sky: #e4f2ff;
 
-  /* The public site's footer, black in both themes (founder's call 2026-11-03; white text 19:1). */
-  --footer: #0b0b0c;
-  --footer-foreground: #ffffff;
+  /* The light theme has no dark sections (founder's call 2026-11-11): the landing page's
+     features band and the footer sit on light grey with ink text; the dark theme keeps them
+     near black. */
+  --band: #f7f7f7;
+  --footer: #f7f7f7;
+  --footer-foreground: #0b0b0c;
 
   /* Landing card colours (founder's palette, 2026-10-26). Ink text 10.9:1 or better,
      muted text 5.4:1 or better; as surfaces the dark theme uses deep versions of each. */
@@ -146,6 +149,9 @@
 }
 
 .dark {
+  --band: #18191b;
+  --footer: #0b0b0c;
+  --footer-foreground: #ffffff;
   --shell: #0b0c0d;
   --shell-hover: #232427;
 
@@ -271,6 +277,7 @@
   --color-highlight: var(--highlight);
   --color-highlight-foreground: var(--highlight-foreground);
   --color-soft-sky: var(--soft-sky);
+  --color-band: var(--band);
   --color-footer: var(--footer);
   --color-footer-foreground: var(--footer-foreground);
   --color-card-aqua: var(--card-aqua);
@@ -367,6 +374,9 @@
   --animate-grow-x: grow-x 1000ms cubic-bezier(0.16, 1, 0.3, 1) both;
   --animate-reveal-x: reveal-x 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
   --animate-float: float 900ms cubic-bezier(0.34, 1.56, 0.64, 1) infinite alternate;
+  /* Sliding rows (marquee.tsx): the track holds the row twice and moves by one copy. */
+  --animate-marquee: marquee 70s linear infinite;
+  --animate-marquee-rtl: marquee-rtl 70s linear infinite;
 }
 
 @keyframes fade-in {
@@ -455,6 +465,18 @@
 [dir="rtl"] {
   --reveal-from: inset(0 0 0 100%);
 }
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-rtl {
+  to {
+    transform: translateX(50%);
+  }
+}
+
 @keyframes float {
   from {
     transform: translateY(0);

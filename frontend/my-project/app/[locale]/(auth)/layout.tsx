@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { useTranslations } from "next-intl";
 import { Suspense } from "react";
-import { LanguageSwitcher } from "@/components/language-switcher";
 import { Logo } from "@/components/logo";
 import { ThemeToggle } from "@/components/theme";
 import { Skeleton } from "@/components/ui/misc";
@@ -35,7 +34,6 @@ export default function AuthLayout({ children }: LayoutProps<"/[locale]">) {
             {t("badge")}
           </span>
         ) : null}
-        <LanguageSwitcher />
         <ThemeToggle />
       </div>
       <main id="main" className="flex flex-1 flex-col items-center justify-center px-4 pb-14">

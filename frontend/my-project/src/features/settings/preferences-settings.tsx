@@ -9,8 +9,6 @@ import { PageHeader } from "@/components/page-header";
 import { setTheme, useTheme, type ThemePreference } from "@/components/theme";
 import { Select, SelectItem } from "@/components/ui/select";
 import { TimezoneSelect } from "@/components/ui/timezone-select";
-import { usePathname, useRouter } from "@/i18n/navigation";
-import { localeNames, routing, type AppLocale } from "@/i18n/routing";
 import { api, type User } from "@/lib/api/client";
 import { formatDateTime } from "@/lib/time";
 import { sessionKey, useWorkspace } from "@/features/session/workspace-context";
@@ -24,8 +22,6 @@ export function PreferencesSettings() {
   const tn = useTranslations("nav.settings");
   const tt = useTranslations("theme");
   const locale = useLocale();
-  const pathname = usePathname();
-  const router = useRouter();
   const queryClient = useQueryClient();
   const { user } = useWorkspace();
   const theme = useTheme();
@@ -70,26 +66,8 @@ export function PreferencesSettings() {
         </SettingRow>
       </SettingsSection>
 
-      <SettingsSection title={t("languageTimeTitle")}>
-        <SettingRow id="pref-language" title={t("language")} description={t("languageHint")}>
-          <Select
-            value={locale}
-            aria-labelledby="pref-language"
-            className="w-full"
-            onValueChange={(value) => {
-              const next = value as AppLocale;
-              // The URL carries the language; the profile copy is best effort.
-              api.me.update({ locale: next }).catch(() => undefined);
-              router.replace(pathname, { locale: next });
-            }}
-          >
-            {routing.locales.map((l) => (
-              <SelectItem key={l} value={l} lang={l}>
-                {localeNames[l]}
-              </SelectItem>
-            ))}
-          </Select>
-        </SettingRow>
+      {/* English only (DECISIONS.md 2026-11-11), so there is no language picker. */}
+      <SettingsSection title={t("timeTitle")}>
         <SettingRow id="pref-timezone" title={t("timezone")} description={t("timezoneHint")}>
           <TimezoneSelect
             value={timezone}

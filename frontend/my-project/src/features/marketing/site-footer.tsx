@@ -7,9 +7,10 @@ import { PLATFORMS } from "@/providers/catalog";
 import { LEGAL_PAGES } from "@/features/legal/registry";
 import { TOOLS, toolHref } from "@/features/tools/registry";
 
-// A full-width black footer, its content on the landing sections' 1440 px line: brand and
-// link columns, the copyright line, and the product name set large along the bottom edge
-// (decoration, hidden from assistive tech). Focus rings turn white so they show on the black.
+// A full-width footer (light grey in the light theme, near black in the dark one), its content
+// on the landing sections' 1440 px line: brand and link columns, the copyright line, and the
+// product name set large along the bottom edge (decoration, hidden from assistive tech). Focus
+// rings take the footer's text colour so they show on either.
 export function SiteFooter() {
   const t = useTranslations("marketing.footer");
   const tt = useTranslations("tools");
@@ -46,7 +47,7 @@ export function SiteFooter() {
           <ul aria-hidden className="flex flex-wrap gap-1.5">
             {PLATFORMS.map((platform) => (
               <li key={platform.id}>
-                <PlatformMark id={platform.id} size="sm" className="size-7 rounded-lg ring-1 ring-white/20" />
+                <PlatformMark id={platform.id} size="sm" className="size-7 rounded-lg ring-1 ring-footer-foreground/15" />
               </li>
             ))}
           </ul>

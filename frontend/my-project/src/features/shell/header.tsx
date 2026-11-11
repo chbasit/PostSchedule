@@ -5,7 +5,6 @@ import { Bell, Check, ChevronDown, CircleCheck, CircleX, Search, Unplug, UserChe
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { Avatar } from "@/components/avatar";
-import { LanguageSwitcher } from "@/components/language-switcher";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -176,17 +175,10 @@ function GlobalSearch() {
 
 function ReadyTools() {
   const { user } = useWorkspace();
-  const queryClient = useQueryClient();
   return (
     <>
       <GlobalSearch />
       <NotificationBell />
-      <LanguageSwitcher
-        onChange={(locale) => {
-          // Saved to the profile too; failures are harmless because the URL already carries the language.
-          api.me.update({ locale }).then(() => queryClient.invalidateQueries({ queryKey: ["session"] })).catch(() => undefined);
-        }}
-      />
       <UserMenu key={user.id} />
     </>
   );
@@ -207,7 +199,6 @@ export function AppHeader() {
         ) : (
           <>
             <Skeleton className="hidden h-9 w-64 md:block" />
-            <LanguageSwitcher />
             <Skeleton className="size-9 rounded-full lg:hidden" />
           </>
         )}

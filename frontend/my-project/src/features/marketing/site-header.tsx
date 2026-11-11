@@ -1,5 +1,4 @@
 import { useTranslations } from "next-intl";
-import { LanguageSwitcher } from "@/components/language-switcher";
 import { Logo } from "@/components/logo";
 import { ThemeToggle } from "@/components/theme";
 import { buttonVariants } from "@/components/ui/button";
@@ -39,11 +38,9 @@ export function SiteHeader() {
           </ul>
         </nav>
         <div className="flex items-center gap-1 justify-self-end">
-          <LanguageSwitcher className="rounded-full" />
           <ThemeToggle className="rounded-full" />
-          <Link href="/login" className={cn(buttonVariants({ variant: "ghost" }), "hidden rounded-full sm:inline-flex")}>
-            {t("login")}
-          </Link>
+          {/* No "Log in" here (founder's call, 2026-11-11): it is in the phone menu, the footer
+              and on the sign-up page. */}
           <Link href="/signup" className={cn(buttonVariants(), "hidden rounded-full px-5 sm:inline-flex")}>
             {t("startFree")}
           </Link>

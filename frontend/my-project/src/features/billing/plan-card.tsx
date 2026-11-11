@@ -2,7 +2,6 @@ import { Check, Sparkles, UserRound, UsersRound } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import type { ReactNode } from "react";
 import { AI_ENABLED } from "@/config/site";
-import { routing } from "@/i18n/routing";
 import { SoonBadge } from "@/features/ai-studio/coming-soon";
 import { formatPrice, planFeatures, priceFor, type BillingInterval, type Feature, type Plan } from "@/lib/billing/plans";
 import { cn } from "@/lib/utils";
@@ -78,7 +77,7 @@ export function PlanCard({ plan, interval, action, previous, current, flat, clas
         {features.map((feature) => (
           <li key={feature} className="flex gap-2.5">
             <Check className="mt-0.5 size-4 shrink-0" strokeWidth={2.5} aria-hidden />
-            {t(`features.${feature}`, { count: routing.locales.length })}
+            {t(`features.${feature}`)}
           </li>
         ))}
       </ul>
