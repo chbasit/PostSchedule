@@ -115,6 +115,7 @@
       "signup": "Start free",
       "tagline": "Social media scheduling for startups, agencies and growing brands.",
       "copyright": "© {product}. All rights reserved.",
+      "operator": "{product} is a trading name of {operator}.",
       "allTools": "All free tools",
       "legal": "Legal"
     },

@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Logo } from "@/components/logo";
 import { PlatformMark } from "@/components/platform-badge";
-import { PRODUCT_NAME } from "@/config/site";
+import { OPERATOR_NAME, PRODUCT_NAME } from "@/config/site";
 import { Link } from "@/i18n/navigation";
 import { PLATFORMS } from "@/providers/catalog";
 import { LEGAL_PAGES } from "@/features/legal/registry";
@@ -68,7 +68,11 @@ export function SiteFooter() {
       </div>
       <div className="mx-auto max-w-[1440px] px-4 md:px-6 lg:px-8">
         <div className="flex flex-col gap-3 border-t border-footer-foreground/15 py-6 text-sm sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-footer-foreground/60">{t("copyright", { product: PRODUCT_NAME })}</p>
+          {/* The operator line is the legal name Meta's business verification looks for on the homepage. */}
+          <div className="space-y-1">
+            <p className="text-footer-foreground/60">{t("copyright", { product: PRODUCT_NAME })}</p>
+            <p className="text-xs text-footer-foreground/50">{t("operator", { product: PRODUCT_NAME, operator: OPERATOR_NAME })}</p>
+          </div>
           <nav aria-label={t("legal")}>
             <ul className="flex flex-wrap gap-x-5 gap-y-1">
               {LEGAL_PAGES.map((page) => (

@@ -115,6 +115,7 @@
       "signup": "Empieza gratis",
       "tagline": "Programación de redes sociales para startups, agencias y marcas en crecimiento.",
       "copyright": "© {product}. Todos los derechos reservados.",
+      "operator": "{product} es un nombre comercial de {operator}.",
       "allTools": "Todas las herramientas gratis",
       "legal": "Legal"
     },
