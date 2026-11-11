@@ -35,7 +35,9 @@
     "label": "Theme",
     "light": "Light",
     "dark": "Dark",
-    "system": "Match system"
+    "system": "Match system",
+    "toDark": "Switch to dark theme",
+    "toLight": "Switch to light theme"
   },
   "language": {
     "label": "Language"
@@ -139,6 +141,19 @@
             "title": "Manage all your content in one place",
             "body": "See every scheduled and published post together. Check what went out, edit what is coming next, and keep your content plan on track."
           }
+        }
+      },
+      "promise": {
+        "title": "Post faster without losing quality.",
+        "sub": "Write once, see how each platform will show it, fix problems before they go out, then publish everywhere in one click.",
+        "visual": "{product} in the middle, connected to {platforms}.",
+        "stats": {
+          "platforms": "Platforms",
+          "click": "Click to post everywhere",
+          "checks": "Video checks",
+          "trial": "Days free",
+          "original": "Original kept",
+          "languages": "Languages"
         }
       },
       "ctaPrimary": "Start free",

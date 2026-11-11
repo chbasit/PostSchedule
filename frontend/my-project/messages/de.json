@@ -35,7 +35,9 @@
     "label": "Design",
     "light": "Hell",
     "dark": "Dunkel",
-    "system": "Wie das System"
+    "system": "Wie das System",
+    "toDark": "Zum dunklen Design wechseln",
+    "toLight": "Zum hellen Design wechseln"
   },
   "language": {
     "label": "Sprache"
@@ -139,6 +141,19 @@
             "title": "Alle Inhalte an einem Ort verwalten",
             "body": "Sieh alle geplanten und veröffentlichten Beiträge zusammen. Prüfe, was online ging, bearbeite, was als Nächstes kommt, und behalte deinen Content-Plan im Griff."
           }
+        }
+      },
+      "promise": {
+        "title": "Schneller posten, ohne an Qualität zu verlieren.",
+        "sub": "Einmal schreiben, sehen, wie jede Plattform es zeigt, Probleme vor dem Posten beheben und dann mit einem Klick überall veröffentlichen.",
+        "visual": "{product} in der Mitte, verbunden mit {platforms}.",
+        "stats": {
+          "platforms": "Plattformen",
+          "click": "Klick für alle Kanäle",
+          "checks": "Video-Prüfungen",
+          "trial": "Tage gratis",
+          "original": "Original bleibt",
+          "languages": "Sprachen"
         }
       },
       "ctaPrimary": "Kostenlos starten",

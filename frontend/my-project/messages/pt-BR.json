@@ -35,7 +35,9 @@
     "label": "Tema",
     "light": "Claro",
     "dark": "Escuro",
-    "system": "Igual ao sistema"
+    "system": "Igual ao sistema",
+    "toDark": "Mudar para o tema escuro",
+    "toLight": "Mudar para o tema claro"
   },
   "language": {
     "label": "Idioma"
@@ -139,6 +141,19 @@
             "title": "Gerencie todo o seu conteúdo em um só lugar",
             "body": "Veja juntos todos os posts agendados e publicados. Confira o que já saiu, edite o que vem por aí e mantenha seu plano de conteúdo em dia."
           }
+        }
+      },
+      "promise": {
+        "title": "Publique mais rápido sem perder qualidade.",
+        "sub": "Escreva uma vez, veja como cada plataforma vai mostrar, corrija problemas antes de publicar e publique em todas com um clique.",
+        "visual": "{product} no centro, conectado a {platforms}.",
+        "stats": {
+          "platforms": "Plataformas",
+          "click": "Clique para postar em todas",
+          "checks": "Verificações de vídeo",
+          "trial": "Dias grátis",
+          "original": "Original mantido",
+          "languages": "Idiomas"
         }
       },
       "ctaPrimary": "Comece grátis",

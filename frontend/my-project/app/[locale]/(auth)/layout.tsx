@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 import { Suspense } from "react";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Logo } from "@/components/logo";
-import { ThemeMenu } from "@/components/theme";
+import { ThemeToggle } from "@/components/theme";
 import { Skeleton } from "@/components/ui/misc";
 import { DEV_MODE } from "@/config/site";
 import { Link } from "@/i18n/navigation";
@@ -36,7 +36,7 @@ export default function AuthLayout({ children }: LayoutProps<"/[locale]">) {
           </span>
         ) : null}
         <LanguageSwitcher />
-        <ThemeMenu />
+        <ThemeToggle />
       </div>
       <main id="main" className="flex flex-1 flex-col items-center justify-center px-4 pb-14">
         <Link href="/" className="mb-6 rounded">

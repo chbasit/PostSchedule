@@ -1,38 +1,36 @@
 "use client";
 
-import { Monitor, Moon, Sun } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useSyncExternalStore } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 export type ThemePreference = "light" | "dark" | "system";
 
 const STORAGE_KEY = "theme";
 
-// Runs in <head> before first paint so there is no flash (FRONTEND.md §2.7).
-export const themeScript = `(function(){try{var t=localStorage.getItem("${STORAGE_KEY}");var d=t==="dark"||((!t||t==="system")&&matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.classList.toggle("dark",d)}catch(e){}})()`;
+// Light unless the person picked dark, or picked "Match system" on a dark system
+// (DECISIONS.md 2026-11-11). Runs in <head> before first paint so there is no flash
+// (FRONTEND.md §2.7).
+export const themeScript = `(function(){try{var t=localStorage.getItem("${STORAGE_KEY}");var d=t==="dark"||(t==="system"&&matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.classList.toggle("dark",d)}catch(e){}})()`;
 
 const listeners = new Set<() => void>();
 
 function read(): ThemePreference {
   try {
     const value = localStorage.getItem(STORAGE_KEY);
-    return value === "light" || value === "dark" ? value : "system";
+    return value === "dark" || value === "system" ? value : "light";
   } catch {
-    return "system";
+    return "light";
   }
 }
 
+function isDark(pref: ThemePreference): boolean {
+  return pref === "dark" || (pref === "system" && matchMedia("(prefers-color-scheme: dark)").matches);
+}
+
 function apply(pref: ThemePreference) {
-  const dark = pref === "dark" || (pref === "system" && matchMedia("(prefers-color-scheme: dark)").matches);
-  document.documentElement.classList.toggle("dark", dark);
+  document.documentElement.classList.toggle("dark", isDark(pref));
 }
 
 export function setTheme(pref: ThemePreference) {
@@ -48,7 +46,11 @@ export function setTheme(pref: ThemePreference) {
 function subscribe(listener: () => void) {
   listeners.add(listener);
   const media = matchMedia("(prefers-color-scheme: dark)");
-  const onSystem = () => read() === "system" && apply("system");
+  const onSystem = () => {
+    if (read() !== "system") return;
+    apply("system");
+    listener();
+  };
   media.addEventListener("change", onSystem);
   return () => {
     listeners.delete(listener);
@@ -57,33 +59,23 @@ function subscribe(listener: () => void) {
 }
 
 export function useTheme(): ThemePreference {
-  return useSyncExternalStore(subscribe, read, () => "system");
+  return useSyncExternalStore(subscribe, read, () => "light");
 }
 
-export function ThemeMenu({ className }: { className?: string }) {
+// The theme on screen now, whatever the preference.
+function useDarkOnScreen(): boolean {
+  return useSyncExternalStore(subscribe, () => isDark(read()), () => false);
+}
+
+// One button: the moon switches to dark, the sun back to light. "Match system" stays in the
+// app's user menu and preferences.
+export function ThemeToggle({ className }: { className?: string }) {
   const t = useTranslations("theme");
-  const pref = useTheme();
-  const Icon = pref === "dark" ? Moon : pref === "light" ? Sun : Monitor;
+  const dark = useDarkOnScreen();
+  const Icon = dark ? Sun : Moon;
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" aria-label={t("label")} className={className}>
-          <Icon aria-hidden />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuRadioGroup value={pref} onValueChange={(v) => setTheme(v as ThemePreference)}>
-          <DropdownMenuRadioItem value="light">
-            <Sun aria-hidden /> {t("light")}
-          </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="dark">
-            <Moon aria-hidden /> {t("dark")}
-          </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="system">
-            <Monitor aria-hidden /> {t("system")}
-          </DropdownMenuRadioItem>
-        </DropdownMenuRadioGroup>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <Button variant="ghost" size="icon" aria-label={dark ? t("toLight") : t("toDark")} className={className} onClick={() => setTheme(dark ? "light" : "dark")}>
+      <Icon aria-hidden />
+    </Button>
   );
 }

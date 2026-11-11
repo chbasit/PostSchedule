@@ -281,7 +281,7 @@ Using shadcn/ui variable names. If you scaffold with Tailwind v4, map them with 
 }
 ```
 
-**Theme behaviour:** follow the system setting by default, with a toggle in the user menu. Set the theme before first paint so there is no flash.
+**Theme behaviour:** light by default (DECISIONS.md 2026-11-11). The public site, sign-in and onboarding have one moon/sun button that switches between light and dark; the user menu and Preferences also offer "Match system". Set the theme before first paint so there is no flash.
 
 **Dashboard accents (2026-10-25, see DECISIONS.md).** `app/globals.css` is the source of truth; these are the tokens added since the table above:
 

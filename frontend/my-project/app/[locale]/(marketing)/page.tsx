@@ -12,7 +12,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { useFormatter, useLocale, useTranslations } from "next-intl";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { JsonLd } from "@/components/json-ld";
 import { PlatformMark } from "@/components/platform-badge";
 import { buttonVariants } from "@/components/ui/button";
@@ -21,10 +21,12 @@ import { Link } from "@/i18n/navigation";
 import { PLANS, TRIAL_DAYS } from "@/lib/billing/plans";
 import { cn } from "@/lib/utils";
 import { PLATFORMS } from "@/providers/catalog";
+import { locales } from "@/i18n/routing";
 import { GoogleIcon } from "@/features/auth/google-icon";
 import { AgentConsole } from "@/features/marketing/agent-console";
 import { BusinessWall } from "@/features/marketing/business-wall";
 import { Clip, type ClipName } from "@/features/marketing/clip";
+import { HubVisual } from "@/features/marketing/hub-visual";
 import { LandingPricing } from "@/features/marketing/landing-pricing";
 import { PreviewPhones } from "@/features/marketing/preview-phones";
 import { ProductShot } from "@/features/marketing/product-shot";
@@ -37,6 +39,18 @@ const CORE: Array<{ key: "publish" | "schedule" | "manage"; clip?: ClipName }> =
   { key: "publish" },
   { key: "schedule", clip: "calendar" },
   { key: "manage", clip: "home" },
+];
+
+// The pills around the centre picture: true numbers only, taken from the code where they live.
+const PROMISE: Array<{ key: "platforms" | "click" | "checks" | "trial" | "original" | "languages"; value: number; percent?: boolean }> = [
+  { key: "platforms", value: PLATFORMS.length },
+  { key: "click", value: 1 },
+  // Aspect ratio, resolution, bitrate, duration and size (features.preflight).
+  { key: "checks", value: 5 },
+  { key: "trial", value: TRIAL_DAYS },
+  // The uploaded file is never changed (features.original).
+  { key: "original", value: 1, percent: true },
+  { key: "languages", value: locales.length },
 ];
 
 const AI_POINTS: Array<{ key: "write" | "agents" | "control"; icon: LucideIcon; chip: string }> = [
@@ -58,8 +72,12 @@ const STEP_CHIPS = ["bg-card-lavender", "bg-card-aqua", "bg-card-yellow"] as con
 const FAQ_KEYS = ["what", "quality", "ai", "platforms", "safety", "trial", "cancel", "switch"] as const;
 
 // A coloured panel. The landing page is flat: no frames, borders or shadows on its cards.
-function Panel({ surface, className, children }: { surface: string; className?: string; children: ReactNode }) {
-  return <div className={cn("relative isolate overflow-hidden rounded-[28px]", surface, className)}>{children}</div>;
+function Panel({ surface, className, style, children }: { surface: string; className?: string; style?: CSSProperties; children: ReactNode }) {
+  return (
+    <div className={cn("relative isolate overflow-hidden rounded-[28px]", surface, className)} style={style}>
+      {children}
+    </div>
+  );
 }
 
 
@@ -146,9 +164,18 @@ export default function HomePage() {
         <h2 id="core-title" className="display text-center text-3xl text-balance md:text-4xl md:whitespace-nowrap">
           {t("core.title")}
         </h2>
-        <div className="mt-12 space-y-5">
-          {CORE.map(({ key, clip }) => (
-            <Panel key={key} surface="bg-card-periwinkle">
+        {/* Stacking cards (founder's call, 2026-11-11): from lg up, on screens at least 608 px
+            tall (a laptop browser window), each card sticks under the header, a step lower than
+            the one before, and the next slides over it. Phones and short screens scroll them
+            normally. */}
+        <div className="mt-12 space-y-5 lg:space-y-10">
+          {CORE.map(({ key, clip }, i) => (
+            <Panel
+              key={key}
+              surface="bg-card-periwinkle"
+              className="lg:[@media(min-height:38rem)]:sticky lg:[@media(min-height:38rem)]:top-(--stack-top) lg:[@media(min-height:38rem)]:shadow-[0_-12px_32px_-16px_rgb(0_0_0/0.18)]"
+              style={{ "--stack-top": `${5 + i}rem` } as CSSProperties}
+            >
               <div className="grid items-center gap-10 p-6 sm:p-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16 lg:p-14">
                 <div>
                   <h3 className="font-heading text-3xl font-semibold tracking-tight text-balance md:text-4xl">{t(`core.items.${key}.title`)}</h3>
@@ -167,6 +194,42 @@ export default function HomePage() {
               </div>
             </Panel>
           ))}
+        </div>
+      </section>
+
+      {/* Promise: the core in one picture with true numbers around it (founder's call,
+          2026-11-11): three pills each side from lg up, wrapped under the picture on phones.
+          Clipped sideways: the turning ring's empty corners would widen the page on phones. */}
+      <section aria-labelledby="promise-title" className="mx-auto max-w-[1440px] overflow-x-clip px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
+        <h2 id="promise-title" className="display text-center text-3xl text-balance md:text-4xl">
+          {t("promise.title")}
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-balance text-muted-foreground">{t("promise.sub")}</p>
+        <div className="mx-auto mt-10 grid max-w-4xl items-center gap-x-10 gap-y-6 lg:mt-14 lg:grid-cols-[1fr_minmax(0,22rem)_1fr]">
+          <HubVisual className="lg:col-start-2 lg:row-start-1" label={t("promise.visual", { product: PRODUCT_NAME, platforms: platformNames })} />
+          {[PROMISE.slice(0, 3), PROMISE.slice(3)].map((side, s) => (
+            <ul
+              key={side[0].key}
+              className={cn(
+                "flex flex-wrap justify-center gap-3 lg:row-start-1 lg:flex-col lg:justify-between lg:self-stretch lg:py-8",
+                s === 0 ? "lg:col-start-1 lg:items-start" : "lg:col-start-3 lg:items-end",
+              )}
+            >
+              {side.map(({ key, value, percent }) => (
+                <li key={key} className="inline-flex items-center gap-2 rounded-full bg-card p-1 pe-4 text-sm font-medium ring-1 ring-border">
+                  <span className="tabular rounded-full bg-card-lavender px-2.5 py-1 font-semibold">
+                    {format.number(value, percent ? { style: "percent" } : undefined)}
+                  </span>
+                  {t(`promise.stats.${key}`)}
+                </li>
+              ))}
+            </ul>
+          ))}
+        </div>
+        <div className="mt-10 flex justify-center lg:mt-14">
+          <Link href="/signup" className={pill}>
+            {t("ctaPrimary")} <ArrowRight className="rtl:-scale-x-100" aria-hidden />
+          </Link>
         </div>
       </section>
 

@@ -35,7 +35,9 @@
     "label": "Thème",
     "light": "Clair",
     "dark": "Sombre",
-    "system": "Comme le système"
+    "system": "Comme le système",
+    "toDark": "Passer au thème sombre",
+    "toLight": "Passer au thème clair"
   },
   "language": {
     "label": "Langue"
@@ -139,6 +141,19 @@
             "title": "Gérez tout votre contenu au même endroit",
             "body": "Retrouvez ensemble toutes vos publications programmées et publiées. Voyez ce qui est parti, modifiez ce qui arrive et gardez votre stratégie de contenu sur les rails."
           }
+        }
+      },
+      "promise": {
+        "title": "Publiez plus vite sans perdre en qualité.",
+        "sub": "Écrivez une fois, voyez comment chaque plateforme l’affichera, corrigez les problèmes avant la publication, puis publiez partout en un clic.",
+        "visual": "{product} au centre, relié à {platforms}.",
+        "stats": {
+          "platforms": "Plateformes",
+          "click": "Clic pour tout publier",
+          "checks": "Contrôles vidéo",
+          "trial": "Jours gratuits",
+          "original": "Original conservé",
+          "languages": "Langues"
         }
       },
       "ctaPrimary": "Commencer gratuitement",

@@ -2,6 +2,27 @@
 
 Newest first. Format from `PROJECTFLOW.md` §9.
 
+## 2026-11-11 — Feature order: posting first, then features without AI, then AI
+
+Decision: The founder's feature list goes into `doc/UPCOMING-FEATURES.md`, not onto the website. It covers the post composer extras, publishing, performance insights and brand management, each marked "in the app today", "after posting works (no AI)" or "AI". Work goes in that order: posting to every platform end to end first, then analytics, goals and brand tools, then AI (brand voice, AI images and video, hashtag suggestions, Magic create). A feature appears on the site or in a Product menu only once it works.
+Why: The site must claim only what the product does, because Meta, Google, TikTok and Lemon Squeezy reviewers read it. Publishing is what customers pay for first.
+Alternatives: A Product menu now with "Soon" badges on unbuilt features (not chosen; it can come once features ship).
+Revisit when: A stage is finished; move its features to "in the app today".
+
+## 2026-11-11 — Landing: centre picture with true numbers; stacking cards
+
+Decision: A new section after "Publish, schedule and manage" reads "Post faster without losing quality.": the logo in the middle with the six platforms on a slowly turning ring (`hub-visual.tsx`; still with reduced motion), three pills each side with true numbers taken from the code (6 platforms, 1 click, 5 video checks, 14 days free, 100% original kept, 6 languages), and a "Start free" button. On phones the pills wrap under the picture. The section is clipped sideways (`overflow-x-clip`), because the turning ring's empty corners widened the page on phones. The three "Publish, schedule and manage" cards stack: from lg up, on screens at least 38rem (608 px) tall, so a laptop browser window qualifies, each card sticks under the header, a step lower than the one before, and the next slides over it. Phones and short screens scroll them normally.
+Why: The founder asked for a centre-picture section like one on another site, built from AgentiqSocial's own product (no stock or copied image), and for the three cards to move with the scroll.
+Alternatives: A stock photo in the centre. A browser-window frame or a pinned picture with changing text for the three cards (not chosen).
+Revisit when: The product has real customer numbers worth showing, or the stack feels slow on long pages.
+
+## 2026-11-11 — Light theme by default; a moon/sun button
+
+Decision: The theme is light unless the person picks dark, or picks "Match system" on a dark system (`src/components/theme.tsx`; the pre-paint script follows the same rule). The public site, sign-in and onboarding headers have one button instead of the three-way menu: a moon switches to dark, a sun back to light, and the choice is saved. The user menu and Preferences keep Light, Dark and "Match system".
+Why: The founder wants light first and a one-click switch to dark.
+Alternatives: Following the system by default (the old behaviour). Keeping the three-way menu in the header.
+Revisit when: Visitors ask for the system setting to be the default.
+
 ## 2026-11-11 — New prices; yearly prices set per plan
 
 Decision: Solo $15 a month or $150 a year, Pro $25 or $270, Agency $60 or $680, Scale $130 or $1,480 (Free stays $0). `priceYearly` in `src/lib/billing/plans.ts` holds each yearly price instead of "ten times monthly", and must equal the Lemon Squeezy variants. The yearly saving therefore differs by plan (Solo 17%, Pro 10%, Agency 6%, Scale 5%): the toggle says "Save up to 17%" (`MAX_YEARLY_SAVING`), each yearly card on the landing page shows its own saving, and the pricing page's description says "saves up to 17%". The old "2 months free" label is gone.

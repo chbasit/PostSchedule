@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Logo } from "@/components/logo";
-import { ThemeMenu } from "@/components/theme";
+import { ThemeToggle } from "@/components/theme";
 import { buttonVariants } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
@@ -40,7 +40,7 @@ export function SiteHeader() {
         </nav>
         <div className="flex items-center gap-1 justify-self-end">
           <LanguageSwitcher className="rounded-full" />
-          <ThemeMenu className="rounded-full" />
+          <ThemeToggle className="rounded-full" />
           <Link href="/login" className={cn(buttonVariants({ variant: "ghost" }), "hidden rounded-full sm:inline-flex")}>
             {t("login")}
           </Link>
