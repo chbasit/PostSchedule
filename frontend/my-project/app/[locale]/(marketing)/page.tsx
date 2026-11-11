@@ -140,7 +140,7 @@ export default function HomePage() {
       {/* Hero: the promise, the platforms, then the product at work. */}
       <section>
         <div className="mx-auto max-w-[1440px] px-4 pt-20 text-center md:px-6 md:pt-24 lg:px-8 lg:pt-32">
-          <h1 className="display mx-auto max-w-5xl text-[clamp(2.5rem,5.6vw,4.5rem)] text-balance">{t("headline")}</h1>
+          <h1 className="display mx-auto max-w-6xl text-[clamp(2.75rem,6vw,5rem)] text-balance">{t("headline")}</h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-balance text-muted-foreground md:text-xl">{t(AI_ENABLED ? "sub" : "subSoon")}</p>
           <div className="mx-auto mt-8 flex max-w-sm flex-col items-center justify-center gap-3 sm:max-w-none sm:flex-row">
             <Link href="/signup" className={pill}>
@@ -171,7 +171,7 @@ export default function HomePage() {
             {HIGHLIGHTS.map(({ key, icon: Icon }) => (
               <li key={key} className="px-2 lg:px-8">
                 <Icon className="size-6 text-muted-foreground" strokeWidth={1.5} aria-hidden />
-                <h2 className="mt-4 font-heading text-lg font-semibold tracking-tight">{t(`highlights.${key}.title`)}</h2>
+                <h2 className="mt-4 font-heading text-xl font-semibold tracking-tight md:text-2xl">{t(`highlights.${key}.title`)}</h2>
                 <p className="mt-2 text-muted-foreground">{t(`highlights.${key}.body`)}</p>
               </li>
             ))}
@@ -181,8 +181,8 @@ export default function HomePage() {
 
       {/* Core: what people come for, in the words they search with. */}
       <section aria-labelledby="core-title" className="mx-auto max-w-[1440px] px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
-        {/* One line from md up (founder's call, 2026-11-03); phones wrap it. */}
-        <h2 id="core-title" className="display text-center text-3xl text-balance md:text-4xl md:whitespace-nowrap">
+        {/* One line on wide screens (founder's call, 2026-11-03); narrower ones wrap it at 48 px. */}
+        <h2 id="core-title" className="display text-center text-4xl text-balance md:text-5xl xl:whitespace-nowrap">
           {t("core.title")}
         </h2>
         {/* Stacking cards (founder's call, 2026-11-11): from lg up, on screens at least 608 px
@@ -199,7 +199,7 @@ export default function HomePage() {
             >
               <div className="grid items-center gap-10 p-6 sm:p-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16 lg:p-14">
                 <div>
-                  <h3 className="font-heading text-3xl font-semibold tracking-tight text-balance md:text-4xl">{t(`core.items.${key}.title`)}</h3>
+                  <h3 className="font-heading text-3xl font-semibold tracking-tight text-balance md:text-[2.75rem] md:leading-tight">{t(`core.items.${key}.title`)}</h3>
                   <p className="mt-4 max-w-xl text-lg text-foreground/75">{t(`core.items.${key}.body`, { platforms: platformNames, product: PRODUCT_NAME })}</p>
                   <Link href="/signup" className="mt-7 inline-flex items-center gap-1.5 rounded-md font-semibold underline-offset-4 hover:underline">
                     {t("ctaPrimary")} <ArrowRight className="size-4 rtl:-scale-x-100" aria-hidden />
@@ -222,7 +222,7 @@ export default function HomePage() {
           2026-11-11): three pills each side from lg up, wrapped under the picture on phones.
           Clipped sideways: the turning ring's empty corners would widen the page on phones. */}
       <section aria-labelledby="promise-title" className="mx-auto max-w-[1440px] overflow-x-clip px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
-        <h2 id="promise-title" className="display text-center text-3xl text-balance md:text-4xl">
+        <h2 id="promise-title" className="display text-center text-4xl text-balance md:text-5xl">
           {t("promise.title")}
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-balance text-muted-foreground">{t("promise.sub")}</p>
@@ -257,7 +257,7 @@ export default function HomePage() {
           <div aria-hidden className="dot-grid absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_75%_75%_at_30%_40%,black,transparent)]" />
           <div className="grid items-center gap-12 px-6 py-12 sm:px-10 md:py-16 lg:grid-cols-[1fr_1.05fr] lg:px-14">
             <div>
-              <h2 id="ai-title" className="display text-3xl text-balance md:text-4xl">
+              <h2 id="ai-title" className="display text-4xl text-balance md:text-5xl">
                 {t("ai.title")}
               </h2>
               <p className="mt-5 max-w-xl text-lg text-foreground/80">{t(AI_ENABLED ? "ai.sub" : "ai.subSoon")}</p>
@@ -268,7 +268,7 @@ export default function HomePage() {
                       <Icon className="size-5" aria-hidden />
                     </span>
                     <div>
-                      <h3 className="font-heading font-semibold">
+                      <h3 className="font-heading text-lg font-semibold">
                         {t(`ai.points.${key}.title`)}
                         {/* While AI is switched off, the writing and image tools are announced, not offered. */}
                         {key === "write" && !AI_ENABLED ? (
@@ -292,7 +292,7 @@ export default function HomePage() {
       <section id="features" aria-labelledby="features-title" className="mb-16 scroll-mt-24 bg-band md:mb-24 dark:border-y dark:border-border">
         <div className="mx-auto max-w-[1440px] px-4 py-16 md:px-6 md:py-24 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 id="features-title" className="display text-3xl text-balance md:text-4xl">
+            <h2 id="features-title" className="display text-4xl text-balance md:text-5xl">
               {t("featuresTitle")}
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">{t("featuresSub")}</p>
@@ -300,7 +300,7 @@ export default function HomePage() {
 
           <div className="mt-14 grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
             <div>
-              <h3 className="font-heading text-2xl font-semibold tracking-tight text-balance md:text-[1.75rem] md:leading-tight">{t("showcase.previews.title")}</h3>
+              <h3 className="font-heading text-3xl font-semibold tracking-tight text-balance md:text-4xl md:leading-tight">{t("showcase.previews.title")}</h3>
               <p className="mt-3 max-w-md text-muted-foreground">{t("showcase.previews.body")}</p>
               <ul className="mt-6 space-y-3">
                 {(["captions", "frames", "fix"] as const).map((point) => (
@@ -322,21 +322,21 @@ export default function HomePage() {
                 <span className={cn("inline-flex size-11 items-center justify-center rounded-2xl text-foreground", chip)}>
                   <Icon className="size-5" aria-hidden />
                 </span>
-                <h3 className="mt-4 font-heading text-lg font-semibold tracking-tight">{t(`features.${key}.title`)}</h3>
+                <h3 className="mt-4 font-heading text-xl font-semibold tracking-tight">{t(`features.${key}.title`)}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{t(`features.${key}.body`)}</p>
               </li>
             ))}
           </ul>
 
           <div className="mt-16 border-t border-border pt-14">
-            <h3 className="display text-center text-2xl text-balance md:text-3xl">{t("stepsTitle")}</h3>
+            <h3 className="display text-center text-3xl text-balance md:text-4xl">{t("stepsTitle")}</h3>
             <ol className="mt-10 grid gap-4 md:grid-cols-3">
               {(["connect", "check", "schedule"] as const).map((step, i) => (
                 <li key={step} className="rounded-2xl bg-card p-7">
                   <span aria-hidden className={cn("tabular inline-flex size-11 items-center justify-center rounded-2xl font-heading text-lg font-semibold text-foreground", STEP_CHIPS[i])}>
                     {i + 1}
                   </span>
-                  <h4 className="mt-5 font-heading text-xl font-semibold tracking-tight">{t(`steps.${step}.title`)}</h4>
+                  <h4 className="mt-5 font-heading text-2xl font-semibold tracking-tight">{t(`steps.${step}.title`)}</h4>
                   <p className="mt-2 text-muted-foreground">{t(`steps.${step}.body`)}</p>
                 </li>
               ))}
@@ -352,7 +352,7 @@ export default function HomePage() {
 
       {/* Pricing: the four paid plans side by side; Pricing compares all five. */}
       <section aria-labelledby="pricing-title" className="mx-auto max-w-[1440px] px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
-        <h2 id="pricing-title" className="display mx-auto mb-8 max-w-2xl text-center text-3xl text-balance md:text-4xl">
+        <h2 id="pricing-title" className="display mx-auto mb-8 max-w-3xl text-center text-4xl text-balance md:text-5xl">
           {t("pricingTitle")}
         </h2>
         <LandingPricing />
@@ -365,7 +365,7 @@ export default function HomePage() {
 
       {/* FAQ: visible questions with direct answers (SEO-AEO.md workflow 2), centred, no cards. */}
       <section aria-labelledby="faq-title" className="mx-auto max-w-7xl px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
-        <h2 id="faq-title" className="display text-center text-3xl text-balance md:text-4xl">
+        <h2 id="faq-title" className="display text-center text-4xl text-balance md:text-5xl">
           {t("faqTitle", { product: PRODUCT_NAME })}
         </h2>
         <div className="mt-10 divide-y border-y">

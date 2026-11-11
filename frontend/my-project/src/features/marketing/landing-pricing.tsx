@@ -56,7 +56,7 @@ function OfferCard({ plan, interval }: { plan: Plan; interval: BillingInterval }
       className={cn("relative flex flex-col rounded-2xl p-6", dark ? "bg-ink text-white dark:ring-1 dark:ring-white/20" : "bg-card ring-1 ring-border")}
     >
       <div className="flex min-h-6 items-start justify-between gap-2">
-        <h3 id={`offer-${plan.key}`} className="font-heading text-xl font-semibold tracking-tight">
+        <h3 id={`offer-${plan.key}`} className="font-heading text-2xl font-semibold tracking-tight">
           {tp(`names.${plan.key}`)}
         </h3>
         {dark ? (

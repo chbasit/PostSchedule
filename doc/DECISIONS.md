@@ -2,6 +2,19 @@
 
 Newest first. Format from `PROJECTFLOW.md` §9.
 
+## 2026-11-11 — Larger homepage headings
+
+Decision: Homepage headings are one step larger.
+- **Section headings:** `text-4xl md:text-5xl`, up from `text-3xl md:text-4xl`.
+- **Hero headline:** up to 80 px, on a `max-w-6xl` line so it still breaks in two.
+- **Titles inside cards:** one step larger (highlights, stacking cards, the band's showcase, feature cards and steps, the comparison, pricing cards, brand labels).
+- **Line breaks:** "Publish, schedule and manage in one place." stays on one line only from `xl` up, because 48 px does not fit on one line on smaller laptops.
+
+Checked at 1366, 1024 and 390 px wide: no heading overflows.
+Why: The founder asked for bigger headings and component titles on the homepage.
+Alternatives: Larger headings across the dashboard and sign-in pages too (not asked for).
+Revisit when: Headings feel crowded on a new section.
+
 ## 2026-11-11 — 7-day trial; theme button only on the site and in the dashboard; lighter auth headings
 
 Decision:

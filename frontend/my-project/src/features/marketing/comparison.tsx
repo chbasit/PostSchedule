@@ -14,13 +14,13 @@ export function Comparison() {
   const t = useTranslations("marketing.home.compare");
   return (
     <section aria-labelledby="compare-title" className="mx-auto max-w-[1440px] px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
-      <h2 id="compare-title" className="display text-center text-3xl text-balance md:text-4xl">
+      <h2 id="compare-title" className="display text-center text-4xl text-balance md:text-5xl">
         {t("title")}
       </h2>
       <div className="mx-auto mt-12 grid max-w-5xl gap-4 md:grid-cols-2">
         {SIDES.map((side) => (
           <div key={side.key} className={cn("rounded-2xl p-6 sm:p-8", side.surface)}>
-            <h3 className="font-heading text-xl font-semibold tracking-tight">{t(`${side.key}.title`)}</h3>
+            <h3 className="font-heading text-2xl font-semibold tracking-tight">{t(`${side.key}.title`)}</h3>
             <ul className="mt-6 space-y-6">
               {side.items.map((item) => (
                 <li key={item} className="flex gap-3">
@@ -28,7 +28,7 @@ export function Comparison() {
                     <X className="size-3.5" strokeWidth={3} />
                   </span>
                   <span>
-                    <span className="block font-semibold">{t(`${item}.title`)}</span>
+                    <span className="block text-lg font-semibold">{t(`${item}.title`)}</span>
                     <span className="mt-1 block text-sm text-muted-foreground">{t(`${item}.body`)}</span>
                   </span>
                 </li>

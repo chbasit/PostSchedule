@@ -23,7 +23,7 @@ export function BrandTree() {
   return (
     <section aria-labelledby="brands-title" className="mx-auto max-w-[1440px] px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
       <div className="mx-auto max-w-2xl text-center">
-        <h2 id="brands-title" className="display text-3xl text-balance md:text-4xl">
+        <h2 id="brands-title" className="display text-4xl text-balance md:text-5xl">
           {t("title")}
         </h2>
         <p className="mt-4 text-lg text-balance text-muted-foreground">{t("sub")}</p>
@@ -44,7 +44,7 @@ export function BrandTree() {
               <span className="inline-flex size-12 items-center justify-center rounded-xl bg-card-periwinkle">
                 <Icon className="size-5" />
               </span>
-              <span className="text-center text-sm font-medium">{tw(`${key}.label`)}</span>
+              <span className="text-center font-medium">{tw(`${key}.label`)}</span>
             </li>
           ))}
         </ul>
