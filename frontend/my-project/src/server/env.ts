@@ -1,6 +1,7 @@
 import "server-only";
 import { z } from "zod";
 import { AI_ENABLED } from "@/config/site";
+import { parseKeyRing, type KeyRing } from "./crypto";
 import { fail } from "./errors";
 
 // Server configuration, checked on first use so a missing value fails with a clear message
@@ -83,6 +84,17 @@ export function googleEnv() {
     return null;
   }
   return parsed.data;
+}
+
+// The keys that encrypt platform logins (src/server/crypto.ts). Without them no account can be
+// connected or posted to.
+export function tokenKeys(): KeyRing {
+  const ring = parseKeyRing(process.env.ENCRYPTION_KEYS, process.env.ENCRYPTION_ACTIVE_KEY_ID);
+  if (!ring) {
+    console.error("[env] ENCRYPTION_KEYS or ENCRYPTION_ACTIVE_KEY_ID missing or invalid");
+    throw fail.notConfigured("Connecting social accounts");
+  }
+  return ring;
 }
 
 // Every AI route starts here: while AI is switched off ("Coming soon"), nothing runs and

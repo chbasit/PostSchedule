@@ -3,7 +3,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-import { api, isApiError, type ConnectResult } from "@/lib/api/client";
+import { api, isApiError, type AppPasswordLogin, type ConnectResult } from "@/lib/api/client";
 import { useIntentKey } from "@/lib/use-intent-key";
 import type { PlatformId } from "@/providers/catalog";
 import { useWorkspace } from "@/features/session/workspace-context";
@@ -27,7 +27,8 @@ export function useConnectAccount(onConnected?: () => void) {
   };
 
   const connect = useMutation({
-    mutationFn: (provider: PlatformId) => api.accounts.connect(workspace.id, provider, { idempotencyKey: intent.get() }),
+    mutationFn: ({ provider, credentials }: { provider: PlatformId; credentials?: AppPasswordLogin }) =>
+      api.accounts.connect(workspace.id, provider, { idempotencyKey: intent.get() }, credentials),
     onSuccess: handle,
   });
 

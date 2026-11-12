@@ -1,5 +1,6 @@
 "use client";
 
+import { probeMedia } from "@/lib/preflight/probe";
 import { ApiError, type ErrorEnvelope } from "./errors";
 import type { ApiClient, MediaSummary, MutationOptions, UploadHandle } from "./types";
 
@@ -65,13 +66,19 @@ export function createHttpClient(baseUrl: string): ApiClient {
   const ws = (id: string) => `/workspaces/${encodeURIComponent(id)}`;
 
   function upload(workspaceId: string, file: File, onProgress: (f: number) => void): UploadHandle {
-    // Single presigned PUT for now; switch to multipart parts once the backend exposes them.
+    // One signed PUT straight to storage (src/server/media/storage.ts); the server never handles
+    // the bytes. The browser measures the file first, because the server cannot read videos.
     let xhr: XMLHttpRequest | null = null;
     const promise = (async () => {
+      const probe = await probeMedia(file).catch(() => null);
+      if (probe) URL.revokeObjectURL(probe.objectUrl);
       const init = await request<{ assetId: string; uploadUrl: string }>("POST", `${ws(workspaceId)}/media/uploads`, {
         name: file.name,
         bytes: file.size,
         mime: file.type,
+        width: probe?.width ?? 0,
+        height: probe?.height ?? 0,
+        durationSec: probe?.durationSec ?? null,
       });
       await new Promise<void>((resolve, reject) => {
         xhr = new XMLHttpRequest();
@@ -115,7 +122,7 @@ export function createHttpClient(baseUrl: string): ApiClient {
     },
     accounts: {
       list: (id) => request("GET", `${ws(id)}/accounts`),
-      connect: (id, provider, opts) => request("POST", `${ws(id)}/accounts/connect`, { provider }, opts),
+      connect: (id, provider, opts, credentials) => request("POST", `${ws(id)}/accounts/connect`, { provider, ...credentials }, opts),
       reconnect: (id, accountId) => request("POST", `${ws(id)}/accounts/${accountId}/reconnect`, {}),
       remove: (id, accountId) => request("DELETE", `${ws(id)}/accounts/${accountId}`),
       insights: (id, accountId, { days, timezone }) =>

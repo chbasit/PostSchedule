@@ -5,11 +5,12 @@ import { useTranslations } from "next-intl";
 import type { MediaSummary } from "@/lib/api/client";
 import { useMediaUrl } from "@/lib/media-url";
 import { aspectLabel, formatBytes, formatDuration, type CheckStatus } from "@/lib/preflight/rules";
+import { MAX_UPLOAD_BYTES } from "@/lib/media";
 import { cn } from "@/lib/utils";
 
 export type MediaItem =
   | { key: string; phase: "uploading" | "paused"; name: string; progress: number; bytes: number; kind: "image" | "video"; localUrl: string | null }
-  | { key: string; phase: "error"; name: string; reason: "unsupported" | "failed" }
+  | { key: string; phase: "error"; name: string; reason: "unsupported" | "tooLarge" | "failed" }
   | { key: string; phase: "ready"; media: MediaSummary };
 
 type Props = {
@@ -146,7 +147,7 @@ export function MediaStrip({ items, issues, canAdd, addLabel, onAdd, onRemove, o
       {errors.map((item) =>
         item.phase === "error" ? (
           <p key={item.key} role="alert" className="text-xs text-danger">
-            {t(item.reason === "unsupported" ? "unsupported" : "failed", { name: item.name })}
+            {t(item.reason, { name: item.name, max: Math.round(MAX_UPLOAD_BYTES / 1024 / 1024) })}
           </p>
         ) : null,
       )}

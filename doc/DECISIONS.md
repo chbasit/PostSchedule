@@ -2,6 +2,49 @@
 
 Newest first. Format from `PROJECTFLOW.md` §9.
 
+## 2026-11-12 — Bluesky connects with an app password; "Post now" publishes
+
+Decision:
+- **Connecting Bluesky.** People enter their handle and an app password in the connect dialog. `POST /accounts/connect` signs in with Bluesky (`createSession`) before saving anything. It stores the account by its DID, with the app password encrypted (`src/server/crypto.ts`: AES-256-GCM, key id in front, keys from `ENCRYPTION_KEYS` and `ENCRYPTION_ACTIVE_KEY_ID`, rotation-ready) and the account's own server (PDS). It reads the public profile for the name and picture. A wrong handle or password answers `bluesky_login`. The other platforms answer `not_configured`, which the dialog shows as "coming soon".
+- **"Post now".** It saves the post as due now, then `src/server/publish.ts` sends it.
+  - **One send only.** The post is claimed first (scheduled to publishing), so it can never go out twice.
+  - **Per account.** Each account gets its own result: published with the platform's link, or failed with a plain reason. A refused app password marks the account "needs reconnect".
+  - **Post status.** The post ends as published, partial or failed.
+- **What Bluesky posts carry.** Text and up to four photos. Photos are re-encoded below Bluesky's 1 MB limit (`fitImage`), and links and hashtags become clickable facets (UTF-8 byte offsets). Video to Bluesky fails with a clear message for now.
+- **Tests.** The adapter (`src/server/providers/bluesky.ts`) and the encryption have unit tests.
+
+Why: Bluesky needs no app review, so it proves the whole chain (upload, connect, publish) before Meta and YouTube, as the build order says (BACKEND.md §9). App passwords are Bluesky's supported way for third-party apps, and they can be revoked in Bluesky at any time.
+Alternatives: Bluesky's OAuth (DPoP, client metadata: more moving parts, later if needed). Storing a session token instead of the app password (it expires; signing in per publish stays well within Bluesky's limits).
+Revisit when: Scheduled posts need sending (Inngest, next), Bluesky video is added, or Meta and YouTube adapters join `publish.ts`.
+
+## 2026-11-12 — Uploads go to Supabase Storage for now, not Cloudflare R2
+
+Decision:
+- **Storage.** Photos and videos live in a private Supabase Storage bucket (`MEDIA_BUCKET`, default `media`, created on first use) instead of Cloudflare R2 (BACKEND.md §10).
+- **How an upload works.**
+  1. `POST /media/uploads` checks the type and size, writes a `media_assets` row in `uploading` (`source = 'upload'`) and returns a signed upload URL.
+  2. The browser PUTs the file straight to that URL, so the app never handles the bytes.
+  3. `POST /media/uploads/:id/complete` checks that the file arrived, keeps its stored size, sets `ready` and returns the media with a signed preview URL.
+- **Measurements.** The browser measures each file (`probeMedia`) and sends the width, height and duration, because this host cannot read videos. The platforms check again when posting.
+- **Limits.** Files can be up to 50 MB (Supabase free plan). The composer says so before uploading ("larger than 50 MB…"), and the server refuses `too_large` and `unsupported_type`. The rules live in `src/lib/media.ts`, with tests.
+- **Previews.** Posts sign their uploaded media from this bucket and their AI images from `ai-images`.
+
+Why: The founder did not want to add a Cloudflare account and a card yet, and hosting files on Hostinger would send every upload through the app (120 s limit, files possibly wiped on redeploy, not suited to platforms fetching videos). Supabase is already connected and needs nothing new. It was checked live: a key-less browser PUT to a signed upload URL works.
+Alternatives: Cloudflare R2 (the plan: bigger files, no download fees, needs an account and a card). Hostinger disk (rejected for the reasons above).
+Revisit when: Customers need files over 50 MB, or storage passes about 1 GB (the free plan's total). Then move to Supabase Pro or R2 by changing `src/server/media/storage.ts` and `MAX_UPLOAD_BYTES`. Also add a clean-up job: files of deleted workspaces stay in the bucket.
+
+## 2026-11-12 — No highlights row; larger section headings with room around them
+
+Decision:
+- **Highlights row removed.** The four highlights under the hero (Write once, See it first, Post on time, Every brand in one place) are gone, with their texts. The hero now ends with its own bottom padding.
+- **Larger headings.** Section headings are `text-4xl md:text-5xl lg:text-6xl` (60 px on laptops), with `pt-6 pb-2 md:pt-10 md:pb-4` around them. The features and brands headings sit on a wider `max-w-4xl` line, with their sub-text kept at `max-w-2xl`.
+- **Line breaks.** "Publish, schedule and manage in one place." no longer forces one line; it fits on one line at 1366 px.
+
+Checked at 1366, 1024 and 390 px wide: no heading overflows.
+Why: The founder asked for both.
+Alternatives: None considered.
+Revisit when: Headings crowd a new section.
+
 ## 2026-11-11 — Larger homepage headings
 
 Decision: Homepage headings are one step larger.

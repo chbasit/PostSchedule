@@ -193,24 +193,6 @@
       "ctaPrimary": "Start free",
       "ctaGoogle": "Start with Google",
       "ctaNote": "{days}-day trial. No card needed.",
-      "highlights": {
-        "write": {
-          "title": "Write once",
-          "body": "One caption for every app, or a different one for each."
-        },
-        "check": {
-          "title": "See it first",
-          "body": "Check how each app will show your post before it goes out."
-        },
-        "schedule": {
-          "title": "Post on time",
-          "body": "Plan weeks ahead and post in any time zone."
-        },
-        "brands": {
-          "title": "Every brand in one place",
-          "body": "A workspace for each brand or client, with its own team."
-        }
-      },
       "featuresTitle": "Check your post before you share it.",
       "featuresSub": "See how each app will show your post. We tell you if the quality will drop, before anyone sees it.",
       "features": {
@@ -1123,6 +1105,7 @@
     "chooseBody": "Choose a platform. You will sign in on the platform's own page.",
     "scopesTitle": "Connect {platform}",
     "scopesBody": "Next, {platform} asks you to sign in and allow access. Here is what that access is for.",
+    "scopesBodyBluesky": "Enter your handle and an app password from Bluesky. It only lets us post for you, and you can delete it in Bluesky at any time.",
     "weCan": "We will be able to",
     "weCannot": "We will never",
     "can": {
@@ -1136,10 +1119,16 @@
       "postAlone": "Post anything you did not schedule"
     },
     "continueTo": "Continue to {platform}",
+    "connectNamed": "Connect {platform}",
     "otherPlatform": "Other platform",
     "limitReached": "You have reached your plan's account limit.",
     "upgrade": "See plans",
     "connectFailed": "We could not connect this account. Try again; nothing was changed.",
+    "blueskyHandle": "Bluesky handle",
+    "appPassword": "App password",
+    "appPasswordHint": "Make one in Bluesky under Settings, Privacy and security, App passwords. Never use your main password.",
+    "blueskyLogin": "That handle and app password do not match. Check both and try again.",
+    "comingSoon": "Connecting {platform} is coming soon. Bluesky works today.",
     "noPermission": "Only owners and admins can connect or remove accounts.",
     "emptyTitle": "No accounts connected yet",
     "emptyBody": "Connect your first account to start scheduling posts.",
@@ -1274,6 +1263,7 @@
       "title": "Media",
       "paused": "Paused",
       "unsupported": "{name} cannot be used for this post type, or its format is not supported.",
+      "tooLarge": "{name} is larger than {max} MB, the most a file can be for now.",
       "failed": "Uploading {name} failed. Check your connection and try again.",
       "tryAgain": "Try again",
       "add": "Add photos or a video",

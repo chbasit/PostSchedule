@@ -37,7 +37,7 @@ export function CustomerReviews() {
   if (TESTIMONIALS.length === 0) return null;
   return (
     <section aria-labelledby="reviews-title" className="pb-16 md:pb-24">
-      <h2 id="reviews-title" className="display px-4 text-center text-4xl text-balance md:text-5xl">
+      <h2 id="reviews-title" className="display px-4 text-center text-4xl text-balance md:text-5xl lg:text-6xl pt-6 pb-2 md:pt-10 md:pb-4">
         {t("title")}
       </h2>
       <Marquee label={t("title")} className="mx-auto mt-12 max-w-[1440px]">

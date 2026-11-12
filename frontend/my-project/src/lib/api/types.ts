@@ -289,6 +289,8 @@ export type Notification = {
   read: boolean;
 };
 
+export type AppPasswordLogin = { handle: string; appPassword: string };
+
 export type ConnectResult =
   | { kind: "redirect"; url: string } // real OAuth: go to the platform's consent screen
   | { kind: "connected"; account: SocialAccount };
@@ -339,7 +341,8 @@ export interface ApiClient {
   };
   accounts: {
     list(ws: string): Promise<SocialAccount[]>;
-    connect(ws: string, provider: PlatformId, opts?: MutationOptions): Promise<ConnectResult>;
+    // Bluesky signs in with the handle and an app password; the others go through OAuth.
+    connect(ws: string, provider: PlatformId, opts?: MutationOptions, credentials?: AppPasswordLogin): Promise<ConnectResult>;
     reconnect(ws: string, accountId: string): Promise<ConnectResult>;
     remove(ws: string, accountId: string): Promise<void>;
     // The last `days` days up to today in `timezone`, compared with the period before.

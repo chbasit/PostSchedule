@@ -1,15 +1,11 @@
 import {
   ArrowRight,
   Bot,
-  CalendarClock,
   Check,
   FileCheck,
   Gauge,
   Globe,
-  Layers,
-  PenLine,
   Plus,
-  ScanEye,
   ShieldCheck,
   Sparkles,
   UserCheck,
@@ -58,13 +54,6 @@ const PROMISE: Array<{ key: "platforms" | "click" | "checks" | "trial" | "origin
   { key: "cards", value: 0 },
 ];
 
-// Under the hero: four things the product does today.
-const HIGHLIGHTS: Array<{ key: "write" | "check" | "schedule" | "brands"; icon: LucideIcon }> = [
-  { key: "write", icon: PenLine },
-  { key: "check", icon: ScanEye },
-  { key: "schedule", icon: CalendarClock },
-  { key: "brands", icon: Layers },
-];
 
 const AI_POINTS: Array<{ key: "write" | "agents" | "control"; icon: LucideIcon; chip: string }> = [
   { key: "write", icon: Sparkles, chip: "bg-card-lavender" },
@@ -139,7 +128,7 @@ export default function HomePage() {
 
       {/* Hero: the promise, the platforms, then the product at work. */}
       <section>
-        <div className="mx-auto max-w-[1440px] px-4 pt-20 text-center md:px-6 md:pt-24 lg:px-8 lg:pt-32">
+        <div className="mx-auto max-w-[1440px] px-4 pt-20 pb-16 text-center md:px-6 md:pt-24 md:pb-24 lg:px-8 lg:pt-32">
           <h1 className="display mx-auto max-w-6xl text-[clamp(2.75rem,6vw,5rem)] text-balance">{t("headline")}</h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-balance text-muted-foreground md:text-xl">{t(AI_ENABLED ? "sub" : "subSoon")}</p>
           <div className="mx-auto mt-8 flex max-w-sm flex-col items-center justify-center gap-3 sm:max-w-none sm:flex-row">
@@ -163,26 +152,12 @@ export default function HomePage() {
             </ul>
           </div>
         </div>
-        {/* Four things the product does, in place of the product video (founder's call,
-            2026-11-11): columns with hairlines between them, two by two on phones. No numbers:
-            there are no customer results to show yet. */}
-        <div className="mx-auto max-w-[1440px] px-4 pt-14 pb-16 md:px-6 md:pb-24 lg:px-8">
-          <ul className="mx-auto grid max-w-6xl grid-cols-1 gap-y-8 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-border rtl:lg:divide-x-reverse">
-            {HIGHLIGHTS.map(({ key, icon: Icon }) => (
-              <li key={key} className="px-2 lg:px-8">
-                <Icon className="size-6 text-muted-foreground" strokeWidth={1.5} aria-hidden />
-                <h2 className="mt-4 font-heading text-xl font-semibold tracking-tight md:text-2xl">{t(`highlights.${key}.title`)}</h2>
-                <p className="mt-2 text-muted-foreground">{t(`highlights.${key}.body`)}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
       </section>
 
       {/* Core: what people come for, in the words they search with. */}
       <section aria-labelledby="core-title" className="mx-auto max-w-[1440px] px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
-        {/* One line on wide screens (founder's call, 2026-11-03); narrower ones wrap it at 48 px. */}
-        <h2 id="core-title" className="display text-center text-4xl text-balance md:text-5xl xl:whitespace-nowrap">
+        {/* Larger, so it wraps on two balanced lines (founder's call, 2026-11-12). */}
+        <h2 id="core-title" className="display text-center text-4xl text-balance md:text-5xl lg:text-6xl pt-6 pb-2 md:pt-10 md:pb-4">
           {t("core.title")}
         </h2>
         {/* Stacking cards (founder's call, 2026-11-11): from lg up, on screens at least 608 px
@@ -222,7 +197,7 @@ export default function HomePage() {
           2026-11-11): three pills each side from lg up, wrapped under the picture on phones.
           Clipped sideways: the turning ring's empty corners would widen the page on phones. */}
       <section aria-labelledby="promise-title" className="mx-auto max-w-[1440px] overflow-x-clip px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
-        <h2 id="promise-title" className="display text-center text-4xl text-balance md:text-5xl">
+        <h2 id="promise-title" className="display text-center text-4xl text-balance md:text-5xl lg:text-6xl pt-6 pb-2 md:pt-10 md:pb-4">
           {t("promise.title")}
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-balance text-muted-foreground">{t("promise.sub")}</p>
@@ -257,7 +232,7 @@ export default function HomePage() {
           <div aria-hidden className="dot-grid absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_75%_75%_at_30%_40%,black,transparent)]" />
           <div className="grid items-center gap-12 px-6 py-12 sm:px-10 md:py-16 lg:grid-cols-[1fr_1.05fr] lg:px-14">
             <div>
-              <h2 id="ai-title" className="display text-4xl text-balance md:text-5xl">
+              <h2 id="ai-title" className="display text-4xl text-balance md:text-5xl lg:text-6xl">
                 {t("ai.title")}
               </h2>
               <p className="mt-5 max-w-xl text-lg text-foreground/80">{t(AI_ENABLED ? "ai.sub" : "ai.subSoon")}</p>
@@ -291,11 +266,11 @@ export default function HomePage() {
           the details, then the three steps. */}
       <section id="features" aria-labelledby="features-title" className="mb-16 scroll-mt-24 bg-band md:mb-24 dark:border-y dark:border-border">
         <div className="mx-auto max-w-[1440px] px-4 py-16 md:px-6 md:py-24 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 id="features-title" className="display text-4xl text-balance md:text-5xl">
+          <div className="mx-auto max-w-4xl text-center">
+            <h2 id="features-title" className="display text-4xl text-balance md:text-5xl lg:text-6xl pt-6 pb-2 md:pt-10 md:pb-4">
               {t("featuresTitle")}
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground">{t("featuresSub")}</p>
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">{t("featuresSub")}</p>
           </div>
 
           <div className="mt-14 grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
@@ -352,7 +327,7 @@ export default function HomePage() {
 
       {/* Pricing: the four paid plans side by side; Pricing compares all five. */}
       <section aria-labelledby="pricing-title" className="mx-auto max-w-[1440px] px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
-        <h2 id="pricing-title" className="display mx-auto mb-8 max-w-3xl text-center text-4xl text-balance md:text-5xl">
+        <h2 id="pricing-title" className="display mx-auto mb-8 max-w-4xl text-center text-4xl text-balance md:text-5xl lg:text-6xl pt-6 pb-2 md:pt-10 md:pb-4">
           {t("pricingTitle")}
         </h2>
         <LandingPricing />
@@ -365,7 +340,7 @@ export default function HomePage() {
 
       {/* FAQ: visible questions with direct answers (SEO-AEO.md workflow 2), centred, no cards. */}
       <section aria-labelledby="faq-title" className="mx-auto max-w-7xl px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
-        <h2 id="faq-title" className="display text-center text-4xl text-balance md:text-5xl">
+        <h2 id="faq-title" className="display text-center text-4xl text-balance md:text-5xl lg:text-6xl pt-6 pb-2 md:pt-10 md:pb-4">
           {t("faqTitle", { product: PRODUCT_NAME })}
         </h2>
         <div className="mt-10 divide-y border-y">

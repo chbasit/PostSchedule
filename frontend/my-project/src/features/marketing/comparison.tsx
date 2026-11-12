@@ -14,7 +14,7 @@ export function Comparison() {
   const t = useTranslations("marketing.home.compare");
   return (
     <section aria-labelledby="compare-title" className="mx-auto max-w-[1440px] px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
-      <h2 id="compare-title" className="display text-center text-4xl text-balance md:text-5xl">
+      <h2 id="compare-title" className="display text-center text-4xl text-balance md:text-5xl lg:text-6xl pt-6 pb-2 md:pt-10 md:pb-4">
         {t("title")}
       </h2>
       <div className="mx-auto mt-12 grid max-w-5xl gap-4 md:grid-cols-2">

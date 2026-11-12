@@ -59,6 +59,13 @@ export async function removeImages(keys: string[]): Promise<void> {
   if (error) console.error("[ai] storage remove failed", error.message);
 }
 
+// The image itself, for publishing to platforms that take the bytes (Bluesky).
+export async function readImage(key: string): Promise<Buffer> {
+  const { data, error } = await adminClient().storage.from(bucket()).download(key);
+  if (error || !data) throw error ?? new Error("image not found");
+  return Buffer.from(await data.arrayBuffer());
+}
+
 // One request for every URL on a page, however many images it shows.
 export async function signedUrls(keys: string[]): Promise<Map<string, string>> {
   const unique = [...new Set(keys)];

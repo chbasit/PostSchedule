@@ -22,11 +22,11 @@ export function BrandTree() {
   const step = 600 / BRANDS.length;
   return (
     <section aria-labelledby="brands-title" className="mx-auto max-w-[1440px] px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
-      <div className="mx-auto max-w-2xl text-center">
-        <h2 id="brands-title" className="display text-4xl text-balance md:text-5xl">
+      <div className="mx-auto max-w-4xl text-center">
+        <h2 id="brands-title" className="display text-4xl text-balance md:text-5xl lg:text-6xl pt-6 pb-2 md:pt-10 md:pb-4">
           {t("title")}
         </h2>
-        <p className="mt-4 text-lg text-balance text-muted-foreground">{t("sub")}</p>
+        <p className="mx-auto mt-4 max-w-2xl text-lg text-balance text-muted-foreground">{t("sub")}</p>
       </div>
       <div role="img" aria-label={t("visual", { product: PRODUCT_NAME })} className="mx-auto mt-12 max-w-4xl">
         <div aria-hidden className="mx-auto flex size-16 items-center justify-center rounded-2xl bg-card shadow-card ring-1 ring-border">

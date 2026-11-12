@@ -5,6 +5,8 @@ import { matchesFilter } from "@/lib/api/filter";
 import type { Post, PostFilter, PostStatus } from "@/lib/api/types";
 import { utcToZoned, zonedToUtc } from "@/lib/time";
 import { signedUrls } from "./ai/storage";
+import { signedMediaUrls } from "./media/storage";
+import { publishPost } from "./publish";
 import { fail } from "./errors";
 import { POST_SELECT, toPost, type MediaRow, type PostRow } from "./mappers";
 import { fromDb, must, uuid } from "./route";
@@ -48,22 +50,28 @@ export const postInput = z.object({
 
 export type PostInputParsed = z.infer<typeof postInput>;
 
-// AI images are private files; their previews get signed URLs, all in one request.
+// AI images and uploads are private files in two buckets; their previews get signed URLs,
+// one request per bucket.
 async function withPreviews(rows: PostRow[]): Promise<Post[]> {
   const posts = rows.map(toPost);
-  const keys = new Map<string, string>();
+  const aiKeys = new Map<string, string>();
+  const uploadKeys = new Map<string, string>();
   for (const row of rows) {
     for (const pm of row.post_media ?? []) {
       const m: MediaRow | undefined = Array.isArray(pm.media_assets) ? pm.media_assets[0] : (pm.media_assets ?? undefined);
-      if (m?.source === "ai" && m.storage_key) keys.set(m.id, m.storage_key);
+      if (!m?.storage_key) continue;
+      if (m.source === "ai") aiKeys.set(m.id, m.storage_key);
+      else uploadKeys.set(m.id, m.storage_key);
     }
   }
-  if (keys.size === 0) return posts;
-  const urls = await signedUrls([...keys.values()]);
+  if (aiKeys.size === 0 && uploadKeys.size === 0) return posts;
+  const [aiUrls, uploadUrls] = await Promise.all([signedUrls([...aiKeys.values()]), signedMediaUrls([...uploadKeys.values()])]);
   for (const post of posts) {
     for (const media of post.media) {
-      const key = keys.get(media.id);
-      if (key) media.previewUrl = urls.get(key) ?? null;
+      const aiKey = aiKeys.get(media.id);
+      const uploadKey = uploadKeys.get(media.id);
+      if (aiKey) media.previewUrl = aiUrls.get(aiKey) ?? null;
+      else if (uploadKey) media.previewUrl = uploadUrls.get(uploadKey) ?? null;
     }
   }
   return posts;
@@ -136,7 +144,6 @@ export async function savePost(
   let status: PostStatus = "draft";
   let scheduledAt = input.scheduledAt;
 
-  if (input.intent === "now") throw fail.notConfigured("Publishing");
   if (input.intent !== "draft") {
     if (input.accountIds.length === 0) throw fail.validation("Choose at least one account.", { field: "accountIds" });
     const accounts = must(await db.from("social_accounts_public").select("id, status").eq("workspace_id", workspaceId).in("id", input.accountIds)) as Array<{
@@ -147,7 +154,10 @@ export async function savePost(
     const blocked = accounts.find((a) => a.status !== "active");
     if (blocked) throw fail.validation("One of the selected accounts needs reconnecting.", { field: "accountIds", accountId: blocked.id });
     status = "scheduled";
-    if (input.intent === "queue") {
+    if (input.intent === "now") {
+      // Saved as due now, then sent straight away (src/server/publish.ts).
+      scheduledAt = new Date().toISOString();
+    } else if (input.intent === "queue") {
       scheduledAt = await nextQueueSlot(db, workspaceId, input.timezone ?? "UTC");
     } else if (!scheduledAt || Date.parse(scheduledAt) <= Date.now()) {
       throw fail.validation("The scheduled time is in the past.", { field: "scheduledAt", reason: "past" });
@@ -174,6 +184,7 @@ export async function savePost(
     p_input: payload,
   });
   if (error) throw fromDb(error);
+  if (input.intent === "now") await publishPost(workspaceId, data as string);
   return getPost(db, workspaceId, data as string);
 }
 

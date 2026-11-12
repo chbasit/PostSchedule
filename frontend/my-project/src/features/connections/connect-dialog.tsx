@@ -8,6 +8,9 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTrigger } from "@/components/ui/dialog";
 import { Link } from "@/i18n/navigation";
 import { FormAlert } from "@/features/auth/form-alert";
+import { Field } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { isApiError } from "@/lib/api/client";
 import { getPlatform, PLATFORMS, type PlatformId } from "@/providers/catalog";
 import { useConnectAccount } from "./use-connect";
 
@@ -18,6 +21,12 @@ export function ConnectDialog({ trigger, initial }: { trigger?: ReactNode; initi
   const [open, setOpen] = useState(false);
   const [platform, setPlatform] = useState<PlatformId | null>(initial ?? null);
   const { connect, isPlanLimit } = useConnectAccount(() => setOpen(false));
+  // Bluesky has no OAuth app to send people to: they type their handle and an app password.
+  const [handle, setHandle] = useState("");
+  const [appPassword, setAppPassword] = useState("");
+  const bluesky = platform === "bluesky";
+  const reason = isApiError(connect.error) ? connect.error.details.reason : undefined;
+  const soon = isApiError(connect.error) && connect.error.code === "not_configured";
 
   return (
     <Dialog
@@ -26,6 +35,8 @@ export function ConnectDialog({ trigger, initial }: { trigger?: ReactNode; initi
         setOpen(o);
         if (!o) {
           setPlatform(initial ?? null);
+          setHandle("");
+          setAppPassword("");
           connect.reset();
         }
       }}
@@ -60,7 +71,7 @@ export function ConnectDialog({ trigger, initial }: { trigger?: ReactNode; initi
           <>
             <DialogHeader
               title={t("scopesTitle", { platform: getPlatform(platform).name })}
-              description={t("scopesBody", { platform: getPlatform(platform).name })}
+              description={bluesky ? t("scopesBodyBluesky") : t("scopesBody", { platform: getPlatform(platform).name })}
             />
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-2">
@@ -86,6 +97,23 @@ export function ConnectDialog({ trigger, initial }: { trigger?: ReactNode; initi
                 </ul>
               </div>
             </div>
+            {bluesky ? (
+              <form
+                id="bluesky-login"
+                className="mt-4 space-y-4"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  if (!connect.isPending) connect.mutate({ provider: "bluesky", credentials: { handle, appPassword } });
+                }}
+              >
+                <Field label={t("blueskyHandle")}>
+                  {(p) => <Input {...p} value={handle} onChange={(e) => setHandle(e.target.value)} placeholder="yourname.bsky.social" autoComplete="username" spellCheck={false} required />}
+                </Field>
+                <Field label={t("appPassword")} hint={t("appPasswordHint")}>
+                  {(p) => <Input {...p} type="password" value={appPassword} onChange={(e) => setAppPassword(e.target.value)} placeholder="xxxx-xxxx-xxxx-xxxx" autoComplete="off" required />}
+                </Field>
+              </form>
+            ) : null}
             {connect.isError ? (
               <div className="mt-4">
                 {isPlanLimit(connect.error) ? (
@@ -95,6 +123,10 @@ export function ConnectDialog({ trigger, initial }: { trigger?: ReactNode; initi
                       {t("upgrade")}
                     </Link>
                   </FormAlert>
+                ) : reason === "bluesky_login" ? (
+                  <FormAlert>{t("blueskyLogin")}</FormAlert>
+                ) : soon ? (
+                  <FormAlert tone="info">{t("comingSoon", { platform: getPlatform(platform).name })}</FormAlert>
                 ) : (
                   <FormAlert>{t("connectFailed")}</FormAlert>
                 )}
@@ -106,9 +138,15 @@ export function ConnectDialog({ trigger, initial }: { trigger?: ReactNode; initi
                   <ArrowLeft className="rtl:-scale-x-100" aria-hidden /> {t("otherPlatform")}
                 </Button>
               )}
-              <Button loading={connect.isPending} onClick={() => !connect.isPending && connect.mutate(platform)} data-testid="connect-continue">
-                {t("continueTo", { platform: getPlatform(platform).name })}
-              </Button>
+              {bluesky ? (
+                <Button type="submit" form="bluesky-login" loading={connect.isPending} data-testid="connect-continue">
+                  {t("connectNamed", { platform: getPlatform(platform).name })}
+                </Button>
+              ) : (
+                <Button loading={connect.isPending} onClick={() => !connect.isPending && connect.mutate({ provider: platform })} data-testid="connect-continue">
+                  {t("continueTo", { platform: getPlatform(platform).name })}
+                </Button>
+              )}
             </DialogFooter>
           </>
         )}

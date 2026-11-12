@@ -39,6 +39,7 @@ import {
 import { applyFixes, checkCaption, checkCount, checkMedia, checkTitle, worstStatus, type FixId, type PreflightCheck } from "@/lib/preflight/rules";
 import { formatDateTime, formatTime, utcToZoned } from "@/lib/time";
 import { useIntentKey } from "@/lib/use-intent-key";
+import { MAX_UPLOAD_BYTES } from "@/lib/media";
 import { cn } from "@/lib/utils";
 import { getPlatform, type PlatformId, type PostType } from "@/providers/catalog";
 import { AiPanel } from "@/features/ai/ai-panel";
@@ -474,6 +475,12 @@ function ComposerForm({ initial, restored, storageKey, accounts, editPost, onRes
     const kind = kindOf(file);
     if (!kind) return;
     const key = crypto.randomUUID();
+    // Storage takes files up to this size (src/lib/media.ts); say so before uploading anything.
+    if (file.size > MAX_UPLOAD_BYTES) {
+      const error: MediaItem = { key, phase: "error", name: file.name, reason: "tooLarge" };
+      setItems((list) => (replaceKey ? list.map((it) => (it.key === replaceKey ? error : it)) : [...list, error]));
+      return;
+    }
     const localUrl = URL.createObjectURL(file);
     const item: MediaItem = { key, phase: "uploading", name: file.name, progress: 0, bytes: file.size, kind, localUrl };
     setItems((list) => (replaceKey ? list.map((it) => (it.key === replaceKey ? item : it)) : [...list, item]));
@@ -497,7 +504,13 @@ function ComposerForm({ initial, restored, storageKey, accounts, editPost, onRes
         URL.revokeObjectURL(localUrl);
         const cancelled = isApiError(e) && e.details.reason === "cancelled";
         if (cancelled) setItems((list) => list.filter((it) => it.key !== key));
-        else setItem(key, () => ({ key, phase: "error", name: file.name, reason: isApiError(e) && e.code === "validation_failed" ? "unsupported" : "failed" }));
+        else
+          setItem(key, () => ({
+            key,
+            phase: "error",
+            name: file.name,
+            reason: !isApiError(e) || e.code !== "validation_failed" ? "failed" : e.details.reason === "too_large" ? "tooLarge" : "unsupported",
+          }));
       });
   }
 
