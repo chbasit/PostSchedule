@@ -1016,6 +1016,7 @@
     "resendIn": "New code in {seconds} s",
     "resent": "We sent a new code. It can take a minute to arrive.",
     "wrongEmail": "Wrong address? <link>Sign up again</link> with the right one.",
+    "noEmailHint": "No email after a minute? Check your spam folder. If this address already has an account, no code is sent: <link>log in</link> instead.",
     "googleOff": "Google sign-in is not available yet. Use your email and password.",
     "googleFailed": "Google sign-in did not finish. Try again, or use your email and password.",
     "emailNotConfirmed": "Confirm your email before signing in. <link>Enter your code</link>, or get a new one there.",

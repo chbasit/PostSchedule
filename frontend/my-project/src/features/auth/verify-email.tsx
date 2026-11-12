@@ -98,6 +98,17 @@ export function VerifyEmail() {
           ),
         })}
       </p>
+      {/* An address that already has an account gets no email (the answer looks the same, so
+          nobody can test which addresses are registered); say so, and point to sign-in. */}
+      <p className="text-center text-sm text-muted-foreground">
+        {t.rich("noEmailHint", {
+          link: (chunks) => (
+            <Link href="/login" className="font-semibold text-foreground transition-opacity hover:opacity-75">
+              {chunks}
+            </Link>
+          ),
+        })}
+      </p>
     </div>
   );
 }
