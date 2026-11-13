@@ -834,6 +834,33 @@ export const mockClient: ApiClient = {
       );
       return sampleInsights(account, own, days, timezone, Date.now());
     },
+    // The sample posts carry no platform id (ref), so the preview never opens replies.
+    async comments() {
+      await latency();
+      throw new ApiError("not_configured", "Replies are not part of the sample data.");
+    },
+    async reply() {
+      await latency();
+      throw new ApiError("not_configured", "Replies are not part of the sample data.");
+    },
+    // A plausible public creator, so the sample composer shows TikTok's settings.
+    async creatorInfo(ws, accountId) {
+      await latency();
+      const db = load();
+      requireMember(db, ws);
+      const account = db.accounts.find((a) => a.id === accountId && a.workspaceId === ws);
+      if (!account) throw new ApiError("not_found", "This account no longer exists.");
+      return {
+        avatarUrl: null,
+        username: (account.handle ?? "creator").replace(/^@/, ""),
+        nickname: account.displayName,
+        privacyOptions: ["PUBLIC_TO_EVERYONE", "MUTUAL_FOLLOW_FRIENDS", "SELF_ONLY"],
+        commentDisabled: false,
+        duetDisabled: false,
+        stitchDisabled: false,
+        maxVideoSeconds: 600,
+      };
+    },
   },
 
   posts: {

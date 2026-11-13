@@ -102,6 +102,8 @@ export function sampleInsights(account: SocialAccount, own: OwnPost[], days: Ins
     return {
       ...p,
       postId: p.postId || null,
+      // Sample posts have no platform id, so the sample has no replies to open.
+      ref: null,
       metrics: sampleMetrics(`${account.id}:${p.publishedAt}`, followersOn.get(day) ?? today, has),
     };
   });
@@ -151,6 +153,7 @@ export function sampleInsights(account: SocialAccount, own: OwnPost[], days: Ins
     previousFrom,
     previousTo,
     totals,
+    followerHistory: true,
     daily,
     posts: current.sort((a, b) => b.publishedAt.localeCompare(a.publishedAt)),
     syncedAt: new Date(syncedAt).toISOString(),

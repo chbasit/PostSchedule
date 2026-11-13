@@ -22,6 +22,7 @@ import { useWorkspace } from "@/features/session/workspace-context";
 import { accountHref } from "@/features/shell/nav";
 import { ConnectDialog } from "./connect-dialog";
 import { useConnectAccount } from "./use-connect";
+import { useConnectReturn } from "./use-connect-return";
 
 function RemoveDialog({ account, onClose }: { account: SocialAccount; onClose: () => void }) {
   const t = useTranslations("connections");
@@ -66,6 +67,8 @@ function RemoveDialog({ account, onClose }: { account: SocialAccount; onClose: (
 
 export function ConnectionsView() {
   const t = useTranslations("connections");
+  // Back from a platform's sign-in: say how it went.
+  useConnectReturn();
   const tn = useTranslations("nav.settings");
   const locale = useLocale();
   const { workspace, user } = useWorkspace();

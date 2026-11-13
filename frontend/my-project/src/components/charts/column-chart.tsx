@@ -65,7 +65,7 @@ export function ColumnChart({ columns, height = "h-44" }: { columns: Column[]; h
                   <span
                     aria-hidden
                     className={cn(
-                      "w-full max-w-6 rounded-t-[4px] transition-[filter] group-hover:brightness-110",
+                      "w-full max-w-7 rounded-t-md transition-[filter] group-hover:brightness-110",
                       c.tone === "accent" ? "bg-chart-1" : "bg-chart-context",
                     )}
                     style={{ height: `max(4px, ${p}%)` }}

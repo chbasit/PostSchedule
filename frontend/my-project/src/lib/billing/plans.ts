@@ -22,6 +22,10 @@ export const FEATURES = [
 ] as const;
 export type Feature = (typeof FEATURES)[number];
 
+// Plan features that are not built yet: plan cards and the comparison table mark them "Soon"
+// (founder's rule: unbuilt features say so). Take a key out when its feature ships.
+export const SOON_FEATURES: ReadonlySet<Feature> = new Set<Feature>(["reports", "approvals", "clientLinks", "api"]);
+
 export type Plan = {
   key: PlanKey;
   priceMonthly: number; // USD

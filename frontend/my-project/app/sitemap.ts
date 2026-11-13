@@ -5,7 +5,7 @@ import { TOOLS, toolHref } from "@/features/tools/registry";
 import { routing } from "@/i18n/routing";
 
 // Only indexable public pages, one entry per language with hreflang alternates.
-const PUBLIC_PATHS = ["", "/pricing", "/tools", ...TOOLS.map(toolHref), ...LEGAL_PAGES.map((page) => page.href)];
+const PUBLIC_PATHS = ["", "/features", "/features/ai-assistant", "/pricing", "/tools", ...TOOLS.map(toolHref), ...LEGAL_PAGES.map((page) => page.href)];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return PUBLIC_PATHS.flatMap((path) =>

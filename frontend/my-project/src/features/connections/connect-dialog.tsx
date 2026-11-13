@@ -11,7 +11,8 @@ import { FormAlert } from "@/features/auth/form-alert";
 import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { isApiError } from "@/lib/api/client";
-import { getPlatform, PLATFORMS, type PlatformId } from "@/providers/catalog";
+import { CONNECT_READY, getPlatform, INSIGHTS_READY, PLATFORMS, type PlatformId } from "@/providers/catalog";
+import { SoonBadge } from "@/features/ai-studio/coming-soon";
 import { useConnectAccount } from "./use-connect";
 
 // Step 1 explains, in plain words, what we can and cannot do; step 2 is the platform's
@@ -61,11 +62,28 @@ export function ConnectDialog({ trigger, initial }: { trigger?: ReactNode; initi
                     className="flex w-full flex-col items-center gap-2 rounded-lg border p-4 text-sm font-medium transition-colors hover:bg-muted"
                   >
                     <PlatformMark id={p.id} size="lg" />
-                    {p.name}
+                    <span className="flex items-center gap-1.5">
+                      {p.name}
+                      {CONNECT_READY.has(p.id) ? null : <SoonBadge />}
+                    </span>
                   </button>
                 </li>
               ))}
             </ul>
+          </>
+        ) : !CONNECT_READY.has(platform) ? (
+          // Not built yet: say so at once, with no consent text and no button that can only fail.
+          <>
+            <DialogHeader title={t("connectNamed", { platform: getPlatform(platform).name })} />
+            <FormAlert tone="info">{t("comingSoon", { platform: getPlatform(platform).name })}</FormAlert>
+            <DialogFooter>
+              {initial ? null : (
+                <Button variant="ghost" onClick={() => setPlatform(null)}>
+                  <ArrowLeft className="rtl:-scale-x-100" aria-hidden /> {t("otherPlatform")}
+                </Button>
+              )}
+              {initial ? null : <Button onClick={() => setPlatform("bluesky")}>{t("connectNamed", { platform: getPlatform("bluesky").name })}</Button>}
+            </DialogFooter>
           </>
         ) : (
           <>
@@ -77,7 +95,7 @@ export function ConnectDialog({ trigger, initial }: { trigger?: ReactNode; initi
               <div className="space-y-2">
                 <p className="text-sm font-medium">{t("weCan")}</p>
                 <ul className="space-y-1.5 text-sm text-muted-foreground">
-                  {(["publish", "profile", "metrics"] as const).map((k) => (
+                  {(INSIGHTS_READY.has(platform) ? (["publish", "profile", "metrics"] as const) : (["publish", "profile"] as const)).map((k) => (
                     <li key={k} className="flex gap-2">
                       <Check className="mt-0.5 size-4 shrink-0 text-success" aria-hidden />
                       {t(`can.${k}`)}

@@ -25,9 +25,10 @@ export const bluesky: PlatformDescriptor = {
     verifiedAt: null,
   },
   insights: {
-    metrics: ["followers", "posts", "likes", "comments", "shares", "engagementRate"],
-    terms: { comments: "replies", shares: "reposts" },
-    source: { url: "https://docs.bsky.app/docs/api/app-bsky-feed-get-posts", verifiedAt: null },
+    metrics: ["followers", "posts", "likes", "comments", "shares", "saves", "engagementRate"],
+    terms: { comments: "replies", shares: "reposts", saves: "bookmarks" },
+    // Read from getAuthorFeed and getProfile; field names checked against the live API.
+    source: { url: "https://docs.bsky.app/docs/api/app-bsky-feed-get-author-feed", verifiedAt: "2026-11-13" },
   },
   preview: {
     video: "feed",

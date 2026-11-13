@@ -18,12 +18,15 @@ import { useConnectAccount } from "@/features/connections/use-connect";
 import { useAccounts } from "@/features/session/queries";
 import { useWorkspace } from "@/features/session/workspace-context";
 import { accountHref, isActive } from "@/features/shell/nav";
+import { useConnectReturn } from "@/features/connections/use-connect-return";
 
 // Resolves /dashboard/accounts/[id] to a connected account, or explains why it can't.
 export function AccountPage({ children }: { children: (account: SocialAccount) => ReactNode }) {
   const t = useTranslations("insights");
   const { id } = useParams<{ id: string }>();
   const accounts = useAccounts();
+  // A new TikTok account lands here after its sign-in.
+  useConnectReturn();
 
   if (accounts.isPending) {
     return (

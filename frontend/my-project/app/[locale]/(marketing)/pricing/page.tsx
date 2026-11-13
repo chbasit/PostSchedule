@@ -5,7 +5,8 @@ import { getTranslations } from "next-intl/server";
 import { locale as rootLocale } from "next/root-params";
 import { JsonLd } from "@/components/json-ld";
 import { PRODUCT_NAME, SITE_URL } from "@/config/site";
-import { FEATURES, FOUNDING_CUSTOMERS, FOUNDING_LOCK_MONTHS, MAX_YEARLY_SAVING, PLANS, TRIAL_DAYS } from "@/lib/billing/plans";
+import { FEATURES, FOUNDING_CUSTOMERS, FOUNDING_LOCK_MONTHS, MAX_YEARLY_SAVING, PLANS, SOON_FEATURES, TRIAL_DAYS } from "@/lib/billing/plans";
+import { SoonBadge } from "@/features/ai-studio/coming-soon";
 import { PricingPlans } from "@/features/billing/pricing-plans";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -90,6 +91,7 @@ export default function PricingPage() {
                 <tr key={row}>
                   <th scope="row" className="sticky start-0 bg-background px-4 py-3 text-start font-normal">
                     {tp(`features.${row}`)}
+                    {SOON_FEATURES.has(row) ? <SoonBadge className="ms-1.5 align-middle" /> : null}
                   </th>
                   {PLANS.map((p) => (
                     <td key={p.key} className="px-4 py-3">

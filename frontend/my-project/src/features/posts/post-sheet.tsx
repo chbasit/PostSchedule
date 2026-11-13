@@ -34,6 +34,7 @@ import { getPlatform } from "@/providers/catalog";
 import { resolveWhen } from "@/features/composer/when-panel";
 import { useWorkspace } from "@/features/session/workspace-context";
 import { TagList } from "@/features/tags/tag-chip";
+import { MediaThumb } from "./media-thumb";
 import { usePostActions } from "./use-post-actions";
 
 const TARGET: Record<TargetStatus, { icon: LucideIcon; className: string; spin?: boolean }> = {
@@ -165,7 +166,10 @@ function DeleteDialog({ post, onClose, onDeleted }: { post: Post; onClose: () =>
   );
 }
 
-// Side sheet with per-platform status, the reason for any failure, and the fix.
+// The post's details in a centred dialog (founder's call, 2026-11-13; it was a side sheet):
+// the photos or video and the caption on one side; on the other, each account's status, the
+// reason for any failure and the fix. "Post now" sends a scheduled or lapsed post at once;
+// "Retry failed" tries a failed or partial post's failed accounts again.
 export function PostSheet({ post, accounts, onClose }: { post: Post; accounts: SocialAccount[]; onClose: () => void }) {
   const t = useTranslations("posts");
   const tt = useTranslations("tags");
@@ -173,24 +177,29 @@ export function PostSheet({ post, accounts, onClose }: { post: Post; accounts: S
   const { user, workspace } = useWorkspace();
   const { retry } = usePostActions();
   const [dialog, setDialog] = useState<"reschedule" | "delete" | null>(null);
-  const editable = can(workspace.role, "post.create") && ["draft", "scheduled", "pending_approval", "lapsed", "failed", "paused"].includes(post.status);
+  const canPost = can(workspace.role, "post.create");
+  const editable = canPost && ["draft", "scheduled", "pending_approval", "lapsed", "failed", "paused"].includes(post.status);
+  const sendNow = canPost && (post.status === "scheduled" || post.status === "lapsed");
+  const retryFailed = canPost && (post.status === "failed" || post.status === "partial");
   const published = post.targets.filter((tg) => tg.status === "published").length;
   const live = post.targets.filter((tg) => tg.status !== "skipped").length;
+  const media = post.media.slice(0, 4);
 
   return (
     <>
       <Dialog open={dialog === null} onOpenChange={(o) => !o && dialog === null && onClose()}>
-        <DialogContent variant="sheet">
-          <DialogHeader
-            title={t("detailTitle")}
-            description={
-              post.scheduledAt
-                ? formatDateTime(post.scheduledAt, locale, user.timezone, { dateStyle: "full", timeStyle: "short" })
-                : t("noTime")
-            }
-          />
-          <div className="space-y-6">
-            <div className="flex flex-wrap items-center gap-2">
+        <DialogContent className="max-w-3xl p-0">
+          <div className="border-b px-6 pt-6 pb-5">
+            <DialogHeader
+              className="mb-0"
+              title={t("detailTitle")}
+              description={
+                post.scheduledAt
+                  ? formatDateTime(post.scheduledAt, locale, user.timezone, { dateStyle: "full", timeStyle: "short" })
+                  : t("noTime")
+              }
+            />
+            <div className="mt-3 flex flex-wrap items-center gap-2">
               <PostStatusChip status={post.status} />
               <span className="text-sm text-muted-foreground">{t(`types.${post.type}`)}</span>
               {post.aiGenerated ? (
@@ -199,48 +208,54 @@ export function PostSheet({ post, accounts, onClose }: { post: Post; accounts: S
                 </span>
               ) : null}
             </div>
+          </div>
 
-            {post.tagIds.length > 0 ? (
-              <div className="space-y-2">
-                <h3 className="text-sm font-semibold">{tt("label")}</h3>
-                <TagList tagIds={post.tagIds} max={20} />
-              </div>
-            ) : null}
-
-            {post.status === "partial" ? (
-              <p className="rounded-lg bg-warning-bg px-3 py-2.5 text-sm text-warning">{t("partialSummary", { published, total: live })}</p>
-            ) : null}
-            {post.status === "lapsed" ? (
-              <p className="rounded-lg bg-warning-bg px-3 py-2.5 text-sm text-warning">{t("lapsedSummary")}</p>
-            ) : null}
-
-            <div className="space-y-2">
-              <h3 className="text-sm font-semibold">{t("caption")}</h3>
-              <p className="whitespace-pre-wrap wrap-break-word text-sm" dir="auto">
+          <div className="grid gap-6 px-6 py-6 md:grid-cols-2">
+            <section className="space-y-3">
+              <h3 className="text-sm font-semibold">{t("content")}</h3>
+              {media.length > 0 ? (
+                <div className={cn("grid gap-2", media.length > 1 && "grid-cols-2")}>
+                  {media.map((m) => (
+                    <MediaThumb key={m.id} media={m} playable className={cn("w-full rounded-xl", media.length > 1 ? "aspect-square" : "aspect-[4/3]")} />
+                  ))}
+                </div>
+              ) : null}
+              <p className="max-h-60 overflow-y-auto rounded-xl bg-muted/60 p-4 text-sm whitespace-pre-wrap wrap-break-word" dir="auto">
                 {post.mainCaption || <span className="text-muted-foreground">{t("noCaption")}</span>}
               </p>
-            </div>
+            </section>
 
-            <div>
-              <h3 className="text-sm font-semibold">{t("platforms")}</h3>
-              <ul className="divide-y">
-                {post.targets.map((tg) => (
-                  <TargetRow key={tg.id} target={tg} account={accounts.find((a) => a.id === tg.socialAccountId)} />
-                ))}
-              </ul>
-            </div>
-
-            <div className="flex flex-wrap gap-2 border-t pt-4">
+            <section className="space-y-5">
+              {post.status === "partial" ? (
+                <p className="rounded-lg bg-warning-bg px-3 py-2.5 text-sm text-warning">{t("partialSummary", { published, total: live })}</p>
+              ) : null}
               {post.status === "lapsed" ? (
-                <Button loading={retry.isPending} onClick={() => !retry.isPending && retry.mutate(post)}>
-                  <Send aria-hidden /> {t("actions.publishNow")}
-                </Button>
+                <p className="rounded-lg bg-warning-bg px-3 py-2.5 text-sm text-warning">{t("lapsedSummary")}</p>
               ) : null}
-              {post.status === "failed" || post.status === "partial" ? (
-                <Button loading={retry.isPending} onClick={() => !retry.isPending && retry.mutate(post)}>
-                  <RefreshCw aria-hidden /> {t("actions.retry")}
-                </Button>
+              <div>
+                <h3 className="text-sm font-semibold">{t("platforms")}</h3>
+                <ul className="mt-2 divide-y rounded-xl border px-3">
+                  {post.targets.map((tg) => (
+                    <TargetRow key={tg.id} target={tg} account={accounts.find((a) => a.id === tg.socialAccountId)} />
+                  ))}
+                </ul>
+              </div>
+              {post.tagIds.length > 0 ? (
+                <div className="space-y-2">
+                  <h3 className="text-sm font-semibold">{tt("label")}</h3>
+                  <TagList tagIds={post.tagIds} max={20} />
+                </div>
               ) : null}
+            </section>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2 border-t bg-muted/40 px-6 py-4">
+            {can(workspace.role, "post.delete") ? (
+              <Button variant="ghost" className="text-danger" onClick={() => setDialog("delete")}>
+                <Trash aria-hidden /> {post.status === "lapsed" ? t("actions.discard") : t("actions.delete")}
+              </Button>
+            ) : null}
+            <div className="ms-auto flex flex-wrap gap-2">
               {editable && post.status !== "draft" ? (
                 <Button variant="secondary" onClick={() => setDialog("reschedule")}>
                   <CalendarClock aria-hidden /> {t("actions.reschedule")}
@@ -251,9 +266,9 @@ export function PostSheet({ post, accounts, onClose }: { post: Post; accounts: S
                   <Pencil aria-hidden /> {t("actions.edit")}
                 </Link>
               ) : null}
-              {can(workspace.role, "post.delete") ? (
-                <Button variant="ghost" className="text-danger" onClick={() => setDialog("delete")}>
-                  <Trash aria-hidden /> {post.status === "lapsed" ? t("actions.discard") : t("actions.delete")}
+              {sendNow || retryFailed ? (
+                <Button loading={retry.isPending} onClick={() => !retry.isPending && retry.mutate(post)}>
+                  {sendNow ? <Send aria-hidden /> : <RefreshCw aria-hidden />} {sendNow ? t("actions.publishNow") : t("actions.retry")}
                 </Button>
               ) : null}
             </div>

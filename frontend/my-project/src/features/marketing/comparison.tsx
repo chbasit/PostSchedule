@@ -1,41 +1,81 @@
-import { X } from "lucide-react";
+import { ArrowRight, CalendarClock, Check, Hand, X } from "lucide-react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { buttonVariants } from "@/components/ui/button";
+import { PRODUCT_NAME } from "@/config/site";
+import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
+import mark from "@/assets/images/brand/logo-mark.png";
 
-// What goes wrong without the product, in two cards (founder's call, 2026-11-11): posting by
-// hand, and basic schedulers in general (no product is named). Each point is something the
-// product fixes, as the sections above show.
+// What goes wrong without the product, and what changes with it (founder's call, 2026-11-13):
+// posting by hand and basic schedulers in general (no product is named) on light grey, then
+// the product on forest. Each point on forest answers the ones beside it, and is built.
 const SIDES = [
-  { key: "manual", items: ["manual.items.time", "manual.items.missed", "manual.items.looks"], surface: "bg-card ring-1 ring-border" },
-  { key: "basic", items: ["basic.items.hope", "basic.items.preview", "basic.items.fixes"], surface: "bg-muted" },
+  { key: "manual", icon: Hand, chip: "bg-card-salmon", items: ["manual.items.time", "manual.items.missed", "manual.items.looks"] },
+  { key: "basic", icon: CalendarClock, chip: "bg-card-lavender", items: ["basic.items.hope", "basic.items.preview", "basic.items.fixes"] },
 ] as const;
+
+const OURS = ["together", "checked", "fix"] as const;
 
 export function Comparison() {
   const t = useTranslations("marketing.home.compare");
+  const th = useTranslations("marketing.home");
   return (
     <section aria-labelledby="compare-title" className="mx-auto max-w-[1440px] px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
-      <h2 id="compare-title" className="display text-center text-4xl text-balance md:text-5xl lg:text-6xl pt-6 pb-2 md:pt-10 md:pb-4">
+      <h2 id="compare-title" className="display mx-auto max-w-3xl text-center text-4xl text-balance md:text-5xl">
         {t("title")}
       </h2>
-      <div className="mx-auto mt-12 grid max-w-5xl gap-4 md:grid-cols-2">
-        {SIDES.map((side) => (
-          <div key={side.key} className={cn("rounded-2xl p-6 sm:p-8", side.surface)}>
-            <h3 className="font-heading text-2xl font-semibold tracking-tight">{t(`${side.key}.title`)}</h3>
-            <ul className="mt-6 space-y-6">
-              {side.items.map((item) => (
+      <p className="mx-auto mt-5 max-w-2xl text-center text-xl text-balance text-muted-foreground">{t("sub", { product: PRODUCT_NAME })}</p>
+      <div className="mt-12 grid gap-4 lg:grid-cols-3">
+        {SIDES.map(({ key, icon: Icon, chip, items }) => (
+          <div key={key} className="rounded-2xl bg-band p-6 sm:p-8 dark:ring-1 dark:ring-border">
+            <div className="flex items-center gap-3">
+              <span aria-hidden className={cn("inline-flex size-11 items-center justify-center rounded-xl text-forest", chip)}>
+                <Icon className="size-5" />
+              </span>
+              <h3 className="font-heading text-2xl font-semibold tracking-tight">{t(`${key}.title`)}</h3>
+            </div>
+            <ul className="mt-7 space-y-6">
+              {items.map((item) => (
                 <li key={item} className="flex gap-3">
                   <span aria-hidden className="mt-0.5 inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-danger-bg text-danger">
                     <X className="size-3.5" strokeWidth={3} />
                   </span>
                   <span>
                     <span className="block text-lg font-semibold">{t(`${item}.title`)}</span>
-                    <span className="mt-1 block text-sm text-muted-foreground">{t(`${item}.body`)}</span>
+                    <span className="mt-1 block text-base text-muted-foreground">{t(`${item}.body`)}</span>
                   </span>
                 </li>
               ))}
             </ul>
           </div>
         ))}
+        <div className="flex flex-col rounded-2xl bg-forest p-6 text-white sm:p-8">
+          <div className="flex items-center gap-3">
+            <span aria-hidden className="inline-flex size-11 items-center justify-center rounded-xl bg-white">
+              <Image src={mark} alt="" className="h-6 w-auto" />
+            </span>
+            <h3 className="font-heading text-2xl font-semibold tracking-tight">{t("ours.title", { product: PRODUCT_NAME })}</h3>
+          </div>
+          <ul className="mt-7 space-y-6">
+            {OURS.map((item) => (
+              <li key={item} className="flex gap-3">
+                <span aria-hidden className="mt-0.5 inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-leaf text-forest">
+                  <Check className="size-3.5" strokeWidth={3} />
+                </span>
+                <span>
+                  <span className="block text-lg font-semibold">{t(`ours.items.${item}.title`)}</span>
+                  <span className="mt-1 block text-base text-white/75">{t(`ours.items.${item}.body`)}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-auto pt-8">
+            <Link href="/signup" className={cn(buttonVariants({ size: "lg" }), "w-full rounded-full px-7 sm:w-auto")}>
+              {th("ctaPrimary")} <ArrowRight className="rtl:-scale-x-100" aria-hidden />
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
   );

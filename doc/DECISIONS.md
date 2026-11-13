@@ -2,6 +2,235 @@
 
 Newest first. Format from `PROJECTFLOW.md` §9.
 
+## 2026-11-13 — TikTok: connect and post videos (Login Kit + Content Posting API, Direct Post)
+
+Decision:
+- **Connect.** `POST /accounts/connect {provider:"tiktok"}` answers with TikTok's Login Kit v2 address:
+  - scopes `user.info.basic` and `video.publish` only;
+  - a random `state` kept in an httpOnly cookie (`ps_tiktok`, 10 minutes);
+  - Reconnect uses the same address.
+
+  `GET /api/v1/oauth/tiktok/callback` then:
+  - checks the state and that the person still has `account.connect`;
+  - swaps the code for tokens (form-encoded `POST /v2/oauth/token/`) and requires the `video.publish` grant;
+  - reads the name, picture and @username (`creator_info`) and saves the account with both tokens encrypted.
+
+  Every outcome redirects: to the account's page with `?connected=tiktok`, or to Settings > Accounts with `?connect_error=<reason>`, which shows a toast. Disconnecting revokes the token at TikTok.
+- **Tokens.** Access tokens last 2 hours; each refresh returns a new refresh token and kills the old one. `freshToken` refreshes when less than 5 minutes are left and saves the new pair only if the stored refresh token is unchanged (compare-and-swap); if another process refreshed first, the loser reads its token instead.
+- **Posting (Direct Post, video only).**
+  - The video goes by `PULL_FROM_URL` from `https://<site>/api/v1/media/pull/<token>`: a one-hour HMAC-signed link that streams the stored file (`src/server/media/pull-token.ts`, tested). TikTok's guidelines say files already on our servers must not use `FILE_UPLOAD`.
+  - The site's domain must be verified in the TikTok portal (URL properties).
+  - `creator_info` is read again before each post.
+  - The send waits up to 45 seconds for `PUBLISH_COMPLETE`. If TikTok is still processing, the account is marked `needs_check` with the publish id, and the every-minute job finishes it (`resolveTikTokChecks`, gives up after 2 hours). The post stays "publishing" until then.
+  - Errors map to plain reasons (`explain`).
+- **Composer, per TikTok's Content Sharing Guidelines** (`creator-controls.tsx`, driven by the descriptor's `publishOptions.creatorControls`, not by platform name):
+  - the creator's nickname, read fresh;
+  - "Who can view" from `privacy_level_options`, with no default and required (the server checks too);
+  - Comment, Duet and Stitch unticked, and greyed out where the creator turned them off;
+  - the disclosure switch, off by default, with "Your brand" and "Branded content", the label notices, and "Only me" disabled for branded content;
+  - TikTok's consent sentence beside the post button, in the branded version when needed;
+  - the video length checked against `max_video_post_duration_sec`;
+  - a "may take a few minutes" notice after posting.
+- **Not yet.** TikTok photo posts are off (`capabilities.image: false`). Insights need `video.list` and `user.info.stats`, which go in a second review. Comments have no TikTok API we can use. The connect dialog promises "read results" only for `INSIGHTS_READY` platforms.
+- **Unaudited apps** (TikTok's rules): posts are "Only me" (SELF_ONLY), the TikTok account must be private, and at most 5 users can post in 24 hours.
+Why: The founder needs a working, real integration to record TikTok's review video; a staged video would fail review.
+Alternatives: `FILE_UPLOAD` from our server (simpler, no domain verification, but against TikTok's guidelines for server-held files). Asking for Display API scopes now (they must all be shown in the review video).
+Revisit when: The app passes TikTok's audit (public posts), or insights and photo posts are added (new scopes, second review).
+
+## 2026-11-13 — Real insights and replies for Bluesky; OAuth callback addresses fixed
+
+Decision:
+- **Insights from the platform when asked.** `GET /accounts/{id}/insights` returns real numbers for Bluesky:
+  - Posts come from `getAuthorFeed` (own posts, no replies or reposts, 2,000 at most) and followers from `getProfile`, both public reads with no login.
+  - Each post counts likes, replies (as comments), reposts plus quotes (as shares) and bookmarks (as saves, labelled "Bookmarks"). The engagement rate is engagements over followers, left blank with no followers.
+  - The numbers are kept in memory for 3 minutes per account and period. "Updated …" shows when they were read, and answering a reply clears them.
+  - The arithmetic is in `src/server/insights-build.ts`, with tests.
+- **No made-up history.** Bluesky gives only today's follower count:
+  - followers show "As of today" (`previous: null`);
+  - `followerHistory: false` hides the "new followers" chart;
+  - a metric with no posts in the earlier period shows "No posts in the N days before" instead of a percentage.
+  - Daily follower snapshots (a table and a job) would give history later.
+- **Replies (Engage, started early at the founder's request).**
+  - The Replies number in the per-post table opens a dialog with the post's replies as a tree (name, handle, time, likes; the account's own marked "You").
+  - "Reply" answers any of them, and the box answers the post itself.
+  - `GET/POST /accounts/{id}/comments`:
+    - reads `getPostThread`;
+    - answers with `createRecord` and the root and parent refs;
+    - accepts only the account's own posts (`at://<its DID>/…`), checks that the reply belongs to that post's thread, and limits replies to 300 graphemes;
+    - needs `post.create` and an `Idempotency-Key`.
+  - `COMMENTS_READY` in the catalogue lists the platforms that support replies (Bluesky).
+- **OAuth callback addresses** for the platform connections still to build: `https://agentiqsocial.com/api/v1/oauth/{meta|tiktok|youtube|linkedin}/callback`, plus the `http://localhost:3000` version where the platform allows it (TikTok does not).
+Why: The founder wants likes, comments, shares per post and to answer people from the dashboard. Bluesky is connectable today and its public API allows all of it without approval.
+Alternatives: A nightly sync into tables (needed for follower history and for scale; later). Showing 0 for unknown history (rule 10: blank is not zero).
+Revisit when: Each OAuth platform ships (insights and replies per platform), or reading on request becomes slow at scale (move to scheduled syncs).
+
+## 2026-11-13 — The connect dialog says which platforms can be connected
+
+Decision:
+- `CONNECT_READY` in `src/providers/catalog.ts` lists the platforms whose sign-in is built; today that is Bluesky only.
+- The connect dialog marks the other platforms "Soon" in its picker.
+- Opening one shows "Connecting {platform} is coming soon. Bluesky works today." at once, without the consent text and without a button. Before, the button called the server, which answers `not_configured` (HTTP 503). On the live site that reply can arrive as the generic "We could not connect this account", presumably because Hostinger's proxy replaces 503 bodies.
+Why: The founder tried TikTok and got an error that suggested trying again. The truth is that the platform is not built yet.
+Alternatives: Keep the button and change the status code (the message would still promise a sign-in that cannot happen).
+Revisit when: Each platform's OAuth flow ships: add it to `CONNECT_READY`.
+
+## 2026-11-13 — Scheduled posts send themselves (Inngest); Post now; post details as a dialog
+
+Decision:
+- **Job runner: Inngest.** The founder chose the option that scales to thousands of users and posts a day without slowing the app.
+  - Every minute, `find-due-posts` (cron) does three things:
+    - Marks posts more than 30 minutes late as `lapsed`. They are never sent late without the person choosing "Post now" (BACKEND.md §8.5).
+    - Claims every other due post in one statement (`scheduled` → `publishing`), so two checks never take the same post.
+    - Sends one `post/publish.due` event per post (id `publish:<post>:<time>`, so a repeat is dropped).
+  - `publish-post` sends each one:
+    - Each account is claimed on its own (`pending` → `publishing`), so a job that runs twice never posts twice.
+    - At most 10 posts at once overall and 2 per workspace (fairness).
+    - 3 retries.
+  - Posts stuck in `publishing` for 15 minutes are sent again by the next check.
+  - There is no `singleton` lock: a stuck run held it in testing and blocked every later check. The atomic claim already makes overlapping checks safe.
+  - Code: `src/server/jobs/`, `app/api/inngest/route.ts`, `claimDuePosts` / `sendClaimedPost` in `src/server/publish.ts`.
+- **Running it.**
+  - Locally, `npm run dev:jobs` starts Inngest's dev server (CLI 1.49.0) next to `npm run dev`.
+  - In production, Hostinger needs `INNGEST_SIGNING_KEY` and `INNGEST_EVENT_KEY`, and the app is synced in Inngest's dashboard at `https://agentiqsocial.com/api/inngest`. `serveOrigin` is the site URL, because Hostinger's proxy hides it.
+  - **The local app and the live site share one database.** While `dev:jobs` runs on a laptop it sends everyone's due posts, so only one of them needs to run at a time.
+- **Dependency.** `inngest` 4.26.2 adds about 326 packages, all server side.
+  - Its optional SvelteKit peer makes npm check SvelteKit's Vite 8 peer against our Vite 7. So `.npmrc` sets `legacy-peer-deps=true`, which Hostinger's install also reads.
+  - An override for SvelteKit only moved the conflict to `@sveltejs/vite-plugin-svelte`.
+- **Post now and Retry.** `POST /posts/{id}/retry`, the endpoint the client already had:
+  - sends a scheduled or lapsed post at once, moved to the time it went out;
+  - for a failed or partial post, tries the failed accounts again.
+
+  It runs while the person waits, like the composer's "Post now", so the toast says how it went. A post's final status now counts every account, so a retry that fixes the last failure ends `published`.
+- **Post details** are a centred dialog instead of a side sheet:
+  - Header: time, status and type.
+  - Left: the photos or video (playable) and the caption.
+  - Right: each account's status and reason, and the tags.
+  - Footer: Delete, Reschedule, Edit, and Post now or Retry failed.
+- **Calendar.** Each post is a small card: platforms and time, two lines of caption, and the first photo or video as a thumbnail (`MediaThumb`). The list view shows the thumbnail too.
+- **Homepage and layout.**
+  - The steps section ("From upload to scheduled in minutes") is gone.
+  - The hero grid lines are 1 px `#f2f4f3`.
+  - The footer wordmark is no longer cut off at the bottom.
+  - The theme script goes through `next/script` (`beforeInteractive`), so React no longer warns about a script tag.
+  - `<body>` has `suppressHydrationWarning` for attributes browser extensions add (ColorZilla's `cz-shortcut-listen` was the founder's "1 Issue").
+
+Why: Scheduled posts never went out (no job runner), and the founder wants it to scale. They also asked for a way to post a scheduled post at once, a professional details dialog, and pictures on the calendar.
+Alternatives:
+- A loop inside the web app: no new package, but sending runs in the process that serves pages, so it is slower under load, and a restart can drop posts mid-send.
+- Supabase pg_cron pinging an endpoint: no retries or flow control.
+- Trigger.dev: comparable to Inngest; Inngest keys already existed.
+Revisit when:
+- Video posts or more platforms arrive: move to one job per account (rule 5) and per-platform throttles.
+- We need a reconciliation of accounts stuck in `publishing` (`needs_check`).
+- Inngest's free tier no longer covers the every-minute check.
+
+## 2026-11-13 — Homepage in the AI page's style, with the centred hero kept
+
+Decision:
+- **Hero.** It stays centred as before: headline, sub, Start free and Google, trial note, platform icons. Behind it, on white, is a grid of light grey lines (64 px squares, `--hero-line` `#e9edeb`) that fades toward the next section (`.hero-grid`). The forest hero band and the hub picture (`hub-visual.tsx`) are gone.
+- **Site header.**
+  - Links are 16 px (were 14 px).
+  - Features opens on mouse hover. It closes 150 ms after the pointer leaves, so the pointer can cross into the menu. A click while open keeps it open. Touch and the keyboard work as before.
+- **Section titles.** The tabs, comparison, steps and pricing titles are capped at 768 px, so each breaks onto two even lines.
+- **Order.**
+  - Four benefits (one post everywhere, checks, time zones, original kept).
+  - The feature tabs.
+  - Alternating word-and-picture sections:
+    - Previews: the phones on salmon.
+    - Agents: on aqua, "Soon".
+    - Workspaces: the brand tree on lavender, its chips aqua, salmon and yellow so none disappears.
+  - The comparison, the steps, pricing and the FAQ.
+- **Removed from the page.**
+  - The promise section.
+  - The "extras" cards. These claimed approvals by link, which are not built.
+- **Feature tabs.**
+  - No coloured panel: each picture sits straight on the page, its cards outlined.
+  - The area is a fixed minimum height (544 px below 1280 px wide, 448 px above), so the page below does not jump when the next item opens.
+  - The calendar and home screenshots, too small to read, are replaced by pictures drawn in code (`core-visuals.tsx`):
+    - a week of the calendar with a "Scheduled for…" note;
+    - the posts list with the product's real status chips and a Retry button.
+  - The publish picture's draft is square.
+- **Comparison.** Three cards:
+  - posting by hand and basic schedulers, on light grey;
+  - "With AgentiqSocial" on forest, with leaf checks that answer them (every platform in one go, checked before it posts, fixed right here) and a Start free button.
+- **"Soon" in pricing.** Reports, team approvals, client approval links and API are listed in the plans but not built. `SOON_FEATURES` in `plans.ts` marks them "Soon" on the plan cards, the homepage pricing and the comparison table; take a key out when it ships.
+- **Collaborate card.** The Features page now promises roles only; approvals and comments are "coming soon".
+
+Why: The founder liked the AI page's layout for the homepage but wanted the original hero kept, a stronger comparison, and lower, more readable tab pictures. Unbuilt features must say so.
+Alternatives: The forest hero band with the hub picture (tried, the founder preferred the centred hero). Real screenshots in the tabs (unreadable at that size).
+Revisit when: Approvals, reports or the API ship (drop them from `SOON_FEATURES` and add the approvals card back); real customer screenshots are worth showing.
+
+## 2026-11-13 — An AI Assistant page; Gemini as the AI provider to switch on
+
+Decision:
+- **The page.** `/features/ai-assistant` (in the sitemap; the Features menu's AI Assistant item opens it) has:
+  - a forest hero ("Your social media co-writer");
+  - four benefits;
+  - four sections: writing, repurposing, tailoring, editing.
+- **Pictures.** Each is drawn in code from the product's own parts (`ai-visuals.tsx`): the rewrite card with rephrase, shorten, expand, more casual and more formal; the "what should we write about" box; an ideas board with tag pills; and the composer adapting one post per platform. The wording is our own, with the same meaning as the reference the founder showed.
+- **"Soon".** The page and the menu say "Soon" until `NEXT_PUBLIC_AI_ENABLED` is true.
+- **Switching AI on.** The writer is already built (generate, rephrase, shorten, expand, casual, formal, credits per plan) and only needs a provider key. The recommendation is Google Gemini:
+  - a free AI Studio key for building and testing;
+  - a paid key with `gemini-2.5-flash-lite` (about $0.10 in and $0.40 out per million tokens, roughly $0.0001 per rewrite) before real customers use it.
+
+  On the free tier, Google may use the prompts to improve its products, which our privacy policy does not allow for customer content. OpenAI's smallest model costs about the same, with no free tier.
+
+Why: The founder wants an AI page like a competitor's, and AI live in the product, at the lowest cost.
+Alternatives: OpenAI (similar price, no free tier). A page per AI action (later).
+Revisit when: AI is switched on (drop "Soon"), or prices change (check ai.google.dev/pricing).
+
+## 2026-11-13 — The whole product in forest and leaf
+
+Decision:
+- **Light theme.** The palette of the public site is now the product's own palette (`:root`).
+  - Forest `#213130` for text (`--foreground` and friends), `--brand-ink` (dark surfaces) and the focus ring.
+  - Leaf `#AFEB9B` with forest text for `--primary`, so every main button is leaf.
+  - A green-grey `#4d5a58` for muted text (7.2:1 on white).
+  - The `.site-theme` overrides are gone.
+- **Dark theme.** Its primary is leaf as well.
+- **Switches and radio buttons.** They show "on" in forest (leaf in the dark theme), because leaf alone is too faint against white (1.4:1).
+- **Chart.** Upcoming posts in green `#3b8a58` (3.9:1 on white), the past in warm grey `#d6d2c9`, warm gridlines, wider and rounder bars.
+
+Why: The founder wants the dashboard as calm and professional as a scheduler they admire: forest text, leaf buttons, warm neutral surfaces.
+Alternatives: Leaf only on the public site (tried for a day; the product should look like one brand).
+Revisit when: Status colours (the blue info banner, the stat icon colours) are aligned with the palette, or a user test shows a contrast problem.
+
+## 2026-11-13 — Feature tabs with pictures, an Agents section, a Features menu and page, larger text
+
+Decision:
+- **Feature tabs.** "Publish, schedule and manage in one place." is now feature tabs (`feature-tabs.tsx`): the list on one side, the open item's picture on its colour (lavender, aqua, salmon) on the other.
+  - **Movement.** A line fills over the open item in 7 seconds; then the next opens and its picture fades in. The others stay faded.
+  - **Control.** Hovering or focusing pauses it. With reduced motion nothing advances on its own.
+  - **Pictures, not videos.** The publish drawing, then the calendar and home screenshots (`src/assets/images/posters`). The video clips and `clip.tsx` are gone from the page.
+  - **Replaced.** This replaces the stacking cards of 2026-11-11.
+- **Agents section.** It replaces the AI panel (`agent-console.tsx` removed). "Agents" with a Soon badge, "Ask your AI assistant how last week went.", our own wording, a Start free button, and a drawn illustration (`agents-visual.tsx`): AgentiqSocial and an account joined to an assistant that reads post history and answers, over a "Top posts" strip. No third-party AI logos, because there is no such integration yet.
+- **Features menu and page.** The header's "Product" link is now a "Features" menu (`features-menu.tsx`) with eight features in two columns, each opening its card on a new `/features` page (in the sitemap). Only Publish and Collaborate are built. The other six (Create, Insights, Community, AI Assistant, API, MCP) carry a Soon badge (`feature-catalog.ts`). The descriptions are our own words.
+- **Larger text.**
+  - Hero sub-text `text-xl md:text-[1.375rem]`.
+  - Section sub-texts `text-xl`.
+  - Feature card and comparison bodies `text-base`.
+  - Steps and showcase bodies `text-lg`.
+
+Why: The founder asked for these after looking at another scheduler's site, but as our own design and words, and without claiming features that do not exist yet.
+Alternatives: One page per feature (later, when each feature is built). Keeping the clips (the founder asked for pictures).
+Revisit when: A Soon feature ships (drop its badge in `feature-catalog.ts`), or a feature earns its own page.
+
+## 2026-11-13 — The public site's colours: forest and leaf
+
+Decision:
+- **Palette.** The public site (marketing layout: home, pricing, tools, legal) uses the founder's palette.
+  - Forest `#213130` for text and headings (light theme).
+  - Leaf `#AFEB9B` buttons with forest text (9.8:1).
+  - Aqua `#9FEAE2` (was `#a4f1e9`), lavender `#D4C2FF` and salmon `#FFB2A8` as card tints.
+- **How it is applied.** `.site-theme` on the marketing layout overrides `--primary`, `--primary-foreground` and `--brand-ink` (so the Pro plan card is forest), plus `--foreground` and `--ring` in the light theme, and sets its own `color`, because text otherwise inherits the colour `body` already resolved. New tokens: `--brand-forest`, `--brand-leaf` (`text-forest`, `text-leaf`).
+- **Footer.** Forest in both themes, with rounded top corners, leaf column headings and a leaf wordmark. This reverses the light grey footer of 2026-11-11.
+- **Sections.** The three stacking cards are lavender, aqua and salmon. The brand tree's icons cycle through the same three. The Pro card's button is leaf.
+- **Dashboard.** It keeps the product palette for now.
+
+Why: The founder asked for this palette, modelled on a scheduler they like: dark green text and footer, light green buttons, pastel cards.
+Alternatives: The whole app in the new palette (not asked for yet; the dashboard's ink buttons stay).
+Revisit when: The dashboard should match, or a section needs a colour outside the palette.
+
 ## 2026-11-12 — Bluesky connects with an app password; "Post now" publishes
 
 Decision:

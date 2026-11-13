@@ -128,3 +128,98 @@ export async function publish(session: BlueskySession, text: string, images: Blu
   const rkey = created.uri.split("/").pop() ?? "";
   return { id: created.uri, url: `https://bsky.app/profile/${session.handle}/post/${rkey}` };
 }
+
+// --- Reading: insights and replies (founder's call, 2026-11-13) ----------------------------
+// Public AppView reads, no sign-in needed: getAuthorFeed, getProfile, getPostThread, getPosts.
+// Field names checked against the live API on 2026-11-13.
+
+export type StrongRef = { uri: string; cid: string };
+export type FeedPost = {
+  uri: string;
+  cid: string;
+  author: { did: string; handle: string; displayName?: string; avatar?: string };
+  record: { text?: string; createdAt?: string; reply?: { root: StrongRef; parent: StrongRef } };
+  embed?: { $type?: string };
+  likeCount?: number;
+  repostCount?: number;
+  replyCount?: number;
+  quoteCount?: number;
+  bookmarkCount?: number;
+  indexedAt: string;
+};
+export type ThreadNode = { $type?: string; post?: FeedPost; replies?: ThreadNode[] };
+
+const READ_PAGES = 20; // 2,000 posts: far more than 180 days for almost every account
+
+export const postUrl = (post: Pick<FeedPost, "uri" | "author">) => `https://bsky.app/profile/${post.author.handle}/post/${post.uri.split("/").pop() ?? ""}`;
+export const postedAt = (post: FeedPost) => post.record.createdAt ?? post.indexedAt;
+
+// The account's own posts (not replies, not reposts) since `since`, newest first.
+export async function authorPosts(did: string, since: number): Promise<FeedPost[]> {
+  const out = new Map<string, FeedPost>();
+  let cursor: string | undefined;
+  for (let page = 0; page < READ_PAGES; page++) {
+    const q = new URLSearchParams({ actor: did, limit: "100", filter: "posts_no_replies" });
+    if (cursor) q.set("cursor", cursor);
+    const res = await xrpc<{ feed: Array<{ post: FeedPost; reason?: { $type?: string } }>; cursor?: string }>(`${APPVIEW}/xrpc/app.bsky.feed.getAuthorFeed?${q}`, {
+      method: "GET",
+    });
+    let older = false;
+    for (const item of res.feed) {
+      const pinned = item.reason?.$type?.endsWith("#reasonPin");
+      if (item.reason && !pinned) continue; // a repost of someone else's post
+      if (item.post.author.did !== did) continue;
+      if (Date.parse(postedAt(item.post)) < since) {
+        if (!pinned) older = true;
+        continue;
+      }
+      out.set(item.post.uri, item.post);
+    }
+    if (older || !res.cursor || res.feed.length === 0) break;
+    cursor = res.cursor;
+  }
+  return [...out.values()].sort((a, b) => postedAt(b).localeCompare(postedAt(a)));
+}
+
+// Today's follower count; Bluesky keeps no history of it.
+export async function followerCount(did: string): Promise<number | null> {
+  const p = await xrpc<{ followersCount?: number }>(`${APPVIEW}/xrpc/app.bsky.actor.getProfile?actor=${encodeURIComponent(did)}`, { method: "GET" });
+  return typeof p.followersCount === "number" ? p.followersCount : null;
+}
+
+// A post and the replies under it, `depth` levels down. Deleted or blocked replies come back
+// as other node types and are left out by the caller.
+export async function postThread(uri: string, depth = 6): Promise<ThreadNode | null> {
+  try {
+    const res = await xrpc<{ thread: ThreadNode }>(`${APPVIEW}/xrpc/app.bsky.feed.getPostThread?${new URLSearchParams({ uri, depth: String(depth), parentHeight: "0" })}`, {
+      method: "GET",
+    });
+    return res.thread;
+  } catch (e) {
+    if (e instanceof BlueskyError && e.code === "rejected") return null; // NotFound: deleted
+    throw e;
+  }
+}
+
+export async function getPost(uri: string): Promise<FeedPost | null> {
+  const res = await xrpc<{ posts: FeedPost[] }>(`${APPVIEW}/xrpc/app.bsky.feed.getPosts?${new URLSearchParams({ uris: uri })}`, { method: "GET" });
+  return res.posts[0] ?? null;
+}
+
+// Answers a post or a reply: the new post points at the thread's first post (root) and at the
+// one it answers (parent), as Bluesky requires.
+export async function reply(session: BlueskySession, text: string, root: StrongRef, parent: StrongRef): Promise<StrongRef> {
+  const facets = detectFacets(text);
+  const record = {
+    $type: "app.bsky.feed.post",
+    text,
+    createdAt: new Date().toISOString(),
+    reply: { root, parent },
+    ...(facets.length ? { facets } : {}),
+  };
+  return xrpc<StrongRef>(`${session.pds}/xrpc/com.atproto.repo.createRecord`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${session.accessJwt}`, "Content-Type": "application/json" },
+    body: JSON.stringify({ repo: session.did, collection: "app.bsky.feed.post", record }),
+  });
+}

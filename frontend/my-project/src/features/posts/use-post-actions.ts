@@ -14,12 +14,21 @@ export function usePostActions() {
   const retryKey = useIntentKey();
   const invalidate = () => queryClient.invalidateQueries({ queryKey: [...scope, "posts"] });
 
-  // Safe to press twice: one key per retry intent (FRONTEND.md F10, TEST.md DBL-22).
+  // "Post now" and "Retry failed". Safe to press twice: one key per intent (FRONTEND.md F10,
+  // TEST.md DBL-22), and the server sends a post once. The server sends while the person waits,
+  // so the toast says how it went; a post still on its way (the sample-data mode) says so.
   const retry = useMutation({
     mutationFn: (post: Post) => api.posts.retry(workspace.id, post.id, { idempotencyKey: retryKey.get() }),
-    onSuccess: () => {
+    onSuccess: (post) => {
       retryKey.renew();
-      toast.success(t("retrying"));
+      if (post.status === "published") toast.success(t("sent"));
+      else if (post.status === "partial") toast.warning(t("sentSome"));
+      else if (post.status === "failed") toast.error(t("sendFailed"));
+      else toast.success(t("retrying"));
+      void invalidate();
+    },
+    onError: () => {
+      toast.error(t("sendError"));
       void invalidate();
     },
   });

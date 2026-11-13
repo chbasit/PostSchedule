@@ -58,6 +58,15 @@ export async function readMedia(key: string): Promise<Buffer> {
   return Buffer.from(await data.arrayBuffer());
 }
 
+// The file as a stream, for platforms that download it from us (TikTok's PULL_FROM_URL):
+// passed through without loading it into memory. Null when nothing is stored under the key.
+export async function streamMedia(key: string): Promise<Response | null> {
+  const { data, error } = await adminClient().storage.from(bucket()).createSignedUrl(key, 600);
+  if (error || !data?.signedUrl) return null;
+  const res = await fetch(data.signedUrl);
+  return res.ok && res.body ? res : null;
+}
+
 // One request for every URL on a page, however many files it shows.
 export async function signedMediaUrls(keys: string[]): Promise<Map<string, string>> {
   const unique = [...new Set(keys)];

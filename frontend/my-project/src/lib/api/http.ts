@@ -127,6 +127,9 @@ export function createHttpClient(baseUrl: string): ApiClient {
       remove: (id, accountId) => request("DELETE", `${ws(id)}/accounts/${accountId}`),
       insights: (id, accountId, { days, timezone }) =>
         request("GET", `${ws(id)}/accounts/${accountId}/insights?${new URLSearchParams({ days: String(days), tz: timezone })}`),
+      comments: (id, accountId, postRef) => request("GET", `${ws(id)}/accounts/${accountId}/comments?${new URLSearchParams({ post: postRef })}`),
+      reply: (id, accountId, input, opts) => request("POST", `${ws(id)}/accounts/${accountId}/comments`, input, opts),
+      creatorInfo: (id, accountId) => request("GET", `${ws(id)}/accounts/${accountId}/creator`),
     },
     posts: {
       list: (id, filter = {}) => {

@@ -101,7 +101,8 @@
       "freeTools": "Free tools",
       "login": "Log in",
       "startFree": "Start free",
-      "openMenu": "Open menu"
+      "openMenu": "Open menu",
+      "features": "Features"
     },
     "footer": {
       "product": "Product",
@@ -132,25 +133,14 @@
           },
           "schedule": {
             "title": "Schedule posts in advance",
-            "body": "Plan your content calendar weeks ahead. Schedule posts for every platform, adjust the caption and format for each one, and build your queue. {product} publishes each post on time and tells you if anything needs your attention."
+            "body": "Plan your content calendar weeks ahead. Schedule posts for every platform, adjust the caption and format for each one, and build your queue. {product} publishes each post on time and tells you if anything needs your attention.",
+            "visual": "Drawing: a week in the calendar with posts scheduled for several platforms, and a note that one was just scheduled."
           },
           "manage": {
             "title": "Manage all your content in one place",
-            "body": "See every scheduled and published post together. Check what went out, edit what is coming next, and keep your content plan on track."
+            "body": "See every scheduled and published post together. Check what went out, edit what is coming next, and keep your content plan on track.",
+            "visual": "Drawing: the posts list with a published, a scheduled, a failed and a draft post, and a button to retry the failed one."
           }
-        }
-      },
-      "promise": {
-        "title": "Post faster without losing quality.",
-        "sub": "Write once, see how each platform will show it, fix problems before they go out, then publish everywhere in one click.",
-        "visual": "{product} in the middle, connected to {platforms}.",
-        "stats": {
-          "platforms": "Platforms",
-          "click": "Click to post everywhere",
-          "checks": "Video checks",
-          "trial": "Days free",
-          "original": "Original kept",
-          "cards": "Cards needed to start"
         }
       },
       "compare": {
@@ -188,6 +178,41 @@
               "body": "When something is wrong, you edit somewhere else and upload again."
             }
           }
+        },
+        "sub": "Two common ways to post, and what changes with {product}.",
+        "ours": {
+          "title": "With {product}",
+          "items": {
+            "together": {
+              "title": "Every platform in one go",
+              "body": "Write it once, choose your accounts, and publish or schedule them all together."
+            },
+            "checked": {
+              "title": "Checked before it posts",
+              "body": "A preview for each platform, and a warning before anything is cropped, compressed or refused."
+            },
+            "fix": {
+              "title": "Fixed right here",
+              "body": "Edit the caption or make a 9:16 copy without leaving the post. Your original stays as it was."
+            }
+          }
+        }
+      },
+      "agents": {
+        "eyebrow": "Agents",
+        "title": "Ask your AI assistant how last week went.",
+        "body": "Soon you can connect {product} to the AI tools you already use. Ask which post did best, when to post next, or how a client's account is doing, and get an answer from your own results.",
+        "visual": {
+          "label": "Illustration: an AI assistant reads your post history and answers a question about last week.",
+          "status": "Reading your post history",
+          "prompt": "How did my posts do last week, and when should I post next?",
+          "answer": "Your Tuesday video reached the most people, and morning posts did best. I would schedule the next three for 9 AM.",
+          "top": "Top posts last week",
+          "posts": {
+            "one": "Tuesday video",
+            "two": "New menu reel",
+            "three": "Hiring post"
+          }
         }
       },
       "ctaPrimary": "Start free",
@@ -195,39 +220,6 @@
       "ctaNote": "{days}-day trial. No card needed.",
       "featuresTitle": "Check your post before you share it.",
       "featuresSub": "See how each app will show your post. We tell you if the quality will drop, before anyone sees it.",
-      "features": {
-        "preflight": {
-          "title": "Video pre-flight checks",
-          "body": "Aspect ratio, resolution, bitrate, duration and size are checked against each platform, with a plain-language reason for every warning."
-        },
-        "original": {
-          "title": "Your original, untouched",
-          "body": "We send your original file unless you choose a fix. Fixes create a new copy you can compare and undo."
-        },
-        "approvals": {
-          "title": "Approvals for clients",
-          "body": "Send a post for review by link. Clients approve or comment on a phone, with no account needed."
-        },
-        "timezones": {
-          "title": "Built for every time zone",
-          "body": "Schedule each post for your audience's time zone, wherever they are."
-        }
-      },
-      "stepsTitle": "From upload to scheduled in minutes.",
-      "steps": {
-        "connect": {
-          "title": "Connect your accounts",
-          "body": "Sign in to each platform once. We only ask for the permissions we need to post."
-        },
-        "check": {
-          "title": "Upload and check",
-          "body": "Drop a video. Pre-flight checks and previews appear for every platform you picked."
-        },
-        "schedule": {
-          "title": "Schedule with confidence",
-          "body": "Pick a time zone and a time. We publish once, retry safely, and tell you if anything fails."
-        }
-      },
       "businesses": {
         "bakery": {
           "label": "Bakery",
@@ -311,7 +303,6 @@
           "a": "Yes. Import your scheduled posts and media where the other tool allows an export. The first 100 customers get free help moving."
         }
       },
-      "shotAlt": "The {product} dashboard: this week's posting plan, a post that needs attention, and the week's numbers.",
       "platformsLabel": "Previews and checks for",
       "showcase": {
         "previews": {
@@ -329,46 +320,199 @@
         "play": "Play video",
         "pause": "Pause video"
       },
-      "clips": {
-        "compose": "Screen recording: a post is previewed for Instagram, TikTok and YouTube, fixed to 9:16 in one click and scheduled.",
-        "previews": "Screen recording: the previews warn that a wide video will be cropped, and one click makes a 9:16 copy for each platform.",
-        "calendar": "Screen recording: the calendar in month and week view, with a post opened to show its details.",
-        "home": "Screen recording: the home screen with this week's numbers, a failed post to retry and the posts coming up.",
-        "tools": "Screen recording: the free carousel splitter cuts a panorama into Instagram slides."
-      },
-      "ai": {
-        "title": "AI does the busywork. You stay in control.",
-        "sub": "AI Studio creates on-brand images and the assistant writes captions shaped for each platform. Soon, AI agents can plan and schedule through a safe API, and every post still passes the same checks.",
-        "subSoon": "Coming soon: AI Studio creates on-brand images and the assistant writes captions shaped for each platform. Later, AI agents can plan and schedule through a safe API, and every post still passes the same checks.",
-        "points": {
-          "write": {
-            "title": "Images and captions in seconds",
-            "body": "Generate images in the right size for each platform, then let AI write the caption. Rephrase, shorten or change the tone in one click."
+      "headline": "Post to all your social accounts from one dashboard",
+      "benefits": {
+        "title": "Why teams post with {product}",
+        "items": {
+          "everywhere": {
+            "title": "One post, every platform",
+            "body": "Write once and publish to {platforms} together."
           },
-          "agents": {
-            "title": "Agents with a scoped key",
-            "body": "Connect an AI agent through our API and MCP server, limited to one workspace. Coming soon."
+          "checks": {
+            "title": "Checked before it goes out",
+            "body": "Video checks and a preview for each platform catch problems before your audience sees them."
           },
-          "control": {
-            "title": "Your rules come first",
-            "body": "Publishing at once and deleting stay off unless you turn them on. Every action an agent takes is logged."
+          "zones": {
+            "title": "On time in every time zone",
+            "body": "Plan weeks ahead and post when each audience is awake."
+          },
+          "original": {
+            "title": "Your original, untouched",
+            "body": "We send your file as you made it, unless you choose a fix."
           }
-        },
-        "console": {
-          "label": "Example of an AI agent planning three posts through the API, a feature that is coming soon.",
-          "title": "AI agent",
-          "soon": "Coming soon",
-          "agent": "Agent",
-          "prompt": "Plan three posts for next week from our spring sale video.",
-          "steps": {
-            "preflight": "9:16 copy ready",
-            "drafts": "3 drafts written",
-            "schedule": "Tue 9:00 · Thu 12:30 · Sat 18:00"
-          },
-          "reply": "Done: three posts checked for Instagram, TikTok and LinkedIn, and scheduled."
         }
       },
-      "headline": "Post to all your social accounts from one dashboard"
+      "eyebrows": {
+        "previews": "Previews",
+        "brands": "Workspaces"
+      },
+      "visuals": {
+        "calendar": "Calendar",
+        "month": "Month",
+        "week": "Week",
+        "newPost": "New post",
+        "scheduledFor": "Scheduled for {when}",
+        "posts": "Posts",
+        "filters": {
+          "all": "All",
+          "scheduled": "Scheduled",
+          "published": "Published",
+          "drafts": "Drafts"
+        },
+        "retry": "Retry",
+        "items": {
+          "menu": "New menu launch",
+          "tips": "3 tips for better reels",
+          "team": "Meet the team",
+          "hiring": "We're hiring",
+          "offer": "Weekend offer",
+          "recap": "Week in photos"
+        },
+        "tags": {
+          "launch": "Launch",
+          "team": "Team",
+          "offer": "Offer",
+          "photos": "Photos"
+        }
+      }
+    },
+    "features": {
+      "menu": "Features",
+      "metaTitle": "Features",
+      "metaDescription": "What AgentiqSocial does today and what is coming next: publishing, teamwork, insights, an inbox, AI help, an API and MCP.",
+      "title": "Everything you need to run your social media",
+      "sub": "Publish and work as a team today. Insights, a shared inbox, AI help, the API and MCP are on the way.",
+      "items": {
+        "create": {
+          "title": "Create",
+          "short": "Collect post ideas in one place",
+          "long": "Save ideas as they come, sort them by topic, and turn the best ones into posts when you are ready."
+        },
+        "publish": {
+          "title": "Publish",
+          "short": "Plan and schedule posts for every platform",
+          "long": "Write once, adjust the caption for each platform, preview every post, and schedule it for the right time in any time zone."
+        },
+        "insights": {
+          "title": "Insights",
+          "short": "See what works and what to post next",
+          "long": "Follow reach, likes, comments and followers across your accounts, and learn which posts and times work best."
+        },
+        "community": {
+          "title": "Community",
+          "short": "Reply to comments in one place",
+          "long": "Read and answer comments from every connected account without switching apps."
+        },
+        "collaborate": {
+          "title": "Collaborate",
+          "short": "Work with your team and clients",
+          "long": "Invite teammates and give each one the right role. Approvals and comments on posts are coming soon."
+        },
+        "ai": {
+          "title": "AI Assistant",
+          "short": "Draft and rewrite captions faster",
+          "long": "Get a first draft, rewrite it in your own tone, and adapt it for each platform in a click."
+        },
+        "api": {
+          "title": "API",
+          "short": "Connect your own tools and automations",
+          "long": "Create and schedule posts from your own software, scripts and automation tools."
+        },
+        "mcp": {
+          "title": "MCP",
+          "short": "Use AgentiqSocial from your AI tools",
+          "long": "Draft, schedule and check posts from the AI assistants you already use."
+        }
+      }
+    },
+    "aiPage": {
+      "metaTitle": "AI Assistant",
+      "metaDescription": "Write, rewrite and adapt your social posts in seconds with the AgentiqSocial AI Assistant.",
+      "eyebrow": "AI Assistant",
+      "title": "Your social media co-writer",
+      "sub": "The AI Assistant helps you find ideas, rewrite drafts and shape posts for each platform, so you can share great content without the pressure.",
+      "benefitsTitle": "Why people write with it",
+      "benefits": {
+        "ideas": {
+          "title": "Ideas in seconds",
+          "body": "Get past writer's block, or sharpen your own ideas with suggestions from AI."
+        },
+        "repurpose": {
+          "title": "Reuse what works",
+          "body": "Turn one post into several versions and formats, each made for its platform."
+        },
+        "tailor": {
+          "title": "Right for every platform",
+          "body": "Shape your posts for Instagram, TikTok, YouTube, Facebook, LinkedIn and Bluesky."
+        },
+        "edit": {
+          "title": "One-click editing",
+          "body": "Change the tone, length or structure of a post with a single click."
+        }
+      },
+      "sections": {
+        "generate": {
+          "eyebrow": "Writing",
+          "title": "Posts written with AI",
+          "body": "Get ready-to-post captions in seconds, shaped for your audience. Whether you need a fresh idea or a quick caption, the AI Assistant has one ready."
+        },
+        "repurpose": {
+          "eyebrow": "Repurposing",
+          "title": "One idea, many posts",
+          "body": "Rework your content to fit each platform's format and audience, so you stay consistent without starting from a blank page every time."
+        },
+        "tailor": {
+          "eyebrow": "Tailoring",
+          "title": "Made for each platform",
+          "body": "Every platform has its own style, and the AI Assistant matches it: a short, punchy Bluesky post, a professional LinkedIn update or a lively Instagram caption, always in the right voice."
+        },
+        "edit": {
+          "eyebrow": "Editing",
+          "title": "Write better, post sooner",
+          "body": "Polish a post with AI that rewrites, shortens, expands or changes the tone, so your posts stop the scroll in no time."
+        }
+      },
+      "visuals": {
+        "assistant": "AI Assistant",
+        "rewriteLabel": "Illustration: the AI Assistant rewrites a draft and offers rephrase, shorten, expand, more casual and more formal.",
+        "rephraseLabel": "Rephrase:",
+        "original": "We now deliver to your door",
+        "rewritten": "Good news: we now deliver straight to your door, so you can enjoy our bakes at home.",
+        "retry": "Retry",
+        "replace": "Replace",
+        "actions": {
+          "rephrase": "Rephrase",
+          "shorten": "Shorten",
+          "expand": "Expand",
+          "casual": "More casual",
+          "formal": "More formal"
+        },
+        "generateLabel": "Illustration: asking the AI Assistant to write a post.",
+        "askLabel": "What should we write about?",
+        "prompt": "A friendly post about our new weekend brunch menu, with a question at the end.",
+        "tip": "Tip: say who it is for, the main points and how it should sound.",
+        "generate": "Generate",
+        "review": "AI can make mistakes. Always read a post before you publish it.",
+        "ideasLabel": "Illustration: the AI Assistant suggests post ideas with topic tags.",
+        "ideasPrompt": "Give me post ideas for a small interior design studio.",
+        "generateIdeas": "Generate ideas",
+        "ideas": {
+          "one": "Before and after: a living room",
+          "two": "How we choose a colour palette",
+          "three": "Which chair would you pick?"
+        },
+        "tags": {
+          "video": "Video",
+          "behind": "Behind the scenes",
+          "photos": "Photos",
+          "tips": "Tips",
+          "poll": "Poll",
+          "community": "Community"
+        },
+        "tailorLabel": "Illustration: one post adapted for LinkedIn, Bluesky, Instagram and Facebook.",
+        "tailored": "Three things that keep our team focused when we work from home: a set workspace, a daily plan and real breaks.",
+        "adapt": "Adapt for each platform"
+      }
     }
   },
   "plans": {
@@ -1142,7 +1286,19 @@
     "removed": "{name} was removed.",
     "keep": "Keep account",
     "remove": "Remove account",
-    "insights": "Insights"
+    "insights": "Insights",
+    "returned": {
+      "connected": "{platform} is connected.",
+      "errors": {
+        "denied": "You did not allow access on {platform}, so nothing was connected.",
+        "refused": "{platform} did not complete the sign-in. Try again.",
+        "expired": "The sign-in took too long or was opened in another browser. Try again.",
+        "session": "Sign in to AgentiqSocial again, then connect {platform}.",
+        "scopes": "{platform} did not give permission to post. Connect again and allow posting.",
+        "limit": "Your plan's account limit is reached. Upgrade or remove an account first.",
+        "unavailable": "Connecting {platform} isn't set up on this server yet."
+      }
+    }
   },
   "onboarding": {
     "steps": {
@@ -1393,6 +1549,52 @@
       "madeForKidsHint": "YouTube asks this for every video.",
       "notifySubscribers": "Notify subscribers",
       "embeddable": "Allow embedding"
+    },
+    "creator": {
+      "postingAs": "Posting to <b>{name}</b>",
+      "tooLong": "This video is longer than this TikTok account can post (up to {max} seconds). Trim it and upload it again.",
+      "audience": "Who can view this video",
+      "audienceHint": "Choose who can see it on TikTok.",
+      "audiencePlaceholder": "Choose who can view",
+      "brandedNotPrivate": "Branded content visibility cannot be set to private.",
+      "audiences": {
+        "PUBLIC_TO_EVERYONE": "Everyone",
+        "FOLLOWER_OF_CREATOR": "Followers",
+        "MUTUAL_FOLLOW_FRIENDS": "Friends",
+        "SELF_ONLY": "Only me"
+      },
+      "allow": "Allow users to",
+      "interactions": {
+        "comment": "Comment",
+        "duet": "Duet",
+        "stitch": "Stitch"
+      },
+      "offInTiktok": "Greyed-out options are turned off in this account's TikTok settings.",
+      "disclose": "Disclose video content",
+      "discloseHint": "Turn on to say this video promotes goods or services in exchange for something of value. It can promote yourself, a third party, or both.",
+      "yourBrand": {
+        "label": "Your brand",
+        "hint": "You are promoting yourself or your own business. This video will be classified as Brand Organic."
+      },
+      "brandedContent": {
+        "label": "Branded content",
+        "hint": "You are promoting another brand or a third party. This video will be classified as Branded Content."
+      },
+      "labelPromotional": "Your video will be labeled as 'Promotional content'.",
+      "labelPaid": "Your video will be labeled as 'Paid partnership'.",
+      "chooseOne": "You need to indicate if your content promotes yourself, a third party, or both.",
+      "consent": "By posting, you agree to TikTok's <music>Music Usage Confirmation</music>.",
+      "consentBranded": "By posting, you agree to TikTok's <bc>Branded Content Policy</bc> and <music>Music Usage Confirmation</music>.",
+      "reconnect": "TikTok signed AgentiqSocial out of this account. Reconnect it in Settings, then try again.",
+      "unavailable": "We could not read this TikTok account's settings. Try again.",
+      "retry": "Try again",
+      "processing": "Your video is on its way to TikTok. It may take a few minutes to process and appear on your profile.",
+      "problems": {
+        "audience": "Choose who can view your {platform} post.",
+        "disclosure": "Say whether the video promotes your brand, another brand, or both.",
+        "tooLong": "The video is too long for this {platform} account (up to {max} seconds).",
+        "unavailable": "The {platform} account's settings could not be read."
+      }
     }
   },
   "tags": {
@@ -1613,11 +1815,12 @@
     },
     "detailTitle": "Post details",
     "noTime": "No time set",
+    "content": "Post",
     "caption": "Caption",
     "noCaption": "No caption",
     "platforms": "Platforms",
     "partialSummary": "Published on {published} of {total} platforms. The failed one is shown below with the reason.",
-    "lapsedSummary": "The scheduled time passed while publishing was paused. Choose to publish now, reschedule, or discard.",
+    "lapsedSummary": "The scheduled time passed before this post could go out. Post it now, reschedule it, or discard it.",
     "viewOnPlatform": "View",
     "reconnectAccount": "Reconnect this account",
     "target": {
@@ -1630,7 +1833,7 @@
       "needs_check": "Needs checking"
     },
     "actions": {
-      "publishNow": "Publish now",
+      "publishNow": "Post now",
       "retry": "Retry failed",
       "reschedule": "Reschedule",
       "edit": "Edit",
@@ -1638,7 +1841,11 @@
       "discard": "Discard",
       "retrying": "Trying again. We will let you know how it goes.",
       "deleted": "Post deleted.",
-      "rescheduled": "Post moved."
+      "rescheduled": "Post moved.",
+      "sent": "Posted.",
+      "sentSome": "Posted to some accounts. The details show which ones failed and why.",
+      "sendFailed": "This post could not be sent. The details show the reason for each account.",
+      "sendError": "Something went wrong. Nothing was posted; try again."
     },
     "reschedule": {
       "title": "Reschedule post",
@@ -1949,7 +2156,9 @@
     "points": "{value} pts",
     "change": {
       "new": "New",
-      "none": "No change"
+      "none": "No change",
+      "today": "As of today",
+      "noEarlier": "No posts in the {days} days before"
     },
     "vsPrevious": "vs previous {days} days",
     "rateNote": "Engagement rate is engagements (likes, comments, shares and saves) divided by {base}.",
@@ -1993,7 +2202,8 @@
       "reposts": "Reposts",
       "saves": "Saves",
       "clicks": "Clicks",
-      "engagementRate": "Engagement rate"
+      "engagementRate": "Engagement rate",
+      "bookmarks": "Bookmarks"
     },
     "export": {
       "label": "Export",
@@ -2010,6 +2220,28 @@
       "previousPeriod": "Previous period",
       "published": "Published",
       "link": "Link"
+    },
+    "replies": {
+      "open": "{count, plural, one {Open # reply} other {Open # replies}}",
+      "title": "Replies",
+      "subtitle": "{count, plural, =0 {No replies yet} one {# reply} other {# replies}}",
+      "noCaption": "(No caption)",
+      "openOn": "Open on {platform}",
+      "you": "You",
+      "likes": "Likes",
+      "reply": "Reply",
+      "empty": "No replies yet",
+      "emptyBody": "When people reply to this post, their replies show here and you can answer them.",
+      "replyingTo": "Replying to {name}",
+      "cancelTarget": "Answer the post instead",
+      "label": "Your reply",
+      "placeholderPost": "Write a reply to your post…",
+      "placeholderReply": "Write a reply to {name}…",
+      "count": "{count} / {max}",
+      "send": "Reply as {as}",
+      "sent": "Reply posted on {platform}.",
+      "failed": "Your reply was not posted. Try again.",
+      "reconnect": "{platform} refused the saved login. Reconnect the account in Settings, then try again."
     }
   }
 }

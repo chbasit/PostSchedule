@@ -3,6 +3,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { DM_Sans, JetBrains_Mono, Noto_Sans_Arabic } from "next/font/google";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 import { locale as rootLocale } from "next/root-params";
 import { AppProviders } from "@/components/app-providers";
 import { themeScript } from "@/components/theme";
@@ -62,9 +63,13 @@ export default async function RootLayout({ children }: LayoutProps<"/[locale]">)
       className={`${sans.variable} ${mono.variable} ${arabic.variable}`}
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        {/* Sets the theme before the first paint. Through next/script so React does not warn
+            about a script tag when the layout renders in the browser (2026-11-13). */}
+        <Script id="theme" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="min-h-dvh antialiased">
+      {/* Browser extensions (ColorZilla's cz-shortcut-listen, for one) add attributes to <body>
+          before React loads; they are not ours, so the mismatch is not reported. */}
+      <body className="min-h-dvh antialiased" suppressHydrationWarning>
         <a
           href="#main"
           className="sr-only z-[70] rounded bg-primary px-4 py-2 text-primary-foreground focus:not-sr-only focus:fixed focus:start-3 focus:top-3"

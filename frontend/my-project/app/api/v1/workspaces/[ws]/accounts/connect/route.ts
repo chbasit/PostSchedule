@@ -9,10 +9,11 @@ import { toAccount, type AccountRow } from "@/server/mappers";
 import { BlueskyError, login, profile } from "@/server/providers/bluesky";
 import { must, readBody, route } from "@/server/route";
 import { adminClient } from "@/server/supabase";
+import { startConnect } from "@/server/tiktok";
 
 // Bluesky connects with the handle and an app password, checked with Bluesky before anything
-// is saved; the password is stored encrypted. The other platforms use OAuth and come next
-// (DECISIONS.md 2026-11-12).
+// is saved; the password is stored encrypted. TikTok goes through its own sign-in (OAuth,
+// src/server/tiktok.ts); the other platforms come next (DECISIONS.md 2026-11-12, 2026-11-13).
 const body = z.object({
   provider: z.enum(PLATFORMS.map((p) => p.id) as [string, ...string[]]),
   handle: z.string().trim().max(253).optional(),
@@ -24,6 +25,8 @@ const ACCOUNT = "id, workspace_id, provider, display_name, handle, status, creat
 export const POST = route<{ ws: string }>(async (req, { ws }) => {
   await requireMember(ws, "account.connect");
   const input = await readBody(req, body);
+  // TikTok: off to TikTok's sign-in page; the account is saved by its callback.
+  if (input.provider === "tiktok") return startConnect(ws, null);
   if (input.provider !== "bluesky") throw fail.notConfigured(`Connecting ${getPlatform(input.provider as PlatformId).name}`);
   const handle = (input.handle ?? "").replace(/^@/, "");
   if (handle.length < 3 || !input.appPassword) throw fail.validation("Enter your Bluesky handle and an app password.", { reason: "bluesky_fields" });

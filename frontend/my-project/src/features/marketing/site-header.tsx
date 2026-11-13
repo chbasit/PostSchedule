@@ -4,15 +4,16 @@ import { ThemeToggle } from "@/components/theme";
 import { buttonVariants } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
+import { FeaturesMenu } from "./features-menu";
 import { HeaderBar } from "./header-bar";
 import { MobileMenu } from "./mobile-menu";
 
 // A full-width bar, 64 px tall, blurred over the page. Its content lines up with the landing
-// sections (1440 px).
+// sections (1440 px). Links at 16 px (founder's call, 2026-11-13).
 export function SiteHeader() {
   const t = useTranslations("marketing.nav");
   const links = [
-    { href: "/#features", label: t("product") },
+    { href: "/features", label: t("features") },
     { href: "/pricing", label: t("pricing") },
     { href: "/tools", label: t("freeTools") },
   ] as const;
@@ -25,11 +26,15 @@ export function SiteHeader() {
         </Link>
         <nav aria-label={t("main")} className="hidden md:block">
           <ul className="flex items-center gap-1">
-            {links.map((link) => (
+            {/* Features opens a menu of every feature on wide screens; phones get the page. */}
+            <li>
+              <FeaturesMenu />
+            </li>
+            {links.slice(1).map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="inline-flex h-9 items-center rounded-full px-4 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                  className="inline-flex h-10 items-center rounded-full px-4 text-base font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                 >
                   {link.label}
                 </Link>
@@ -41,7 +46,7 @@ export function SiteHeader() {
           <ThemeToggle className="rounded-full" />
           {/* No "Log in" here (founder's call, 2026-11-11): it is in the phone menu, the footer
               and on the sign-up page. */}
-          <Link href="/signup" className={cn(buttonVariants(), "hidden rounded-full px-5 sm:inline-flex")}>
+          <Link href="/signup" className={cn(buttonVariants(), "hidden h-10 rounded-full px-5 text-base sm:inline-flex")}>
             {t("startFree")}
           </Link>
           <MobileMenu links={links.map((l) => ({ ...l }))} loginLabel={t("login")} startLabel={t("startFree")} />

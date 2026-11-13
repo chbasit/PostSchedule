@@ -109,6 +109,31 @@ export type TargetOptions = {
   madeForKids?: boolean;
   notifySubscribers?: boolean;
   embeddable?: boolean;
+  // Creator controls (TikTok's Content Sharing Guidelines): the person picks who can view from
+  // the creator's own options, with nothing chosen for them; interactions start off; a
+  // commercial disclosure says whether the video promotes their brand, another, or both.
+  audience?: CreatorAudience;
+  allowComments?: boolean;
+  allowDuet?: boolean;
+  allowStitch?: boolean;
+  disclose?: boolean;
+  ownBrand?: boolean;
+  paidPartnership?: boolean;
+};
+
+export type CreatorAudience = "PUBLIC_TO_EVERYONE" | "MUTUAL_FOLLOW_FRIENDS" | "FOLLOWER_OF_CREATOR" | "SELF_ONLY";
+
+// The creator's current posting settings, read from the platform each time the post screen
+// opens (TikTok: creator_info).
+export type CreatorInfo = {
+  avatarUrl: string | null;
+  username: string;
+  nickname: string;
+  privacyOptions: CreatorAudience[];
+  commentDisabled: boolean;
+  duetDisabled: boolean;
+  stitchDisabled: boolean;
+  maxVideoSeconds: number;
 };
 
 export type PostTarget = {
@@ -241,6 +266,9 @@ export type InsightsRange = 7 | 30 | 90;
 export type InsightPost = {
   // null when the post was published outside this app; insights cover the whole account.
   postId: string | null;
+  // The platform's own id for the post (a Bluesky at:// address), used to open its replies;
+  // null when the platform's API does not give one.
+  ref: string | null;
   caption: string;
   type: PostType;
   publishedAt: string;
@@ -256,13 +284,32 @@ export type AccountInsights = {
   to: string;
   previousFrom: string;
   previousTo: string;
-  // Only the metrics the platform reports (providers/<platform> insights.metrics).
-  totals: Partial<Record<InsightMetric, { value: number; previous: number }>>;
+  // Only the metrics the platform reports (providers/<platform> insights.metrics). `previous` is
+  // null when the platform keeps no history for that number (Bluesky's followers): blank, not 0.
+  totals: Partial<Record<InsightMetric, { value: number; previous: number | null }>>;
+  // False when the platform gives only today's follower count (Bluesky): the daily
+  // followers and newFollowers below are then not real and are not shown.
+  followerHistory: boolean;
   daily: Array<{ date: string; followers: number; newFollowers: number; posts: number; engagements: number }>;
   posts: InsightPost[];
   // When the numbers were last read from the platform.
   syncedAt: string;
 };
+
+// Replies people left on one of the account's posts (Engage, founder's call 2026-11-13), as a
+// tree: each reply with the replies to it. `ref` is the platform's id for the reply.
+export type CommentAuthor = { name: string; handle: string; avatarUrl: string | null };
+export type PostComment = {
+  ref: string;
+  author: CommentAuthor;
+  text: string;
+  createdAt: string;
+  likes: number;
+  // Written by the connected account itself (an answer sent from here or from the app).
+  mine: boolean;
+  replies: PostComment[];
+};
+export type PostComments = { postRef: string; url: string | null; total: number; comments: PostComment[] };
 
 export type Member = {
   userId: string;
@@ -347,6 +394,11 @@ export interface ApiClient {
     remove(ws: string, accountId: string): Promise<void>;
     // The last `days` days up to today in `timezone`, compared with the period before.
     insights(ws: string, accountId: string, input: { days: InsightsRange; timezone: string }): Promise<AccountInsights>;
+    // The replies on one of the account's posts, and answering one of them (or the post).
+    comments(ws: string, accountId: string, postRef: string): Promise<PostComments>;
+    reply(ws: string, accountId: string, input: { postRef: string; parentRef: string; text: string }, opts?: MutationOptions): Promise<PostComment>;
+    // TikTok only: the creator's posting settings, fresh (Content Sharing Guidelines).
+    creatorInfo(ws: string, accountId: string): Promise<CreatorInfo>;
   };
   posts: {
     list(ws: string, filter?: PostFilter): Promise<Post[]>;

@@ -56,6 +56,7 @@ import { AccountBar } from "./account-bar";
 import { CaptionEditor } from "./caption-editor";
 import { MediaStrip, type MediaItem } from "./media-strip";
 import { PostPreview } from "./post-preview";
+import { CreatorConsent, useCreatorProblems } from "./creator-controls";
 import { effectiveOptions, PublishOptions } from "./publish-options";
 import { useAutosave, type AutosaveStatus } from "./use-autosave";
 import { resolveWhen, type WhenState } from "./when-panel";
@@ -369,6 +370,8 @@ function ComposerForm({ initial, restored, storageKey, accounts, editPost, onRes
     (draft.type === "image" && readyMedia.some((m) => m.kind !== "image")) ||
     (draft.type === "story" && readyMedia.length > 1);
 
+  const videoSeconds = readyMedia.find((m) => m.kind === "video")?.durationSec ?? null;
+  const creatorProblems = useCreatorProblems(selected, draft.options, videoSeconds);
   const problems: string[] = [];
   if (selected.length === 0) problems.push(t("problems.accounts"));
   if (unsupported.length > 0)
@@ -382,6 +385,8 @@ function ComposerForm({ initial, restored, storageKey, accounts, editPost, onRes
   if (kindMismatch) problems.push(t("problems.mediaKind", { type: t(`accounts.types.${draft.type}`) }));
   if (!needsMedia && !draft.main.trim()) problems.push(t("problems.caption"));
   if (blocking) problems.push(t("problems.blocking"));
+  // TikTok's creator controls: an audience chosen, the disclosure complete, the video short enough.
+  problems.push(...creatorProblems);
   if (draft.when.mode === "schedule" && !whenResult.ok) problems.push(t("problems.time"));
   const problemText =
     problems.length === 0 ? "" : problems.length === 1 ? problems[0] : `${problems[0]} ${t("moreProblems", { count: problems.length - 1 })}`;
@@ -437,6 +442,10 @@ function ComposerForm({ initial, restored, storageKey, accounts, editPost, onRes
       }),
     onSuccess: (post, intent) => {
       writeJson(storageKey, null);
+      // TikTok: tell people a video can take a few minutes to show (Content Sharing Guidelines).
+      if (intent !== "draft" && selected.some((a) => getPlatform(a.provider).publishOptions?.creatorControls)) {
+        toast.info(t("creator.processing"));
+      }
       writeJson(LAST_KEY, { type: draft.type, accountIds: draft.accountIds });
       queryClient.invalidateQueries({ queryKey: [...scope, "posts"] });
       if (intent === "draft") {
@@ -725,6 +734,7 @@ function ComposerForm({ initial, restored, storageKey, accounts, editPost, onRes
                 account={a}
                 value={draft.options[a.id]}
                 caption={captionFor(a)}
+                videoSeconds={videoSeconds}
                 onChange={(next) => update({ options: { ...draft.options, [a.id]: next } })}
               />
             ))}
@@ -852,6 +862,10 @@ function ComposerForm({ initial, restored, storageKey, accounts, editPost, onRes
             {t("saveDraft")}
           </Button>
           <div className="flex min-w-0 flex-1 basis-full flex-wrap items-center justify-end gap-x-3 gap-y-2 sm:basis-0 sm:flex-nowrap">
+            {/* TikTok asks for its consent sentence right before the post button. */}
+            <div className="w-full sm:order-first sm:w-auto sm:max-w-xs">
+              <CreatorConsent accounts={selected} options={draft.options} />
+            </div>
             {problemText ? (
               <p role="status" title={problemText} className="flex w-full min-w-0 items-center gap-1.5 text-sm text-muted-foreground sm:w-auto">
                 <Info className="size-4 shrink-0" aria-hidden />

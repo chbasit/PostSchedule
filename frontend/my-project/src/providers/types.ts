@@ -48,7 +48,7 @@ export type InsightMetric =
   | "engagementRate";
 
 // The platform's own word for a generic metric, e.g. LinkedIn "reactions" for likes.
-export type MetricTerm = "subscribers" | "reactions" | "replies" | "reposts";
+export type MetricTerm = "subscribers" | "reactions" | "replies" | "reposts" | "bookmarks";
 
 export type InsightsSpec = {
   // Shown in this order on the account page.
@@ -71,6 +71,10 @@ export type PublishOptionsSpec = {
   madeForKids?: boolean;
   notifySubscribers?: boolean;
   embeddable?: boolean;
+  // The creator's own settings, read live before posting (TikTok's Content Sharing
+  // Guidelines): who can view with no default, interactions off unless turned on, and a
+  // commercial content disclosure.
+  creatorControls?: boolean;
 };
 
 export type PreviewAction = "like" | "dislike" | "comment" | "share" | "repost" | "send" | "save";

@@ -16,6 +16,7 @@ import type { Post, PostStatus } from "@/lib/api/client";
 import { addDays, dayKey, formatTime, utcToZoned, weekdayOf, weekStartDay, zonedToUtc } from "@/lib/time";
 import { cn } from "@/lib/utils";
 import type { PlatformId } from "@/providers/catalog";
+import { MediaThumb } from "@/features/posts/media-thumb";
 import { PlatformFilter } from "@/features/posts/platform-filter";
 import { PostSheet } from "@/features/posts/post-sheet";
 import { usePostActions } from "@/features/posts/use-post-actions";
@@ -49,11 +50,14 @@ const PILL: Record<PostStatus, string> = {
   paused: "bg-muted border-s-muted-foreground",
 };
 
+// A small card per post (founder's call, 2026-11-13): the platforms and the time, then the
+// start of the caption beside the first photo or video, so each post is easy to recognise.
 function PostPill({ post, onOpen, draggable }: { post: Post; onOpen: () => void; draggable: boolean }) {
   const locale = useLocale();
   const { user } = useWorkspace();
   const t = useTranslations("status");
   const live = post.targets.filter((tg) => tg.status !== "skipped");
+  const thumb = post.media[0];
   return (
     <button
       type="button"
@@ -64,23 +68,29 @@ function PostPill({ post, onOpen, draggable }: { post: Post; onOpen: () => void;
         e.dataTransfer.effectAllowed = "move";
       }}
       className={cn(
-        "flex w-full items-center gap-1.5 rounded-md border-s-[3px] px-1.5 py-1 text-start text-xs text-foreground transition-[filter] hover:brightness-95 dark:hover:brightness-125",
+        "block w-full rounded-md border-s-[3px] p-1.5 text-start text-xs text-foreground transition-[filter] hover:brightness-95 dark:hover:brightness-125",
         PILL[post.status],
         draggable && "cursor-grab active:cursor-grabbing",
       )}
     >
-      <span className="tabular shrink-0 font-semibold">
-        {post.scheduledAt ? formatTime(post.scheduledAt, locale, user.timezone, !user.use24h) : "—"}
-      </span>
-      <span className="flex min-w-0 flex-1 items-center justify-end gap-0.5">
-        {live.slice(0, 2).map((tg) => (
-          <PlatformMark key={tg.id} id={tg.provider} size="sm" />
-        ))}
+      <span className="flex items-center gap-1">
+        <span className="flex shrink-0 items-center -space-x-1">
+          {live.slice(0, 2).map((tg) => (
+            <PlatformMark key={tg.id} id={tg.provider} size="sm" className="rounded-full ring-1 ring-card" />
+          ))}
+        </span>
         {live.length > 2 ? <span className="font-semibold">+{live.length - 2}</span> : null}
+        <span className="tabular ms-auto truncate font-semibold">
+          {post.scheduledAt ? formatTime(post.scheduledAt, locale, user.timezone, !user.use24h) : "—"}
+        </span>
       </span>
-      <span className="sr-only">
-        {t(post.status)}: {post.mainCaption.slice(0, 80)}
+      <span className="mt-1 flex items-start gap-1.5">
+        <span className="line-clamp-2 min-w-0 flex-1 leading-snug" dir="auto">
+          {post.mainCaption}
+        </span>
+        {thumb ? <MediaThumb media={thumb} className="pointer-events-none size-9 shrink-0" /> : null}
       </span>
+      <span className="sr-only">{t(post.status)}</span>
     </button>
   );
 }
@@ -244,6 +254,7 @@ export function CalendarView() {
                     <li key={p.id}>
                       <button type="button" onClick={() => setOpenId(p.id)} className="flex w-full items-center gap-3 p-3 text-start hover:bg-muted/50">
                         <span className="tabular w-20 shrink-0 whitespace-nowrap text-sm font-medium">{formatTime(p.scheduledAt!, locale, tz, !user.use24h)}</span>
+                        {p.media[0] ? <MediaThumb media={p.media[0]} className="pointer-events-none size-10 shrink-0 rounded-lg" /> : null}
                         <span className="min-w-0 flex-1 space-y-1">
                           <span className="line-clamp-1 text-sm" dir="auto">
                             {p.mainCaption}

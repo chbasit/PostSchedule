@@ -9,6 +9,7 @@ import { Link } from "@/i18n/navigation";
 import { SoonBadge } from "@/features/ai-studio/coming-soon";
 import { IntervalToggle } from "@/features/billing/interval-toggle";
 import {
+  SOON_FEATURES,
   TRIAL_DAYS,
   formatPrice,
   getPlan,
@@ -85,7 +86,7 @@ function OfferCard({ plan, interval }: { plan: Plan; interval: BillingInterval }
         className={cn(
           buttonVariants({ variant: "secondary" }),
           "mt-4 w-full rounded-full",
-          dark ? "border-transparent bg-card-lavender text-foreground hover:bg-card-lavender/85" : "border-2 border-foreground bg-transparent",
+          dark ? "border-transparent bg-primary text-primary-foreground hover:bg-primary/85" : "border-2 border-foreground bg-transparent",
         )}
       >
         {tr("ctaTrial")}
@@ -114,6 +115,7 @@ function OfferCard({ plan, interval }: { plan: Plan; interval: BillingInterval }
                   {has ? <Check className="mt-0.5 size-4 shrink-0" strokeWidth={2.5} aria-hidden /> : <Minus className="mt-0.5 size-4 shrink-0" aria-hidden />}
                   <span>
                     {tp(`features.${feature}`)}
+                    {SOON_FEATURES.has(feature) ? <SoonBadge className="ms-1.5 align-middle" /> : null}
                     <span className="sr-only"> ({has ? tr("included") : tr("notIncluded")})</span>
                   </span>
                 </li>

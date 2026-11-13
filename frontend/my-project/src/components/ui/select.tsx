@@ -61,9 +61,9 @@ export function Select({ value, onValueChange, children, variant = "field", plac
   );
 }
 
-export function SelectItem({ value, children, className, lang }: { value: string; children: ReactNode; className?: string; lang?: string }) {
+export function SelectItem({ value, children, className, lang, disabled }: { value: string; children: ReactNode; className?: string; lang?: string; disabled?: boolean }) {
   return (
-    <SelectPrimitive.Item value={value} lang={lang} className={cn(menuItem, "pe-8", className)}>
+    <SelectPrimitive.Item value={value} lang={lang} disabled={disabled} className={cn(menuItem, "pe-8 data-disabled:pointer-events-none data-disabled:opacity-50", className)}>
       <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
       <SelectPrimitive.ItemIndicator className="absolute inset-e-2.5 inline-flex animate-pop">
         <Check aria-hidden />

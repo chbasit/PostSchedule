@@ -4,6 +4,7 @@ import { z } from "zod";
 import { matchesFilter } from "@/lib/api/filter";
 import type { Post, PostFilter, PostStatus } from "@/lib/api/types";
 import { utcToZoned, zonedToUtc } from "@/lib/time";
+import { getPlatform, type PlatformId } from "@/providers/catalog";
 import { signedUrls } from "./ai/storage";
 import { signedMediaUrls } from "./media/storage";
 import { publishPost } from "./publish";
@@ -18,8 +19,19 @@ const options = z
     madeForKids: z.boolean().optional(),
     notifySubscribers: z.boolean().optional(),
     embeddable: z.boolean().optional(),
+    // TikTok creator controls (src/lib/api/types.ts TargetOptions).
+    audience: z.enum(["PUBLIC_TO_EVERYONE", "MUTUAL_FOLLOW_FRIENDS", "FOLLOWER_OF_CREATOR", "SELF_ONLY"]).optional(),
+    allowComments: z.boolean().optional(),
+    allowDuet: z.boolean().optional(),
+    allowStitch: z.boolean().optional(),
+    disclose: z.boolean().optional(),
+    ownBrand: z.boolean().optional(),
+    paidPartnership: z.boolean().optional(),
   })
-  .strict();
+  .strict()
+  // Branded content cannot be private on TikTok; a disclosure must say what it promotes.
+  .refine((o) => !(o.paidPartnership && o.disclose && o.audience === "SELF_ONLY"), { message: "Branded content cannot be visible only to you." })
+  .refine((o) => !o.disclose || o.ownBrand || o.paidPartnership, { message: "Say whether the video promotes your brand, another brand, or both." });
 
 const zone = z
   .string()
@@ -146,13 +158,17 @@ export async function savePost(
 
   if (input.intent !== "draft") {
     if (input.accountIds.length === 0) throw fail.validation("Choose at least one account.", { field: "accountIds" });
-    const accounts = must(await db.from("social_accounts_public").select("id, status").eq("workspace_id", workspaceId).in("id", input.accountIds)) as Array<{
+    const accounts = must(await db.from("social_accounts_public").select("id, status, provider").eq("workspace_id", workspaceId).in("id", input.accountIds)) as Array<{
       id: string;
       status: string;
+      provider: PlatformId;
     }>;
     if (accounts.length !== input.accountIds.length) throw fail.validation("One of the selected accounts no longer exists.", { field: "accountIds" });
     const blocked = accounts.find((a) => a.status !== "active");
     if (blocked) throw fail.validation("One of the selected accounts needs reconnecting.", { field: "accountIds", accountId: blocked.id });
+    // Platforms with creator controls (TikTok) need the person's own choice of audience.
+    const unchosen = accounts.find((a) => getPlatform(a.provider).publishOptions?.creatorControls && !input.targetOptions[a.id]?.audience);
+    if (unchosen) throw fail.validation(`Choose who can view your ${getPlatform(unchosen.provider).name} post.`, { field: "targetOptions", accountId: unchosen.id, reason: "audience" });
     status = "scheduled";
     if (input.intent === "now") {
       // Saved as due now, then sent straight away (src/server/publish.ts).

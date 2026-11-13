@@ -37,7 +37,7 @@ export function SiteFooter() {
   ];
 
   return (
-    <footer className="overflow-hidden bg-footer text-footer-foreground [&_:focus-visible]:outline-footer-foreground">
+    <footer className="overflow-hidden rounded-t-[2rem] bg-footer text-footer-foreground [&_:focus-visible]:outline-footer-foreground">
       <div className="mx-auto grid max-w-[1440px] grid-cols-2 gap-x-6 gap-y-10 px-4 pb-12 pt-16 md:grid-cols-[1.5fr_0.8fr_1.3fr_0.8fr] md:px-6 lg:px-8">
         <div className="col-span-2 space-y-5 md:col-span-1">
           <Link href="/" className="inline-flex rounded-lg">
@@ -54,7 +54,7 @@ export function SiteFooter() {
         </div>
         {columns.map((col) => (
           <nav key={col.title} aria-label={col.title} className={col.links.length > 4 ? "col-span-2 sm:col-span-1" : undefined}>
-            <p className="mb-4 font-heading text-sm font-semibold">{col.title}</p>
+            <p className="mb-4 font-heading text-sm font-semibold text-leaf">{col.title}</p>
             <ul className="space-y-2.5 text-sm">
               {col.links.map((link) => (
                 <li key={link.href}>
@@ -90,7 +90,9 @@ export function SiteFooter() {
       <p
         aria-hidden
         dir="ltr"
-        className="pointer-events-none -mb-[0.14em] select-none whitespace-nowrap text-center font-heading text-[clamp(3.25rem,13.5vw,12.5rem)] font-semibold leading-[0.85] tracking-[-0.05em] text-footer-foreground/[0.07]"
+        // Whole, tails of the g and q included (founder's call, 2026-11-13): no longer pulled
+        // past the footer's bottom edge.
+        className="pointer-events-none select-none whitespace-nowrap pb-[0.12em] text-center font-heading text-[clamp(3.25rem,13.5vw,12.5rem)] font-semibold leading-none tracking-[-0.05em] text-leaf"
       >
         {PRODUCT_NAME}
       </p>

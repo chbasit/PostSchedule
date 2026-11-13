@@ -6,7 +6,11 @@
 /* Tokens from docs/FRONTEND.md §2.7. Components use these names, never raw hex. */
 :root {
   /* brand, sampled from the reference image (the lime #DEFF00 was retired 2026-10-26) */
-  --brand-ink: #1d1e20;
+  --brand-ink: #213130;
+  /* The public site's text and button colours (founder's call, 2026-11-13): forest ink, and
+     leaf green buttons with forest text (9.8:1). */
+  --brand-forest: #213130;
+  --brand-leaf: #afeb9b;
   --brand-coral: #ff4b32;
   --brand-coral-soft: #ff7d4b;
   --brand-coral-strong: #c23b22;
@@ -38,24 +42,25 @@
   --shell-hover: #eae8e5;
 
   --background: #ffffff;
-  --foreground: #111214;
+  --foreground: #213130;
   --card: #ffffff;
-  --card-foreground: #111214;
+  --card-foreground: #213130;
   --popover: #ffffff;
-  --popover-foreground: #111214;
-  --primary: #1d1e20;
-  --primary-foreground: #ffffff;
+  --popover-foreground: #213130;
+  /* Leaf buttons with forest text (9.8:1); muted text is a green-grey (7.2:1 on white). */
+  --primary: #afeb9b;
+  --primary-foreground: #213130;
   --secondary: #f4f4f5;
-  --secondary-foreground: #111214;
+  --secondary-foreground: #213130;
   --muted: #f4f4f5;
-  --muted-foreground: #44464b;
+  --muted-foreground: #4d5a58;
   --accent: #e6f4ea;
-  --accent-foreground: #111214;
+  --accent-foreground: #213130;
   --destructive: #b3261e;
   --destructive-foreground: #ffffff;
   --border: #e4e4e7;
   --input: #858688;
-  --ring: #1d1e20;
+  --ring: #213130;
 
   --success-fg: #17692f;
   --success-bg: #e6f4ea;
@@ -72,13 +77,13 @@
      worst adjacent CVD ΔE 8.2, normal-vision ΔE 28. Assign in this order, never cycled.
      "Context" is the de-emphasis mark for past or secondary data; it sits below 3:1 on
      purpose, so every chart that uses it keeps its table view and tooltips. */
-  --chart-1: #2f6fe4;
+  --chart-1: #3b8a58;
   --chart-2: #ff4b32;
   --chart-3: #088f6f;
   --chart-4: #6e4fe0;
   --chart-5: #b87400;
-  --chart-context: #c9cacd;
-  --chart-grid: #ececee;
+  --chart-context: #d6d2c9;
+  --chart-grid: #ece9e3;
 
   /* Progress meters: a sky-to-mint fill over grey ticks. The percentage is always
      written out too, so the fill is never the only signal. */
@@ -118,16 +123,18 @@
   /* Soft sky surface for landing cards, the partner of --highlight (ink text 17:1). */
   --soft-sky: #e4f2ff;
 
-  /* The light theme has no dark sections (founder's call 2026-11-11): the landing page's
-     features band and the footer sit on light grey with ink text; the dark theme keeps them
-     near black. */
+  /* The features band is light grey (founder's call 2026-11-11); the footer is forest green
+     with white text (13.6:1) and leaf headings in both themes (founder's call 2026-11-13). */
   --band: #f7f7f7;
-  --footer: #f7f7f7;
-  --footer-foreground: #0b0b0c;
+  --footer: #213130;
+  --footer-foreground: #ffffff;
+  /* The homepage hero's backdrop (founder's call, 2026-11-13): faint grey lines on white. */
+  --hero-tint: #ffffff;
+  --hero-line: #f2f4f3;
 
   /* Landing card colours (founder's palette, 2026-10-26). Ink text 10.9:1 or better,
      muted text 5.4:1 or better; as surfaces the dark theme uses deep versions of each. */
-  --brand-aqua: #a4f1e9;
+  --brand-aqua: #9feae2;
   --brand-yellow: #ffd88a;
   --brand-pink: #fac3ff;
   --brand-salmon: #ffb2a8;
@@ -150,8 +157,8 @@
 
 .dark {
   --band: #18191b;
-  --footer: #0b0b0c;
-  --footer-foreground: #ffffff;
+  --hero-tint: var(--background);
+  --hero-line: rgb(255 255 255 / 0.07);
   --shell: #0b0c0d;
   --shell-hover: #232427;
 
@@ -161,8 +168,8 @@
   --card-foreground: #fafafa;
   --popover: #232427;
   --popover-foreground: #fafafa;
-  --primary: #addaff;
-  --primary-foreground: #111214;
+  --primary: #afeb9b;
+  --primary-foreground: #213130;
   --secondary: #262729;
   --secondary-foreground: #fafafa;
   --muted: #2a2b2e;
@@ -211,7 +218,7 @@
   --danger-bg: #262729;
 
   /* Validated separately for the dark card (#1d1e20): worst adjacent CVD ΔE 11.5. */
-  --chart-1: #4f8cf0;
+  --chart-1: #6cc18a;
   --chart-2: #f25c40;
   --chart-3: #17a383;
   --chart-4: #8f7bf2;
@@ -278,6 +285,8 @@
   --color-highlight-foreground: var(--highlight-foreground);
   --color-soft-sky: var(--soft-sky);
   --color-band: var(--band);
+  --color-forest: var(--brand-forest);
+  --color-leaf: var(--brand-leaf);
   --color-footer: var(--footer);
   --color-footer-foreground: var(--footer-foreground);
   --color-card-aqua: var(--card-aqua);
@@ -465,6 +474,16 @@
 [dir="rtl"] {
   --reveal-from: inset(0 0 0 100%);
 }
+/* The feature tabs' progress line (feature-tabs.tsx). */
+@keyframes tab-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
 @keyframes marquee {
   to {
     transform: translateX(-50%);
@@ -653,6 +672,20 @@ body:has([data-action-bar]) [data-sonner-toaster][data-y-position="bottom"] {
     font-weight: 600;
     letter-spacing: -0.03em;
     line-height: 1.06;
+  }
+
+
+
+  /* The homepage hero: squares of thin lines, centred, fading toward the bottom so the next
+     section starts on plain white. */
+  .hero-grid {
+    background-color: var(--hero-tint);
+    background-image:
+      linear-gradient(to right, var(--hero-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--hero-line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    background-position: center top;
+    mask-image: linear-gradient(to bottom, #000 55%, transparent);
   }
 
   /* A faint dot grid, fading out from the top; sections set their own mask. */

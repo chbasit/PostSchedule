@@ -11,6 +11,7 @@ import type { SocialAccount, TargetOptions } from "@/lib/api/client";
 import { captionLength } from "@/lib/preflight/rules";
 import { cn } from "@/lib/utils";
 import { getPlatform, type Privacy } from "@/providers/catalog";
+import { CreatorControls } from "./creator-controls";
 
 const PRIVACY_ICON = { public: Globe, unlisted: Link2, private: Lock } as const;
 
@@ -32,6 +33,16 @@ export function effectiveOptions(account: SocialAccount, chosen: TargetOptions |
   if (spec.madeForKids) out.madeForKids = chosen?.madeForKids ?? false;
   if (spec.notifySubscribers) out.notifySubscribers = chosen?.notifySubscribers ?? true;
   if (spec.embeddable) out.embeddable = chosen?.embeddable ?? true;
+  if (spec.creatorControls) {
+    // Nothing is chosen for the person: no audience, interactions and disclosure off.
+    if (chosen?.audience) out.audience = chosen.audience;
+    out.allowComments = !!chosen?.allowComments;
+    out.allowDuet = !!chosen?.allowDuet;
+    out.allowStitch = !!chosen?.allowStitch;
+    out.disclose = !!chosen?.disclose;
+    out.ownBrand = !!(chosen?.disclose && chosen.ownBrand);
+    out.paidPartnership = !!(chosen?.disclose && chosen.paidPartnership);
+  }
   return out;
 }
 
@@ -40,10 +51,13 @@ type Props = {
   value: TargetOptions | undefined;
   caption: string;
   onChange: (next: TargetOptions) => void;
+  // The video's length, for platforms that check it against the creator's own limit.
+  videoSeconds?: number | null;
 };
 
-// Settings this platform asks for, e.g. YouTube's title, visibility and audience.
-export function PublishOptions({ account, value, caption, onChange }: Props) {
+// Settings this platform asks for, e.g. YouTube's title, visibility and audience, or TikTok's
+// creator controls.
+export function PublishOptions({ account, value, caption, onChange, videoSeconds = null }: Props) {
   const t = useTranslations("composer.options");
   const tp = useTranslations("composer.privacy");
   const id = useId();
@@ -64,6 +78,8 @@ export function PublishOptions({ account, value, caption, onChange }: Props) {
           {account.handle}
         </span>
       </h3>
+
+      {spec.creatorControls ? <CreatorControls account={account} value={value} onChange={onChange} videoSeconds={videoSeconds} /> : null}
 
       {spec.title ? (
         <div className="space-y-1.5">

@@ -49,9 +49,9 @@ export function DialogContent({ className, children, variant = "dialog", hideClo
   );
 }
 
-export function DialogHeader({ title, description }: { title: ReactNode; description?: ReactNode }) {
+export function DialogHeader({ title, description, className }: { title: ReactNode; description?: ReactNode; className?: string }) {
   return (
-    <div className="mb-5 flex flex-col gap-1.5 pe-8">
+    <div className={cn("mb-5 flex flex-col gap-1.5 pe-8", className)}>
       <DialogPrimitive.Title className="text-lg font-semibold">{title}</DialogPrimitive.Title>
       {description ? (
         <DialogPrimitive.Description className="text-sm text-muted-foreground">{description}</DialogPrimitive.Description>

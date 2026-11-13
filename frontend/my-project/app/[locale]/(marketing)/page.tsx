@@ -1,18 +1,6 @@
-import {
-  ArrowRight,
-  Bot,
-  Check,
-  FileCheck,
-  Gauge,
-  Globe,
-  Plus,
-  ShieldCheck,
-  Sparkles,
-  UserCheck,
-  type LucideIcon,
-} from "lucide-react";
+import { ArrowRight, Check, FileCheck, Gauge, Globe, Plus, Send, type LucideIcon } from "lucide-react";
 import { useFormatter, useLocale, useTranslations } from "next-intl";
-import type { CSSProperties, ReactNode } from "react";
+import type { ReactNode } from "react";
 import { JsonLd } from "@/components/json-ld";
 import { PlatformMark } from "@/components/platform-badge";
 import { buttonVariants } from "@/components/ui/button";
@@ -22,66 +10,75 @@ import { PLANS, TRIAL_DAYS } from "@/lib/billing/plans";
 import { cn } from "@/lib/utils";
 import { PLATFORMS } from "@/providers/catalog";
 import { GoogleIcon } from "@/features/auth/google-icon";
-import { AgentConsole } from "@/features/marketing/agent-console";
-import { BrandTree } from "@/features/marketing/brand-tree";
-import { Clip, type ClipName } from "@/features/marketing/clip";
+import { SoonBadge } from "@/features/ai-studio/coming-soon";
+import { AgentsVisual } from "@/features/marketing/agents-visual";
+import { BrandTreeVisual } from "@/features/marketing/brand-tree";
 import { Comparison } from "@/features/marketing/comparison";
 import { CustomerReviews } from "@/features/marketing/customer-reviews";
-import { HubVisual } from "@/features/marketing/hub-visual";
+import { ManageVisual, ScheduleVisual } from "@/features/marketing/core-visuals";
+import { FeatureTabs } from "@/features/marketing/feature-tabs";
 import { LandingPricing } from "@/features/marketing/landing-pricing";
 import { PreviewPhones } from "@/features/marketing/preview-phones";
 import { PublishVisual } from "@/features/marketing/publish-visual";
 import { reviewSchema } from "@/features/marketing/testimonials";
 
-// The three everyday jobs, right under the hero: publish, schedule, manage. Each row has its
-// words on one side and a picture of it on the other: the fan-out drawing, then two clips.
-const CORE: Array<{ key: "publish" | "schedule" | "manage"; clip?: ClipName }> = [
-  { key: "publish" },
-  { key: "schedule", clip: "calendar" },
-  { key: "manage", clip: "home" },
+// The homepage follows the AI Assistant page (founder's call, 2026-11-13), except the hero,
+// which stays centred on a grid of thin lines: four benefits, the feature tabs, sections that
+// alternate words and pictures, the comparison, pricing and the FAQ.
+
+// The three everyday jobs in the feature tabs, each picture straight on the page (founder's
+// call, 2026-11-13: no coloured panels behind them).
+const CORE = ["publish", "schedule", "manage"] as const;
+
+const BENEFITS: Array<{ key: "everywhere" | "checks" | "zones" | "original"; icon: LucideIcon; tint: string }> = [
+  { key: "everywhere", icon: Send, tint: "bg-card-lavender" },
+  { key: "checks", icon: Gauge, tint: "bg-card-yellow" },
+  { key: "zones", icon: Globe, tint: "bg-card-aqua" },
+  { key: "original", icon: FileCheck, tint: "bg-card-salmon" },
 ];
-
-// The pills around the centre picture: true numbers only, taken from the code where they live.
-const PROMISE: Array<{ key: "platforms" | "click" | "checks" | "trial" | "original" | "cards"; value: number; percent?: boolean }> = [
-  { key: "platforms", value: PLATFORMS.length },
-  { key: "click", value: 1 },
-  // Aspect ratio, resolution, bitrate, duration and size (features.preflight).
-  { key: "checks", value: 5 },
-  { key: "trial", value: TRIAL_DAYS },
-  // The uploaded file is never changed (features.original).
-  { key: "original", value: 1, percent: true },
-  // The trial needs no card (pricing.ctaNote).
-  { key: "cards", value: 0 },
-];
-
-
-const AI_POINTS: Array<{ key: "write" | "agents" | "control"; icon: LucideIcon; chip: string }> = [
-  { key: "write", icon: Sparkles, chip: "bg-card-lavender" },
-  { key: "agents", icon: Bot, chip: "bg-card-aqua" },
-  { key: "control", icon: ShieldCheck, chip: "bg-card-yellow" },
-];
-
-// The features the clips do not show.
-const EXTRAS: Array<{ key: "preflight" | "original" | "approvals" | "timezones"; icon: LucideIcon; chip: string }> = [
-  { key: "preflight", icon: Gauge, chip: "bg-card-yellow" },
-  { key: "original", icon: FileCheck, chip: "bg-card-aqua" },
-  { key: "approvals", icon: UserCheck, chip: "bg-card-pink" },
-  { key: "timezones", icon: Globe, chip: "bg-card-lavender" },
-];
-
-const STEP_CHIPS = ["bg-card-lavender", "bg-card-aqua", "bg-card-yellow"] as const;
 
 const FAQ_KEYS = ["what", "quality", "ai", "platforms", "safety", "trial", "cancel", "switch"] as const;
 
-// A coloured panel. The landing page is flat: no frames, borders or shadows on its cards.
-function Panel({ surface, className, style, children }: { surface: string; className?: string; style?: CSSProperties; children: ReactNode }) {
+// Words on one side, a picture on a coloured panel on the other; `flip` puts the picture first
+// from lg up, so the sections alternate.
+function Split({
+  id,
+  eyebrow,
+  title,
+  body,
+  extra,
+  cta,
+  surface,
+  flip,
+  children,
+}: {
+  id: string;
+  eyebrow: ReactNode;
+  title: string;
+  body: string;
+  extra?: ReactNode;
+  cta: ReactNode;
+  surface: string;
+  flip?: boolean;
+  children: ReactNode;
+}) {
   return (
-    <div className={cn("relative isolate overflow-hidden rounded-2xl", surface, className)} style={style}>
-      {children}
-    </div>
+    <section aria-labelledby={id} className="mx-auto max-w-[1440px] px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
+      <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+        <div className={cn(flip && "lg:order-2")}>
+          <p className="flex items-center gap-2 text-sm font-semibold tracking-wide text-muted-foreground uppercase">{eyebrow}</p>
+          <h2 id={id} className="display mt-3 text-4xl text-balance md:text-5xl">
+            {title}
+          </h2>
+          <p className="mt-5 max-w-xl text-xl text-muted-foreground">{body}</p>
+          {extra}
+          {cta}
+        </div>
+        <div className={cn("grid place-items-center overflow-hidden rounded-2xl p-6 sm:p-10", surface)}>{children}</div>
+      </div>
+    </section>
   );
 }
-
 
 export default function HomePage() {
   const t = useTranslations("marketing.home");
@@ -93,6 +90,11 @@ export default function HomePage() {
   );
   const pill = cn(buttonVariants({ size: "lg" }), "w-full rounded-full px-7 sm:w-auto");
   const pillSecondary = cn(buttonVariants({ variant: "secondary", size: "lg" }), "w-full rounded-full border-border bg-card px-7 shadow-card sm:w-auto");
+  const cta = (
+    <Link href="/signup" className={cn(pill, "mt-8")}>
+      {t("ctaPrimary")} <ArrowRight className="rtl:-scale-x-100" aria-hidden />
+    </Link>
+  );
 
   return (
     <>
@@ -113,7 +115,7 @@ export default function HomePage() {
             applicationCategory: "BusinessApplication",
             operatingSystem: "Web",
             publisher: { "@id": `${SITE_URL}/#org` },
-            // Real customer reviews from the wall, once there are any.
+            // Real customer reviews, once there are any.
             ...reviewSchema(),
             offers: PLANS.map((p) => ({
               "@type": "Offer",
@@ -126,8 +128,10 @@ export default function HomePage() {
         ]}
       />
 
-      {/* Hero: the promise, the platforms, then the product at work. */}
-      <section>
+      {/* Hero, centred as before (founder's call, 2026-11-13), over a grid of light grey lines
+          on white that fades toward the next section. */}
+      <section className="relative isolate overflow-hidden">
+        <div aria-hidden className="hero-grid absolute inset-0 -z-10" />
         <div className="mx-auto max-w-[1440px] px-4 pt-20 pb-16 text-center md:px-6 md:pt-24 md:pb-24 lg:px-8 lg:pt-32">
           <h1 className="display mx-auto max-w-6xl text-[clamp(2.75rem,6vw,5rem)] text-balance">{t("headline")}</h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-balance text-muted-foreground md:text-xl">{t(AI_ENABLED ? "sub" : "subSoon")}</p>
@@ -154,180 +158,107 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Core: what people come for, in the words they search with. */}
+      {/* Four reasons, in cards. */}
+      <section aria-labelledby="benefits-title" className="mx-auto max-w-[1440px] px-4 py-16 md:px-6 md:py-24 lg:px-8">
+        <h2 id="benefits-title" className="display text-center text-4xl text-balance md:text-5xl">
+          {t("benefits.title", { product: PRODUCT_NAME })}
+        </h2>
+        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {BENEFITS.map(({ key, icon: Icon, tint }) => (
+            <li key={key} className="rounded-2xl bg-card p-6 ring-1 ring-border">
+              <span className={cn("inline-flex size-11 items-center justify-center rounded-xl text-forest", tint)}>
+                <Icon className="size-5" aria-hidden />
+              </span>
+              <h3 className="mt-4 font-heading text-xl font-semibold tracking-tight">{t(`benefits.items.${key}.title`)}</h3>
+              <p className="mt-2 text-base text-muted-foreground">{t(`benefits.items.${key}.body`, { platforms: platformNames })}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* Feature tabs (founder's call, 2026-11-13): the list on one side, a picture on the
+          item's colour on the other; the open item's line fills, then the next opens. */}
       <section aria-labelledby="core-title" className="mx-auto max-w-[1440px] px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
-        {/* Larger, so it wraps on two balanced lines (founder's call, 2026-11-12). */}
-        <h2 id="core-title" className="display text-center text-4xl text-balance md:text-5xl lg:text-6xl pt-6 pb-2 md:pt-10 md:pb-4">
+        {/* Section titles are capped at 768 px so they break onto two even lines (founder's
+            call, 2026-11-13). */}
+        <h2 id="core-title" className="display mx-auto max-w-3xl text-center text-4xl text-balance md:text-5xl">
           {t("core.title")}
         </h2>
-        {/* Stacking cards (founder's call, 2026-11-11): from lg up, on screens at least 608 px
-            tall (a laptop browser window), each card sticks under the header, a step lower than
-            the one before, and the next slides over it. Phones and short screens scroll them
-            normally. */}
-        <div className="mt-12 space-y-5 lg:space-y-10">
-          {CORE.map(({ key, clip }, i) => (
-            <Panel
-              key={key}
-              surface="bg-card-periwinkle"
-              className="lg:[@media(min-height:38rem)]:sticky lg:[@media(min-height:38rem)]:top-(--stack-top)"
-              style={{ "--stack-top": `${5 + i}rem` } as CSSProperties}
-            >
-              <div className="grid items-center gap-10 p-6 sm:p-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16 lg:p-14">
-                <div>
-                  <h3 className="font-heading text-3xl font-semibold tracking-tight text-balance md:text-[2.75rem] md:leading-tight">{t(`core.items.${key}.title`)}</h3>
-                  <p className="mt-4 max-w-xl text-lg text-foreground/75">{t(`core.items.${key}.body`, { platforms: platformNames, product: PRODUCT_NAME })}</p>
-                  <Link href="/signup" className="mt-7 inline-flex items-center gap-1.5 rounded-md font-semibold underline-offset-4 hover:underline">
-                    {t("ctaPrimary")} <ArrowRight className="size-4 rtl:-scale-x-100" aria-hidden />
-                  </Link>
-                </div>
-                {clip ? (
-                  <div className="overflow-hidden rounded-xl bg-card">
-                    <Clip name={clip} />
-                  </div>
-                ) : (
+        <div className="mt-12 md:mt-16">
+          <FeatureTabs
+            label={t("core.title")}
+            items={CORE.map((key) => ({
+              key,
+              title: t(`core.items.${key}.title`),
+              body: t(`core.items.${key}.body`, { platforms: platformNames, product: PRODUCT_NAME }),
+              visual:
+                key === "publish" ? (
                   <PublishVisual label={t("core.items.publish.visual", { platforms: platformNames })} />
-                )}
-              </div>
-            </Panel>
-          ))}
+                ) : key === "schedule" ? (
+                  <ScheduleVisual label={t("core.items.schedule.visual")} />
+                ) : (
+                  <ManageVisual label={t("core.items.manage.visual")} />
+                ),
+            }))}
+          />
         </div>
       </section>
 
-      {/* Promise: the core in one picture with true numbers around it (founder's call,
-          2026-11-11): three pills each side from lg up, wrapped under the picture on phones.
-          Clipped sideways: the turning ring's empty corners would widen the page on phones. */}
-      <section aria-labelledby="promise-title" className="mx-auto max-w-[1440px] overflow-x-clip px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
-        <h2 id="promise-title" className="display text-center text-4xl text-balance md:text-5xl lg:text-6xl pt-6 pb-2 md:pt-10 md:pb-4">
-          {t("promise.title")}
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-balance text-muted-foreground">{t("promise.sub")}</p>
-        <div className="mx-auto mt-10 grid max-w-4xl items-center gap-x-10 gap-y-6 lg:mt-14 lg:grid-cols-[1fr_minmax(0,22rem)_1fr]">
-          <HubVisual className="lg:col-start-2 lg:row-start-1" label={t("promise.visual", { product: PRODUCT_NAME, platforms: platformNames })} />
-          {[PROMISE.slice(0, 3), PROMISE.slice(3)].map((side, s) => (
-            <ul
-              key={side[0].key}
-              className={cn(
-                "flex flex-wrap justify-center gap-3 lg:row-start-1 lg:flex-col lg:justify-between lg:self-stretch lg:py-8",
-                s === 0 ? "lg:col-start-1 lg:items-start" : "lg:col-start-3 lg:items-end",
-              )}
-            >
-              {side.map(({ key, value, percent }) => (
-                <li key={key} className="inline-flex items-center gap-2 rounded-full bg-card p-1 pe-4 text-sm font-medium ring-1 ring-border">
-                  <span className="tabular rounded-full bg-card-lavender px-2.5 py-1 font-semibold">
-                    {format.number(value, percent ? { style: "percent" } : undefined)}
-                  </span>
-                  {t(`promise.stats.${key}`)}
-                </li>
-              ))}
-            </ul>
-          ))}
-        </div>
-      </section>
-
-      <Comparison />
-
-      {/* AI: the writing assistant today, agents through the API and MCP server soon. */}
-      <section aria-labelledby="ai-title" className="mx-auto max-w-[1440px] px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
-        <Panel surface="ai-mesh">
-          <div aria-hidden className="dot-grid absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_75%_75%_at_30%_40%,black,transparent)]" />
-          <div className="grid items-center gap-12 px-6 py-12 sm:px-10 md:py-16 lg:grid-cols-[1fr_1.05fr] lg:px-14">
-            <div>
-              <h2 id="ai-title" className="display text-4xl text-balance md:text-5xl lg:text-6xl">
-                {t("ai.title")}
-              </h2>
-              <p className="mt-5 max-w-xl text-lg text-foreground/80">{t(AI_ENABLED ? "ai.sub" : "ai.subSoon")}</p>
-              <ul className="mt-8 space-y-5">
-                {AI_POINTS.map(({ key, icon: Icon, chip }) => (
-                  <li key={key} className="flex gap-4">
-                    <span className={cn("inline-flex size-11 shrink-0 items-center justify-center rounded-2xl ring-1 ring-foreground/10", chip)}>
-                      <Icon className="size-5" aria-hidden />
-                    </span>
-                    <div>
-                      <h3 className="font-heading text-lg font-semibold">
-                        {t(`ai.points.${key}.title`)}
-                        {/* While AI is switched off, the writing and image tools are announced, not offered. */}
-                        {key === "write" && !AI_ENABLED ? (
-                          <span className="ms-2 rounded-full bg-card px-2 py-0.5 align-middle font-sans text-xs font-semibold">{t("ai.console.soon")}</span>
-                        ) : null}
-                      </h3>
-                      <p className="mt-1 text-sm text-foreground/75">{t(`ai.points.${key}.body`)}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <AgentConsole />
-          </div>
-        </Panel>
-      </section>
-
-      {/* Features and how it works, in one full-width band with square edges, light grey in
-          the light theme (founder's call, 2026-11-11): the previews (a drawing of three phones),
-          the details, then the three steps. */}
-      <section id="features" aria-labelledby="features-title" className="mb-16 scroll-mt-24 bg-band md:mb-24 dark:border-y dark:border-border">
-        <div className="mx-auto max-w-[1440px] px-4 py-16 md:px-6 md:py-24 lg:px-8">
-          <div className="mx-auto max-w-4xl text-center">
-            <h2 id="features-title" className="display text-4xl text-balance md:text-5xl lg:text-6xl pt-6 pb-2 md:pt-10 md:pb-4">
-              {t("featuresTitle")}
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">{t("featuresSub")}</p>
-          </div>
-
-          <div className="mt-14 grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-            <div>
-              <h3 className="font-heading text-3xl font-semibold tracking-tight text-balance md:text-4xl md:leading-tight">{t("showcase.previews.title")}</h3>
-              <p className="mt-3 max-w-md text-muted-foreground">{t("showcase.previews.body")}</p>
-              <ul className="mt-6 space-y-3">
-                {(["captions", "frames", "fix"] as const).map((point) => (
-                  <li key={point} className="flex items-start gap-2.5 font-medium">
-                    <span aria-hidden className="mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full bg-foreground/10">
-                      <Check className="size-3" />
-                    </span>
-                    {t(`showcase.previews.points.${point}`)}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <PreviewPhones label={t("showcase.previews.shot")} />
-          </div>
-
-          <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {EXTRAS.map(({ key, icon: Icon, chip }) => (
-              <li key={key} className="rounded-2xl bg-card p-6">
-                <span className={cn("inline-flex size-11 items-center justify-center rounded-2xl text-foreground", chip)}>
-                  <Icon className="size-5" aria-hidden />
+      {/* Previews: the phones on salmon, picture first. */}
+      <Split
+        id="features-title"
+        flip
+        surface="bg-card-salmon"
+        eyebrow={t("eyebrows.previews")}
+        title={t("featuresTitle")}
+        body={t("featuresSub")}
+        extra={
+          <ul className="mt-6 space-y-3">
+            {(["captions", "frames", "fix"] as const).map((point) => (
+              <li key={point} className="flex items-start gap-2.5 text-lg font-medium">
+                <span aria-hidden className="mt-1 inline-flex size-5 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                  <Check className="size-3" />
                 </span>
-                <h3 className="mt-4 font-heading text-xl font-semibold tracking-tight">{t(`features.${key}.title`)}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{t(`features.${key}.body`)}</p>
+                {t(`showcase.previews.points.${point}`)}
               </li>
             ))}
           </ul>
+        }
+        cta={cta}
+      >
+        <PreviewPhones label={t("showcase.previews.shot")} />
+      </Split>
 
-          <div className="mt-16 border-t border-border pt-14">
-            <h3 className="display text-center text-3xl text-balance md:text-4xl">{t("stepsTitle")}</h3>
-            <ol className="mt-10 grid gap-4 md:grid-cols-3">
-              {(["connect", "check", "schedule"] as const).map((step, i) => (
-                <li key={step} className="rounded-2xl bg-card p-7">
-                  <span aria-hidden className={cn("tabular inline-flex size-11 items-center justify-center rounded-2xl font-heading text-lg font-semibold text-foreground", STEP_CHIPS[i])}>
-                    {i + 1}
-                  </span>
-                  <h4 className="mt-5 font-heading text-2xl font-semibold tracking-tight">{t(`steps.${step}.title`)}</h4>
-                  <p className="mt-2 text-muted-foreground">{t(`steps.${step}.body`)}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </div>
-      </section>
+      {/* Agents (founder's call, 2026-11-13): coming soon, so it says so; the picture is an
+          illustration. */}
+      <Split
+        id="agents-title"
+        surface="bg-card-aqua"
+        eyebrow={
+          <>
+            {t("agents.eyebrow")}
+            <SoonBadge className="tracking-normal normal-case" />
+          </>
+        }
+        title={t("agents.title")}
+        body={t("agents.body", { product: PRODUCT_NAME })}
+        cta={cta}
+      >
+        <AgentsVisual />
+      </Split>
 
-      {/* One account, a workspace per brand; real reviews once there are any (each section
-          explains itself). */}
-      <BrandTree />
+      {/* Workspaces: one account, a workspace per brand; the tree on lavender, picture first. */}
+      <Split id="brands-title" flip surface="bg-card-lavender" eyebrow={t("eyebrows.brands")} title={t("brands.title")} body={t("brands.sub")} cta={cta}>
+        <BrandTreeVisual />
+      </Split>
+
+      <Comparison />
+
       <CustomerReviews />
 
       {/* Pricing: the four paid plans side by side; Pricing compares all five. */}
       <section aria-labelledby="pricing-title" className="mx-auto max-w-[1440px] px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
-        <h2 id="pricing-title" className="display mx-auto mb-8 max-w-4xl text-center text-4xl text-balance md:text-5xl lg:text-6xl pt-6 pb-2 md:pt-10 md:pb-4">
+        <h2 id="pricing-title" className="display mx-auto mb-8 max-w-3xl text-center text-4xl text-balance md:text-5xl">
           {t("pricingTitle")}
         </h2>
         <LandingPricing />
@@ -340,7 +271,7 @@ export default function HomePage() {
 
       {/* FAQ: visible questions with direct answers (SEO-AEO.md workflow 2), centred, no cards. */}
       <section aria-labelledby="faq-title" className="mx-auto max-w-7xl px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
-        <h2 id="faq-title" className="display text-center text-4xl text-balance md:text-5xl lg:text-6xl pt-6 pb-2 md:pt-10 md:pb-4">
+        <h2 id="faq-title" className="display text-center text-4xl text-balance md:text-5xl">
           {t("faqTitle", { product: PRODUCT_NAME })}
         </h2>
         <div className="mt-10 divide-y border-y">
@@ -350,14 +281,13 @@ export default function HomePage() {
                 {t(`faq.${key}.q`, { product: PRODUCT_NAME })}
                 <Plus aria-hidden className="size-5 shrink-0 transition-transform group-open:rotate-45" />
               </summary>
-              <p className="mt-3 max-w-4xl pe-10 text-muted-foreground">
+              <p className="mt-3 max-w-4xl pe-10 text-lg text-muted-foreground">
                 {key === "ai" && !AI_ENABLED ? t("faq.ai.aSoon", { product: PRODUCT_NAME }) : t(`faq.${key}.a`, { product: PRODUCT_NAME, days: TRIAL_DAYS })}
               </p>
             </details>
           ))}
         </div>
       </section>
-
     </>
   );
 }

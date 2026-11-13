@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowDown, ArrowUp, ChevronDown, Download, ExternalLink, FileSpreadsheet, FileText, Minus, Plus, Printer, Sparkles } from "lucide-react";
+import { ArrowDown, ArrowUp, ChevronDown, Download, ExternalLink, FileSpreadsheet, FileText, MessageCircle, Minus, Plus, Printer, Sparkles } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useMemo, useState, type ReactNode } from "react";
 import { toast } from "sonner";
@@ -18,7 +18,7 @@ import { isRtl } from "@/i18n/routing";
 import type { AccountInsights, InsightPost, InsightsRange, SocialAccount } from "@/lib/api/client";
 import { formatDateTime, formatDayKey } from "@/lib/time";
 import { cn } from "@/lib/utils";
-import { getPlatform, type InsightMetric } from "@/providers/catalog";
+import { COMMENTS_READY, getPlatform, type InsightMetric } from "@/providers/catalog";
 import { PostSheet } from "@/features/posts/post-sheet";
 import { PostsView } from "@/features/posts/posts-list";
 import { TYPE_ICON } from "@/features/posts/post-summary";
@@ -26,6 +26,7 @@ import { useAccountInsights, useAccounts, usePosts } from "@/features/session/qu
 import { useWorkspace } from "@/features/session/workspace-context";
 import { AccountHeader, AccountPage } from "./account-page";
 import { download, printReport, reportFileBase, toCsv, toMarkdown, type Report } from "./export";
+import { RepliesDialog } from "./replies-dialog";
 import { postColumns, rateBase, useFormatMetric, useMetricLabel } from "./metrics";
 
 const RANGES = ["7", "30", "90"] as const;
@@ -131,9 +132,14 @@ function usePeriodText(data: AccountInsights) {
 
 // --- Summary --------------------------------------------------------------------------
 
-function Change({ metric, value, previous, days }: { metric: InsightMetric; value: number; previous: number; days: number }) {
+function Change({ metric, value, previous, days }: { metric: InsightMetric; value: number; previous: number | null; days: number }) {
   const t = useTranslations("insights");
   const locale = useLocale();
+  // No earlier number: the platform keeps no history of it (Bluesky followers), or there were
+  // no posts in the period before. Blank, not "no change".
+  if (previous === null) {
+    return <p className="mt-1.5 text-xs text-muted-foreground">{metric === "followers" ? t("change.today") : t("change.noEarlier", { days })}</p>;
+  }
   const delta = value - previous;
   const dir = delta > 0 ? "up" : delta < 0 ? "down" : "same";
   let text: string;
@@ -185,7 +191,7 @@ function Summary({ account, data, days }: { account: SocialAccount; data: Accoun
           );
         })}
       </ul>
-      {metrics.includes("engagementRate") ? (
+      {metrics.includes("engagementRate") && data.totals.engagementRate ? (
         <p className="text-xs text-muted-foreground">{t("rateNote", { base: t(`rateBase.${rateBase(account.provider)}`) })}</p>
       ) : null}
     </section>
@@ -216,11 +222,12 @@ function Trend({ account, data, days }: { account: SocialAccount; data: AccountI
   const t = useTranslations("insights.chart");
   const label = useMetricLabel(account.provider);
   const locale = useLocale();
-  const [metric, setMetric] = useState<TrendKey>("newFollowers");
+  // Without a follower history (Bluesky) there are no new followers per day to chart.
+  const [metric, setMetric] = useState<TrendKey>(data.followerHistory ? "newFollowers" : "engagements");
   const number = new Intl.NumberFormat(locale);
   const subscribers = getPlatform(account.provider).insights.terms?.followers === "subscribers";
   const options: Array<{ value: TrendKey; label: string }> = [
-    { value: "newFollowers", label: subscribers ? t("newSubscribers") : t("newFollowers") },
+    ...(data.followerHistory ? [{ value: "newFollowers" as const, label: subscribers ? t("newSubscribers") : t("newFollowers") }] : []),
     { value: "posts", label: label("posts") },
     { value: "engagements", label: t("engagements") },
   ];
@@ -339,6 +346,9 @@ function PostsTable({ account, data, days }: { account: SocialAccount; data: Acc
   const [sort, setSort] = useState<{ key: SortKey; desc: boolean }>({ key: "publishedAt", desc: true });
   const [openId, setOpenId] = useState<string | null>(null);
   const open = posts.data?.find((p) => p.id === openId);
+  // The replies cell opens the conversation, where people's replies are read and answered.
+  const [repliesOf, setRepliesOf] = useState<InsightPost | null>(null);
+  const canOpenReplies = COMMENTS_READY.has(account.provider);
 
   const rows = useMemo(() => {
     const value = (p: InsightPost) => (sort.key === "publishedAt" ? Date.parse(p.publishedAt) : (p.metrics[sort.key] ?? -1));
@@ -397,7 +407,20 @@ function PostsTable({ account, data, days }: { account: SocialAccount; data: Acc
                   </td>
                   {columns.map((m) => (
                     <td key={m} className={cn("tabular whitespace-nowrap px-4 py-3 text-end", sort.key === m && "font-semibold")}>
-                      {p.metrics[m] === undefined ? "–" : format(m, p.metrics[m])}
+                      {m === "comments" && canOpenReplies && p.ref ? (
+                        <button
+                          type="button"
+                          onClick={() => setRepliesOf(p)}
+                          className="inline-flex items-center gap-1.5 rounded-full border border-border px-2.5 py-1 font-medium transition-colors hover:bg-muted"
+                          aria-label={t("replies.open", { count: p.metrics.comments ?? 0 })}
+                        >
+                          <MessageCircle className="size-3.5" aria-hidden /> {format(m, p.metrics[m] ?? 0)}
+                        </button>
+                      ) : p.metrics[m] === undefined ? (
+                        "–"
+                      ) : (
+                        format(m, p.metrics[m])
+                      )}
                     </td>
                   ))}
                 </tr>
@@ -407,6 +430,7 @@ function PostsTable({ account, data, days }: { account: SocialAccount; data: Acc
         </div>
       )}
       {open ? <PostSheet post={open} accounts={accounts.data ?? []} onClose={() => setOpenId(null)} /> : null}
+      {repliesOf ? <RepliesDialog account={account} post={repliesOf} onClose={() => setRepliesOf(null)} /> : null}
     </section>
   );
 }
@@ -446,7 +470,7 @@ function ExportMenu({ account, data, days }: { account: SocialAccount; data: Acc
       },
       summary: platform.insights.metrics.flatMap((m) => {
         const total = d.totals[m];
-        return total ? [{ label: label(m), value: format(m, total.value), previous: format(m, total.previous) }] : [];
+        return total ? [{ label: label(m), value: format(m, total.value), previous: total.previous === null ? "–" : format(m, total.previous) }] : [];
       }),
       columns: columns.map(label),
       rawColumns: columns.map((m) => (m === "engagementRate" ? `${label(m)} (%)` : label(m))),
