@@ -36,9 +36,10 @@ export const publishDuePost = inngest.createFunction(
   {
     id: "publish-post",
     triggers: [{ event: DUE_EVENT }],
-    // At most 10 posts on their way at once, and 2 per workspace, so one busy workspace never
-    // holds up everyone else's posts (BACKEND.md §8.2, fairness).
-    concurrency: [{ limit: 10 }, { key: "event.data.workspaceId", limit: 2 }],
+    // At most 5 posts on their way at once (Inngest's free plan allows 5; raise this with a paid
+    // plan), and 2 per workspace, so one busy workspace never holds up everyone else's posts
+    // (BACKEND.md §8.2, fairness).
+    concurrency: [{ limit: 5 }, { key: "event.data.workspaceId", limit: 2 }],
     retries: 3,
   },
   async ({ event, step }) => {

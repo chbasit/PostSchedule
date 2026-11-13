@@ -84,7 +84,7 @@ Decision:
     - Sends one `post/publish.due` event per post (id `publish:<post>:<time>`, so a repeat is dropped).
   - `publish-post` sends each one:
     - Each account is claimed on its own (`pending` → `publishing`), so a job that runs twice never posts twice.
-    - At most 10 posts at once overall and 2 per workspace (fairness).
+    - At most 5 posts at once overall and 2 per workspace (fairness). 5 is the most Inngest's free plan allows; with 10, Inngest refused to sync the live app. Raise it on a paid plan.
     - 3 retries.
   - Posts stuck in `publishing` for 15 minutes are sent again by the next check.
   - There is no `singleton` lock: a stuck run held it in testing and blocked every later check. The atomic claim already makes overlapping checks safe.
