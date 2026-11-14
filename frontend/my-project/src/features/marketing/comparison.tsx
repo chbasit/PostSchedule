@@ -22,10 +22,10 @@ export function Comparison() {
   const th = useTranslations("marketing.home");
   return (
     <section aria-labelledby="compare-title" className="mx-auto max-w-[1440px] px-4 pb-16 md:px-6 md:pb-24 lg:px-8">
-      <h2 id="compare-title" className="display mx-auto max-w-3xl text-center text-4xl text-balance md:text-5xl">
+      <h2 id="compare-title" className="display mx-auto max-w-3xl text-center text-3xl text-balance sm:text-4xl md:text-5xl">
         {t("title")}
       </h2>
-      <p className="mx-auto mt-5 max-w-2xl text-center text-xl text-balance text-muted-foreground">{t("sub", { product: PRODUCT_NAME })}</p>
+      <p className="mx-auto mt-4 max-w-2xl text-center text-base text-balance text-muted-foreground sm:text-lg md:mt-5 md:text-xl">{t("sub", { product: PRODUCT_NAME })}</p>
       <div className="mt-12 grid gap-4 lg:grid-cols-3">
         {SIDES.map(({ key, icon: Icon, chip, items }) => (
           <div key={key} className="rounded-2xl bg-band p-6 sm:p-8 dark:ring-1 dark:ring-border">
@@ -33,7 +33,7 @@ export function Comparison() {
               <span aria-hidden className={cn("inline-flex size-11 items-center justify-center rounded-xl text-forest", chip)}>
                 <Icon className="size-5" />
               </span>
-              <h3 className="font-heading text-2xl font-semibold tracking-tight">{t(`${key}.title`)}</h3>
+              <h3 className="font-heading text-xl font-medium tracking-tight md:text-2xl">{t(`${key}.title`)}</h3>
             </div>
             <ul className="mt-7 space-y-6">
               {items.map((item) => (
@@ -42,8 +42,8 @@ export function Comparison() {
                     <X className="size-3.5" strokeWidth={3} />
                   </span>
                   <span>
-                    <span className="block text-lg font-semibold">{t(`${item}.title`)}</span>
-                    <span className="mt-1 block text-base text-muted-foreground">{t(`${item}.body`)}</span>
+                    <span className="block text-base font-medium md:text-lg">{t(`${item}.title`)}</span>
+                    <span className="mt-1 block text-sm text-muted-foreground md:text-base">{t(`${item}.body`)}</span>
                   </span>
                 </li>
               ))}
@@ -55,7 +55,7 @@ export function Comparison() {
             <span aria-hidden className="inline-flex size-11 items-center justify-center rounded-xl bg-white">
               <Image src={mark} alt="" className="h-6 w-auto" />
             </span>
-            <h3 className="font-heading text-2xl font-semibold tracking-tight">{t("ours.title", { product: PRODUCT_NAME })}</h3>
+            <h3 className="font-heading text-xl font-medium tracking-tight md:text-2xl">{t("ours.title", { product: PRODUCT_NAME })}</h3>
           </div>
           <ul className="mt-7 space-y-6">
             {OURS.map((item) => (
@@ -64,8 +64,8 @@ export function Comparison() {
                   <Check className="size-3.5" strokeWidth={3} />
                 </span>
                 <span>
-                  <span className="block text-lg font-semibold">{t(`ours.items.${item}.title`)}</span>
-                  <span className="mt-1 block text-base text-white/75">{t(`ours.items.${item}.body`)}</span>
+                  <span className="block text-base font-medium md:text-lg">{t(`ours.items.${item}.title`)}</span>
+                  <span className="mt-1 block text-sm text-white/75 md:text-base">{t(`ours.items.${item}.body`)}</span>
                 </span>
               </li>
             ))}

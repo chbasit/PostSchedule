@@ -13,8 +13,8 @@ export default function ResetPasswordPage() {
   const t = useTranslations("auth");
   return (
     <div className="space-y-6">
-      <div className="space-y-1.5 text-center">
-        <h1 className="text-3xl font-light tracking-tight">{t("resetTitle")}</h1>
+      <div className="space-y-1.5">
+        <h1 className="font-heading text-3xl font-semibold tracking-tight">{t("resetTitle")}</h1>
         <p className="text-sm text-muted-foreground">{t("resetSub")}</p>
       </div>
       <ResetPasswordForm />

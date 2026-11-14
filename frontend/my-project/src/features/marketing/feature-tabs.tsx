@@ -39,10 +39,10 @@ export function FeatureTabs({ items, label }: { items: FeatureTab[]; label: stri
                   className="absolute -top-px start-0 h-0.5 w-full origin-left bg-foreground group-focus-within/tabs:[animation-play-state:paused] group-hover/tabs:[animation-play-state:paused] motion-safe:animate-[tab-progress_7s_linear_forwards] rtl:origin-right"
                 />
               ) : null}
-              <span className={cn("block font-heading text-2xl font-semibold tracking-tight transition-opacity duration-300 md:text-3xl", on ? "opacity-100" : "opacity-35 hover:opacity-60")}>
+              <span className={cn("block font-heading text-xl font-medium tracking-tight transition-opacity duration-300 sm:text-2xl md:text-3xl", on ? "opacity-100" : "opacity-35 hover:opacity-60")}>
                 {item.title}
               </span>
-              {on ? <span className="mt-3 block max-w-xl animate-fade-in text-lg text-muted-foreground">{item.body}</span> : null}
+              {on ? <span className="mt-3 block max-w-xl animate-fade-in text-base text-muted-foreground md:text-lg">{item.body}</span> : null}
             </button>
           );
         })}

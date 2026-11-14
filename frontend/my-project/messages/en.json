@@ -92,7 +92,6 @@
     "code": "Enter the code from the email: 6 to 10 digits."
   },
   "marketing": {
-    "announcement": "Founding price for the first {count} customers, locked for 24 months. See the offer",
     "nav": {
       "home": "Home",
       "main": "Main",
@@ -218,8 +217,6 @@
       "ctaPrimary": "Start free",
       "ctaGoogle": "Start with Google",
       "ctaNote": "{days}-day trial. No card needed.",
-      "featuresTitle": "Check your post before you share it.",
-      "featuresSub": "See how each app will show your post. We tell you if the quality will drop, before anyone sees it.",
       "businesses": {
         "bakery": {
           "label": "Bakery",
@@ -304,46 +301,12 @@
         }
       },
       "platformsLabel": "Previews and checks for",
-      "showcase": {
-        "previews": {
-          "title": "Preview every app before you post",
-          "body": "Write once and check how each app will show it. If a video would be cropped or rejected, you see why, and the fix is one click away.",
-          "shot": "The same post previewed as Instagram Reels, TikTok and YouTube Shorts, each marked ready.",
-          "points": {
-            "captions": "One caption for all, or one per platform",
-            "frames": "Phone previews with the crop and the covered areas",
-            "fix": "A 9:16 copy in one click, original kept"
-          }
-        }
-      },
       "video": {
         "play": "Play video",
         "pause": "Pause video"
       },
       "headline": "Post to all your social accounts from one dashboard",
-      "benefits": {
-        "title": "Why teams post with {product}",
-        "items": {
-          "everywhere": {
-            "title": "One post, every platform",
-            "body": "Write once and publish to {platforms} together."
-          },
-          "checks": {
-            "title": "Checked before it goes out",
-            "body": "Video checks and a preview for each platform catch problems before your audience sees them."
-          },
-          "zones": {
-            "title": "On time in every time zone",
-            "body": "Plan weeks ahead and post when each audience is awake."
-          },
-          "original": {
-            "title": "Your original, untouched",
-            "body": "We send your file as you made it, unless you choose a fix."
-          }
-        }
-      },
       "eyebrows": {
-        "previews": "Previews",
         "brands": "Workspaces"
       },
       "visuals": {
@@ -373,6 +336,61 @@
           "team": "Team",
           "offer": "Offer",
           "photos": "Photos"
+        }
+      },
+      "how": {
+        "eyebrow": "How it works",
+        "title": "From one video to every platform in three steps",
+        "sub": "Connect once, check before it goes out, and post on time.",
+        "more": "+{count} more",
+        "steps": {
+          "connect": {
+            "title": "Connect your accounts",
+            "body": "Sign in to each platform once. We ask only for what posting needs, and your logins are stored encrypted."
+          },
+          "check": {
+            "title": "Upload and check",
+            "body": "Add your video and caption. Phone previews and pre-flight checks show how each platform will crop and compress it before anyone sees it."
+          },
+          "publish": {
+            "title": "Schedule or post now",
+            "body": "Pick a time in any time zone, or post right away. We publish on time and tell you if anything needs your attention."
+          }
+        },
+        "tags": {
+          "checks": "Video checks",
+          "previews": "Phone previews",
+          "copy": "9:16 copy",
+          "calendar": "Calendar",
+          "zones": "Any time zone",
+          "now": "Post now"
+        }
+      },
+      "facts": {
+        "eyebrow": "Why switch",
+        "title": "Built to post well, everywhere",
+        "sub": "What you get from the first day, in numbers you can check yourself.",
+        "platforms": {
+          "value": "{count}",
+          "label": "Platforms, one composer",
+          "body": "Previews and checks for {platforms}, each shown the way that app will display it.",
+          "photo": "A phone showing a folder of social media apps."
+        },
+        "fix": {
+          "value": "1 click",
+          "label": "Fixes without starting over",
+          "body": "Make a 9:16 copy or fix what a platform would crop, right in the post. Your original stays untouched.",
+          "photo": "A person editing a video on a computer."
+        },
+        "trial": {
+          "value": "{days} days",
+          "label": "Free, full access",
+          "body": "Try every feature of your plan. No card needed to start."
+        },
+        "watermark": {
+          "value": "0",
+          "label": "Watermarks",
+          "body": "We never add our logo to your posts or change your original file."
         }
       }
     },
@@ -1172,6 +1190,12 @@
       "account_exists": "Development mode: this address already has a confirmed account, so no code was made. Sign in instead.",
       "no_account": "Development mode: no account uses this address, so no code was made.",
       "already_confirmed": "Development mode: this address is already confirmed. Sign in instead."
+    },
+    "showcase": {
+      "title": "Post to all your social accounts from one place.",
+      "body": "Create a free account and get full access for {days} days. No card needed.",
+      "platforms": "Publish to {platforms}",
+      "phones": "One post previewed the way {platforms} show it."
     }
   },
   "nav": {

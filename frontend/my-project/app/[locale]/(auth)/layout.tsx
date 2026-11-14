@@ -5,14 +5,15 @@ import { Logo } from "@/components/logo";
 import { Skeleton } from "@/components/ui/misc";
 import { DEV_MODE } from "@/config/site";
 import { Link } from "@/i18n/navigation";
+import { AuthShowcase } from "@/features/auth/auth-showcase";
 
 export const metadata: Metadata = { robots: { index: false } };
 
 function FormSkeleton() {
   return (
     <div className="space-y-4" aria-hidden>
-      <Skeleton className="mx-auto h-8 w-2/3" />
-      <Skeleton className="mx-auto h-4 w-1/2" />
+      <Skeleton className="h-8 w-2/3" />
+      <Skeleton className="h-4 w-1/2" />
       <Skeleton className="h-11 w-full" />
       <Skeleton className="h-10 w-full" />
       <Skeleton className="h-10 w-full" />
@@ -21,28 +22,32 @@ function FormSkeleton() {
   );
 }
 
-// One centred card on the shell colour: logo above, language and theme in the corner.
+// A split screen (founder's call, 2026-11-14): the logo and the form on white on the left, the
+// product's picture on forest on the right (AuthShowcase), which phones do not show.
 export default function AuthLayout({ children }: LayoutProps<"/[locale]">) {
   const t = useTranslations("auth.dev");
   return (
-    <div className="flex min-h-dvh flex-col bg-shell">
-      <div className="flex h-14 shrink-0 items-center justify-end gap-1 px-4 sm:px-6">
-        {/* So nobody mistakes on-screen codes for the real thing (src/config/site.ts). */}
-        {DEV_MODE ? (
-          <span className="me-auto rounded-full border border-dashed border-info/50 bg-info-bg px-2.5 py-0.5 text-xs font-semibold text-info" title={t("badgeHint")}>
-            {t("badge")}
-          </span>
-        ) : null}
-        {/* No theme button here: only the site and the dashboard have one (founder's call, 2026-11-11). */}
-      </div>
-      <main id="main" className="flex flex-1 flex-col items-center justify-center px-4 pb-14">
-        <Link href="/" className="mb-6 rounded">
-          <Logo />
-        </Link>
-        <div className="w-full max-w-[400px] rounded-2xl bg-card p-6 shadow-[0_1px_3px_rgb(0_0_0/0.06),0_8px_24px_rgb(0_0_0/0.05)] sm:p-8 dark:shadow-none dark:ring-1 dark:ring-white/10">
-          <Suspense fallback={<FormSkeleton />}>{children}</Suspense>
+    <div className="grid min-h-dvh bg-background lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
+      <div className="flex min-h-dvh flex-col px-5 py-6 sm:px-10 lg:px-14 xl:px-20">
+        <div className="flex items-center justify-between gap-3">
+          <Link href="/" className="rounded">
+            <Logo />
+          </Link>
+          {/* So nobody mistakes on-screen codes for the real thing (src/config/site.ts). */}
+          {DEV_MODE ? (
+            <span className="rounded-full border border-dashed border-info/50 bg-info-bg px-2.5 py-0.5 text-xs font-semibold text-info" title={t("badgeHint")}>
+              {t("badge")}
+            </span>
+          ) : null}
+          {/* No theme button here: only the site and the dashboard have one (founder's call, 2026-11-11). */}
         </div>
-      </main>
+        <main id="main" className="flex flex-1 items-center py-10">
+          <div className="mx-auto w-full max-w-[400px]">
+            <Suspense fallback={<FormSkeleton />}>{children}</Suspense>
+          </div>
+        </main>
+      </div>
+      <AuthShowcase />
     </div>
   );
 }

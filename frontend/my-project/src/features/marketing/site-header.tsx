@@ -46,7 +46,8 @@ export function SiteHeader() {
           <ThemeToggle className="rounded-full" />
           {/* No "Log in" here (founder's call, 2026-11-11): it is in the phone menu, the footer
               and on the sign-up page. */}
-          <Link href="/signup" className={cn(buttonVariants(), "hidden h-10 rounded-full px-5 text-base sm:inline-flex")}>
+          {/* Start free opens the sign-in page, which offers Google and a link to sign up (founder's call, 2026-11-14). */}
+          <Link href="/login" className={cn(buttonVariants(), "hidden h-10 rounded-full px-5 text-base sm:inline-flex")}>
             {t("startFree")}
           </Link>
           <MobileMenu links={links.map((l) => ({ ...l }))} loginLabel={t("login")} startLabel={t("startFree")} />

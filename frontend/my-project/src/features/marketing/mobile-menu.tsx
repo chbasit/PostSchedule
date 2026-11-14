@@ -43,7 +43,7 @@ export function MobileMenu({ links, loginLabel, startLabel }: Props) {
           </ul>
         </nav>
         <div className="mt-auto flex flex-col gap-2 pt-8">
-          <Link href="/signup" onClick={close} className={cn(buttonVariants({ size: "lg" }), "rounded-full")}>
+          <Link href="/login" onClick={close} className={cn(buttonVariants({ size: "lg" }), "rounded-full")}>
             {startLabel}
           </Link>
           <Link href="/login" onClick={close} className={cn(buttonVariants({ variant: "secondary", size: "lg" }), "rounded-full border-border")}>

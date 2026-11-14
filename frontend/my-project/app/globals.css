@@ -128,9 +128,10 @@
   --band: #f7f7f7;
   --footer: #213130;
   --footer-foreground: #ffffff;
-  /* The homepage hero's backdrop (founder's call, 2026-11-13): faint grey lines on white. */
+  /* The homepage hero's backdrop (founder's call, 2026-11-13, made fainter 2026-11-14): very
+     light grey lines on white. */
   --hero-tint: #ffffff;
-  --hero-line: #f2f4f3;
+  --hero-line: #f6f7f6;
 
   /* Landing card colours (founder's palette, 2026-10-26). Ink text 10.9:1 or better,
      muted text 5.4:1 or better; as surfaces the dark theme uses deep versions of each. */
@@ -666,10 +667,10 @@ body:has([data-action-bar]) [data-sonner-toaster][data-y-position="bottom"] {
     letter-spacing: -0.02em;
     line-height: 1.05;
   }
-  /* The public site sets headlines semibold and tight, like the card and section titles
-     (founder's direction 2026-11-03: lighter, smaller headings). */
+  /* The public site sets headlines medium and tight (founder's direction 2026-11-03: lighter,
+     smaller headings; 2026-11-14: not too bold). */
   .site-fonts .display {
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: -0.03em;
     line-height: 1.06;
   }

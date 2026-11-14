@@ -2,6 +2,64 @@
 
 Newest first. Format from `PROJECTFLOW.md` §9.
 
+## 2026-11-14 — Lighter homepage: no announcement bar, pastel "Why switch" with photos, smaller type on phones
+
+Decision:
+- **Announcement bar.** The founding-offer bar above the navbar is removed on every screen size. The offer stays on Pricing.
+- **Previews section.** The "Check your post before you share it" section (phones on salmon) is removed from the homepage, with its texts and the section component's unused `extra` slot. The phone previews remain on the sign-in pages.
+- **Why switch.** The section is now on white:
+  - pastel cards (lavender, aqua, salmon, yellow) inside a thin white frame, like the reference the founder chose;
+  - medium-weight numbers and titles;
+  - two real photos from Unsplash (free licence, credited in `src/assets/images/landing/CREDITS.md`): a phone with a folder of social apps, and a person editing video.
+  - A third candidate was skipped because it showed a competing scheduler's account.
+- **How it works.** No shadows: the cards, number chips and tags have a hairline border.
+- **Headings.** The site's display headings are weight 500 (was 600). The hero has less top and bottom space, and its heading is a little smaller (`clamp(2.1rem, 5.4vw, 4.5rem)`).
+- **Phones.** On the homepage:
+  - section titles are 30 px (36 from 640 px wide, 48 from 768 px);
+  - body text is 16 px, card titles 18–20 px and FAQ text 16 px;
+  - the larger sizes return from `sm`/`md` up.
+Why: The founder asked for a light "Why switch" with real images and less bold type, no box shadows, less hero space, smaller text on phones, and no bar above the navbar.
+Revisit when: There is a new offer worth a bar, or real customer photos and results to use instead of stock photos.
+
+## 2026-11-14 — Transparent navbar, fainter hero grid, no benefit cards
+
+Decision:
+- **Header.** The site header (`HeaderBar`) is transparent at the top of the page. Once the page scrolls more than 8 px, it gets a blurred white background (90%), a hairline and a soft shadow.
+- **Hero.** On the homepage the hero is pulled up under the header (`-mt-16`, with more top padding), so its grid continues behind the transparent navbar.
+- **Grid.** The hero grid lines are `#f6f7f6` (from `#f2f4f3`).
+- **Benefit cards.** The four cards ("Why teams post with AgentiqSocial") are removed, with their texts. "How it works" follows the hero.
+Why: The founder asked for a transparent navbar that changes on scroll, fainter lines, and no benefit cards.
+Revisit when: A page with a dark top section needs the transparent header over it (its text would need to turn light).
+
+## 2026-11-14 — "How it works" and a "Why switch" bento on the homepage, with checkable facts only
+
+Decision:
+- **How it works** (`how-it-works.tsx`), after the four benefits, on the light grey band:
+  - a "How it works" pill and the title "From one video to every platform in three steps";
+  - three white cards, each with a numbered chip (01–03), the step, what happens, and tag pills: three platforms and "+3 more"; video checks, phone previews, 9:16 copy; calendar, any time zone, post now.
+- **Why switch** (`why-switch.tsx`), after the comparison, on forest: a bento of four cards with soft aqua, leaf and lavender washes and big numbers.
+  - **6** platforms, one composer, with a phone listing each platform marked ready;
+  - **1 click** fixes without starting over, with a post card marked "9:16 copy made" and "Original kept";
+  - **7 days** free with full access;
+  - **0** watermarks.
+- The reference design's customer results ("10X output", "90% less editing", "3x engagement", "from real customers") were not copied. We have no such results, so each number is a fact anyone can check in the product.
+Why: The founder asked for these two components from a reference, in our colours.
+Alternatives: The reference's outcome numbers (rejected: invented claims; false advertising).
+Revisit when: Real customer results exist and can be quoted with permission.
+
+## 2026-11-14 — Split-screen sign-in pages; Start free opens the sign-in page
+
+Decision:
+- **Layout.** Every auth page (sign in, sign up, forgot and reset password, verify email) is a split screen.
+  - Left: the logo, and the form on white with headings aligned to the start.
+  - Right (`AuthShowcase`, from 1024 px wide, exactly the screen's height): on forest, the homepage's phone previews (the bakery post, Unsplash License) under soft squares, then the headline "Post to all your social accounts from one place.", the trial line and the six platforms.
+  - Phones show the form only.
+  - No ratings, avatars or customer counts: we have none, so the reference design's social proof became the platform list.
+- **Start free.** The header's Start free (desktop and phone menu) and the hero's now open `/login`, which offers Google and a "Create an account" link. The other Start free buttons on the page still open `/signup`.
+Why: The founder asked for this design (a reference sign-up page) with our own content, the picture hidden on phones, and Start free going to sign in.
+Alternatives: A stock photo of a person (we have none we own; the product picture is ours and on-brand).
+Revisit when: Real reviews or customer numbers exist (they could go on the panel), or sign-up conversion drops after the Start free change.
+
 ## 2026-11-13 — TikTok: connect and post videos (Login Kit + Content Posting API, Direct Post)
 
 Decision:
